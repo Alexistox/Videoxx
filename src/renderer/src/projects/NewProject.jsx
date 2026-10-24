@@ -1,31 +1,31 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  AudioLinesIcon,
+  BookOpenTextIcon,
+  BoxIcon,
+  BoxesIcon,
+  ChevronDownIcon,
+  DicesIcon,
+  FaceSlightlySmilingIcon,
+  FileTextIcon,
+  FolderOpenIcon,
+  Gamepad2Icon,
+  Grid3x3Icon,
+  LightbulbIcon,
+  NewspaperIcon,
+  PackagePlusIcon,
+  PersonStandingIcon,
+  ShapesIcon,
+  SparklesIcon,
+  TimerIcon,
+  UploadIcon,
+  UserRoundIcon,
+  WandSparklesIcon,
+  XIcon,
+} from "lucide-react";
 import { api, isMyLook, isOwnStyle, offeredLook } from "../lib/api";
 import { fmtLength, parseLength } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  AudioLines,
-  BookOpenText,
-  Box,
-  Boxes,
-  ChevronDown,
-  Dices,
-  FaceSlightlySmiling,
-  FileText,
-  FolderOpen,
-  Gamepad2,
-  Grid3x3,
-  Lightbulb,
-  Newspaper,
-  PackagePlus,
-  PersonStanding,
-  Shapes,
-  Sparkles,
-  Timer,
-  Upload,
-  UserRound,
-  WandSparkles,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { MOD, isMac } from "../help/keys";
 import { Modal, Spinner, Toggle } from "../components/ui";
 import { MenuList, Picker, Popover, Segmented } from "../components/Picker";
@@ -70,22 +70,22 @@ function StyleGlyph({ s }) {
   const base = isOwnStyle(s) ? "custom" : (s.base ?? s.id);
   const Icon =
     base === "pixel-art"
-      ? Grid3x3
+      ? Grid3x3Icon
       : base === "flat"
-        ? Shapes
+        ? ShapesIcon
         : base === "stickman"
-          ? PersonStanding
+          ? PersonStandingIcon
           : base === "recon"
-            ? Box
+            ? BoxIcon
             : base === "lowpoly"
-              ? Gamepad2
+              ? Gamepad2Icon
               : base === "toon"
-                ? FaceSlightlySmiling
+                ? FaceSlightlySmilingIcon
                 : base === "stickstory"
-                  ? BookOpenText
+                  ? BookOpenTextIcon
                   : base === "custom" || base === "starter"
-                    ? Sparkles
-                    : Newspaper;
+                    ? SparklesIcon
+                    : NewspaperIcon;
   return (
     <span className={`np-glyph g-${base}`}>
       <Icon size={13} strokeWidth={2} />
@@ -162,7 +162,7 @@ export function LengthField({ value, onChange, wpm = WPM, unit = "words" }) {
           }
         }}
       >
-        <Timer size={14} strokeWidth={1.8} />
+        <TimerIcon size={14} strokeWidth={1.8} />
         <input
           ref={input}
           id="np-length"
@@ -185,7 +185,7 @@ export function LengthField({ value, onChange, wpm = WPM, unit = "words" }) {
           aria-label="Length"
           aria-invalid={bad || void 0}
         />
-        <ChevronDown className="pk-chev" size={15} strokeWidth={1.8} />
+        <ChevronDownIcon className="pk-chev" size={15} strokeWidth={1.8} />
       </div>
       <Popover anchor={wrap} open={open} onClose={() => setOpen(false)} width={230} className="pk-inline">
         <MenuList
@@ -257,7 +257,7 @@ function NpScriptSkill({ skill, setSkill, off, setOff }) {
           disabled={busy}
           onClick={() => run(() => api.scriptSkillPick("folder"), "Scripting skill saved. Claude follows it from now on.")}
         >
-          <FolderOpen size={14} />
+          <FolderOpenIcon size={14} />
           {verb}
           {" a folder"}
         </button>
@@ -637,7 +637,7 @@ export function NewProject({ onClose }) {
               hint: c.about,
               badge: c.default ? "Default" : void 0,
               group: "Your characters",
-              icon: c.thumb ? <img src={c.thumb} alt="" /> : <UserRound size={15} strokeWidth={1.8} />,
+              icon: c.thumb ? <img src={c.thumb} alt="" /> : <UserRoundIcon size={15} strokeWidth={1.8} />,
               preview: c.thumb ? { poster: c.thumb, square: true } : null,
             })),
             {
@@ -645,7 +645,7 @@ export function NewProject({ onClose }) {
               label: "A random new character",
               hint: "Made when the project is created and added to your characters",
               group: "Something new",
-              icon: <Dices size={15} strokeWidth={1.8} />,
+              icon: <DicesIcon size={15} strokeWidth={1.8} />,
             },
             {
               value: "__describe",
@@ -653,14 +653,14 @@ export function NewProject({ onClose }) {
               hint: "Claude (Opus) designs them in a character lab",
               badge: std ? "Premium" : void 0,
               group: "Something new",
-              icon: <WandSparkles size={15} strokeWidth={1.8} />,
+              icon: <WandSparklesIcon size={15} strokeWidth={1.8} />,
             },
             {
               value: "__none",
               label: "No main character (decide later)",
               hint: "Each scene gets its own people and objects; turn one on later in Project settings",
               group: "Something new",
-              icon: <UserRound size={15} strokeWidth={1.8} />,
+              icon: <UserRoundIcon size={15} strokeWidth={1.8} />,
             },
           ],
     [chars, std],
@@ -738,7 +738,7 @@ export function NewProject({ onClose }) {
             {file ? (
               <div className="np-file">
                 <span className="np-file-ico">
-                  <AudioLines size={17} strokeWidth={1.8} />
+                  <AudioLinesIcon size={17} strokeWidth={1.8} />
                 </span>
                 <span className="np-file-txt">
                   <b className="ellipsis">{file.base}</b>
@@ -750,7 +750,7 @@ export function NewProject({ onClose }) {
                   Replace
                 </button>
                 <button className="icon-btn sm" aria-label="Remove audio" onClick={() => setAudio(null)}>
-                  <X size={14} />
+                  <XIcon size={14} />
                 </button>
               </div>
             ) : (
@@ -766,7 +766,7 @@ export function NewProject({ onClose }) {
                 onDrop={onDrop}
               >
                 <span className="np-drop-ico">
-                  {over ? <Upload size={17} strokeWidth={1.8} /> : <AudioLines size={17} strokeWidth={1.8} />}
+                  {over ? <UploadIcon size={17} strokeWidth={1.8} /> : <AudioLinesIcon size={17} strokeWidth={1.8} />}
                 </span>
                 <span className="np-drop-txt">
                   <b>{over ? "Drop it" : "Choose audio file…"}</b>
@@ -804,11 +804,11 @@ export function NewProject({ onClose }) {
                   disabled={kitBtns.picking}
                   onClick={() => kitBtns.importFrom("zip", () => onClose())}
                 >
-                  {kitBtns.picking ? <Spinner size={13} /> : <PackagePlus size={14} />}Import style
+                  {kitBtns.picking ? <Spinner size={13} /> : <PackagePlusIcon size={14} />}Import style
                   {kitBtns.std && <span className="premium-pill">Premium</span>}
                 </button>
                 <button type="button" className="btn small np-getkit" disabled={kitBtns.kitBusy} onClick={kitBtns.getKit}>
-                  {kitBtns.kitBusy ? <Spinner size={13} /> : <Boxes size={14} />}
+                  {kitBtns.kitBusy ? <Spinner size={13} /> : <BoxesIcon size={14} />}
                   {kitBtns.kitBusy ? "Writing the kit…" : "Get the Style Kit"}
                 </button>
               </div>
@@ -1031,12 +1031,12 @@ export function NewProject({ onClose }) {
               {
                 value: "topic",
                 label: <>Claude writes it{source !== "topic" && topic.trim() && <i className="np-dot" />}</>,
-                icon: <Lightbulb size={14} strokeWidth={1.8} />,
+                icon: <LightbulbIcon size={14} strokeWidth={1.8} />,
               },
               {
                 value: "script",
                 label: <>I have a script{source !== "script" && script.trim() && <i className="np-dot" />}</>,
-                icon: <FileText size={14} strokeWidth={1.8} />,
+                icon: <FileTextIcon size={14} strokeWidth={1.8} />,
               },
             ]}
           />
@@ -1181,7 +1181,7 @@ export function NewProject({ onClose }) {
                 ? [summary, realChanged ? "Real media changed" : ""].filter(Boolean).join(" · ")
                 : "Claude model, pictures, voice and sound as in Settings"}
             </span>
-            <ChevronDown className="np-adv-chev" size={15} strokeWidth={1.8} />
+            <ChevronDownIcon className="np-adv-chev" size={15} strokeWidth={1.8} />
           </button>
           {advOpen && (
             <div id="np-adv-body" className="np-adv-body">

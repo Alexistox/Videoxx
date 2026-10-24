@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { AudioLinesIcon, CpuIcon, FishIcon, MicIcon, SparklesIcon, TrashIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { AudioLines, Cpu, Fish, Mic, Sparkles, Trash } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner, Toggle } from "../components/ui";
 import { Picker } from "../components/Picker";
 import { aLang, lang } from "../settings/languages";
@@ -14,11 +14,11 @@ import { KokoroInstallCard } from "./KokoroInstallCard";
 import { KokoroFields } from "./KokoroFields";
 
 const OPENS_ON = [
-  { value: "auto", label: "Automatic", icon: <AudioLines size={13} strokeWidth={1.8} /> },
-  { value: "file", label: "My recording", icon: <Mic size={13} strokeWidth={1.8} /> },
-  { value: "elevenlabs", label: "ElevenLabs", icon: <Sparkles size={13} strokeWidth={1.8} /> },
-  { value: "fish", label: "Fish Audio", icon: <Fish size={13} strokeWidth={1.8} /> },
-  { value: "kokoro", label: "Local voice", icon: <Cpu size={13} strokeWidth={1.8} /> },
+  { value: "auto", label: "Automatic", icon: <AudioLinesIcon size={13} strokeWidth={1.8} /> },
+  { value: "file", label: "My recording", icon: <MicIcon size={13} strokeWidth={1.8} /> },
+  { value: "elevenlabs", label: "ElevenLabs", icon: <SparklesIcon size={13} strokeWidth={1.8} /> },
+  { value: "fish", label: "Fish Audio", icon: <FishIcon size={13} strokeWidth={1.8} /> },
+  { value: "kokoro", label: "Local voice", icon: <CpuIcon size={13} strokeWidth={1.8} /> },
 ];
 const mergePatch = (a, b) => {
   const out = { ...a };
@@ -336,7 +336,7 @@ export function VoiceSettingsSection() {
                 </span>
                 {k.where === "app" && (
                   <button className="btn small" onClick={remove}>
-                    <Trash size={14} />
+                    <TrashIcon size={14} />
                     Remove
                   </button>
                 )}

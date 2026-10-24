@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { CheckIcon, CopyIcon, RefreshCwIcon, TrashIcon, TriangleAlertIcon, UploadIcon } from "lucide-react";
 import { api, on } from "../../lib/api";
-import { Check, Copy, RefreshCw, Trash, TriangleAlert, Upload } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../../components/ui";
 
 const OURS = [
@@ -93,7 +93,7 @@ export function CharacterUpload({ onPick, picked }) {
     <div className="char-upload" data-chars3d style={{ display: "flex", flexDirection: "column", gap: 10 }}>
       <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
         <button className="btn small" disabled={busy} onClick={upload} data-chars3d-upload>
-          {busy ? <Spinner size={12} /> : <Upload size={14} />}Upload a character (FBX, GLB, VRM)
+          {busy ? <Spinner size={12} /> : <UploadIcon size={14} />}Upload a character (FBX, GLB, VRM)
         </button>
         <input
           className="input compact"
@@ -118,7 +118,7 @@ export function CharacterUpload({ onPick, picked }) {
       {err && (
         <div className="opt" role="alert" style={{ color: "var(--bad, #e5484d)" }}>
           <span>
-            <TriangleAlert size={13} /> {err}
+            <TriangleAlertIcon size={13} /> {err}
           </span>
         </div>
       )}
@@ -163,9 +163,9 @@ export function CharacterUpload({ onPick, picked }) {
               )}
               <div style={{ fontSize: 12, marginTop: 4, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 {c.status !== "ok" ? (
-                  <TriangleAlert size={11} />
+                  <TriangleAlertIcon size={11} />
                 ) : c.warnings.length ? (
-                  <TriangleAlert size={11} style={{ opacity: 0.6 }} />
+                  <TriangleAlertIcon size={11} style={{ opacity: 0.6 }} />
                 ) : null}{" "}
                 {c.name}
               </div>
@@ -249,20 +249,20 @@ function CharDetail({ c, onPick, onRemove, sure, onChanged, setErr }) {
         </small>
         {onPick && c.status === "ok" && (
           <button className="btn small" onClick={() => onPick(c.id)}>
-            <Check size={13} />
+            <CheckIcon size={13} />
             Use this character
           </button>
         )}
         {c.status === "ok" && (
           <button className="btn small ghost" disabled={busy} onClick={resheet} title="Draw the test sheet again">
-            {busy ? <Spinner size={12} /> : <RefreshCw size={13} />}Test again
+            {busy ? <Spinner size={12} /> : <RefreshCwIcon size={13} />}Test again
           </button>
         )}
         <button className="btn small ghost" onClick={() => setEdit(!edit)}>
           {edit ? "Hide bones" : "Bones…"}
         </button>
         <button className="btn small ghost" onClick={onRemove}>
-          <Trash size={13} />
+          <TrashIcon size={13} />
           {sure ? "Remove?" : "Remove"}
         </button>
       </div>
@@ -288,7 +288,7 @@ function CharDetail({ c, onPick, onRemove, sure, onChanged, setErr }) {
         ))}
       {c.status !== "ok" && (
         <p style={{ fontSize: 12, margin: "8px 0 0" }}>
-          <TriangleAlert size={12} />
+          <TriangleAlertIcon size={12} />
           {" Some bones could not be matched ("}
           {[...c.missing, ...c.problems].slice(0, 4).join("; ")}). Ask Claude, or pick them below.
         </p>
@@ -309,7 +309,7 @@ function CharDetail({ c, onPick, onRemove, sure, onChanged, setErr }) {
                     .catch(() => {});
                 }}
               >
-                <Copy size={13} />
+                <CopyIcon size={13} />
                 {copied ? "Copied" : "Copy for Claude"}
               </button>
               <small style={{ opacity: 0.7 }}>Ask Claude to map the bones, then paste its answer here:</small>
@@ -363,7 +363,7 @@ function CharDetail({ c, onPick, onRemove, sure, onChanged, setErr }) {
           </div>
           <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
             <button className="btn small" disabled={busy || [...REQUIRED].some((r) => !map[r])} onClick={save}>
-              {busy ? <Spinner size={12} /> : <Check size={13} />}Save the mapping and test
+              {busy ? <Spinner size={12} /> : <CheckIcon size={13} />}Save the mapping and test
             </button>
             <small style={{ opacity: 0.6, alignSelf: "center" }}>* needed</small>
           </div>

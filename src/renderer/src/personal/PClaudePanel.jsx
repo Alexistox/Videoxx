@@ -1,30 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  ClapperboardIcon,
+  LogInIcon,
+  PlusIcon,
+  Redo2Icon,
+  ScissorsIcon,
+  SendHorizontalIcon,
+  SquareIcon,
+  TriangleAlertIcon,
+  Undo2Icon,
+  WrenchIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { ago, secs } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Check,
-  ChevronRight,
-  Clapperboard,
-  LogIn,
-  Plus,
-  Redo2,
-  Scissors,
-  SendHorizontal,
-  Square,
-  TriangleAlert,
-  Undo2,
-  Wrench,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Busy, Spinner, StatusBadge } from "../components/ui";
 import { CODEX_MODELS, modelName, withEngine, workingText } from "../engines/models";
 import { GoogleOptgroup, useGoogleState } from "../engines/ExperimentalGoogle";
 import { CodexOptgroup, useCodexState } from "../engines/ChatGPTEngine";
-import { ContextMeter } from "../../../../editor/ContextMeter";
-import { Md } from "../../../../editor/Md";
-import { ToolGroup } from "../../../../editor/ToolGroup";
+import { ContextMeter } from "../editor/ContextMeter";
+import { Md } from "../editor/Md";
+import { ToolGroup } from "../editor/ToolGroup";
 
 const LABEL = { cut: "Cut the footage", intro: "Edit the intro" };
 const label = (kind, text = "") => (kind && LABEL[kind] ? `${LABEL[kind]}${text ? ": " + text : ""}` : text);
@@ -257,7 +257,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
   const flows = [
     {
       id: "cut",
-      icon: <Scissors size={16} strokeWidth={1.7} />,
+      icon: <ScissorsIcon size={16} strokeWidth={1.7} />,
       title: "Cut the footage",
       what: `Keeps only the sentences your video needs, each from your last clean take: restarts, stutters, breaths and dead air never make it in${cams.length ? `. Syncs ${cams.length === 1 ? "the facecam" : `${cams.length} facecam clips into one`}` : ""}. Every cut is listened back and checked before it reaches your timeline.`,
       blocked: !screen
@@ -269,7 +269,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
     },
     {
       id: "intro",
-      icon: <Clapperboard size={16} strokeWidth={1.7} />,
+      icon: <ClapperboardIcon size={16} strokeWidth={1.7} />,
       title: "Edit the intro",
       what: "Apple-style animated text and graphics on your intro read, then sound effects on every move.",
       blocked: !intro ? 'Add your intro read and mark it "Intro" in Footage.' : null,
@@ -292,7 +292,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
               aria-label="New conversation"
               title="New conversation (Claude starts fresh; the edits stay)"
             >
-              <Plus size={15} strokeWidth={1.7} />
+              <PlusIcon size={15} strokeWidth={1.7} />
             </button>
           </div>
         )}
@@ -338,7 +338,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
                               : f.time}
                         </small>
                       </span>
-                      <ChevronRight size={15} className="pflow-chev" />
+                      <ChevronRightIcon size={15} className="pflow-chev" />
                     </button>
                     {isOpen && (
                       <div className="pflow-body">
@@ -394,7 +394,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
           )}
         {!claude?.loggedIn && (
           <button className="btn primary" onClick={signIn} disabled={signingIn}>
-            {signingIn ? <Spinner size={15} /> : <LogIn size={15} />}Sign in to Claude
+            {signingIn ? <Spinner size={15} /> : <LogInIcon size={15} />}Sign in to Claude
           </button>
         )}
         {items.map((it, i) => {
@@ -415,12 +415,12 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
             return (
               <div key={i} className="msg err">
                 <div className="row">
-                  <TriangleAlert size={14} />
+                  <TriangleAlertIcon size={14} />
                   <span className="grow">{it.text}</span>
                 </div>
                 {it.auth && (
                   <button className="btn tiny" style={{ marginTop: 8 }} onClick={signIn}>
-                    <LogIn size={12} />
+                    <LogInIcon size={12} />
                     Sign in again
                   </button>
                 )}
@@ -437,11 +437,11 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
                 {it.answer === void 0 ? (
                   <div className="row">
                     <button className="btn tiny" onClick={() => answer(it, true)}>
-                      <Check size={12} />
+                      <CheckIcon size={12} />
                       Allow
                     </button>
                     <button className="btn tiny" onClick={() => answer(it, false)}>
-                      <X size={12} />
+                      <XIcon size={12} />
                       Deny
                     </button>
                   </div>
@@ -460,7 +460,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
                 {it.files.length > 0 && it.status !== "reverted" && (
                   <div className="row">
                     <button className="btn tiny" onClick={() => revert(it.editId)}>
-                      <Undo2 size={12} />
+                      <Undo2Icon size={12} />
                       Revert{it.kind === "cut" ? " the cut" : it.kind === "intro" ? " the intro" : ""}
                     </button>
                   </div>
@@ -468,7 +468,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
                 {it.files.length > 0 && it.status === "reverted" && (
                   <div className="row">
                     <button className="btn tiny" onClick={() => reapply(it.editId)}>
-                      <Redo2 size={12} />
+                      <Redo2Icon size={12} />
                       Re-apply
                     </button>
                   </div>
@@ -488,7 +488,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
             )}
             <span className="grow" />
             <button className="btn tiny" onClick={() => api.stop(task)}>
-              <Square size={11} />
+              <SquareIcon size={11} />
               Stop
             </button>
           </div>
@@ -523,7 +523,7 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
         <div className="row">
           <div className="seg-ctl" role="radiogroup" aria-label="Request type">
             <button role="radio" aria-checked={mode === "edit"} className={mode === "edit" ? "on" : ""} onClick={() => setMode("edit")}>
-              <Wrench size={12} />
+              <WrenchIcon size={12} />
               Change
             </button>
             <button role="radio" aria-checked={mode === "ask"} className={mode === "ask" ? "on" : ""} onClick={() => setMode("ask")}>
@@ -533,12 +533,12 @@ export function PClaudePanel({ projectId, media, onFinished, flowHost, onStarted
           <span className="grow" />
           {task ? (
             <button className="btn small" onClick={() => api.stop(task)}>
-              <Square size={13} />
+              <SquareIcon size={13} />
               Stop
             </button>
           ) : (
             <button className="btn small primary" onClick={() => run(mode, text)} disabled={!text.trim()}>
-              <SendHorizontal size={14} />
+              <SendHorizontalIcon size={14} />
               {mode === "edit" ? "Apply" : "Ask"}
             </button>
           )}

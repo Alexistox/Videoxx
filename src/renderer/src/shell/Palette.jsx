@@ -1,20 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
+import {
+  ArrowLeftRightIcon,
+  AudioLinesIcon,
+  ClapperboardIcon,
+  CornerDownLeftIcon,
+  PanelsTopLeftIcon,
+  PlusIcon,
+  SearchIcon,
+  SearchXIcon,
+  Settings,
+  SlidersHorizontalIcon,
+  TvMinimalPlayIcon,
+  VideoIcon,
+} from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowLeftRight,
-  AudioLines,
-  Clapperboard,
-  CornerDownLeft,
-  PanelsTopLeft,
-  Plus,
-  Search,
-  SearchX,
-  Settings,
-  SlidersHorizontal,
-  TvMinimalPlay,
-  Video,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { I, Modal } from "../components/ui";
 import { findFolded, fold } from "../lib/fold";
 import { searchSettings } from "../settings/settingsRegistry";
@@ -65,7 +65,7 @@ export function Palette() {
           ]
         : []),
       { t: `Switch to ${BRAND_NAME[other]}`, k: "Workspace", run: () => setBrand(other) },
-      ...(projectId ? [{ t: "Open editor", k: "Page", ic: Clapperboard, run: () => go("editor") }] : []),
+      ...(projectId ? [{ t: "Open editor", k: "Page", ic: ClapperboardIcon, run: () => go("editor") }] : []),
       // the Graphics panel of the video open now (speed, quality, post processing)
       ...(projectId && brand === "faceless" && cur && !cur.lab
         ? [
@@ -73,7 +73,7 @@ export function Palette() {
               t: `Graphics for “${cur.name}”`,
               nm: cur.name,
               k: "Action",
-              ic: SlidersHorizontal,
+              ic: SlidersHorizontalIcon,
               kw: "graphics quality fps bloom shadows post processing render scale performance colour color grade ambient occlusion depth of field exposure anti-aliasing",
               run: () => {
                 go("editor");
@@ -88,7 +88,7 @@ export function Palette() {
               t: `Make the voiceover for “${voiceFor.name}”`,
               nm: voiceFor.name,
               k: "Action",
-              ic: AudioLines,
+              ic: AudioLinesIcon,
               run: () => openVoiceover(voiceFor.id),
             },
           ]
@@ -104,7 +104,7 @@ export function Palette() {
             {
               t: "All channels",
               k: "Channel",
-              ic: TvMinimalPlay,
+              ic: TvMinimalPlayIcon,
               run: () => {
                 setChannel("all");
                 go("channels");
@@ -115,7 +115,7 @@ export function Palette() {
       ...channels.map((c) => ({
         t: c.name,
         k: "Channel",
-        ic: TvMinimalPlay,
+        ic: TvMinimalPlayIcon,
         kw: c.handle ?? "",
         run: () => {
           setChannel(c.id);
@@ -123,7 +123,12 @@ export function Palette() {
         },
       })),
       // found by its @handle too
-      ...projects.map((p) => ({ t: p.name, k: "Project", ic: brand === "personal" ? Video : Clapperboard, run: () => go("editor", p.id) })),
+      ...projects.map((p) => ({
+        t: p.name,
+        k: "Project",
+        ic: brand === "personal" ? VideoIcon : ClapperboardIcon,
+        run: () => go("editor", p.id),
+      })),
     ];
     const s = fold(qy.trim());
     const sets = s
@@ -143,7 +148,13 @@ export function Palette() {
     setPalette(false);
     it.run();
   };
-  const KIND_ICON = { Action: Plus, Workspace: ArrowLeftRight, Page: PanelsTopLeft, Project: Clapperboard, Channel: TvMinimalPlay };
+  const KIND_ICON = {
+    Action: PlusIcon,
+    Workspace: ArrowLeftRightIcon,
+    Page: PanelsTopLeftIcon,
+    Project: ClapperboardIcon,
+    Channel: TvMinimalPlayIcon,
+  };
   const marked = (t) => {
     const r = findFolded(t, qy.trim());
     return !r ? (
@@ -160,7 +171,7 @@ export function Palette() {
     <Modal title="Command palette" onClose={() => setPalette(false)} className="palette">
       <div style={{ padding: "14px 16px 4px" }}>
         <div className="search">
-          <Search {...I} />
+          <SearchIcon {...I} />
           <input
             autoFocus
             placeholder="Search projects, channels, pages and actions"
@@ -185,7 +196,7 @@ export function Palette() {
       </div>
       <div className="palette-results" role="listbox">
         {items.map((it, k) => {
-          const Ic = it.ic ?? KIND_ICON[it.k] ?? Search;
+          const Ic = it.ic ?? KIND_ICON[it.k] ?? SearchIcon;
           return (
             <button
               key={k}
@@ -202,13 +213,13 @@ export function Palette() {
                 {marked(it.t)}
               </span>
               <small>{it.k}</small>
-              {k === i && <CornerDownLeft className="pal-enter" size={13} strokeWidth={1.7} />}
+              {k === i && <CornerDownLeftIcon className="pal-enter" size={13} strokeWidth={1.7} />}
             </button>
           );
         })}
         {!items.length && (
           <div className="palette-empty">
-            <SearchX size={22} strokeWidth={1.6} />
+            <SearchXIcon size={22} strokeWidth={1.6} />
             <b>No results for “{qy.trim()}”</b>
             <span>Try a project name, a page like Renders, or “new”.</span>
           </div>

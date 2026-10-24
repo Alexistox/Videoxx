@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { SquareIcon, TrashIcon, TriangleAlertIcon, WandSparklesIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Square, Trash, TriangleAlert, WandSparkles } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 
 export const OwnRisk = () => (
@@ -9,7 +9,7 @@ export const OwnRisk = () => (
     className="own-risk"
     title="Not a supported feature: the connector is written by your Claude for a service the app doesn't know. If it breaks, remove it and use a built-in service."
   >
-    <TriangleAlert size={11} strokeWidth={2.2} />
+    <TriangleAlertIcon size={11} strokeWidth={2.2} />
     At your own risk
   </span>
 );
@@ -92,7 +92,7 @@ export function CustomApiPanel({ kind }) {
               }
               title="Delete the connector and its key"
             >
-              <Trash size={13} />
+              <TrashIcon size={13} />
               Remove
             </button>
           )}
@@ -156,7 +156,7 @@ export function CustomApiPanel({ kind }) {
             />
             {busy ? (
               <button className="btn small" onClick={() => api.customApiCancel(kind)}>
-                <Square size={12} />
+                <SquareIcon size={12} />
                 Stop
               </button>
             ) : (
@@ -166,7 +166,7 @@ export function CustomApiPanel({ kind }) {
                 title={brief.includes(PICK_MODEL) ? `Write the model you want in place of ${PICK_MODEL} first` : void 0}
                 onClick={run}
               >
-                <WandSparkles size={14} />
+                <WandSparklesIcon size={14} />
                 Set up with Claude
               </button>
             )}

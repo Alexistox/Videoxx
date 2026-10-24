@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { api, on } from "../src/renderer/src/lib/api";
-import { useApp } from "../src/renderer/src/state/AppProvider";
 import {
-  Check,
-  FlaskConical,
-  Shuffle,
-  Sparkles,
-  Trash,
-  TriangleAlert,
-  UserRound,
-  WandSparkles,
-} from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { Spinner } from "../src/renderer/src/components/ui";
-import { isStandard, premiumMsg, usePlan } from "../src/renderer/src/state/usePlan";
+  CheckIcon,
+  FlaskConicalIcon,
+  ShuffleIcon,
+  SparklesIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+  UserRoundIcon,
+  WandSparklesIcon,
+} from "lucide-react";
+import { api, on } from "../lib/api";
+import { useApp } from "../state/AppProvider";
+import { Spinner } from "../components/ui";
+import { isStandard, premiumMsg, usePlan } from "../state/usePlan";
 
 const SOURCE = { builtin: "Built in", random: "Random", claude: "Designed by Claude" };
 export function Characters() {
@@ -129,7 +129,7 @@ export function Characters() {
       <section className="panel pad chars-make" aria-label="Make a character">
         <div className="row" style={{ gap: 10, flexWrap: "wrap" }}>
           <button className="btn" onClick={random} disabled={!!busy}>
-            {busy === "random" ? <Spinner size={14} /> : <Shuffle size={15} strokeWidth={1.8} />}Random character
+            {busy === "random" ? <Spinner size={14} /> : <ShuffleIcon size={15} strokeWidth={1.8} />}Random character
           </button>
           <span className="small dim">or</span>
           <input
@@ -143,7 +143,7 @@ export function Characters() {
             onKeyDown={(e) => e.key === "Enter" && desc.trim().length >= 3 && !busy && create()}
           />
           <button className="btn primary" onClick={create} disabled={!!busy || desc.trim().length < 3}>
-            {busy === "create" ? <Spinner size={14} /> : <Sparkles size={15} strokeWidth={1.8} />}Design with Claude
+            {busy === "create" ? <Spinner size={14} /> : <SparklesIcon size={15} strokeWidth={1.8} />}Design with Claude
             {std && <span className="premium-pill">Premium</span>}
           </button>
         </div>
@@ -171,14 +171,14 @@ export function Characters() {
                 ) : ch.thumb ? (
                   <img src={ch.thumb} alt="" />
                 ) : (
-                  <UserRound size={30} strokeWidth={1.4} />
+                  <UserRoundIcon size={30} strokeWidth={1.4} />
                 )}
               </span>
               <span className="row" style={{ gap: 6 }}>
                 <b className="ellipsis">{ch.name}</b>
                 {ch.default && (
                   <span className="badge mint">
-                    <Check size={11} />
+                    <CheckIcon size={11} />
                     Default
                   </span>
                 )}
@@ -205,7 +205,7 @@ export function Characters() {
                 </div>
               ) : (
                 <div className="char-wait">
-                  <TriangleAlert size={24} />
+                  <TriangleAlertIcon size={24} />
                   <span>Not finished</span>
                 </div>
               )}
@@ -225,30 +225,30 @@ export function Characters() {
               <div className="row" style={{ gap: 8, flexWrap: "wrap", marginTop: 6 }}>
                 {c.default ? (
                   <span className="badge mint">
-                    <Check size={12} />
+                    <CheckIcon size={12} />
                     Default for new videos
                   </span>
                 ) : (
                   <button className="btn primary small" disabled={c.status !== "ready"} onClick={() => makeDefault(c.id)}>
-                    <Check size={14} />
+                    <CheckIcon size={14} />
                     Use as default
                   </button>
                 )}
                 {c.lab && (
                   <button className="btn small" onClick={() => go("editor", c.lab)}>
-                    <FlaskConical size={14} strokeWidth={1.8} />
+                    <FlaskConicalIcon size={14} strokeWidth={1.8} />
                     {c.status === "designing" ? "Watch Claude design it" : "Open its lab"}
                   </button>
                 )}
                 {c.id !== "mo" && c.status !== "designing" && change === null && (
                   <button className="btn small" onClick={() => setChange("")}>
-                    <WandSparkles size={14} strokeWidth={1.8} />
+                    <WandSparklesIcon size={14} strokeWidth={1.8} />
                     Change with Claude
                   </button>
                 )}
                 {c.id !== "mo" && c.status !== "designing" && !c.default && (
                   <button className="btn small danger" onClick={() => del(c)}>
-                    <Trash size={14} />
+                    <TrashIcon size={14} />
                     Delete
                   </button>
                 )}
@@ -268,7 +268,7 @@ export function Characters() {
                     aria-label="What should change"
                   />
                   <button className="btn primary small" onClick={refine} disabled={!!busy}>
-                    {busy === "refine" ? <Spinner size={13} /> : <Sparkles size={14} />}Open lab{change.trim() ? " and ask" : ""}
+                    {busy === "refine" ? <Spinner size={13} /> : <SparklesIcon size={14} />}Open lab{change.trim() ? " and ask" : ""}
                   </button>
                 </div>
               )}

@@ -1,15 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import {
-  AudioLines,
-  Box,
-  File,
-  FileText,
-  Film,
-  Image,
-  Plus,
-  TriangleAlert,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { AudioLinesIcon, BoxIcon, FileIcon, FileTextIcon, FilmIcon, Image, PlusIcon, TriangleAlertIcon } from "lucide-react";
 import { MOD } from "../help/keys";
 import { fmtSpan, fmtT, parseMentions, refMeta } from "./mentions";
 import { useRefThumb, useRefs } from "./useRefs";
@@ -22,17 +13,17 @@ export const newRangeId = () =>
   "rng_" + Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => b.toString(16).padStart(2, "0")).join("");
 export const KindIcon = ({ kind, size = 14 }) =>
   kind === "video" ? (
-    <Film size={size} />
+    <FilmIcon size={size} />
   ) : kind === "image" ? (
     <Image size={size} />
   ) : kind === "audio" ? (
-    <AudioLines size={size} />
+    <AudioLinesIcon size={size} />
   ) : kind === "pdf" ? (
-    <FileText size={size} />
+    <FileTextIcon size={size} />
   ) : kind === "model" ? (
-    <Box size={size} />
+    <BoxIcon size={size} />
   ) : (
-    <File size={size} />
+    <FileIcon size={size} />
   );
 const COPY = [
   "font-family",
@@ -310,7 +301,7 @@ export const MentionField = forwardRef(function MentionField2(
                 onClick={() => pick(items.length)}
               >
                 <span className="rf-ac-thumb">
-                  <Plus size={15} />
+                  <PlusIcon size={15} />
                 </span>
                 <span className="grow">
                   <b>Add reference…</b>
@@ -399,7 +390,7 @@ function MentionCard({ projectId, m, r, rect, onEnter, onLeave, onOpen, onAdd })
     >
       {!r ? (
         <div className="rf-pop-bad">
-          <TriangleAlert size={15} />
+          <TriangleAlertIcon size={15} />
           <div>
             <b>
               No @{m.tag}
@@ -408,7 +399,7 @@ function MentionCard({ projectId, m, r, rect, onEnter, onLeave, onOpen, onAdd })
             <p>Claude will not know what it means. Add the file as a reference, or fix the tag.</p>
             {onAdd && (
               <button className="btn tiny" onClick={onAdd}>
-                <Plus size={12} />
+                <PlusIcon size={12} />
                 Add reference
               </button>
             )}

@@ -1,38 +1,38 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowDownIcon,
+  ArrowDownUpIcon,
+  ArrowUpIcon,
+  BookOpenIcon,
+  ChartLineIcon,
+  CheckIcon,
+  Clock3Icon,
+  EllipsisIcon,
+  ExternalLinkIcon,
+  EyeIcon,
+  FilmIcon,
+  InfoIcon,
+  KeyRoundIcon,
+  LightbulbIcon,
+  Link2Icon,
+  ListFilterIcon,
+  LogInIcon,
+  MessageSquareIcon,
+  PencilIcon,
+  PlusIcon,
+  RefreshCwIcon,
+  SearchIcon,
+  SparklesIcon,
+  ThumbsUpIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+  UnplugIcon,
+  UsersIcon,
+  VideoIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowDown,
-  ArrowDownUp,
-  ArrowUp,
-  BookOpen,
-  ChartLine,
-  Check,
-  Clock3,
-  Ellipsis,
-  ExternalLink,
-  Eye,
-  Film,
-  Info,
-  KeyRound,
-  Lightbulb,
-  Link2,
-  ListFilter,
-  LogIn,
-  MessageSquare,
-  Pencil,
-  Plus,
-  RefreshCw,
-  Search,
-  Sparkles,
-  ThumbsUp,
-  Trash,
-  TriangleAlert,
-  Unplug,
-  Users,
-  Video,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Busy, Empty, Modal, Spinner } from "../components/ui";
 import { Picker, Segmented } from "../components/Picker";
 import { STAGE_LABEL, isEnter, swallowClicks } from "../channels/stages";
@@ -177,21 +177,21 @@ export function YouTube() {
           </div>
         </div>
         <Empty
-          icon={<ChartLine size={28} strokeWidth={1.7} />}
+          icon={<ChartLineIcon size={28} strokeWidth={1.7} />}
           title="See how your videos do"
           text="Follow your YouTube channels here: views and subscribers for any channel with a free Google API key, and watch time, how long people watch and where they come from when you sign in with Google. Published videos then show on the Channels board with their views."
         >
           <div className="row wrap" style={{ justifyContent: "center" }}>
             <button className="btn" onClick={() => dlg.guide()}>
-              <BookOpen size={15} />
+              <BookOpenIcon size={15} />
               Setup guide
             </button>
             <button className="btn" onClick={dlg.add}>
-              <Plus size={15} />
+              <PlusIcon size={15} />
               Follow a channel
             </button>
             <button className="btn primary" onClick={() => (status.client.has ? dlg.signIn() : dlg.guide("client"))}>
-              <LogIn size={15} />
+              <LogInIcon size={15} />
               Sign in with Google
             </button>
           </div>
@@ -247,7 +247,7 @@ export function YouTube() {
             disabled={busy}
             title={cur?.fetchedAt ? `Read ${since(cur.fetchedAt)}` : "Not read yet"}
           >
-            {busy ? <Spinner size={14} /> : <RefreshCw size={15} />}
+            {busy ? <Spinner size={14} /> : <RefreshCwIcon size={15} />}
             <span>{busy ? (step ?? "Reading…") : "Refresh"}</span>
           </button>
           {cur && (
@@ -257,11 +257,11 @@ export function YouTube() {
               title="Open on YouTube"
               onClick={() => api.external(channelUrl(cur)).catch(() => {})}
             >
-              <ExternalLink size={17} strokeWidth={1.7} />
+              <ExternalLinkIcon size={17} strokeWidth={1.7} />
             </button>
           )}
           <button className="icon-btn" aria-label="Follow another channel" title="Follow another channel" onClick={dlg.add}>
-            <Plus size={18} strokeWidth={1.7} />
+            <PlusIcon size={18} strokeWidth={1.7} />
           </button>
           {cur && (
             <button
@@ -273,7 +273,7 @@ export function YouTube() {
                 setMenu((m) => (m === el ? null : el));
               }}
             >
-              <Ellipsis size={18} strokeWidth={1.7} />
+              <EllipsisIcon size={18} strokeWidth={1.7} />
             </button>
           )}
           {cur && menu && (
@@ -291,7 +291,7 @@ export function YouTube() {
                         label: "Stop using the Google sign-⁠in…",
                         keywords: "sign-in sign out disconnect",
                         hint: "Keeps public stats",
-                        icon: <Unplug size={14} strokeWidth={1.8} />,
+                        icon: <UnplugIcon size={14} strokeWidth={1.8} />,
                         run: () => dlg.disconnect(cur),
                       },
                     ]
@@ -300,7 +300,7 @@ export function YouTube() {
                   value: "remove",
                   label: "Stop following…",
                   keywords: "remove",
-                  icon: <Trash size={14} strokeWidth={1.8} className="ch-danger" />,
+                  icon: <TrashIcon size={14} strokeWidth={1.8} className="ch-danger" />,
                   run: () => dlg.remove(cur),
                 },
               ]}
@@ -318,7 +318,7 @@ export function YouTube() {
       )}
       {err && (
         <div className="hint bad" role="alert">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>The numbers could not be read</b>
             <p>{err}</p>
@@ -338,7 +338,7 @@ export function YouTube() {
         ov && <Body ov={ov} period={period} setPeriod={setPeriod} onOpen={setOpen} onReload={load} onKey={() => dlg.guide("key")} />
       )}
       <p className="yt-foot small dim">
-        <Info size={13} />
+        <InfoIcon size={13} />
         YouTube's analytics lag about two days. Impressions and click-through rate are not shared through YouTube's analytics API, so they
         are not shown here: see them in YouTube Studio.{!cur?.analytics && " Public subscriber counts are rounded by YouTube."}
       </p>
@@ -370,7 +370,7 @@ function Notices({ c, reader, onSignIn, onPublic }) {
   if (out)
     return (
       <div className="hint warn yt-ended">
-        <TriangleAlert size={18} />
+        <TriangleAlertIcon size={18} />
         <div>
           <b>Google ended the sign-in for this channel</b>
           <p>
@@ -384,7 +384,7 @@ function Notices({ c, reader, onSignIn, onPublic }) {
         </div>
         <div className="yt-hint-acts">
           <button className="btn small" onClick={onSignIn}>
-            <LogIn size={14} />
+            <LogInIcon size={14} />
             Sign in again
           </button>
           <button className="btn small ghost" onClick={onPublic} title="Keep the channel with public stats only, without this note">
@@ -397,7 +397,7 @@ function Notices({ c, reader, onSignIn, onPublic }) {
     <>
       {c.access === "public" && (
         <div className="hint yt-hint">
-          <Sparkles size={18} />
+          <SparklesIcon size={18} />
           <div>
             <b>Public stats</b>
             <p>
@@ -406,27 +406,27 @@ function Notices({ c, reader, onSignIn, onPublic }) {
             </p>
           </div>
           <button className="btn small" onClick={onSignIn}>
-            <LogIn size={14} />
+            <LogInIcon size={14} />
             Sign in with Google
           </button>
         </div>
       )}
       {c.signedIn && !c.analytics && (
         <div className="hint warn">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>Analytics are not allowed for this channel</b>
             <p>When you signed in, the YouTube Analytics box was not ticked. Sign in again and tick both boxes.</p>
           </div>
           <button className="btn small" onClick={onSignIn}>
-            <LogIn size={14} />
+            <LogInIcon size={14} />
             Sign in again
           </button>
         </div>
       )}
       {soon && (
         <div className="hint warn yt-soon">
-          <Clock3 size={18} />
+          <Clock3Icon size={18} />
           <div>
             <b>
               {"Google signs you out on "}
@@ -440,14 +440,14 @@ function Notices({ c, reader, onSignIn, onPublic }) {
             </p>
           </div>
           <button className="btn small" onClick={onSignIn}>
-            <LogIn size={14} />
+            <LogInIcon size={14} />
             Sign in again
           </button>
         </div>
       )}
       {c.error && !out && (
         <div className="hint warn" role="status">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>{c.readFailed ? "The last read did not work" : "Not everything could be read"}</b>
             <p>
@@ -570,23 +570,29 @@ function Body({ ov, period, setPeriod, onOpen, onReload, onKey }) {
       </div>
       {full ? (
         <div className="yt-kpis" role="list" aria-label="The numbers">
-          <Kpi icon={<Eye size={15} />} label="Views" value={int(k.views.cur)} delta={k.views.delta} spark={k.now.map((x) => x.views)} />
           <Kpi
-            icon={<Clock3 size={15} />}
+            icon={<EyeIcon size={15} />}
+            label="Views"
+            value={int(k.views.cur)}
+            delta={k.views.delta}
+            spark={k.now.map((x) => x.views)}
+          />
+          <Kpi
+            icon={<Clock3Icon size={15} />}
             label="Watch hours"
             value={hours(k.minutes.cur)}
             delta={k.minutes.delta}
             spark={k.now.map((x) => x.minutes)}
           />
           <Kpi
-            icon={<Users size={15} />}
+            icon={<UsersIcon size={15} />}
             label="Subscribers"
             value={(k.subs.cur ?? 0) > 0 ? `+${int(k.subs.cur)}` : int(k.subs.cur)}
             delta={k.subs.delta}
             note="gained minus lost"
           />
           <Kpi
-            icon={<ChartLine size={15} />}
+            icon={<ChartLineIcon size={15} />}
             label="Avg view duration"
             value={clock(k.dur.cur)}
             delta={k.dur.delta}
@@ -601,14 +607,14 @@ function Body({ ov, period, setPeriod, onOpen, onReload, onKey }) {
       ) : (
         <div className="yt-kpis" role="list" aria-label="The numbers">
           <Kpi
-            icon={<Users size={15} />}
+            icon={<UsersIcon size={15} />}
             label="Subscribers"
             value={c.hiddenSubs ? "Hidden" : compact(c.subs)}
             delta={pub.from && c.subs != null && pub.from.subs != null ? change(c.subs, pub.from.subs) : null}
             note={pub.from ? `since ${dateShort(pub.from.day)}` : void 0}
           />
           <Kpi
-            icon={<Eye size={15} />}
+            icon={<EyeIcon size={15} />}
             label="Views, all time"
             value={compact(c.views)}
             note={
@@ -617,9 +623,9 @@ function Body({ ov, period, setPeriod, onOpen, onReload, onKey }) {
                 : "growth shows once it is read on a second day"
             }
           />
-          <Kpi icon={<Film size={15} />} label="Videos" value={int(c.videos)} />
+          <Kpi icon={<FilmIcon size={15} />} label="Videos" value={int(c.videos)} />
           <Kpi
-            icon={<ThumbsUp size={15} />}
+            icon={<ThumbsUpIcon size={15} />}
             label="Likes on recent videos"
             value={ov.videos.length ? compact(ov.videos.slice(0, 20).reduce((s, v) => s + (v.likes ?? 0), 0)) : "—"}
             note={
@@ -719,7 +725,7 @@ function Kpi({ icon, label, value, delta, spark, note, title }) {
               "±0%"
             ) : (
               <>
-                {d > 0 ? <ArrowUp size={11} strokeWidth={2.4} /> : <ArrowDown size={11} strokeWidth={2.4} />}
+                {d > 0 ? <ArrowUpIcon size={11} strokeWidth={2.4} /> : <ArrowDownIcon size={11} strokeWidth={2.4} />}
                 {Math.abs(d) >= 100 ? Math.round(Math.abs(d)) : Math.abs(d).toFixed(1)}%
               </>
             )}
@@ -865,7 +871,7 @@ function VideoTable({ ov, onOpen, onReload }) {
               className="yt-cap-i"
               title={`The app reads a channel's newest ${int(ov.videos.length)} videos; older ones are on YouTube.`}
             >
-              <Info size={13} />
+              <InfoIcon size={13} />
             </span>
           )}
         </h3>
@@ -883,7 +889,7 @@ function VideoTable({ ov, onOpen, onReload }) {
             className="yt-sortpick"
             trigger={(o) => (
               <>
-                <ArrowDownUp size={14} strokeWidth={1.8} />
+                <ArrowDownUpIcon size={14} strokeWidth={1.8} />
                 <span className="pk-val">{o?.label ?? "Sort"}</span>
               </>
             )}
@@ -900,14 +906,14 @@ function VideoTable({ ov, onOpen, onReload }) {
             className="yt-sortpick yt-shownpick"
             trigger={(o) => (
               <>
-                <ListFilter size={14} strokeWidth={1.8} />
+                <ListFilterIcon size={14} strokeWidth={1.8} />
                 <span className="pk-val">{o?.label ?? "Public"}</span>
               </>
             )}
           />
         )}
         <label className="search yt-search">
-          <Search size={15} strokeWidth={1.8} />
+          <SearchIcon size={15} strokeWidth={1.8} />
           <input
             placeholder="Search videos"
             value={qy}
@@ -922,7 +928,7 @@ function VideoTable({ ov, onOpen, onReload }) {
           />
           {qy && (
             <button className="icon-btn sm" aria-label="Clear the search" onClick={() => setQ("")}>
-              <X size={14} />
+              <XIcon size={14} />
             </button>
           )}
         </label>
@@ -951,7 +957,7 @@ function VideoTable({ ov, onOpen, onReload }) {
                     <button className={`yt-th ${sort.key === c.key ? "on" : ""}`} onClick={() => setSort(c.key)}>
                       {c.label}
                       {sort.key === c.key &&
-                        (sort.dir > 0 ? <ArrowUp size={11} strokeWidth={2.2} /> : <ArrowDown size={11} strokeWidth={2.2} />)}
+                        (sort.dir > 0 ? <ArrowUpIcon size={11} strokeWidth={2.2} /> : <ArrowDownIcon size={11} strokeWidth={2.2} />)}
                     </button>
                   </th>
                 ))}
@@ -978,7 +984,7 @@ function VideoTable({ ov, onOpen, onReload }) {
                   <td className="yt-c-video">
                     <div className="yt-vcell">
                       <span className="yt-thumb">
-                        {v.thumbUrl ? <img src={v.thumbUrl} alt="" loading="lazy" draggable={false} /> : <Video size={14} />}
+                        {v.thumbUrl ? <img src={v.thumbUrl} alt="" loading="lazy" draggable={false} /> : <VideoIcon size={14} />}
                         {v.duration != null && <i>{clock(v.duration)}</i>}
                       </span>
                       <span className="yt-vt">
@@ -1036,7 +1042,7 @@ function VideoTable({ ov, onOpen, onReload }) {
                             openProject({ id: v.projectId, kind: v.projectKind ?? allProjects.find((p) => p.id === v.projectId)?.kind })
                           }
                         >
-                          {v.projectKind === "personal" ? <Video size={12} /> : <Film size={12} />}
+                          {v.projectKind === "personal" ? <VideoIcon size={12} /> : <FilmIcon size={12} />}
                           <span className="ellipsis" dir="auto">
                             {v.projectName}
                           </span>
@@ -1047,7 +1053,7 @@ function VideoTable({ ov, onOpen, onReload }) {
                           title={`Looks like your project "${v.suggestion.name}". Click to link them: the board then shows it with its views.`}
                           onClick={() => link(v, v.suggestion.projectId, v.suggestion.name)}
                         >
-                          <Link2 size={12} />
+                          <Link2Icon size={12} />
                           <span className="ellipsis" dir="auto">
                             {v.suggestion.name}
                           </span>
@@ -1134,7 +1140,7 @@ function Lessons({ yt }) {
       <section className="panel yt-card yt-lessons-card" aria-label="What's working">
         <header className="yt-panel-head">
           <h3>
-            <Lightbulb size={15} />
+            <LightbulbIcon size={15} />
             What's working
           </h3>
         </header>
@@ -1271,12 +1277,12 @@ function Lessons({ yt }) {
           <div className="yt-ins-acts">
             {x.status === "suggested" && (
               <button className="btn tiny primary" onClick={once(() => act(() => api.ytInsightUpdate(x.id, { status: "approved" })))}>
-                <Check size={12} />
+                <CheckIcon size={12} />
                 Keep
               </button>
             )}
             <button className="btn tiny" onClick={() => setEdit({ id: x.id, text: x.text, row: x })}>
-              <Pencil size={12} />
+              <PencilIcon size={12} />
               Edit
             </button>
             <button className="btn tiny ghost" onClick={once(() => remove(x))}>
@@ -1292,7 +1298,7 @@ function Lessons({ yt }) {
     <section className="panel yt-card yt-lessons-card" aria-label="What's working">
       <header className="yt-panel-head">
         <h3>
-          <Lightbulb size={15} />
+          <LightbulbIcon size={15} />
           What's working
         </h3>
         <button
@@ -1301,7 +1307,7 @@ function Lessons({ yt }) {
           disabled={running}
           title="Claude reads the numbers, the retention of the main videos and the comments, then suggests lessons"
         >
-          {running ? <Spinner size={13} /> : <Sparkles size={14} />}Ask Claude
+          {running ? <Spinner size={13} /> : <SparklesIcon size={14} />}Ask Claude
         </button>
       </header>
       {running && (
@@ -1369,7 +1375,7 @@ const NeedKey = ({ onKey }) => (
   <div className="yt-needkey">
     <p className="yt-chart-empty">{"Comments need a free Google API key (Settings > YouTube)."}</p>
     <button className="btn small" onClick={onKey}>
-      <KeyRound size={13} />
+      <KeyRoundIcon size={13} />
       Add an API key
     </button>
   </div>
@@ -1381,7 +1387,7 @@ function CommentsCard({ comments, onOpen, read, needKey, onKey }) {
     <section className="panel yt-card" aria-label="Recent comments">
       <header className="yt-panel-head">
         <h3>
-          <MessageSquare size={15} />
+          <MessageSquareIcon size={15} />
           Recent comments
         </h3>
       </header>
@@ -1422,7 +1428,7 @@ function Comment({ c, onOpen }) {
         <small>{since(c.publishedAt)}</small>
         {c.likes > 0 && (
           <small className="yt-cm-likes">
-            <ThumbsUp size={11} />
+            <ThumbsUpIcon size={11} />
             {c.likes}
           </small>
         )}
@@ -1502,7 +1508,7 @@ function Locked({ text, onSignIn, label }) {
       <p className="yt-chart-empty">{text}</p>
       {onSignIn && (
         <button className="btn small" onClick={onSignIn}>
-          <LogIn size={13} />
+          <LogInIcon size={13} />
           {label ?? "Sign in again"}
         </button>
       )}
@@ -1570,7 +1576,7 @@ function VideoPanel({ videoId, onClose, onSignIn, onKey }) {
       ...choices.map((p) => ({
         value: p.id,
         label: p.name,
-        icon: p.kind === "personal" ? <Video size={14} /> : <Film size={14} />,
+        icon: p.kind === "personal" ? <VideoIcon size={14} /> : <FilmIcon size={14} />,
         group: p.likely ? "Likely" : "Your projects",
         hint:
           [p.linkedTo ? `Linked to "${p.linkedTo}" now: picking it moves the link here` : null, p.twin ? twinSays(p) : null]
@@ -1611,7 +1617,7 @@ function VideoPanel({ videoId, onClose, onSignIn, onKey }) {
           </div>
         ) : err && !d ? (
           <div className="hint bad" role="alert">
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>The video could not be read</b>
               <p>{err}</p>
@@ -1626,7 +1632,7 @@ function VideoPanel({ videoId, onClose, onSignIn, onKey }) {
             <>
               <div className="yt-v-top">
                 <span className="yt-v-thumb">
-                  {v.thumbUrl ? <img src={v.thumbUrl} alt="" draggable={false} /> : <Video size={22} />}
+                  {v.thumbUrl ? <img src={v.thumbUrl} alt="" draggable={false} /> : <VideoIcon size={22} />}
                   {v.duration != null && <i>{clock(v.duration)}</i>}
                 </span>
                 <div className="yt-v-txt">
@@ -1650,7 +1656,7 @@ function VideoPanel({ videoId, onClose, onSignIn, onKey }) {
                   {!d.gone && (
                     <div className="row wrap yt-v-acts">
                       <button className="btn small" onClick={() => api.external(videoUrl(v.id)).catch(() => {})}>
-                        <ExternalLink size={13} />
+                        <ExternalLinkIcon size={13} />
                         Open on YouTube
                       </button>
                       {who !== "other" && (
@@ -1659,12 +1665,12 @@ function VideoPanel({ videoId, onClose, onSignIn, onKey }) {
                           onClick={() => api.external(studioUrl(v.id)).catch(() => {})}
                           title="Impressions and click-through rate are there"
                         >
-                          <ExternalLink size={13} />
+                          <ExternalLinkIcon size={13} />
                           YouTube Studio
                         </button>
                       )}
                       <button className="btn small" onClick={() => read(true)} disabled={busy}>
-                        {busy ? <Spinner size={13} /> : <RefreshCw size={13} />}Read again
+                        {busy ? <Spinner size={13} /> : <RefreshCwIcon size={13} />}Read again
                       </button>
                     </div>
                   )}
@@ -1730,7 +1736,7 @@ function VideoPanel({ videoId, onClose, onSignIn, onKey }) {
               </div>
               {d.note && (
                 <div className="hint warn">
-                  <TriangleAlert size={18} />
+                  <TriangleAlertIcon size={18} />
                   <div>
                     <b>{d.readFailed ? "It could not be read again just now" : "Not everything could be read"}</b>
                     <p>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { KeyRoundIcon, RefreshCwIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../lib/api";
-import { KeyRound, RefreshCw, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 import { Picker } from "../components/Picker";
 import { lang } from "../settings/languages";
@@ -214,7 +214,7 @@ export function FishFields({ value, onChange, onKey, keyHint, language }) {
       </div>
       {err && (
         <div className="hint bad vo-hint">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>
               {/did not accept/.test(err)
@@ -226,11 +226,11 @@ export function FishFields({ value, onChange, onKey, keyHint, language }) {
             <p>{err}</p>
             <div className="row" style={{ marginTop: 10 }}>
               <button className="btn small" onClick={() => load(true)} disabled={loading}>
-                {loading ? <Spinner size={13} /> : <RefreshCw size={13} />}Try again
+                {loading ? <Spinner size={13} /> : <RefreshCwIcon size={13} />}Try again
               </button>
               {onKey && (
                 <button className="btn small" onClick={onKey}>
-                  <KeyRound size={13} />
+                  <KeyRoundIcon size={13} />
                   Change key
                 </button>
               )}

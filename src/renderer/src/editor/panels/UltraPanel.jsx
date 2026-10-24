@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { SparklesIcon } from "lucide-react";
 import { api } from "../../lib/api";
 import { fmtTime } from "../../lib/format";
-import { Sparkles } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal } from "../../components/ui";
 import { MentionField } from "../../refs/MentionField";
-import { BUILD_COST } from "../../../../../routines/nodes";
-import { RefButton, RefsPanel, RefsUsed } from "../../../../../editor/RefsPanel";
+import { BUILD_COST } from "../../routines/nodes";
+import { RefButton, RefsPanel, RefsUsed } from "../RefsPanel";
 
 const ULTRA_MODELS = [
   { id: "claude-opus-5-5", name: "Opus 5.5" },
@@ -204,7 +204,7 @@ export function UltraPanel({ projectId, shots, thumbs, initial, onStart, onClose
                         </span>
                         {doneAt(s) && (
                           <span className="ultra-done" title={`Ultraedited ${new Date(doneAt(s)).toLocaleString()}`}>
-                            <Sparkles size={11} />
+                            <SparklesIcon size={11} />
                             Ultraedited
                           </span>
                         )}
@@ -333,7 +333,7 @@ export function UltraPanel({ projectId, shots, thumbs, initial, onStart, onClose
               )
             }
           >
-            <Sparkles size={15} />
+            <SparklesIcon size={15} />
             {plus && plusOk ? "Ultraedit+" : "Ultraedit"} {picked.size ? `${picked.size} shot${picked.size === 1 ? "" : "s"}` : ""}
           </button>
         </div>

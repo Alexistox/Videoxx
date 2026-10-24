@@ -1,26 +1,26 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  CheckIcon,
+  CpuIcon,
+  FilmIcon,
+  FolderOpenIcon,
+  ImagePlusIcon,
+  KeyboardIcon,
+  Maximize2Icon,
+  MoveIcon,
+  PauseIcon,
+  PlayIcon,
+  Redo2Icon,
+  ScissorsIcon,
+  Undo2Icon,
+  Volume2Icon,
+  VolumeXIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { fmtTime } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Check,
-  Cpu,
-  Film,
-  FolderOpen,
-  ImagePlus,
-  Keyboard,
-  Maximize2,
-  Move,
-  Pause,
-  Play,
-  Redo2,
-  Scissors,
-  Undo2,
-  Volume2,
-  VolumeX,
-  ZoomIn,
-  ZoomOut,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { ALT, MOD, isMac } from "../help/keys";
 import { Modal, Spinner } from "../components/ui";
 import { EditorChannel } from "../channels/ChannelEditor";
@@ -504,7 +504,7 @@ export function PersonalEditor() {
         <span className="save-state">
           {saved ? (
             <>
-              <Check size={12} />
+              <CheckIcon size={12} />
               Saved
             </>
           ) : (
@@ -518,12 +518,12 @@ export function PersonalEditor() {
         <span className="grow" />
         {encoder && (
           <span className={`enc-badge ${encoder.gpu ? "gpu" : ""}`} title={`Preview copies and the final render use: ${encoder.name}`}>
-            <Cpu size={12} />
+            <CpuIcon size={12} />
             {encoder.gpu ? "GPU" : "CPU"}
           </span>
         )}
         <button className="icon-btn" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts" onClick={() => setKeysOpen(true)}>
-          <Keyboard size={17} strokeWidth={1.7} />
+          <KeyboardIcon size={17} strokeWidth={1.7} />
         </button>
         <button
           className="icon-btn"
@@ -534,7 +534,7 @@ export function PersonalEditor() {
             api.open(o.path);
           }}
         >
-          <FolderOpen size={17} strokeWidth={1.7} />
+          <FolderOpenIcon size={17} strokeWidth={1.7} />
         </button>
         <button
           className="btn small primary"
@@ -549,7 +549,7 @@ export function PersonalEditor() {
               : "Watch it through first, then sign off the final render"
           }
         >
-          <Film size={15} strokeWidth={1.7} />
+          <FilmIcon size={15} strokeWidth={1.7} />
           {edit.signedOff ? "Render again" : "Sign off & render"}
         </button>
       </div>
@@ -585,7 +585,7 @@ export function PersonalEditor() {
             {tab === "layout" && layout && <LayoutHandles layout={layout} onChange={changeLayout} />}
             {!media.length && (
               <div className="stage-msg">
-                <ImagePlus size={26} strokeWidth={1.4} />
+                <ImagePlusIcon size={26} strokeWidth={1.4} />
                 <b>Drop your footage anywhere here</b>
                 <span>The screen recording, your facecam clips and the intro.</span>
               </div>
@@ -607,7 +607,7 @@ export function PersonalEditor() {
             onClick={() => clock.setPlaying(!playing)}
             disabled={!segs.length}
           >
-            {playing ? <Pause size={19} strokeWidth={1.7} /> : <Play size={19} strokeWidth={1.7} />}
+            {playing ? <PauseIcon size={19} strokeWidth={1.7} /> : <PlayIcon size={19} strokeWidth={1.7} />}
           </button>
           <span className="timecode">
             {fmtTime(t, 2)}{" "}
@@ -628,7 +628,7 @@ export function PersonalEditor() {
             aria-pressed={muted}
             onClick={() => setMuted(!muted)}
           >
-            {muted ? <VolumeX size={15} strokeWidth={1.7} /> : <Volume2 size={15} strokeWidth={1.7} />}
+            {muted ? <VolumeXIcon size={15} strokeWidth={1.7} /> : <Volume2Icon size={15} strokeWidth={1.7} />}
           </button>
         </div>
         <div className="timeline ptimeline">
@@ -640,22 +640,22 @@ export function PersonalEditor() {
             </span>
             <span className="grow" />
             <button className="icon-btn sm" title={`Undo (${MOD}+Z)`} aria-label="Undo" onClick={doUndo}>
-              <Undo2 size={14} strokeWidth={1.7} />
+              <Undo2Icon size={14} strokeWidth={1.7} />
             </button>
             <button className="icon-btn sm" title={`Redo (${MOD}+Shift+Z)`} aria-label="Redo" onClick={doRedo}>
-              <Redo2 size={14} strokeWidth={1.7} />
+              <Redo2Icon size={14} strokeWidth={1.7} />
             </button>
             <button className="icon-btn sm" title="Split at the playhead (S)" aria-label="Split" onClick={cutS}>
-              <Scissors size={14} strokeWidth={1.7} />
+              <ScissorsIcon size={14} strokeWidth={1.7} />
             </button>
             <button className="icon-btn sm" title="Zoom out (-)" aria-label="Zoom out" onClick={() => tl.current?.zoom(1 / 1.5)}>
-              <ZoomOut size={14} strokeWidth={1.7} />
+              <ZoomOutIcon size={14} strokeWidth={1.7} />
             </button>
             <button className="icon-btn sm" title="Zoom in (+)" aria-label="Zoom in" onClick={() => tl.current?.zoom(1.5)}>
-              <ZoomIn size={14} strokeWidth={1.7} />
+              <ZoomInIcon size={14} strokeWidth={1.7} />
             </button>
             <button className="icon-btn sm" title="Fit (0)" aria-label="Fit the timeline" onClick={() => tl.current?.fit()}>
-              <Maximize2 size={14} strokeWidth={1.7} />
+              <Maximize2Icon size={14} strokeWidth={1.7} />
             </button>
           </div>
           <PTimeline
@@ -700,7 +700,7 @@ export function PersonalEditor() {
                 <img src={thumbUrl} alt="Thumbnail" />
               ) : (
                 <span>
-                  <ImagePlus size={20} strokeWidth={1.5} />
+                  <ImagePlusIcon size={20} strokeWidth={1.5} />
                   Add a thumbnail
                 </span>
               )}
@@ -818,7 +818,7 @@ export function LayoutHandles({ layout, onChange }) {
         aria-label={`Move the ${label}`}
       >
         <span className="lh-label">
-          <Move size={11} />
+          <MoveIcon size={11} />
           {label}
         </span>
         {["tl", "tr", "bl", "br"].map((c) => (

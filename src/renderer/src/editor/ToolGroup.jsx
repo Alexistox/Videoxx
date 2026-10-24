@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Check, ChevronLeft, ChevronRight, CircleX } from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { Spinner } from "../src/renderer/src/components/ui";
+import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, CircleXIcon } from "lucide-react";
+import { Spinner } from "../components/ui";
 
 export const srcOf = (s) =>
   s.element?.source?.file
@@ -19,7 +19,7 @@ export function ToolGroup({ list }) {
     <div className="tool-group">
       {hidden > 0 && (
         <button className="tool-more" onClick={() => setOpen(true)}>
-          <ChevronRight size={12} />
+          <ChevronRightIcon size={12} />
           {hidden}
           {" earlier step"}
           {hidden === 1 ? "" : "s"}
@@ -29,7 +29,7 @@ export function ToolGroup({ list }) {
         const m = TOOL_VERB.exec(t.summary);
         return (
           <div key={t.id} className={`tool-line ${!t.done ? "run" : t.error ? "bad" : "done"}`} title={t.summary}>
-            <span className="tl-ic">{!t.done ? <Spinner size={12} /> : t.error ? <CircleX size={13} /> : <Check size={13} />}</span>
+            <span className="tl-ic">{!t.done ? <Spinner size={12} /> : t.error ? <CircleXIcon size={13} /> : <CheckIcon size={13} />}</span>
             {m ? (
               <>
                 <span className="tl-verb">{m[1]}</span>
@@ -54,7 +54,7 @@ export function Compare({ c: all, onSeek }) {
       {list.length > 1 && (
         <div className="cmp-nav">
           <button className="icon-btn sm" aria-label="Previous shot" disabled={n === 0} onClick={() => setN(n - 1)}>
-            <ChevronLeft size={14} />
+            <ChevronLeftIcon size={14} />
           </button>
           <span className="grow ellipsis" title={c.label}>
             {c.label}
@@ -65,7 +65,7 @@ export function Compare({ c: all, onSeek }) {
             {list.length}
           </span>
           <button className="icon-btn sm" aria-label="Next shot" disabled={n >= list.length - 1} onClick={() => setN(n + 1)}>
-            <ChevronRight size={14} />
+            <ChevronRightIcon size={14} />
           </button>
         </div>
       )}

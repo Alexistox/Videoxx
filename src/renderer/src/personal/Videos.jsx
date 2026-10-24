@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { FolderOpenIcon, PlusIcon, SearchIcon, TrashIcon, VideoIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { FolderOpen, Plus, Search, Trash, Video } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Empty, I, Modal } from "../components/ui";
 import { fold } from "../lib/fold";
@@ -64,7 +64,7 @@ export function Videos() {
         </div>
         <div className="actions">
           <button className="btn primary" onClick={() => setNewProject(true)}>
-            <Plus {...I} />
+            <PlusIcon {...I} />
             New video
           </button>
         </div>
@@ -72,7 +72,7 @@ export function Videos() {
       {projects.length > 0 && (
         <div className="toolbar">
           <label className="search" style={{ maxWidth: 360 }}>
-            <Search {...I} />
+            <SearchIcon {...I} />
             <input placeholder="Search videos" value={qy} onChange={(e) => setQ(e.target.value)} aria-label="Search videos" />
           </label>
           {channels.length > 0 && <ChannelFilter id="pv-channel" value={sel} onChange={setChannel} counts={counts} />}
@@ -80,12 +80,12 @@ export function Videos() {
       )}
       {!projects.length ? (
         <Empty
-          icon={<Video size={28} strokeWidth={1.7} />}
+          icon={<VideoIcon size={28} strokeWidth={1.7} />}
           title="No videos yet"
           text="Plan one: the title and thumbnail idea first, your footage next."
         >
           <button className="btn primary" onClick={() => setNewProject(true)}>
-            <Plus {...I} />
+            <PlusIcon {...I} />
             New video
           </button>
         </Empty>
@@ -119,10 +119,10 @@ export function Videos() {
               <VideoCard p={p} onOpen={() => go("editor", p.id)} />
               <span className="vc-actions">
                 <button className="icon-btn sm" aria-label="Show folder" title="Show folder" onClick={() => api.open(p.path)}>
-                  <FolderOpen size={15} strokeWidth={1.7} />
+                  <FolderOpenIcon size={15} strokeWidth={1.7} />
                 </button>
                 <button className="icon-btn sm" aria-label="Delete video" title="Delete" onClick={() => setDel(p)}>
-                  <Trash size={15} strokeWidth={1.7} />
+                  <TrashIcon size={15} strokeWidth={1.7} />
                 </button>
               </span>
               {channels.length > 0 && (

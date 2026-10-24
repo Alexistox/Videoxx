@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { KeyRoundIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { KeyRound } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../components/ui";
 import { useYtStatus } from "./useYtStatus";
 
@@ -108,7 +108,7 @@ export function DisconnectDialog({ yt, onClose, onGuide }) {
         </p>
         {status && !via && (
           <div className="hint warn yt-nokey">
-            <KeyRound size={18} />
+            <KeyRoundIcon size={18} />
             <div>
               <b>Its numbers would stop updating</b>
               <p>

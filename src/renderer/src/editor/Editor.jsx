@@ -1,40 +1,40 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  AudioLinesIcon,
+  CameraIcon,
+  CheckIcon,
+  ChevronRightIcon,
+  Clock3Icon,
+  DownloadIcon,
+  FileTextIcon,
+  FilmIcon,
+  FlaskConicalIcon,
+  FolderOpenIcon,
+  GaugeIcon,
+  HammerIcon,
+  KeyboardIcon,
+  MusicIcon,
+  NotebookTextIcon,
+  Palette,
+  PauseIcon,
+  PenLineIcon,
+  PlayIcon,
+  RefreshCwIcon,
+  RepeatIcon,
+  Settings2Icon,
+  SkipBackIcon,
+  SkipForwardIcon,
+  SlidersHorizontalIcon,
+  SparklesIcon,
+  TriangleAlertIcon,
+  Volume2Icon,
+  VolumeXIcon,
+  WandSparklesIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { fmtTime, unheardWords } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  AudioLines,
-  Camera,
-  Check,
-  ChevronRight,
-  Clock3,
-  Download,
-  FileText,
-  Film,
-  FlaskConical,
-  FolderOpen,
-  Gauge,
-  Hammer,
-  Keyboard,
-  Music,
-  NotebookText,
-  Palette,
-  Pause,
-  PenLine,
-  Play,
-  RefreshCw,
-  Repeat,
-  Settings2,
-  SkipBack,
-  SkipForward,
-  SlidersHorizontal,
-  Sparkles,
-  TriangleAlert,
-  Volume2,
-  VolumeX,
-  WandSparkles,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Busy, Empty, Modal, Spinner } from "../components/ui";
 import { Picker } from "../components/Picker";
 import { aLang, lang, otherScriptLanguage, styleDraws } from "../settings/languages";
@@ -49,10 +49,10 @@ import { Clock, useClockText, useClockValue, usePlaying } from "../player/clock"
 import { PQ_OPTIONS, getPreviewQuality, setPreviewQuality } from "../player/previewQuality";
 import { Preview } from "../player/Preview";
 import { isStandard, premiumMsg, usePlan } from "../state/usePlan";
-import { TrimSilences } from "../../../../editor/TrimSilences";
-import { Timeline } from "../../../../editor/Timeline";
-import { ClaudePanel } from "../../../../editor/ClaudePanel";
-import { GraphicsPanel } from "../../../../editor/panels/GraphicsPanel";
+import { TrimSilences } from "./TrimSilences";
+import { Timeline } from "./Timeline";
+import { ClaudePanel } from "./ClaudePanel";
+import { GraphicsPanel } from "./panels/GraphicsPanel";
 import { LookPanel } from "./panels/LookPanel";
 import { Coach } from "./panels/Coach";
 import { NotesPanel } from "./panels/NotesPanel";
@@ -70,14 +70,14 @@ import { STYLES_MOVED, selLabel } from "./selectionLabel";
 
 const settle = (s) => (s.index === 0 ? s.t0 : Math.min(s.t0 + 0.3, (s.t0 + s.t1) / 2));
 const STEP_ICON = {
-  script: PenLine,
-  voice: AudioLines,
-  clean: WandSparkles,
-  timeline: Clock3,
-  storyboard: FileText,
-  scenes: Hammer,
-  sound: Music,
-  export: Film,
+  script: PenLineIcon,
+  voice: AudioLinesIcon,
+  clean: WandSparklesIcon,
+  timeline: Clock3Icon,
+  storyboard: FileTextIcon,
+  scenes: HammerIcon,
+  sound: MusicIcon,
+  export: FilmIcon,
 };
 const NOT_TIMED = "Clean the audio and time the words first: the video would still have the previous narration.";
 const NOT_TIMED_WORDS = "Time the words first: the scenes would not follow the narration.";
@@ -854,7 +854,7 @@ ${errors.slice(0, 2e3)}`,
   if (!projectId)
     return (
       <div className="page">
-        <Empty icon={<Film size={28} />} title="No project open" text="Open a project to edit it.">
+        <Empty icon={<FilmIcon size={28} />} title="No project open" text="Open a project to edit it.">
           <button className="btn primary" onClick={() => go("projects")}>
             Go to projects
           </button>
@@ -865,7 +865,7 @@ ${errors.slice(0, 2e3)}`,
     return (
       <div className="page">
         <div className="hint bad">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>Could not open this project</b>
             <p>{err}</p>
@@ -1010,7 +1010,7 @@ ${errors.slice(0, 2e3)}`,
             aria-label="Project settings"
             onClick={() => setPjSettings(true)}
           >
-            <Settings2 size={16} strokeWidth={1.7} />
+            <Settings2Icon size={16} strokeWidth={1.7} />
           </button>
         )}
         <span
@@ -1024,7 +1024,7 @@ ${errors.slice(0, 2e3)}`,
             </>
           ) : (
             <>
-              <Check size={12} />
+              <CheckIcon size={12} />
               <span className="ss-txt">Saved locally · git history</span>
             </>
           )}
@@ -1035,7 +1035,7 @@ ${errors.slice(0, 2e3)}`,
             className="lab-chip"
             title={`An old style lab for "${st.styleLab.name}". ${STYLES_MOVED} The styles it saved before keep working.`}
           >
-            <FlaskConical size={14} strokeWidth={1.8} />
+            <FlaskConicalIcon size={14} strokeWidth={1.8} />
             Style lab
           </span>
         )}
@@ -1044,7 +1044,7 @@ ${errors.slice(0, 2e3)}`,
             className="lab-chip"
             title="Character lab: Claude designs this character in character.js. Every change that finishes is checked and saved to your Characters (Styles page)."
           >
-            <FlaskConical size={14} strokeWidth={1.8} />
+            <FlaskConicalIcon size={14} strokeWidth={1.8} />
             Character lab
           </span>
         )}
@@ -1055,7 +1055,7 @@ ${errors.slice(0, 2e3)}`,
             onClick={() => setVoiceDlg({})}
             title={voiceStopped ? voiceJob.error : "Open the voiceover to follow it"}
           >
-            {voicing ? <Spinner size={12} /> : <TriangleAlert size={14} />}
+            {voicing ? <Spinner size={12} /> : <TriangleAlertIcon size={14} />}
             <span className="ellipsis">
               {stoppedAt === "voice"
                 ? "Voiceover stopped"
@@ -1074,7 +1074,7 @@ ${errors.slice(0, 2e3)}`,
           !st.styleLab &&
           !st.characterLab && (
             <button className="icon-btn ed-voice-btn" title="Voiceover" aria-label="Voiceover" onClick={() => setVoiceDlg({})}>
-              <AudioLines size={17} strokeWidth={1.7} />
+              <AudioLinesIcon size={17} strokeWidth={1.7} />
             </button>
           )
         )}
@@ -1087,7 +1087,7 @@ ${errors.slice(0, 2e3)}`,
               title={`This video uses version ${st.stylePkg.version} of your style "${st.stylePkg.name}". Update gives it version ${st.stylePkg.latest}: its engine, look notes and skill. Your scenes and settings stay, and History can undo it.`}
               onClick={upgradeEngine}
             >
-              <RefreshCw size={14} />
+              <RefreshCwIcon size={14} />
               <span className="upd-long">
                 {st.stylePkg.name}
                 {" v"}
@@ -1102,7 +1102,7 @@ ${errors.slice(0, 2e3)}`,
               title="Replaces engine.js with the Suite's newest engine. Your scenes and settings stay; the old engine is kept in .suite/."
               onClick={upgradeEngine}
             >
-              <RefreshCw size={14} />
+              <RefreshCwIcon size={14} />
               Update
               <span className="upd-long">
                 {" engine "}
@@ -1152,7 +1152,7 @@ ${errors.slice(0, 2e3)}`,
             title="Graphics: render scale, shadows, post processing, colour grade and export quality, live in the preview"
             onClick={() => setGfx((g) => !g)}
           >
-            <SlidersHorizontal size={15} strokeWidth={1.7} />
+            <SlidersHorizontalIcon size={15} strokeWidth={1.7} />
             <span className="gfx-btn-t">Graphics</span>
           </button>
         )}
@@ -1162,13 +1162,13 @@ ${errors.slice(0, 2e3)}`,
           aria-label="Project notes"
           onClick={() => setNotes(true)}
         >
-          <NotebookText size={17} strokeWidth={1.7} />
+          <NotebookTextIcon size={17} strokeWidth={1.7} />
         </button>
         <button className="icon-btn" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts" onClick={() => setKeys(true)}>
-          <Keyboard size={17} strokeWidth={1.7} />
+          <KeyboardIcon size={17} strokeWidth={1.7} />
         </button>
         <button className="icon-btn" title="Open project folder" aria-label="Open project folder" onClick={() => api.open(st.project.path)}>
-          <FolderOpen size={17} strokeWidth={1.7} />
+          <FolderOpenIcon size={17} strokeWidth={1.7} />
         </button>
         <button
           className="btn small primary"
@@ -1184,7 +1184,7 @@ ${errors.slice(0, 2e3)}`,
                   : void 0
           }
         >
-          <Download size={15} strokeWidth={1.7} />
+          <DownloadIcon size={15} strokeWidth={1.7} />
           Export
         </button>
       </div>
@@ -1239,7 +1239,7 @@ ${errors.slice(0, 2e3)}`,
           <>
             <div className="sec-title">Pipeline</div>
             {st.steps.map((s, i) => {
-              const Icon = STEP_ICON[s.id] ?? ChevronRight;
+              const Icon = STEP_ICON[s.id] ?? ChevronRightIcon;
               const done = (id) => !!st.steps.find((x) => x.id === id)?.done;
               const needs = {
                 script: null,
@@ -1298,9 +1298,9 @@ ${errors.slice(0, 2e3)}`,
                     {making ? (
                       <Spinner size={10} />
                     ) : stopped ? (
-                      <TriangleAlert size={11} />
+                      <TriangleAlertIcon size={11} />
                     ) : s.done ? (
-                      <Check size={11} strokeWidth={2.2} />
+                      <CheckIcon size={11} strokeWidth={2.2} />
                     ) : (
                       <Icon size={11} />
                     )}
@@ -1398,7 +1398,7 @@ ${errors.slice(0, 2e3)}`,
                           : "Select shots in the list or on the timeline (Shift+click for more), or upgrade the shot you are on"
                     }
                   >
-                    <Sparkles size={14} />
+                    <SparklesIcon size={14} />
                     {label}
                     {ultraLocked && <span className="premium-pill">Premium</span>}
                   </button>
@@ -1476,7 +1476,7 @@ ${errors.slice(0, 2e3)}`,
                   )
                 }
               >
-                <Sparkles size={12} />
+                <SparklesIcon size={12} />
                 Fix with Claude
               </button>
             </div>
@@ -1535,7 +1535,7 @@ ${errors.slice(0, 2e3)}`,
             const built = st.steps.find((x) => x.id === "scenes")?.done;
             return (
               <div className="warn-bar vo-newbar" role="status">
-                <AudioLines size={14} />
+                <AudioLinesIcon size={14} />
                 <span className="grow">
                   {st.voiceNew
                     ? built
@@ -1557,7 +1557,7 @@ ${errors.slice(0, 2e3)}`,
                         : void 0
                   }
                 >
-                  {st.voiceNew ? <WandSparkles size={12} /> : <Clock3 size={12} />}
+                  {st.voiceNew ? <WandSparklesIcon size={12} /> : <Clock3Icon size={12} />}
                   {st.voiceNew ? "Clean and time" : "Time words"}
                 </button>
               </div>
@@ -1573,7 +1573,7 @@ ${errors.slice(0, 2e3)}`,
               drawn2 = styleDraws(st.styleBase ?? st.style, O.code);
             return (
               <div className="warn-bar vo-newbar ed-otherlang" role="status">
-                <TriangleAlert size={14} />
+                <TriangleAlertIcon size={14} />
                 <span className="grow">
                   {"The script is in "}
                   {O.name}
@@ -1609,14 +1609,14 @@ ${errors.slice(0, 2e3)}`,
                   title="Hide this until the script or the video's language changes"
                   onClick={hideOther}
                 >
-                  <X size={13} />
+                  <XIcon size={13} />
                 </button>
               </div>
             );
           })()}
         {errorsNow.length > 0 && (
           <div className="warn-bar" role="status">
-            <TriangleAlert size={14} />
+            <TriangleAlertIcon size={14} />
             <span
               className="grow"
               title={errorsNow
@@ -1638,11 +1638,11 @@ ${errors.slice(0, 2e3)}`,
                 )
               }
             >
-              <Sparkles size={12} />
+              <SparklesIcon size={12} />
               Fix with Claude
             </button>
             <button className="icon-btn sm" aria-label="Dismiss warnings" title="Dismiss" onClick={() => setLogs([])}>
-              <X size={13} />
+              <XIcon size={13} />
             </button>
           </div>
         )}
@@ -1657,7 +1657,7 @@ ${errors.slice(0, 2e3)}`,
               if (n) clock.set(settle(n));
             }}
           >
-            <SkipBack size={17} strokeWidth={1.7} />
+            <SkipBackIcon size={17} strokeWidth={1.7} />
           </button>
           <button
             className="icon-btn"
@@ -1665,7 +1665,7 @@ ${errors.slice(0, 2e3)}`,
             title="Play / pause (Space)"
             onClick={() => clock.setPlaying(!playing)}
           >
-            {playing ? <Pause size={19} strokeWidth={1.7} /> : <Play size={19} strokeWidth={1.7} />}
+            {playing ? <PauseIcon size={19} strokeWidth={1.7} /> : <PlayIcon size={19} strokeWidth={1.7} />}
           </button>
           <button
             className="icon-btn"
@@ -1676,7 +1676,7 @@ ${errors.slice(0, 2e3)}`,
               if (n) clock.set(settle(n));
             }}
           >
-            <SkipForward size={17} strokeWidth={1.7} />
+            <SkipForwardIcon size={17} strokeWidth={1.7} />
           </button>
           <span className="timecode">
             <span ref={timecode} className="tc-now" />{" "}
@@ -1694,7 +1694,7 @@ ${errors.slice(0, 2e3)}`,
             );
           })()}
           <button className="icon-btn sm" title="Save this frame as a 1080p PNG in out/" aria-label="Save frame" onClick={saveFrame}>
-            <Camera size={15} strokeWidth={1.7} />
+            <CameraIcon size={15} strokeWidth={1.7} />
           </button>
           <button
             className={`icon-btn sm ${muted ? "active" : ""}`}
@@ -1703,7 +1703,7 @@ ${errors.slice(0, 2e3)}`,
             aria-pressed={muted}
             onClick={() => setMuted(!muted)}
           >
-            {muted ? <VolumeX size={15} strokeWidth={1.7} /> : <Volume2 size={15} strokeWidth={1.7} />}
+            {muted ? <VolumeXIcon size={15} strokeWidth={1.7} /> : <Volume2Icon size={15} strokeWidth={1.7} />}
           </button>
           <button
             className={`icon-btn sm ${loop ? "active" : ""}`}
@@ -1713,7 +1713,7 @@ ${errors.slice(0, 2e3)}`,
             aria-label="Loop selection"
             onClick={() => setLoop(!loop)}
           >
-            <Repeat size={15} strokeWidth={1.7} />
+            <RepeatIcon size={15} strokeWidth={1.7} />
           </button>
           {(() => {
             const name = (k) => (k >= 1 ? "Full" : k >= 0.5 ? "Half" : "Quarter");
@@ -1741,7 +1741,7 @@ ${errors.slice(0, 2e3)}`,
                   }}
                   trigger={() => (
                     <>
-                      <Gauge size={14} strokeWidth={1.7} />
+                      <GaugeIcon size={14} strokeWidth={1.7} />
                       <span className="pk-val">{text}</span>
                     </>
                   )}
@@ -2019,7 +2019,7 @@ ${errors.slice(0, 2e3)}`,
                 <span style={{ color: "var(--err)" }}>{pipe.error}</span>
               ) : (
                 <>
-                  <Check size={16} style={{ color: "var(--mint)" }} />
+                  <CheckIcon size={16} style={{ color: "var(--mint)" }} />
                   Finished
                 </>
               )}

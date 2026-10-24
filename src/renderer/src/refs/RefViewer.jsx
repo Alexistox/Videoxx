@@ -1,27 +1,27 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CornerDownLeftIcon,
+  ExternalLinkIcon,
+  Link2Icon,
+  Maximize2Icon,
+  PauseIcon,
+  PlayIcon,
+  PlusIcon,
+  RepeatIcon,
+  ScanIcon,
+  SparklesIcon,
+  TriangleAlertIcon,
+  Volume2Icon,
+  VolumeXIcon,
+  XIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  ChevronLeft,
-  ChevronRight,
-  CornerDownLeft,
-  ExternalLink,
-  Link2,
-  Maximize2,
-  Pause,
-  Play,
-  Plus,
-  Repeat,
-  Scan,
-  Sparkles,
-  TriangleAlert,
-  Volume2,
-  VolumeX,
-  X,
-  ZoomIn,
-  ZoomOut,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { MOD, isMac } from "../help/keys";
 import { Modal, Spinner } from "../components/ui";
 import { cacheUrl, fmtSpan, fmtT, mentionOf, parseTime, refMeta, shortPath } from "./mentions";
@@ -84,7 +84,7 @@ function Missing({ projectId, r }) {
   };
   return (
     <div className="rf-missing">
-      <TriangleAlert size={22} />
+      <TriangleAlertIcon size={22} />
       <div>
         <b>
           {r.name}
@@ -98,7 +98,7 @@ function Missing({ projectId, r }) {
           . Moved, renamed, or on a drive that is not connected? Point to where it is now: the tag, label and ranges stay.
         </p>
         <button className="btn small primary" onClick={relink}>
-          <Link2 size={14} />
+          <Link2Icon size={14} />
           Relink…
         </button>
       </div>
@@ -393,7 +393,7 @@ function TimeViewer({ projectId, r, initRange, initRangeId, onInsert }) {
       )}
       <div className="rf-transport">
         <button className="icon-btn sm" onClick={() => seek(t - 1 / fps)} aria-label="One frame back" title="One frame back (←)">
-          <ChevronLeft size={15} />
+          <ChevronLeftIcon size={15} />
         </button>
         <button
           className="rf-play"
@@ -401,10 +401,10 @@ function TimeViewer({ projectId, r, initRange, initRangeId, onInsert }) {
           aria-label={playing ? "Pause" : "Play"}
           title={playing ? "Pause (Space)" : "Play (Space)"}
         >
-          {playing ? <Pause size={15} /> : <Play size={15} />}
+          {playing ? <PauseIcon size={15} /> : <PlayIcon size={15} />}
         </button>
         <button className="icon-btn sm" onClick={() => seek(t + 1 / fps)} aria-label="One frame on" title="One frame on (→)">
-          <ChevronRight size={15} />
+          <ChevronRightIcon size={15} />
         </button>
         <span className="rf-clock">
           <b>{fmtT(t, 1)}</b>
@@ -427,22 +427,22 @@ function TimeViewer({ projectId, r, initRange, initRangeId, onInsert }) {
           onClick={() => setLoop(!loop)}
           title="Play the selected range over and over"
         >
-          <Repeat size={12} />
+          <RepeatIcon size={12} />
           Loop range
         </button>
         <span className="grow" />
         <div className="rf-zoom" role="group" aria-label="Timeline zoom">
           <button className="icon-btn sm" onClick={() => zoomBy(2)} aria-label="Zoom out" title="Zoom out (-)">
-            <ZoomOut size={14} />
+            <ZoomOutIcon size={14} />
           </button>
           <button className="icon-btn sm" onClick={() => zoomBy(0.5)} aria-label="Zoom in" title="Zoom in (=)">
-            <ZoomIn size={14} />
+            <ZoomInIcon size={14} />
           </button>
           <button className="icon-btn sm" onClick={fitR} disabled={!ext} aria-label="Zoom to the range" title="Zoom to the selected range">
-            <Scan size={14} />
+            <ScanIcon size={14} />
           </button>
           <button className="icon-btn sm" onClick={() => setView([0, dur])} aria-label="Show all" title="Show the whole file">
-            <Maximize2 size={13} />
+            <Maximize2Icon size={13} />
           </button>
         </div>
         <button
@@ -451,7 +451,7 @@ function TimeViewer({ projectId, r, initRange, initRangeId, onInsert }) {
           aria-label={muted ? "Sound on" : "Mute"}
           title={muted ? "Sound on" : "Mute"}
         >
-          {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+          {muted ? <VolumeXIcon size={14} /> : <Volume2Icon size={14} />}
         </button>
       </div>
       {dur > 0 ? (
@@ -529,7 +529,7 @@ function TimeViewer({ projectId, r, initRange, initRangeId, onInsert }) {
             />
           ))}
           <button className="btn tiny rf-addrange" onClick={() => addRange()}>
-            <Plus size={12} />
+            <PlusIcon size={12} />
             {"Add a range at "}
             {fmtT(t)}
           </button>
@@ -961,16 +961,16 @@ function RangeRow({ x, i, dur, on: on2, tag, onPick, onPatch, onRemove, onLoop, 
       </span>
       <span className="rf-rbtns">
         <button className="icon-btn sm" onClick={onLoop} aria-label={`Loop range ${i + 1}`} title="Play this range in a loop">
-          <Repeat size={13} />
+          <RepeatIcon size={13} />
         </button>
         {onInsert && (
           <button className="btn tiny rf-rinsert" onClick={onInsert} title={`Put ${mentionOf(tag, x)} in your text`}>
-            <CornerDownLeft size={11} />
+            <CornerDownLeftIcon size={11} />
             Insert
           </button>
         )}
         <button className="icon-btn sm" onClick={onRemove} aria-label={`Remove range ${i + 1}`} title="Remove this range">
-          <X size={13} />
+          <XIcon size={13} />
         </button>
       </span>
     </div>
@@ -1045,7 +1045,7 @@ function ExtractBox({ projectId, r, range, dur }) {
       )}
       {st.err && (
         <p className="rf-ex-err">
-          <TriangleAlert size={13} />
+          <TriangleAlertIcon size={13} />
           {st.err}
         </p>
       )}
@@ -1090,7 +1090,7 @@ function ExtractBox({ projectId, r, range, dur }) {
         </div>
       )}
       <button className="btn small rf-ex-go" onClick={run} disabled={st.busy}>
-        {st.busy ? <Spinner size={13} /> : <Sparkles size={14} />}
+        {st.busy ? <Spinner size={13} /> : <SparklesIcon size={14} />}
         {st.res ? "Extract again" : "Preview extract"}
       </button>
     </div>
@@ -1144,7 +1144,7 @@ function ImageViewer({ projectId, r, onInsert }) {
         </button>
         {onInsert && (
           <button className="btn tiny primary" onClick={() => onInsert(mentionOf(r.tag))}>
-            <CornerDownLeft size={11} />
+            <CornerDownLeftIcon size={11} />
             Insert @{r.tag}
           </button>
         )}
@@ -1163,12 +1163,12 @@ function DocViewer({ r, onInsert }) {
         <p className="dim">{refMeta(r)}. Claude reads it from where it is.</p>
         <div className="row" style={{ gap: 8, marginTop: 10 }}>
           <button className="btn small" onClick={() => api.open(r.path)}>
-            <ExternalLink size={13} />
+            <ExternalLinkIcon size={13} />
             Open
           </button>
           {onInsert && (
             <button className="btn small primary" onClick={() => onInsert(mentionOf(r.tag))}>
-              <CornerDownLeft size={13} />
+              <CornerDownLeftIcon size={13} />
               Insert @{r.tag}
             </button>
           )}

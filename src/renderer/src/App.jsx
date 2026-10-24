@@ -1,15 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { LifeBuoyIcon, LockIcon, PanelLeftCloseIcon, PanelLeftOpenIcon, PlusIcon, SearchIcon, SettingsIcon } from "lucide-react";
 import { api } from "./lib/api";
 import { useApp } from "./state/AppProvider";
-import {
-  LifeBuoy,
-  Lock,
-  PanelLeftClose,
-  PanelLeftOpen,
-  Plus,
-  Search,
-  Settings as Settings$1,
-} from "../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { keys } from "./help/keys";
 import { HelpAssistant } from "./help/HelpAssistant";
 import { I, Toasts } from "./components/ui";
@@ -22,10 +14,10 @@ import { Home } from "./projects/Home";
 import { Projects } from "./projects/Projects";
 import { PREMIUM_PAGES, exportsLeft, isStandard, premiumMsg, usePlan } from "./state/usePlan";
 import { NewProject } from "./projects/NewProject";
-import { Presets } from "../../../looks/Presets";
-import { Memory } from "../../../looks/Memory";
-import { Library } from "../../../library/Library";
-import { Renders } from "../../../library/Renders";
+import { Presets } from "./looks/Presets";
+import { Memory } from "./looks/Memory";
+import { Library } from "./library/Library";
+import { Renders } from "./library/Renders";
 import { Editor } from "./editor/Editor";
 import { Studio } from "./studio/Studio";
 import { StyleImport } from "./studio/StyleImport";
@@ -71,7 +63,7 @@ export function App() {
     std = isStandard(plan),
     left = exportsLeft(plan);
   const open = (id, label) => (std && PREMIUM_PAGES.has(id) ? toast(premiumMsg(label)) : go(id));
-  const lock = (id) => (std && PREMIUM_PAGES.has(id) ? <Lock size={12} className="nav-lock" aria-label="Premium" /> : null);
+  const lock = (id) => (std && PREMIUM_PAGES.has(id) ? <LockIcon size={12} className="nav-lock" aria-label="Premium" /> : null);
   const nav = NAVS[brand];
   const [collapsed, setCollapsed] = useState(false);
   const [preview, setPreview] = useState(false);
@@ -165,7 +157,7 @@ export function App() {
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
               onClick={() => setCollapsed(!collapsed)}
             >
-              {collapsed ? <PanelLeftOpen size={17} strokeWidth={1.7} /> : <PanelLeftClose size={17} strokeWidth={1.7} />}
+              {collapsed ? <PanelLeftOpenIcon size={17} strokeWidth={1.7} /> : <PanelLeftCloseIcon size={17} strokeWidth={1.7} />}
             </button>
           )}
         </div>
@@ -175,7 +167,7 @@ export function App() {
           </div>
         )}
         <button className="cmd" onClick={() => setPalette(true)} title={`Search (${keys("K")})`}>
-          <Search size={16} strokeWidth={1.7} />
+          <SearchIcon size={16} strokeWidth={1.7} />
           <span>Search or run…</span>
           <kbd>{keys("K")}</kbd>
         </button>
@@ -251,7 +243,7 @@ export function App() {
         <div className="side-foot">
           <GlideNav className="nav" style={{ marginTop: 0 }}>
             <button onClick={() => setNewProject(true)} title={`New ${thing(brand)} (${keys("N")})`}>
-              <Plus {...I} />
+              <PlusIcon {...I} />
               <span>
                 {"New "}
                 {thing(brand)}
@@ -263,11 +255,11 @@ export function App() {
               title="Help: ask a question or report a problem"
               aria-expanded={help.open}
             >
-              <LifeBuoy {...I} />
+              <LifeBuoyIcon {...I} />
               <span>Help</span>
             </button>
             <button className={page === "settings" ? "selected" : ""} onClick={() => go("settings")} title="Settings">
-              <Settings$1 {...I} />
+              <SettingsIcon {...I} />
               <span>Settings</span>
             </button>
           </GlideNav>

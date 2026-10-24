@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Check, ChevronDown } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { CheckIcon, ChevronDownIcon } from "lucide-react";
 
 export function Dropdown({ value, groups, onChange, ariaLabel, disabled, title, className = "", style, menuWidth }) {
   const [open, setOpen] = useState(false),
@@ -97,7 +97,7 @@ export function Dropdown({ value, groups, onChange, ariaLabel, disabled, title, 
         onKeyDown={onKey}
       >
         <span className="ellipsis">{cur?.label ?? value}</span>
-        <ChevronDown size={14} className="dd-chev" />
+        <ChevronDownIcon size={14} className="dd-chev" />
       </button>
       {open &&
         createPortal(
@@ -123,7 +123,7 @@ export function Dropdown({ value, groups, onChange, ariaLabel, disabled, title, 
                         <b>{o.label}</b>
                         {o.hint && <small>{o.hint}</small>}
                       </span>
-                      {o.value === value && <Check size={14} />}
+                      {o.value === value && <CheckIcon size={14} />}
                     </div>
                   );
                 })}

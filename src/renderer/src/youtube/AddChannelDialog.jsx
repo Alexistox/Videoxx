@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { KeyRoundIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { KeyRound } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../components/ui";
 import { isEnter } from "../channels/stages";
 import { useYtStatus } from "./useYtStatus";
@@ -52,7 +52,7 @@ export function AddChannelDialog({ onClose, onGuide, onAdded }) {
           <>
             {status && !can && (
               <div className="hint warn">
-                <KeyRound size={18} />
+                <KeyRoundIcon size={18} />
                 <div>
                   <b>Add a Google API key first</b>
                   <p>Public stats come from YouTube with your own free API key (steps 1 to 3 of the guide).</p>

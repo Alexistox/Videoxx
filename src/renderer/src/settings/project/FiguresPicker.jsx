@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { RotateCwIcon, Undo2Icon, UserPlusIcon } from "lucide-react";
 import { api, on } from "../../lib/api";
-import { RotateCw, Undo2, UserPlus } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { FIG_ACTS, FIG_BODIES, FIG_FINISHES, FIG_ROLES, isCustomBody, roleFigure } from "./figures";
 import { CharacterUpload } from "./CharacterUpload";
 
@@ -295,7 +295,7 @@ export function FiguresPicker({ value, onChange, theme, disabled }) {
                             put(r.id, null);
                           }}
                         >
-                          <Undo2 size={13} />
+                          <Undo2Icon size={13} />
                         </button>
                       )}
                     </td>
@@ -313,7 +313,7 @@ export function FiguresPicker({ value, onChange, theme, disabled }) {
               disabled={disabled}
               onClick={() => setOwnOpen(!ownOpen)}
             >
-              <UserPlus size={13} />
+              <UserPlusIcon size={13} />
               Your own characters{own.length ? ` (${own.length})` : ""}
             </button>
             {ownOpen && (
@@ -358,7 +358,7 @@ export function FiguresPicker({ value, onChange, theme, disabled }) {
               title={spin ? "Stop turning" : "Turn around"}
               onClick={() => setSpin(!spin)}
             >
-              <RotateCw size={14} />
+              <RotateCwIcon size={14} />
             </button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { MonitorCogIcon, RefreshCwIcon, SparklesIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../lib/api";
-import { MonitorCog, RefreshCw, Sparkles, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Busy, Spinner } from "../components/ui";
 import { WEBGL_FAIL, webglAdvice } from "./webglHelp";
@@ -391,12 +391,12 @@ export const Preview = forwardRef(function Preview2(
         )}
         {bootError && gl && (
           <div className="stage-err gl-err" role="alert">
-            <MonitorCog size={16} />
+            <MonitorCogIcon size={16} />
             <p>{webglAdvice(gl.software, isMac)}</p>
             <div className="row">
               {!gl.software && (
                 <button className="btn tiny primary" onClick={() => api.setGraphics("software").then(() => api.graphicsRestart())}>
-                  <RefreshCw size={12} />
+                  <RefreshCwIcon size={12} />
                   Use software graphics and restart
                 </button>
               )}
@@ -415,7 +415,7 @@ export const Preview = forwardRef(function Preview2(
         )}
         {bootError && !gl && (
           <div className="stage-err" role="alert">
-            <TriangleAlert size={16} />
+            <TriangleAlertIcon size={16} />
             <pre>{bootError}</pre>
             <div className="row">
               <button
@@ -425,12 +425,12 @@ export const Preview = forwardRef(function Preview2(
                   setNonce((n) => n + 1);
                 }}
               >
-                <RefreshCw size={12} />
+                <RefreshCwIcon size={12} />
                 Reload
               </button>
               {onFix && (
                 <button className="btn tiny" onClick={() => onFix(bootError)}>
-                  <Sparkles size={12} />
+                  <SparklesIcon size={12} />
                   Fix with Claude
                 </button>
               )}

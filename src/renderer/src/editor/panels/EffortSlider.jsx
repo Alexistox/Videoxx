@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BUILD_COST, qualityLevels } from "../../../../../routines/nodes";
+import { BUILD_COST, qualityLevels } from "../../routines/nodes";
 
 function EffortSlider({ levels, value, onChange, left = "Faster", right = "Smarter", label = "Effort" }) {
   const wrap = useRef(null),

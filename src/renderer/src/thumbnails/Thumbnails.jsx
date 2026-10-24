@@ -1,22 +1,22 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ImageOffIcon,
+  ImagePlusIcon,
+  KeyRoundIcon,
+  LayoutGridIcon,
+  MessageSquareTextIcon,
+  PinIcon,
+  PlusIcon,
+  StarIcon,
+  TrashIcon,
+  VideoIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { ago } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Check,
-  ChevronDown,
-  ImageOff,
-  ImagePlus,
-  KeyRound,
-  LayoutGrid,
-  MessageSquareText,
-  Pin,
-  Plus,
-  Star,
-  Trash,
-  Video,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Modal, Spinner } from "../components/ui";
 import { DEFAULTS, nid, nodeHeight, normalize, refsOf } from "./board";
@@ -420,7 +420,7 @@ function ThumbnailsPage() {
   const noBoard = personal.filter((p) => !boards.some((b) => b.projectId === p.id));
   const row = (b, icon) => (
     <button key={b.id} className={b.id === board?.id ? "on" : ""} onClick={() => pickBoard(b.id)}>
-      <span className="th-cover">{b.cover ? <img src={b.cover} alt="" /> : <ImageOff size={14} />}</span>
+      <span className="th-cover">{b.cover ? <img src={b.cover} alt="" /> : <ImageOffIcon size={14} />}</span>
       <span className="grow">
         <b>
           {icon}
@@ -434,7 +434,7 @@ function ThumbnailsPage() {
           {ago(b.updated_at)}
         </small>
       </span>
-      {b.id === board?.id && <Check size={14} />}
+      {b.id === board?.id && <CheckIcon size={14} />}
     </button>
   );
   const [restoring, setRestoring] = useState(false);
@@ -497,8 +497,8 @@ function ThumbnailsPage() {
       <div className="th-top">
         <div className="th-board">
           <button className="th-pick" onClick={() => setPicker(!picker)} aria-expanded={picker} aria-label="Boards">
-            <LayoutGrid size={15} strokeWidth={1.7} />
-            <ChevronDown size={13} />
+            <LayoutGridIcon size={15} strokeWidth={1.7} />
+            <ChevronDownIcon size={13} />
           </button>
           <input
             className="th-name"
@@ -511,14 +511,14 @@ function ThumbnailsPage() {
           />
           {picker && (
             <div className="th-menu" ref={menuRef}>
-              {master && row(master, <Pin size={11} className="th-pin" />)}
+              {master && row(master, <PinIcon size={11} className="th-pin" />)}
               {(videoBoards.length > 0 || noBoard.length > 0) && (
                 <div className="th-menu-sec">{brand === "personal" ? "Videos" : "Projects"}</div>
               )}
-              {videoBoards.map((b) => row(b, <Video size={11} className="th-pin" />))}
+              {videoBoards.map((b) => row(b, <VideoIcon size={11} className="th-pin" />))}
               {noBoard.map((p) => (
                 <button key={p.id} className="th-new-video" onClick={() => pickBoard({ forProject: p.id })}>
-                  <span className="th-cover">{p.thumb ? <img src={p.thumb} alt="" /> : <Video size={14} />}</span>
+                  <span className="th-cover">{p.thumb ? <img src={p.thumb} alt="" /> : <VideoIcon size={14} />}</span>
                   <span className="grow">
                     <b>{p.name}</b>
                     <small>Start its board</small>
@@ -529,7 +529,7 @@ function ThumbnailsPage() {
               {otherBoards.map((b) => row(b))}
               <button onClick={newBoard}>
                 <span className="th-cover">
-                  <Plus size={14} />
+                  <PlusIcon size={14} />
                 </span>
                 <b>New board</b>
               </button>
@@ -538,17 +538,17 @@ function ThumbnailsPage() {
         </div>
         <div className="seg-ctl" role="tablist" aria-label="View">
           <button role="tab" aria-selected={mode === "canvas"} className={mode === "canvas" ? "on" : ""} onClick={() => setMode("canvas")}>
-            <LayoutGrid size={13} />
+            <LayoutGridIcon size={13} />
             Canvas
           </button>
           <button role="tab" aria-selected={mode === "prompt"} className={mode === "prompt" ? "on" : ""} onClick={() => setMode("prompt")}>
-            <MessageSquareText size={13} />
+            <MessageSquareTextIcon size={13} />
             Prompt
           </button>
         </div>
         {target && (
           <span className="th-for" title={`Use as thumbnail puts the image straight on this ${thing}`}>
-            <Star size={12} fill="currentColor" />
+            <StarIcon size={12} fill="currentColor" />
             {"For "}
             <b className="ellipsis">{target.name}</b>
             {forVideo && !board?.projectId && (
@@ -557,7 +557,7 @@ function ThumbnailsPage() {
                 title={`Stop making it for this ${thing}`}
                 onClick={() => setForVideo(null)}
               >
-                <X size={12} />
+                <XIcon size={12} />
               </button>
             )}
           </span>
@@ -565,7 +565,7 @@ function ThumbnailsPage() {
         <span className="grow" />
         {hf && (
           <button className={`th-key ${hf.hasKey ? "ok" : ""}`} onClick={() => setKeyOpen(true)} title="Higgsfield API key">
-            <KeyRound size={13} />
+            <KeyRoundIcon size={13} />
             {hf.hasKey ? `Higgsfield · …${hf.hint}` : "Add Higgsfield key"}
           </button>
         )}
@@ -576,12 +576,12 @@ function ThumbnailsPage() {
           onClick={delBoard}
           disabled={!!board?.pinned}
         >
-          <Trash size={16} strokeWidth={1.7} />
+          <TrashIcon size={16} strokeWidth={1.7} />
         </button>
       </div>
       {board && board.orphans.length > 0 && mode === "canvas" && (
         <div className="th-orphans" role="status">
-          <ImagePlus size={15} />
+          <ImagePlusIcon size={15} />
           <span className="grow">
             {board.orphans.length}
             {" image"}
@@ -669,7 +669,7 @@ function ThumbnailsPage() {
               <div className="th-use-list">
                 {personal.map((p) => (
                   <button key={p.id} className="list-row" onClick={() => setThumb(p.id)}>
-                    <span className="th-cover">{p.thumb ? <img src={p.thumb} alt="" /> : <ImageOff size={14} />}</span>
+                    <span className="th-cover">{p.thumb ? <img src={p.thumb} alt="" /> : <ImageOffIcon size={14} />}</span>
                     <span className="grow ellipsis">{p.name}</span>
                     <small>{ago(p.opened_at ?? p.updated_at)}</small>
                   </button>

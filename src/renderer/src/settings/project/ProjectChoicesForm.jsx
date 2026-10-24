@@ -1,4 +1,4 @@
-import { Globe, Image, Music, Sparkles } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { GlobeIcon, Image, MusicIcon, SparklesIcon } from "lucide-react";
 import { Toggle } from "../../components/ui";
 import { effortName } from "../../engines/claudeModels";
 import { engineOf, modelName } from "../../engines/models";
@@ -338,10 +338,10 @@ export function ProjectChoicesForm({
   ];
   return (
     <>
-      <Rows title="Claude" icon={<Sparkles size={14} strokeWidth={1.8} />} rows={claudeRows} />
+      <Rows title="Claude" icon={<SparklesIcon size={14} strokeWidth={1.8} />} rows={claudeRows} />
       <Rows title="Pictures and voice" icon={<Image size={14} strokeWidth={1.8} />} rows={pictureRows} />
-      <Rows title="Real media" icon={<Globe size={14} strokeWidth={1.8} />} rows={realRows.filter(keep)} />
-      <Rows title="Sound" icon={<Music size={14} strokeWidth={1.8} />} rows={soundRows.filter(keep)} />
+      <Rows title="Real media" icon={<GlobeIcon size={14} strokeWidth={1.8} />} rows={realRows.filter(keep)} />
+      <Rows title="Sound" icon={<MusicIcon size={14} strokeWidth={1.8} />} rows={soundRows.filter(keep)} />
     </>
   );
 }

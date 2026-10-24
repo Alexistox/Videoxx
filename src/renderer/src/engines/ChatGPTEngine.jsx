@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
+import {
+  CopyIcon,
+  DownloadIcon,
+  ExternalLinkIcon,
+  KeyRoundIcon,
+  LogInIcon,
+  LogOutIcon,
+  RefreshCwIcon,
+  ShieldCheckIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  Copy,
-  Download,
-  ExternalLink,
-  KeyRound,
-  LogIn,
-  LogOut,
-  RefreshCw,
-  ShieldCheck,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Spinner } from "../components/ui";
 import { modelGroups } from "./models";
@@ -97,7 +97,7 @@ export function ChatGPTEngine() {
           title="Look again (installed, version, sign-in)"
           onClick={() => act("refresh", () => api.enginesRefresh())}
         >
-          {busy === "refresh" ? <Spinner size={12} /> : <RefreshCw size={12} />}Check again
+          {busy === "refresh" ? <Spinner size={12} /> : <RefreshCwIcon size={12} />}Check again
         </button>
       </div>
       {s.error && (
@@ -114,7 +114,7 @@ export function ChatGPTEngine() {
           <div className="row cx-cmd">
             <code className="path grow">{s.command}</code>
             <button className="btn small" onClick={copy}>
-              <Copy size={14} />
+              <CopyIcon size={14} />
               Copy
             </button>
           </div>
@@ -131,7 +131,7 @@ export function ChatGPTEngine() {
                   act("install", () => api.codexInstall());
                 }}
               >
-                {s.install.running ? <Spinner size={14} /> : <Download size={14} />}Install for me
+                {s.install.running ? <Spinner size={14} /> : <DownloadIcon size={14} />}Install for me
               </button>
               <span className="small dim">Runs the same command, hidden; the output shows below.</span>
             </div>
@@ -158,7 +158,7 @@ export function ChatGPTEngine() {
               toast(`Copied. Run it in ${s.shell}, then press Check again.`);
             }}
           >
-            <Copy size={14} />
+            <CopyIcon size={14} />
             Copy
           </button>
         </div>
@@ -173,7 +173,7 @@ export function ChatGPTEngine() {
               </span>
               <span className="grow" />
               <button className="btn small" onClick={() => act("cancel", () => api.codexCancelLogin())}>
-                <X size={14} />
+                <XIcon size={14} />
                 Cancel
               </button>
             </>
@@ -185,11 +185,11 @@ export function ChatGPTEngine() {
                 onClick={() => api.external(s.usageUrl)}
                 title="Your ChatGPT plan's Codex limits (5-hour and weekly), on chatgpt.com"
               >
-                <ExternalLink size={14} />
+                <ExternalLinkIcon size={14} />
                 Codex usage
               </button>
               <button className="btn small" disabled={!!busy} onClick={() => act("logout", () => api.codexLogout())}>
-                {busy === "logout" ? <Spinner size={14} /> : <LogOut size={14} />}Sign out
+                {busy === "logout" ? <Spinner size={14} /> : <LogOutIcon size={14} />}Sign out
               </button>
             </>
           ) : (
@@ -203,7 +203,7 @@ export function ChatGPTEngine() {
                   act("login", () => api.codexLogin());
                 }}
               >
-                <LogIn size={14} />
+                <LogInIcon size={14} />
                 Sign in with ChatGPT
               </button>
               <button
@@ -215,7 +215,7 @@ export function ChatGPTEngine() {
                   act("device", () => api.codexDeviceLogin());
                 }}
               >
-                <KeyRound size={14} />
+                <KeyRoundIcon size={14} />
                 Use a code instead
               </button>
             </>
@@ -233,7 +233,7 @@ export function ChatGPTEngine() {
             </p>
           )}
           <button className="text-btn" onClick={() => api.codexOpenLogin().catch((e) => toast(e.message, "bad"))}>
-            <ExternalLink size={12} />
+            <ExternalLinkIcon size={12} />
             {login.code ? "Open the page" : "Open the sign-in page again"}
           </button>
         </div>
@@ -248,7 +248,7 @@ export function ChatGPTEngine() {
       )}
       {s.installed && s.sandbox.ok !== true && !isMac && (
         <div className="row cx-sandbox">
-          <ShieldCheck size={14} />
+          <ShieldCheckIcon size={14} />
           <span className="small grow">
             {s.sandbox.checking
               ? "Checking that Codex keeps its changes inside the project…"

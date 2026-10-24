@@ -1,37 +1,37 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  CalendarClockIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  CircleCheckIcon,
+  ClapperboardIcon,
+  CopyIcon,
+  DownloadIcon,
+  FilePlusCornerIcon,
+  FileUpIcon,
+  FolderOpenIcon,
+  LayersIcon,
+  LoaderCircleIcon,
+  MonitorPlayIcon,
+  PanelLeftCloseIcon,
+  PanelLeftOpenIcon,
+  PlayIcon,
+  PlusIcon,
+  RotateCcwIcon,
+  SearchIcon,
+  SquareIcon,
+  ThumbsDownIcon,
+  ThumbsUpIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+  UploadIcon,
+  WorkflowIcon,
+  XIcon,
+} from "lucide-react";
 import { api, isMyLook, isOwnStyle, offeredLook, on } from "../lib/api";
 import { ago, fmtLength, parseLength } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  CalendarClock,
-  ChevronDown,
-  ChevronRight,
-  ChevronUp,
-  CircleCheck,
-  Clapperboard,
-  Copy,
-  Download,
-  FilePlusCorner,
-  FileUp,
-  FolderOpen,
-  Layers,
-  LoaderCircle,
-  MonitorPlay,
-  PanelLeftClose,
-  PanelLeftOpen,
-  Play,
-  Plus,
-  RotateCcw,
-  Search,
-  Square,
-  ThumbsDown,
-  ThumbsUp,
-  Trash,
-  TriangleAlert,
-  Upload,
-  Workflow,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Modal, Spinner, Toggle } from "../components/ui";
 import { CLAUDE_EFFORTS } from "../engines/claudeModels";
@@ -64,7 +64,7 @@ import {
   upstreamStyles,
   variantName,
   writeSkillLine,
-} from "../../../../routines/nodes";
+} from "./nodes";
 import { QualitySlider } from "../editor/panels/EffortSlider";
 import { ICONS } from "./summary";
 import { RoutineCanvas } from "./RoutineCanvas";
@@ -616,10 +616,10 @@ export function Routines() {
       {!railOpen && (
         <aside className="rt-rail-mini">
           <button className="icon-btn" onClick={toggleRail} title="Show routines and templates" aria-label="Show routines and templates">
-            <PanelLeftOpen size={17} strokeWidth={1.7} />
+            <PanelLeftOpenIcon size={17} strokeWidth={1.7} />
           </button>
           <button className="icon-btn" onClick={() => create()} title="A new, empty routine" aria-label="New routine">
-            <Plus size={16} />
+            <PlusIcon size={16} />
           </button>
         </aside>
       )}
@@ -629,7 +629,7 @@ export function Routines() {
             <h3>Routines</h3>
             <span className="grow" />
             <button className="btn small" onClick={() => create()} title="A new, empty routine">
-              <Plus size={14} />
+              <PlusIcon size={14} />
               New
             </button>
             <button
@@ -638,12 +638,12 @@ export function Routines() {
               title="Hide routines and templates (more room for the canvas)"
               aria-label="Hide routines and templates"
             >
-              <PanelLeftClose size={17} strokeWidth={1.7} />
+              <PanelLeftCloseIcon size={17} strokeWidth={1.7} />
             </button>
           </div>
           {(list?.length ?? 0) > 4 && (
             <div className="search rt-search">
-              <Search size={14} />
+              <SearchIcon size={14} />
               <input placeholder="Search routines" value={qy} onChange={(e) => setQ(e.target.value)} />
             </div>
           )}
@@ -668,7 +668,7 @@ export function Routines() {
                       onKeyDown={(e) => e.key === "Enter" && open(r.id)}
                     >
                       <span className="rt-item-ic">
-                        <Workflow size={15} />
+                        <WorkflowIcon size={15} />
                         {r.running && <i className="dot busy" />}
                       </span>
                       <span className="grow ellipsis">
@@ -699,7 +699,7 @@ export function Routines() {
                             duplicate(r.id);
                           }}
                         >
-                          <Copy size={13} />
+                          <CopyIcon size={13} />
                         </button>
                         <button
                           className="icon-btn"
@@ -710,7 +710,7 @@ export function Routines() {
                             remove(r.id);
                           }}
                         >
-                          <Trash size={13} />
+                          <TrashIcon size={13} />
                         </button>
                       </span>
                       {vids.length > 0 && (
@@ -730,7 +730,7 @@ export function Routines() {
                             });
                           }}
                         >
-                          {unfolded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                          {unfolded ? <ChevronDownIcon size={14} /> : <ChevronRightIcon size={14} />}
                         </button>
                       )}
                     </div>
@@ -768,7 +768,7 @@ export function Routines() {
                                     openProject({ id: v.projectId, kind: "faceless" });
                                   }}
                                 >
-                                  <Clapperboard size={12} />
+                                  <ClapperboardIcon size={12} />
                                 </button>
                               )}
                             </div>
@@ -795,7 +795,7 @@ export function Routines() {
       <section className="rt-main">
         {!cur || !graph ? (
           <div className="rt-none">
-            <Workflow size={30} strokeWidth={1.3} />
+            <WorkflowIcon size={30} strokeWidth={1.3} />
             <b>Make videos end to end, by themselves</b>
             <span>
               A routine is a chain of steps on a canvas: where topics come from, the script, the voice, the build, quality checks, the
@@ -803,11 +803,11 @@ export function Routines() {
             </span>
             <div className="row" style={{ gap: 8 }}>
               <button className="btn small primary" onClick={() => create("explainer")}>
-                <FilePlusCorner size={14} />
+                <FilePlusCornerIcon size={14} />
                 Start from a template
               </button>
               <button className="btn small" onClick={() => create()}>
-                <Plus size={14} />
+                <PlusIcon size={14} />
                 Empty routine
               </button>
             </div>
@@ -838,27 +838,27 @@ export function Routines() {
               >
                 {errors.length ? (
                   <>
-                    <TriangleAlert size={14} />
+                    <TriangleAlertIcon size={14} />
                     {errors.length}
                     {" to fix"}
                   </>
                 ) : problems.length ? (
                   <>
-                    <TriangleAlert size={14} />
+                    <TriangleAlertIcon size={14} />
                     {problems.length}
                     {" warning"}
                     {problems.length === 1 ? "" : "s"}
                   </>
                 ) : (
                   <>
-                    <CircleCheck size={14} />
+                    <CircleCheckIcon size={14} />
                     Ready
                   </>
                 )}
               </button>
               {cur.nextRun && (
                 <span className="rt-sched" title="This routine runs by itself while the app is open">
-                  <CalendarClock size={14} />
+                  <CalendarClockIcon size={14} />
                   {"Next "}
                   {new Date(cur.nextRun).toLocaleString([], { weekday: "short", hour: "2-digit", minute: "2-digit" })}
                 </span>
@@ -866,7 +866,7 @@ export function Routines() {
               <span className="grow" />
               {!demo && (
                 <button className="btn small ghost" onClick={() => importRef.current?.click()} title="Import a routine (.json)">
-                  <FileUp size={14} />
+                  <FileUpIcon size={14} />
                   Import
                 </button>
               )}
@@ -882,7 +882,7 @@ export function Routines() {
               />
               {!demo && (
                 <button className="btn small ghost" onClick={exportJson} title="Save this routine as a .json file to share or keep">
-                  <Download size={14} />
+                  <DownloadIcon size={14} />
                   Export
                 </button>
               )}
@@ -896,7 +896,7 @@ export function Routines() {
                     ))}
                   </select>
                   <button className="btn small" onClick={() => setDemo(null)} title="End the demo (nothing was changed)">
-                    <Square size={13} />
+                    <SquareIcon size={13} />
                     End demo
                   </button>
                 </span>
@@ -914,7 +914,7 @@ export function Routines() {
                       ))}
                     </select>
                     <button className="btn small ghost" onClick={startDemo}>
-                      <MonitorPlay size={14} />
+                      <MonitorPlayIcon size={14} />
                       Demo
                     </button>
                   </span>
@@ -929,7 +929,7 @@ export function Routines() {
                     disabled={starting}
                     title="Start another build of this routine now, next to the one going: it finds its own topic and makes its own video"
                   >
-                    <Layers size={13} />
+                    <LayersIcon size={13} />
                     Start parallel build
                   </button>
                   <button
@@ -937,7 +937,7 @@ export function Routines() {
                     onClick={cancel}
                     title={liveCount > 1 ? "Cancel the build shown in Runs" : "Cancel this run"}
                   >
-                    <Square size={13} />
+                    <SquareIcon size={13} />
                     Cancel run
                   </button>
                 </>
@@ -948,7 +948,7 @@ export function Routines() {
                   disabled={starting}
                   title={errors.length ? "Fix the problems first" : "Run this routine now"}
                 >
-                  {starting ? <Spinner size={13} /> : <Play size={13} />}Run
+                  {starting ? <Spinner size={13} /> : <PlayIcon size={13} />}Run
                 </button>
               )}
             </div>
@@ -1029,7 +1029,7 @@ export function Routines() {
                 {liveRun ? (
                   <>
                     <span className="badge blue">
-                      <LoaderCircle size={11} className="spin" />
+                      <LoaderCircleIcon size={11} className="spin" />
                       {liveCount > 1 ? `${liveCount} builds running` : "Running"}
                     </span>
                     <RunNow run={run?.live ? run : null} finding={finding} />
@@ -1044,7 +1044,7 @@ export function Routines() {
                   <small>Not run yet</small>
                 )}
                 <span className="grow" />
-                {drawer ? <ChevronDown size={15} /> : <ChevronUp size={15} />}
+                {drawer ? <ChevronDownIcon size={15} /> : <ChevronUpIcon size={15} />}
               </button>
               {drawer && (
                 <div className="rt-runs-body">
@@ -1118,7 +1118,7 @@ export function Routines() {
                                 }
                               }}
                             >
-                              <Trash size={12} />
+                              <TrashIcon size={12} />
                             </span>
                           )}
                         </button>
@@ -1147,7 +1147,7 @@ export function Routines() {
                                     .catch((e) => toast(e.message, "bad"))
                                 }
                               >
-                                <RotateCcw size={12} />
+                                <RotateCcwIcon size={12} />
                                 Resume
                               </button>
                             )}
@@ -1165,7 +1165,7 @@ export function Routines() {
                                   .catch((e) => toast(e.message, "bad"))
                               }
                             >
-                              <Trash size={12} />
+                              <TrashIcon size={12} />
                             </button>
                           )}
                         </div>
@@ -1209,7 +1209,7 @@ export function Routines() {
             <ul className="rt-problems">
               {confirmRun.problems.map((p, i) => (
                 <li key={i} className={p.warn ? "warn" : "bad"}>
-                  <TriangleAlert size={13} />
+                  <TriangleAlertIcon size={13} />
                   <span>{p.text}</span>
                   {p.nodeId && (
                     <button
@@ -1232,7 +1232,7 @@ export function Routines() {
               </button>
               {!errors.length && (
                 <button className="btn small primary" onClick={() => start(true, confirmRun.parallel)}>
-                  <Play size={13} />
+                  <PlayIcon size={13} />
                   Run anyway
                 </button>
               )}
@@ -1243,7 +1243,8 @@ export function Routines() {
     </div>
   );
 }
-const StatusDot = ({ s }) => (s === "running" ? <LoaderCircle size={13} className="spin rt-spin" /> : <span className={`rt-dot ${s}`} />);
+const StatusDot = ({ s }) =>
+  s === "running" ? <LoaderCircleIcon size={13} className="spin rt-spin" /> : <span className={`rt-dot ${s}`} />;
 const BUILTIN_VOICES = [
   { id: "nPczCjzI2devNBz1zQrb", name: "Brian (deep male narrator)" },
   { id: "pNInz6obpgDQGcFmaJgB", name: "Adam (male, dominant)" },
@@ -1338,11 +1339,11 @@ function ItemRow({ it, run, demo, on: on2, pick, open, toast }) {
           {it.status === "approval" && (
             <>
               <button className="btn tiny primary" onClick={() => act(api.routineApprove(run.id, it.id, true))}>
-                <ThumbsUp size={12} />
+                <ThumbsUpIcon size={12} />
                 Approve
               </button>
               <button className="btn tiny danger" onClick={() => act(api.routineApprove(run.id, it.id, false))}>
-                <ThumbsDown size={12} />
+                <ThumbsDownIcon size={12} />
                 Reject
               </button>
             </>
@@ -1353,18 +1354,18 @@ function ItemRow({ it, run, demo, on: on2, pick, open, toast }) {
               title="Make this video again from the step that did not finish"
               onClick={() => act(api.routineResume(run.id, it.id))}
             >
-              <RotateCcw size={12} />
+              <RotateCcwIcon size={12} />
               Retry
             </button>
           )}
           {it.projectId && (
             <button className="btn tiny ghost" title="Open in the editor" onClick={open}>
-              <Clapperboard size={12} />
+              <ClapperboardIcon size={12} />
             </button>
           )}
           {it.ctx?.video && (
             <button className="btn tiny ghost" title={`Show the video in ${FILE_MANAGER}`} onClick={() => api.reveal(it.ctx.video)}>
-              <FolderOpen size={12} />
+              <FolderOpenIcon size={12} />
             </button>
           )}
         </span>
@@ -1390,7 +1391,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
   return (
     <div className="rt-insp">
       <div className="rt-insp-head">
-        <Workflow size={15} />
+        <WorkflowIcon size={15} />
         <b>Routine settings</b>
       </div>
       {selected > 1 && (
@@ -1405,7 +1406,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
           <ul className="rt-problems">
             {problems.map((p, i) => (
               <li key={i} className={p.warn ? "warn" : "bad"}>
-                <TriangleAlert size={13} />
+                <TriangleAlertIcon size={13} />
                 <span>{p.text}</span>
                 {p.nodeId && (
                   <button className="btn tiny ghost" onClick={() => show(p.nodeId)}>
@@ -1518,7 +1519,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
                       {f.split(/[\\/]/).pop()}
                     </span>
                     <button className="icon-btn" aria-label="Remove" onClick={() => setRec(rec.filter((_, k) => k !== i))}>
-                      <X size={12} />
+                      <XIcon size={12} />
                     </button>
                   </div>
                 ))}
@@ -1531,7 +1532,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
                     if (Array.isArray(r) && r.length) setRec([...rec, ...r]);
                   }}
                 >
-                  <Plus size={12} />
+                  <PlusIcon size={12} />
                   {rec.length ? "Add another part" : "Pick your recording"}
                 </button>
               </div>
@@ -1601,7 +1602,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
                   aria-label={`Remove row ${i + 1}`}
                   onClick={() => setVariants(variants.filter((_, j) => j !== i))}
                 >
-                  <X size={12} />
+                  <XIcon size={12} />
                 </button>
               </Fragment>
             ))}
@@ -1613,7 +1614,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
               disabled={variants.length >= 8}
               onClick={() => setVariants([...variants, variants[variants.length - 1] ?? DEFAULT_TEST[0]])}
             >
-              <Plus size={13} />
+              <PlusIcon size={13} />
               Add
             </button>
             <span className="grow" />
@@ -1634,7 +1635,7 @@ function RoutineInspector({ settings, onChange, problems, show, selected, onEffo
                         : "Start one build per row now"
               }
             >
-              <Layers size={13} />
+              <LayersIcon size={13} />
               {"Run "}
               {variants.length}
               {" builds"}
@@ -2010,7 +2011,7 @@ function NodeInspector({ n, graph, warns, ctx, styles, looks, problems, state, i
                   {f2.split(/[\\/]/).pop()}
                 </span>
                 <button className="icon-btn" aria-label="Remove" onClick={() => set((v ?? []).filter((_, k) => k !== i))}>
-                  <X size={12} />
+                  <XIcon size={12} />
                 </button>
               </div>
             ))}
@@ -2023,7 +2024,7 @@ function NodeInspector({ n, graph, warns, ctx, styles, looks, problems, state, i
                 if (Array.isArray(r) && r.length) set([...(v ?? []), ...r]);
               }}
             >
-              <Plus size={12} />
+              <PlusIcon size={12} />
               Add recordings
             </button>
           </div>
@@ -2164,7 +2165,7 @@ function NodeInspector({ n, graph, warns, ctx, styles, looks, problems, state, i
                   }
                 }}
               >
-                {allowing ? <Spinner size={12} /> : <Upload size={12} />}Allow uploads (sign in with Google)
+                {allowing ? <Spinner size={12} /> : <UploadIcon size={12} />}Allow uploads (sign in with Google)
               </button>
             )}
           </>
@@ -2190,7 +2191,7 @@ function NodeInspector({ n, graph, warns, ctx, styles, looks, problems, state, i
           </span>
         )}
         <button className="icon-btn" title="Delete this node" aria-label="Delete this node" onClick={onDelete}>
-          <Trash size={14} />
+          <TrashIcon size={14} />
         </button>
       </div>
       <p className="small rt-desc">{def.desc}</p>
@@ -2199,7 +2200,7 @@ function NodeInspector({ n, graph, warns, ctx, styles, looks, problems, state, i
         <ul className="rt-problems">
           {problems.map((p, i) => (
             <li key={i} className={warns.has(p) ? "warn" : "bad"}>
-              <TriangleAlert size={13} />
+              <TriangleAlertIcon size={13} />
               <span>{p}</span>
             </li>
           ))}
@@ -2210,7 +2211,7 @@ function NodeInspector({ n, graph, warns, ctx, styles, looks, problems, state, i
           <img src={thumbUrl} alt={`Thumbnail of ${item?.label ?? "the video"}`} />
           {item?.ctx?.thumbnail && (
             <button className="btn tiny" onClick={() => api.reveal(item.ctx.thumbnail)}>
-              <FolderOpen size={12} />
+              <FolderOpenIcon size={12} />
               {"Show in "}
               {FILE_MANAGER}
             </button>
@@ -2378,7 +2379,7 @@ function OwnSkillField({ v, set }) {
             disabled={busy}
             onClick={() => take(api.ownSkillPick("file"), v?.id ? "Skill replaced for this node." : "Skill added to this node.")}
           >
-            <Plus size={12} />
+            <PlusIcon size={12} />
             {verb}
             {" a file"}
           </button>
@@ -2387,7 +2388,7 @@ function OwnSkillField({ v, set }) {
             disabled={busy}
             onClick={() => take(api.ownSkillPick("folder"), v?.id ? "Skill replaced for this node." : "Skill added to this node.")}
           >
-            <FolderOpen size={12} />
+            <FolderOpenIcon size={12} />
             {verb}
             {" a folder"}
           </button>
@@ -2479,7 +2480,7 @@ function ThumbRefsField({ v, set }) {
                 <span className="rt-tref-gone">{urls[r.id] === null ? "Not on this computer" : ""}</span>
               )}
               <button className="icon-btn" aria-label={`Remove ${r.name}`} onClick={() => set(v.filter((x) => x.id !== r.id))}>
-                <X size={12} />
+                <XIcon size={12} />
               </button>
             </div>
           ))}
@@ -2487,7 +2488,7 @@ function ThumbRefsField({ v, set }) {
       )}
       {v.length < 5 && (
         <button className="btn tiny" disabled={busy} onClick={add}>
-          {busy ? <Spinner size={12} /> : <Plus size={12} />}Add reference thumbnails
+          {busy ? <Spinner size={12} /> : <PlusIcon size={12} />}Add reference thumbnails
         </button>
       )}
     </div>
@@ -2523,7 +2524,7 @@ function ThumbAnalysisField({ v, set, refs }) {
       />
       <div className="row" style={{ gap: 6, marginTop: 6 }}>
         <button className="btn tiny" disabled={busy || !refs.length} onClick={run}>
-          {busy ? <Spinner size={12} /> : <RotateCcw size={12} />}
+          {busy ? <Spinner size={12} /> : <RotateCcwIcon size={12} />}
           {busy ? "Claude is looking at them…" : v.trim() ? "Analyse again" : "Analyse with Claude"}
         </button>
       </div>
@@ -2712,7 +2713,7 @@ function KnownVideosLine({ yt, channelId, format }) {
             }}
             title="Read the channel again now and add any new videos"
           >
-            {busy ? <Spinner size={12} /> : <RotateCcw size={12} />}Refresh
+            {busy ? <Spinner size={12} /> : <RotateCcwIcon size={12} />}Refresh
           </button>
         </summary>
         <p className="small">
@@ -2829,7 +2830,7 @@ function YtFollow({ value, set, ctx, refreshCtx, empty }) {
           placeholder={all.length ? "Or add another: @handle or channel link" : "Paste its @handle or channel link"}
         />
         <button className="btn tiny" data-ytf-add disabled={!add.trim() || adding} onClick={addIt}>
-          {adding ? <Spinner size={12} /> : <Plus size={12} />}Add
+          {adding ? <Spinner size={12} /> : <PlusIcon size={12} />}Add
         </button>
       </div>
       <button

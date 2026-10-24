@@ -1,21 +1,21 @@
 import { useEffect, useMemo, useState } from "react";
+import {
+  CopyIcon,
+  FileArchiveIcon,
+  FilmIcon,
+  FolderInputIcon,
+  FolderOpenIcon,
+  PackageIcon,
+  PlusIcon,
+  SearchIcon,
+  SparklesIcon,
+  SproutIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
 import { api } from "../lib/api";
 import { ago, fmtTime } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Copy,
-  FileArchive,
-  Film,
-  FolderInput,
-  FolderOpen,
-  Package,
-  Plus,
-  Search,
-  Sparkles,
-  Sprout,
-  Trash,
-  TriangleAlert,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Empty, I, Modal, StatusBadge } from "../components/ui";
 import { fold } from "../lib/fold";
@@ -168,15 +168,15 @@ export function Projects() {
         </div>
         <div className="actions">
           <button className="btn" onClick={importFolder}>
-            <FolderInput {...I} />
+            <FolderInputIcon {...I} />
             Import folder
           </button>
           <button className="btn" onClick={importZip}>
-            <FileArchive {...I} />
+            <FileArchiveIcon {...I} />
             Import .zip
           </button>
           <button className="btn primary" onClick={() => setNewProject(true)}>
-            <Plus {...I} />
+            <PlusIcon {...I} />
             New project
           </button>
         </div>
@@ -184,7 +184,7 @@ export function Projects() {
       {projects.length > 0 && (
         <div className="toolbar">
           <label className="search">
-            <Search {...I} />
+            <SearchIcon {...I} />
             <input placeholder="Search projects" value={qy} onChange={(e) => setQ(e.target.value)} aria-label="Search projects" />
           </label>
           {channels.length > 0 && <ChannelFilter id="pr-channel" value={sel} onChange={setChannel} counts={counts} />}
@@ -199,17 +199,17 @@ export function Projects() {
       )}
       {!projects.length ? (
         <Empty
-          icon={<Film size={28} strokeWidth={1.7} />}
+          icon={<FilmIcon size={28} strokeWidth={1.7} />}
           title="No projects yet"
           text="Start from a voiceover or a topic, or import a project folder you made before."
         >
           <div className="row">
             <button className="btn" onClick={importFolder}>
-              <FolderInput {...I} />
+              <FolderInputIcon {...I} />
               Import folder
             </button>
             <button className="btn primary" onClick={() => setNewProject(true)}>
-              <Plus {...I} />
+              <PlusIcon {...I} />
               New project
             </button>
           </div>
@@ -258,7 +258,7 @@ export function Projects() {
                   <img src={p.thumb} alt="" onError={(e) => (e.target.style.display = "none")} />
                 ) : (
                   <>
-                    <Film size={26} strokeWidth={1.5} />
+                    <FilmIcon size={26} strokeWidth={1.5} />
                     <span style={{ fontSize: 11 }}>{p.shots || p.duration ? "Preview appears after the first open" : "No scenes yet"}</span>
                   </>
                 )}
@@ -269,7 +269,7 @@ export function Projects() {
                 <div className="desc">
                   {p.exists === false ? (
                     <span style={{ color: "var(--err)", display: "inline-flex", gap: 6, alignItems: "center" }}>
-                      <TriangleAlert size={13} />
+                      <TriangleAlertIcon size={13} />
                       Folder missing
                     </span>
                   ) : p.lab ? (
@@ -311,7 +311,7 @@ export function Projects() {
                       api.open(p.path);
                     }}
                   >
-                    <FolderOpen size={15} strokeWidth={1.7} />
+                    <FolderOpenIcon size={15} strokeWidth={1.7} />
                   </button>
                   <button
                     className="icon-btn sm"
@@ -328,7 +328,7 @@ export function Projects() {
                       }
                     }}
                   >
-                    <Copy size={15} strokeWidth={1.7} />
+                    <CopyIcon size={15} strokeWidth={1.7} />
                   </button>
                   {p.labKind !== "character" && (
                     <button
@@ -352,7 +352,7 @@ export function Projects() {
                         }
                       }}
                     >
-                      <Sprout size={15} strokeWidth={1.7} />
+                      <SproutIcon size={15} strokeWidth={1.7} />
                     </button>
                   )}
                   <button
@@ -364,7 +364,7 @@ export function Projects() {
                       share(p);
                     }}
                   >
-                    <Package size={15} strokeWidth={1.7} />
+                    <PackageIcon size={15} strokeWidth={1.7} />
                   </button>
                   <button
                     className="icon-btn sm"
@@ -375,7 +375,7 @@ export function Projects() {
                       setDel(p);
                     }}
                   >
-                    <Trash size={15} strokeWidth={1.7} />
+                    <TrashIcon size={15} strokeWidth={1.7} />
                   </button>
                 </div>
               </div>
@@ -390,7 +390,7 @@ export function Projects() {
             {recent.map((e) => (
               <button key={e.id} className="list-row" onClick={() => go("editor", e.project_id)}>
                 <span className="well">
-                  <Sparkles size={15} strokeWidth={1.7} />
+                  <SparklesIcon size={15} strokeWidth={1.7} />
                 </span>
                 <span className="grow" style={{ minWidth: 0 }}>
                   <span className="ellipsis" style={{ display: "block" }}>

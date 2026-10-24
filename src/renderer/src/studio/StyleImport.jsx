@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
+import {
+  ArrowLeftIcon,
+  CircleCheckIcon,
+  CircleDotIcon,
+  CircleMinusIcon,
+  CopyIcon,
+  DownloadIcon,
+  PackagePlusIcon,
+  SparklesIcon,
+  SquareIcon,
+  TriangleAlertIcon,
+  WandSparklesIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowLeft,
-  CircleCheck,
-  CircleDot,
-  CircleMinus,
-  Copy,
-  Download,
-  PackagePlus,
-  Sparkles,
-  Square,
-  TriangleAlert,
-  WandSparkles,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 import { isStandard, premiumMsg, usePlan } from "../state/usePlan";
 import { baseName, errText, runName } from "../looks/StyleKit";
 
 const IC = {
-  wait: <CircleDot size={15} className="dim" />,
+  wait: <CircleDotIcon size={15} className="dim" />,
   running: <Spinner size={14} />,
-  ok: <CircleCheck size={15} />,
-  fail: <TriangleAlert size={15} />,
-  skip: <CircleMinus size={15} className="dim" />,
+  ok: <CircleCheckIcon size={15} />,
+  fail: <TriangleAlertIcon size={15} />,
+  skip: <CircleMinusIcon size={15} className="dim" />,
 };
 const SEV = [
   ["high", "High", "These stop the style from being added."],
@@ -85,11 +85,11 @@ export function StyleImport() {
     return (
       <div className="page page-enter sk-imp">
         <button className="btn ghost small sk-back" onClick={() => toStyles()}>
-          <ArrowLeft size={14} />
+          <ArrowLeftIcon size={14} />
           Styles
         </button>
         <div className="hint warn">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>This import is gone</b>
             <p>{"It was cancelled or finished. Import the package again from Styles > Custom > Import style."}</p>
@@ -146,7 +146,7 @@ export function StyleImport() {
         ? "New style"
         : "Style package";
   const head = run.noSample
-    ? { cls: "warn", icon: <TriangleAlert size={18} />, b: "Made before the Style Kit: nothing to check", p: run.error ?? "" }
+    ? { cls: "warn", icon: <TriangleAlertIcon size={18} />, b: "Made before the Style Kit: nothing to check", p: run.error ?? "" }
     : run.status === "running"
       ? {
           cls: "run",
@@ -164,7 +164,7 @@ export function StyleImport() {
         : run.status === "needs-fix"
           ? {
               cls: "warn",
-              icon: <TriangleAlert size={18} />,
+              icon: <TriangleAlertIcon size={18} />,
               b: `${high.length} problem${high.length === 1 ? "" : "s"} to fix${checkOnly ? "" : " before it can be added"}`,
               p: checkOnly
                 ? "Copy fix list and paste it into Claude Code in your Style Kit, then import the fixed package."
@@ -175,7 +175,7 @@ export function StyleImport() {
           : run.status === "ready"
             ? {
                 cls: "ok",
-                icon: <CircleCheck size={18} />,
+                icon: <CircleCheckIcon size={18} />,
                 b: checkOnly ? "Everything passed" : "Everything passed",
                 p: checkOnly
                   ? "The style is fine as it is installed."
@@ -184,13 +184,13 @@ export function StyleImport() {
             : run.status === "installed"
               ? {
                   cls: "ok",
-                  icon: <CircleCheck size={18} />,
+                  icon: <CircleCheckIcon size={18} />,
                   b: `Added: ${name} v${run.result?.version ?? pkg?.version ?? 1} is in your styles`,
                   p: "Pick it in New project under Custom styles.",
                 }
               : {
                   cls: "bad",
-                  icon: <TriangleAlert size={18} />,
+                  icon: <TriangleAlertIcon size={18} />,
                   b: run.status === "failed" && run.items[0]?.status === "fail" ? "The package was refused" : "The check stopped",
                   p: run.error ?? "Start the import again.",
                 };
@@ -198,12 +198,12 @@ export function StyleImport() {
   return (
     <div className={`page page-enter sk-imp ${findingsFirst ? "sk-ffirst" : ""}`}>
       <button className="btn ghost small sk-back" onClick={() => toStyles(run.result?.id ?? run.checkOnly)}>
-        <ArrowLeft size={14} />
+        <ArrowLeftIcon size={14} />
         Styles
       </button>
       <header className="sk-imp-head">
         <span className="sk-imp-ic">
-          <PackagePlus size={20} strokeWidth={1.7} />
+          <PackagePlusIcon size={20} strokeWidth={1.7} />
         </span>
         <div className="grow">
           <h1 className="ellipsis" title={name}>
@@ -241,7 +241,7 @@ export function StyleImport() {
             onClick={() => job("stop", () => api.importStop(run.id).then(setRun))}
             disabled={busy === "stop"}
           >
-            <Square size={12} />
+            <SquareIcon size={12} />
             Stop
           </button>
         )}
@@ -249,7 +249,7 @@ export function StyleImport() {
       {run.status === "installed" ? (
         <div className="sk-done">
           <button className="btn primary sk-use" onClick={() => startNew({ styleId: run.result.id })}>
-            <Sparkles size={15} />
+            <SparklesIcon size={15} />
             Use it in a new project
           </button>
           <button className="btn sk-backstyles" onClick={() => toStyles(run.result?.id)}>
@@ -265,7 +265,7 @@ export function StyleImport() {
               disabled={!!busy || live}
               title="A Claude inside Videoxx fixes it. It can only change this style's files; the app checks everything again after each round (up to 3)."
             >
-              {busy === "fix" ? <Spinner size={14} /> : <WandSparkles size={15} />}Let Claude fix it
+              {busy === "fix" ? <Spinner size={14} /> : <WandSparklesIcon size={15} />}Let Claude fix it
               {std && <span className="premium-pill">Premium</span>}
             </button>
           )}
@@ -276,12 +276,12 @@ export function StyleImport() {
               disabled={!!busy}
               title="The problems as text, for Claude Code in your Style Kit"
             >
-              {busy === "copy" ? <Spinner size={14} /> : <Copy size={15} />}Copy fix list
+              {busy === "copy" ? <Spinner size={14} /> : <CopyIcon size={15} />}Copy fix list
             </button>
           )}
           {checkOnly && (
             <button className="btn sk-export" onClick={exportPkg} disabled={!!busy}>
-              <Download size={15} />
+              <DownloadIcon size={15} />
               Export package
             </button>
           )}
@@ -291,7 +291,7 @@ export function StyleImport() {
               <>Done</>
             ) : (
               <>
-                <X size={15} />
+                <XIcon size={15} />
                 Cancel import
               </>
             )}
@@ -303,7 +303,7 @@ export function StyleImport() {
               disabled={run.status !== "ready" || !!busy}
               title={run.status === "ready" ? void 0 : "When every check has passed"}
             >
-              {busy === "add" ? <Spinner size={14} /> : <CircleCheck size={15} />}Add to my styles
+              {busy === "add" ? <Spinner size={14} /> : <CircleCheckIcon size={15} />}Add to my styles
               {std && <span className="premium-pill">Premium</span>}
             </button>
           )}

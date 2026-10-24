@@ -1,49 +1,49 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowLeftIcon,
+  BotIcon,
+  BoxesIcon,
+  CheckIcon,
+  ChevronRightIcon,
+  CircleCheckIcon,
+  CircleDotIcon,
+  CrosshairIcon,
+  FilmIcon,
+  FolderOpenIcon,
+  GaugeIcon,
+  GitCompareArrowsIcon,
+  ImagePlusIcon,
+  InfoIcon,
+  LayersIcon,
+  LockIcon,
+  PauseIcon,
+  PinIcon,
+  PlayIcon,
+  PlusIcon,
+  RefreshCwIcon,
+  RepeatIcon,
+  SaveIcon,
+  ScanEyeIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  SquareIcon,
+  TargetIcon,
+  TriangleAlertIcon,
+  Undo2Icon,
+  UserIcon,
+  WandSparklesIcon,
+  XIcon,
+} from "lucide-react";
 import { api, isOwnStyle, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowLeft,
-  Bot,
-  Boxes,
-  Check,
-  ChevronRight,
-  CircleCheck,
-  CircleDot,
-  Crosshair,
-  Film,
-  FolderOpen,
-  Gauge,
-  GitCompareArrows,
-  ImagePlus,
-  Info,
-  Layers,
-  Lock,
-  Pause,
-  Pin,
-  Play,
-  Plus,
-  RefreshCw,
-  Repeat,
-  Save,
-  ScanEye,
-  ShieldCheck,
-  Sparkles,
-  Square,
-  Target,
-  TriangleAlert,
-  Undo2,
-  User,
-  WandSparkles,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Busy, Modal, Spinner } from "../components/ui";
 import { Clock, useClockTime, usePlaying } from "../player/clock";
 import { Preview } from "../player/Preview";
 import { isStandard, premiumMsg, usePlan } from "../state/usePlan";
 import { FOLDER_APP, useStyleKit } from "../looks/StyleKit";
-import { RefButton, RefsPanel } from "../../../../editor/RefsPanel";
-import { Md } from "../../../../editor/Md";
-import { ClaudePanel } from "../../../../editor/ClaudePanel";
+import { RefButton, RefsPanel } from "../editor/RefsPanel";
+import { Md } from "../editor/Md";
+import { ClaudePanel } from "../editor/ClaudePanel";
 import { STYLES_MOVED, selLabel } from "../editor/selectionLabel";
 
 const STAGE_NAME = {
@@ -263,7 +263,7 @@ function BriefForm({ prefill }) {
       <div className="page-head">
         <div>
           <button className="btn ghost small sd-back" onClick={() => go("presets")}>
-            <ArrowLeft size={14} />
+            <ArrowLeftIcon size={14} />
             Styles
           </button>
           <h1>New look</h1>
@@ -368,7 +368,7 @@ function BriefForm({ prefill }) {
             }}
           >
             <button className="btn" onClick={pick} disabled={busy}>
-              <ImagePlus size={16} strokeWidth={1.7} />
+              <ImagePlusIcon size={16} strokeWidth={1.7} />
               Add images or videos…
             </button>
             <span className="small">
@@ -379,10 +379,10 @@ function BriefForm({ prefill }) {
             <div className="cs-refs">
               {refs.map((r) => (
                 <span key={r} className="cs-ref">
-                  {VID.test(r) ? <Film size={13} /> : <ImagePlus size={13} />}
+                  {VID.test(r) ? <FilmIcon size={13} /> : <ImagePlusIcon size={13} />}
                   <span className="ellipsis">{r.split(/[\\/]/).pop()}</span>
                   <button aria-label="Remove" onClick={() => setRefs((x) => x.filter((y) => y !== r))} disabled={busy}>
-                    <X size={12} />
+                    <XIcon size={12} />
                   </button>
                 </span>
               ))}
@@ -414,7 +414,7 @@ function BriefForm({ prefill }) {
             Cancel
           </button>
           <button className="btn primary sd-start" onClick={start} disabled={busy || !name.trim() || !aspects.length || !target}>
-            <Sparkles size={15} strokeWidth={1.8} />
+            <SparklesIcon size={15} strokeWidth={1.8} />
             {"Start the "}
             {lookName}
             {std && <span className="premium-pill">Premium</span>}
@@ -583,7 +583,7 @@ function Workspace({ projectId }) {
     return (
       <div className="page">
         <div className="hint warn">
-          <TriangleAlert size={18} />
+          <TriangleAlertIcon size={18} />
           <div>
             <b>This Style Studio workspace can't be opened</b>
             <p>{err}</p>
@@ -719,7 +719,7 @@ function Workspace({ projectId }) {
     <div className="sd-page">
       <header className="sd-top">
         <button className="icon-btn" aria-label="Back to Styles" title="Back to Styles" onClick={() => go("presets")}>
-          <ArrowLeft size={17} strokeWidth={1.7} />
+          <ArrowLeftIcon size={17} strokeWidth={1.7} />
         </button>
         <h2 className="ellipsis sd-name" title={S.name}>
           {S.name}
@@ -738,7 +738,7 @@ function Workspace({ projectId }) {
             role="status"
             title="Run until good: fix round, a version with its checks and overlays, the critic every few passes"
           >
-            <Repeat size={12} />
+            <RepeatIcon size={12} />
             {"Pass "}
             {loop.pass}/{loop.cap}
             {loop.phase ? ` · ${LOOP_PHASE[loop.phase]}` : ""}
@@ -753,7 +753,7 @@ function Workspace({ projectId }) {
             title={`The critic's scores (stop at ${loop?.threshold ?? 8}):
 ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
           >
-            <Gauge size={12} />
+            <GaugeIcon size={12} />
             Score
             {scores.slice(-4).map((s, i) => (
               <Fragment key={s.v}>
@@ -781,7 +781,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
           onClick={() => setCompare(true)}
           title={versions.length < 2 ? "Two versions are needed to compare" : "Two versions side by side, or as a slider; go back to one"}
         >
-          <GitCompareArrows size={14} />
+          <GitCompareArrowsIcon size={14} />
           Compare
         </button>
         {S.aspects.length > 1 && (
@@ -826,13 +826,13 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                 {state === "running" ? (
                   <Spinner size={12} />
                 ) : state === "approved" || state === "done" ? (
-                  <Check size={13} />
+                  <CheckIcon size={13} />
                 ) : state === "locked" ? (
-                  <Lock size={12} />
+                  <LockIcon size={12} />
                 ) : state === "stale" ? (
-                  <TriangleAlert size={12} />
+                  <TriangleAlertIcon size={12} />
                 ) : (
-                  <CircleDot size={13} />
+                  <CircleDotIcon size={13} />
                 )}
               </span>
               <span className="grow">
@@ -876,7 +876,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
               onClick={() => taskId && api.studioStop(taskId).catch(say)}
               disabled={!taskId}
             >
-              <Square size={12} />
+              <SquareIcon size={12} />
               Stop Claude
             </button>
           )}
@@ -885,7 +885,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
       <section className="sd-center" aria-label={STAGE_NAME[shown]}>
         {S.mode !== "look" && (
           <div className="sk-moved" role="note">
-            <Info size={16} strokeWidth={1.8} />
+            <InfoIcon size={16} strokeWidth={1.8} />
             <div className="grow">
               <b>Making whole styles moved to the Style Kit</b>
               <span>
@@ -895,11 +895,11 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
               </span>
             </div>
             <button className="btn tiny sk-moved-kit" onClick={kitBtns.getKit} disabled={kitBtns.kitBusy}>
-              {kitBtns.kitBusy ? <Spinner size={11} /> : <Boxes size={12} />}
+              {kitBtns.kitBusy ? <Spinner size={11} /> : <BoxesIcon size={12} />}
               {kitBtns.kitBusy ? "Writing the kit…" : "Get the Style Kit"}
             </button>
             <button className="btn tiny ghost sk-moved-folder" onClick={() => api.open(st.dir).catch(say)}>
-              <FolderOpen size={12} />
+              <FolderOpenIcon size={12} />
               {"Show in "}
               {FOLDER_APP}
             </button>
@@ -1081,7 +1081,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
             )}
             {pin && (
               <div className="sd-pin" role="dialog" aria-label="Pin an issue">
-                <Pin size={14} className="sd-pin-ic" />
+                <PinIcon size={14} className="sd-pin-ic" />
                 <div className="grow col" style={{ gap: 6 }}>
                   <span className="small">
                     {"At "}
@@ -1116,7 +1116,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                       Pin issue
                     </button>
                     <button className="icon-btn sm" aria-label="Cancel" onClick={() => setPin(null)}>
-                      <X size={14} />
+                      <XIcon size={14} />
                     </button>
                   </div>
                 </div>
@@ -1125,7 +1125,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
             {!showGallery && (
               <div className="sd-scrub">
                 <button className="icon-btn" aria-label={playing ? "Pause" : "Play"} onClick={() => clock.setPlaying(!playing)}>
-                  {playing ? <Pause size={17} strokeWidth={1.7} /> : <Play size={17} strokeWidth={1.7} />}
+                  {playing ? <PauseIcon size={17} strokeWidth={1.7} /> : <PlayIcon size={17} strokeWidth={1.7} />}
                 </button>
                 <span className="timecode">
                   {t.toFixed(2)}{" "}
@@ -1209,7 +1209,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
               ) : (
                 <>
                   <span className={`sd-chip ${checks.found ? "warn" : "ok"}`}>
-                    <ShieldCheck size={12} />v{ver.v}
+                    <ShieldCheckIcon size={12} />v{ver.v}
                     {": "}
                     {checks.pairs.length}
                     {" view × frame checks"}
@@ -1232,7 +1232,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                     .map(([k, x]) => `${k}: ${JSON.stringify(x)}`)
                     .join("\n")}
                 >
-                  <Layers size={12} />
+                  <LayersIcon size={12} />
                   {flat(S.look.settings).length}
                   {" look setting"}
                   {flat(S.look.settings).length === 1 ? "" : "s"}
@@ -1292,7 +1292,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
           <div className="sd-actions">
             {!st.gate.ok && st.next && (
               <span className="sd-gate small">
-                <TriangleAlert size={13} />
+                <TriangleAlertIcon size={13} />
                 {"To approve: "}
                 {st.gate.missing.join("; ")}.
               </span>
@@ -1309,7 +1309,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                     : void 0
                 }
               >
-                <Sparkles size={14} />
+                <SparklesIcon size={14} />
                 {shown === "study" ? "Study the references" : "Run stage"}
               </button>
             )}
@@ -1320,13 +1320,13 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                 disabled={anyBusy}
                 title="Claude looks at every view at full size and files what it finds as issues (it changes nothing)"
               >
-                <Bot size={14} />
+                <BotIcon size={14} />
                 Run review
               </button>
             )}
             {shown === "review" && (
               <button className="btn small sd-fixall" onClick={() => run({ fix: true })} disabled={anyBusy || !open.length}>
-                <WandSparkles size={14} />
+                <WandSparklesIcon size={14} />
                 Fix all open{open.length ? ` (${open.length})` : ""}
               </button>
             )}
@@ -1337,7 +1337,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                 disabled={anyBusy || !!st.activity}
                 title="Run the app's checks on the workspace as it is now"
               >
-                <RefreshCw size={14} />
+                <RefreshCwIcon size={14} />
                 Run checks
               </button>
             )}
@@ -1348,14 +1348,14 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
                 disabled={anyBusy || !!st.activity}
                 title="Save the workspace as it is now as a version, with its frames, checks and a short video"
               >
-                <Save size={14} />
+                <SaveIcon size={14} />
                 Next version
               </button>
             )}
             {st.next && (
               <button className="btn small primary sd-approve" onClick={approve} disabled={!st.gate.ok || anyBusy || !!busy}>
                 Approve
-                <ChevronRight size={14} />
+                <ChevronRightIcon size={14} />
               </button>
             )}
           </div>
@@ -1385,7 +1385,7 @@ ${scores.map((s) => `v${s.v}: ${s.value}`).join("\n")}`}
           <div className="sd-issue-list">
             {!list.length && (
               <div className="sd-empty">
-                <CircleCheck size={20} strokeWidth={1.6} />
+                <CircleCheckIcon size={20} strokeWidth={1.6} />
                 <b>{filter === "open" ? "Nothing open" : "None yet"}</b>
                 <span>
                   {filter === "open"
@@ -1591,7 +1591,7 @@ function StudyPanel({ projectId, st, isCur, busy, onMeasure, onRefs }) {
               disabled={busy || studying}
               title="Cuts, shot lengths, contact sheets, colours, loudness, pauses and (with a transcriber) words: no Claude"
             >
-              <RefreshCw size={13} />
+              <RefreshCwIcon size={13} />
               {S ? (view.stale ? "Measure again (references changed)" : "Measure again") : "Measure only"}
             </button>
           )}
@@ -1606,7 +1606,7 @@ function StudyPanel({ projectId, st, isCur, busy, onMeasure, onRefs }) {
           <ul className="sd-study-notes small">
             {notes.map((n, i) => (
               <li key={i}>
-                <TriangleAlert size={12} />
+                <TriangleAlertIcon size={12} />
                 {n}
               </li>
             ))}
@@ -1734,7 +1734,7 @@ const fmtClock = (s) => {
 function IssueRow({ i, base, busy, onSeek, onFix, onStatus }) {
   const w = i.where ?? {},
     where = [w.view, w.aspect, typeof w.t === "number" ? fmtT(w.t) : null, w.element].filter(Boolean).join(" · ");
-  const SRC = { check: ["Check", ShieldCheck], opus: ["Claude", Bot], user: ["You", User], critic: ["Critic", ScanEye] },
+  const SRC = { check: ["Check", ShieldCheckIcon], opus: ["Claude", BotIcon], user: ["You", UserIcon], critic: ["Critic", ScanEyeIcon] },
     [srcName, SrcIc] = SRC[i.source] ?? SRC.check;
   const rejected = i.source === "critic" && i.status === "wontfix" && !!i.lesson;
   const isOpenI = ["open", "reopened"].includes(i.status);
@@ -1785,7 +1785,7 @@ function IssueRow({ i, base, busy, onSeek, onFix, onStatus }) {
         <div className="sd-issue-actions">
           {isOpenI && (
             <button className="btn tiny primary" onClick={onFix} disabled={busy}>
-              <WandSparkles size={11} />
+              <WandSparklesIcon size={11} />
               Fix it
             </button>
           )}
@@ -1796,7 +1796,7 @@ function IssueRow({ i, base, busy, onSeek, onFix, onStatus }) {
           )}
           {i.status === "verify" && (
             <button className="btn tiny primary" onClick={() => onStatus("fixed")}>
-              <Check size={11} />
+              <CheckIcon size={11} />
               OK
             </button>
           )}
@@ -1879,7 +1879,7 @@ function BriefSummary({ st, styleName, projectId, onRefs, onSaved }) {
             Undo
           </button>
           <button className="btn small primary" onClick={save}>
-            <Save size={13} />
+            <SaveIcon size={13} />
             Save brief
           </button>
         </div>
@@ -1910,7 +1910,7 @@ function SavePanel({ st, projectId, styleName, pic, tall, onSaved, onNewProject,
       <div className="panel pad sd-brief sd-save">
         {S.saved && (
           <div className="sd-saved" role="status">
-            <CircleCheck size={18} />
+            <CircleCheckIcon size={18} />
             <div>
               <b>
                 Saved as "{S.saved.name}
@@ -1970,7 +1970,7 @@ function SavePanel({ st, projectId, styleName, pic, tall, onSaved, onNewProject,
         <div className="modal-actions">
           <span className="grow" />
           <button className="btn primary sd-savelook" onClick={save} disabled={busy || !name.trim()}>
-            {busy ? <Spinner size={14} /> : <Save size={15} />}
+            {busy ? <Spinner size={14} /> : <SaveIcon size={15} />}
             {S.saved ? "Save again" : "Save look"}
           </button>
         </div>
@@ -2024,7 +2024,7 @@ function HeroFrames({ st, ver, aspect, projectId, issues, onChanged, onShow }) {
   if (!cards.length)
     return (
       <div className="sd-matchview empty">
-        <Sparkles size={22} strokeWidth={1.5} />
+        <SparklesIcon size={22} strokeWidth={1.5} />
         <b>
           No hero frames in v{ver.v}
           {" ("}
@@ -2084,12 +2084,12 @@ function HeroFrames({ st, ver, aspect, projectId, issues, onChanged, onShow }) {
                       ))
                   ) : (
                     <span className="sd-chip ok">
-                      <ShieldCheck size={11} />
+                      <ShieldCheckIcon size={11} />
                       Clean
                     </span>
                   )}
                   <button className="btn tiny sd-hero-comment" onClick={() => setNote(note?.key === key ? null : { key, text: "" })}>
-                    <Pin size={11} />
+                    <PinIcon size={11} />
                     Comment
                   </button>
                 </span>
@@ -2153,7 +2153,7 @@ function KitGallery({ st, aspect, projectId, busy, onChanged, onShow }) {
   if (!els.length)
     return (
       <div className="sd-matchview empty">
-        <Layers size={22} strokeWidth={1.5} />
+        <LayersIcon size={22} strokeWidth={1.5} />
         <b>No kit elements yet</b>
         <span>
           Run the stage: Claude builds every element of the style and shows each one alone in scenes/kit*.js (one shot per element). They
@@ -2177,7 +2177,7 @@ function KitGallery({ st, aspect, projectId, busy, onChanged, onShow }) {
         <span className="grow" />
         {clean.length > 0 && (
           <button className="btn tiny sd-kit-approveclean" onClick={approveClean} disabled={working || busy}>
-            <Check size={11} />
+            <CheckIcon size={11} />
             {"Approve the "}
             {clean.length}
             {" clean one"}
@@ -2209,12 +2209,12 @@ function KitGallery({ st, aspect, projectId, busy, onChanged, onShow }) {
                   <span className="grow" />
                   {m === "approved" ? (
                     <span className="sd-chip ok">
-                      <Check size={11} />
+                      <CheckIcon size={11} />
                       Approved
                     </span>
                   ) : m === "flagged" ? (
                     <span className="sd-chip bad">
-                      <TriangleAlert size={11} />
+                      <TriangleAlertIcon size={11} />
                       Flagged
                     </span>
                   ) : null}
@@ -2228,7 +2228,7 @@ function KitGallery({ st, aspect, projectId, busy, onChanged, onShow }) {
                     ))
                   ) : (
                     <span className="sd-chip ok">
-                      <ShieldCheck size={11} />
+                      <ShieldCheckIcon size={11} />
                       Checks clean
                     </span>
                   )}
@@ -2256,13 +2256,13 @@ function KitGallery({ st, aspect, projectId, busy, onChanged, onShow }) {
                   <span className="row sd-kit-actions" style={{ gap: 6 }}>
                     {m !== "approved" && (
                       <button className="btn tiny primary sd-kit-approve" onClick={() => mark(el, "approved")} disabled={busy}>
-                        <Check size={11} />
+                        <CheckIcon size={11} />
                         Approve
                       </button>
                     )}
                     {m !== "flagged" && (
                       <button className="btn tiny sd-kit-flag" onClick={() => setFlag({ key: el.key, text: "" })} disabled={busy}>
-                        <TriangleAlert size={11} />
+                        <TriangleAlertIcon size={11} />
                         Flag…
                       </button>
                     )}
@@ -2301,11 +2301,11 @@ function PublishPanel({ st, projectId, busy, onDone, onNewProject, onStyles, onI
     }
   };
   const IC = {
-    wait: <CircleDot size={15} className="dim" />,
+    wait: <CircleDotIcon size={15} className="dim" />,
     running: <Spinner size={14} />,
-    ok: <CircleCheck size={15} />,
-    fail: <TriangleAlert size={15} />,
-    skip: <CircleDot size={15} className="dim" />,
+    ok: <CircleCheckIcon size={15} />,
+    fail: <TriangleAlertIcon size={15} />,
+    skip: <CircleDotIcon size={15} className="dim" />,
   };
   const failed = run?.items.filter((i) => i.status === "fail") ?? [];
   return (
@@ -2313,7 +2313,7 @@ function PublishPanel({ st, projectId, busy, onDone, onNewProject, onStyles, onI
       <div className="panel pad sd-brief sd-pub" aria-label="Publish">
         {S.published && (
           <div className="sd-saved" role="status">
-            <CircleCheck size={18} />
+            <CircleCheckIcon size={18} />
             <div>
               <b>
                 Published as "{S.published.name}" v{S.published.version}
@@ -2362,7 +2362,7 @@ function PublishPanel({ st, projectId, busy, onDone, onNewProject, onStyles, onI
           {!run && (
             <li className="sd-pub-item s-wait">
               <span className="sd-pub-ic">
-                <CircleDot size={15} className="dim" />
+                <CircleDotIcon size={15} className="dim" />
               </span>
               <span className="grow small">
                 Every earlier stage again, style.json, the engine's exports and banned calls, each frame loading and exporting 5 s, no high
@@ -2380,7 +2380,7 @@ function PublishPanel({ st, projectId, busy, onDone, onNewProject, onStyles, onI
           <span className="grow" />
           <span className="small dim sd-publish-why">{STYLES_MOVED}</span>
           <button className="btn primary sd-publish" onClick={publish} disabled title={STYLES_MOVED}>
-            {going || running ? <Spinner size={14} /> : <Sparkles size={15} />}
+            {going || running ? <Spinner size={14} /> : <SparklesIcon size={15} />}
             {S.published ? `Publish again (v${S.published.version + 1})` : "Publish"}
           </button>
         </div>
@@ -2395,7 +2395,7 @@ function MatchView({ ver, sel, setSel, hasTargets, busy, onMatchNow }) {
   if (!ver || !cur)
     return (
       <div className="sd-matchview empty">
-        <Target size={22} strokeWidth={1.5} />
+        <TargetIcon size={22} strokeWidth={1.5} />
         <b>{!hasTargets ? "No target frames yet" : ver ? `v${ver.v} has no overlays yet` : "No version yet"}</b>
         <span>
           {!hasTargets
@@ -2404,7 +2404,7 @@ function MatchView({ ver, sel, setSel, hasTargets, busy, onMatchNow }) {
         </span>
         {hasTargets && ver && (
           <button className="btn small sd-matchnow" onClick={onMatchNow} disabled={busy}>
-            <RefreshCw size={13} />
+            <RefreshCwIcon size={13} />
             Match v{ver.v}
             {" now"}
           </button>
@@ -2485,7 +2485,7 @@ function MatchView({ ver, sel, setSel, hasTargets, busy, onMatchNow }) {
         <div className="sd-matchview-foot small">
           {ver.score?.summary && (
             <span>
-              <ScanEye size={12} /> {ver.score.summary}
+              <ScanEyeIcon size={12} /> {ver.score.summary}
             </span>
           )}
           {!!ver.match?.errors.length && <span className="sd-match-err">{ver.match.errors.join(" · ")}</span>}
@@ -2629,7 +2629,7 @@ function MatchBar({ projectId, st, targets, loop, view, aspect, getTime, claudeB
           className="sd-match-h"
           title="The frames the style must match: each one is compared with the version's frame at its view, frame and moment"
         >
-          <Target size={13} />
+          <TargetIcon size={13} />
           Targets
         </span>
         <div className="sd-tg-list">
@@ -2646,7 +2646,7 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
                 <img src={x.url} alt="" />
               ) : (
                 <span className="sd-tg-none">
-                  <Target size={14} />
+                  <TargetIcon size={14} />
                 </span>
               )}
               <small>
@@ -2657,11 +2657,11 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
             </button>
           ))}
           <button className="btn tiny sd-tg-add" onClick={addFile} disabled={!!working || full}>
-            <Plus size={11} />
+            <PlusIcon size={11} />
             Image…
           </button>
           <button className={`btn tiny sd-tg-ref ${refs ? "active" : ""}`} onClick={toggleRefs} disabled={!!working || full}>
-            <Film size={11} />
+            <FilmIcon size={11} />
             From a reference
           </button>
           <button
@@ -2670,7 +2670,7 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
             disabled={!!working || full}
             title="Drawn on your image account from the brief and the style's notes (counts against the picture cap)"
           >
-            <Sparkles size={11} />
+            <SparklesIcon size={11} />
             Make some…
           </button>
           {working && (
@@ -2708,7 +2708,7 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
                 </label>
               )}
               <button className="btn tiny" onClick={() => addRef(r)} disabled={!!working}>
-                <Plus size={11} />
+                <PlusIcon size={11} />
                 Add
               </button>
             </div>
@@ -2756,7 +2756,7 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
             onClick={() => patch(cur.id, { view, aspect, t: +getTime().toFixed(2) })}
             title="Match it to the moment the preview shows now"
           >
-            <Crosshair size={11} />
+            <CrosshairIcon size={11} />
             Here ({view} {getTime().toFixed(1)}
             {" s)"}
           </button>
@@ -2768,13 +2768,13 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
           </button>
           <span className="grow" />
           <button className="icon-btn sm" aria-label={`Remove ${cur.id}`} title="Remove this target" onClick={() => remove(cur.id)}>
-            <X size={14} />
+            <XIcon size={14} />
           </button>
         </div>
       )}
       <div className="sd-match-row sd-loop">
         <span className="sd-match-h">
-          <Repeat size={13} />
+          <RepeatIcon size={13} />
           Run until good
         </span>
         <label className="small sd-loop-set">
@@ -2819,17 +2819,17 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
           disabled={claudeBusy || jobBusy || !!working}
           title="One critic round on the latest version, without the loop"
         >
-          <ScanEye size={11} />
+          <ScanEyeIcon size={11} />
           Run critic
         </button>
         {running ? (
           <button className="btn tiny danger sd-loop-stop" onClick={stop} disabled={loop.status === "stopping"}>
-            <Square size={10} />
+            <SquareIcon size={10} />
             {loop.status === "stopping" ? "Stopping…" : "Stop"}
           </button>
         ) : loop?.critic ? (
           <button className="btn tiny danger sd-loop-stop" onClick={stop}>
-            <Square size={10} />
+            <SquareIcon size={10} />
             Stop the critic
           </button>
         ) : (
@@ -2841,7 +2841,7 @@ ${x.view} · ${x.aspect} · ${x.t.toFixed(1)} s`}
               </button>
             )}
             <button className="btn tiny primary sd-loop-start" onClick={() => start(false)} disabled={claudeBusy || !!working}>
-              <Repeat size={11} />
+              <RepeatIcon size={11} />
               {canResume ? "Start over" : "Run until good"}
             </button>
           </>
@@ -2911,19 +2911,19 @@ function GenerateTargets({ projectId, onClose, onDone }) {
         )}
         {q && !q.provider && (
           <p className="sd-gen-warn small">
-            <TriangleAlert size={13} />
+            <TriangleAlertIcon size={13} />
             {"No image account is set up: add a Higgsfield or Fal.ai key in Settings > Media > Image generation."}
           </p>
         )}
         {q && q.provider && !q.notes && (
           <p className="sd-gen-warn small">
-            <TriangleAlert size={13} />
+            <TriangleAlertIcon size={13} />
             There is nothing to draw them from yet: write the description in the Brief, or fill the style's notes first.
           </p>
         )}
         {q && q.provider && q.notes && !q.fits && (
           <p className="sd-gen-warn small">
-            <TriangleAlert size={13} />
+            <TriangleAlertIcon size={13} />
             {q.room < q.count
               ? `Only ${q.room} more target${q.room === 1 ? "" : "s"} fit (8 at most).`
               : "That is more than the picture cap leaves: raise the cap in the Brief."}
@@ -2935,7 +2935,7 @@ function GenerateTargets({ projectId, onClose, onDone }) {
             Cancel
           </button>
           <button className="btn primary sd-gen-go" onClick={go} disabled={!q || !q.fits || !q.provider || !q.notes || busy}>
-            {busy ? <Spinner size={14} /> : <Sparkles size={15} />}
+            {busy ? <Spinner size={14} /> : <SparklesIcon size={15} />}
             {"Make "}
             {n}
             {" for about $"}
@@ -3178,7 +3178,7 @@ function CompareDialog({ versions, aspects, aspect: a0, view, projectId, busy, o
             {sure ? `The files go back to v${a} (as a new version). Issues fixed after it open again; lessons are kept.` : ""}
           </span>
           <button className={`btn ${sure ? "danger" : ""} sd-rollback`} onClick={back} disabled={busy || going}>
-            {going ? <Spinner size={14} /> : <Undo2 size={15} />}
+            {going ? <Spinner size={14} /> : <Undo2Icon size={15} />}
             {sure ? `Yes, go back to v${a}` : `Go back to v${a}`}
           </button>
           <button className="btn primary" onClick={onClose}>

@@ -1,17 +1,17 @@
 import { useState } from "react";
+import {
+  CameraIcon,
+  FileHeadphoneIcon,
+  FilmIcon,
+  MonitorPlayIcon,
+  PlusIcon,
+  RotateCwIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
 import { api } from "../lib/api";
 import { fmtTime } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Camera,
-  FileHeadphone,
-  Film,
-  MonitorPlay,
-  Plus,
-  RotateCw,
-  Trash,
-  TriangleAlert,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 
 const ROLES = [
   { id: "screen", label: "Screen recording" },
@@ -19,7 +19,7 @@ const ROLES = [
   { id: "intro", label: "Intro" },
   { id: "other", label: "Other" },
 ];
-const ICON = { screen: MonitorPlay, facecam: Camera, intro: Film, other: FileHeadphone };
+const ICON = { screen: MonitorPlayIcon, facecam: CameraIcon, intro: FilmIcon, other: FileHeadphoneIcon };
 const FOOTAGE = ["mp4", "mov", "mkv", "m4v", "webm", "avi", "mts", "m2ts", "mxf", "wav", "mp3", "m4a", "aac", "flac"];
 const gb = (b) => (b > 1e9 ? `${(b / 1e9).toFixed(1)} GB` : `${Math.max(1, Math.round(b / 1e6))} MB`);
 export function FootageBin({ projectId, media, setMedia }) {
@@ -64,13 +64,13 @@ export function FootageBin({ projectId, media, setMedia }) {
         <span className="dim">{media.length || ""}</span>
         <span className="grow" />
         <button className="btn tiny" onClick={pick} disabled={adding}>
-          <Plus size={12} />
+          <PlusIcon size={12} />
           Add
         </button>
       </div>
       {!media.length && (
         <button className="footage-drop" onClick={pick}>
-          <MonitorPlay size={22} strokeWidth={1.5} />
+          <MonitorPlayIcon size={22} strokeWidth={1.5} />
           <b>Drop your footage here</b>
           <span>Screen recording (with your mic), facecam clips, and the intro if it's separate. The files stay where they are.</span>
         </button>
@@ -91,7 +91,7 @@ export function FootageBin({ projectId, media, setMedia }) {
                   title="Remove from this video (the file is not deleted)"
                   onClick={() => remove(m)}
                 >
-                  <Trash size={13} strokeWidth={1.7} />
+                  <TrashIcon size={13} strokeWidth={1.7} />
                 </button>
               </span>
               <span className="fm-sub">
@@ -127,10 +127,10 @@ export function FootageBin({ projectId, media, setMedia }) {
               )}
               {m.proxyState === "failed" && (
                 <span className="fm-bad fm-err">
-                  <TriangleAlert size={12} />
+                  <TriangleAlertIcon size={12} />
                   {m.proxyError || "Preview copy failed"}
                   <button className="text-btn" onClick={async () => setMedia(await api.pRetryProxy(projectId, m.id))}>
-                    <RotateCw size={11} />
+                    <RotateCwIcon size={11} />
                     Retry
                   </button>
                 </span>
@@ -141,7 +141,7 @@ export function FootageBin({ projectId, media, setMedia }) {
       })}
       {media.length > 0 && !media.some((m) => m.role === "screen") && (
         <p className="small fm-hint">
-          <TriangleAlert size={12} />
+          <TriangleAlertIcon size={12} />
           {" Mark one file as the screen recording: its sound is the video's sound."}
         </p>
       )}

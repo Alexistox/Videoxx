@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { CircleCheckIcon, FilmIcon, FolderOpenIcon, PlayIcon, TriangleAlertIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { fmtTime } from "../lib/format";
-import { CircleCheck, Film, FolderOpen, Play, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal } from "../components/ui";
 import { renderAssets } from "./canvasDraw";
 
@@ -87,13 +87,13 @@ export function RenderPanel({ projectId, duration, clips, layout, bg, onClose })
         )}
         {err && (
           <p className="rp-err">
-            <TriangleAlert size={14} />
+            <TriangleAlertIcon size={14} />
             {err}
           </p>
         )}
         {done && (
           <div className="rp-done">
-            <CircleCheck size={22} strokeWidth={1.7} />
+            <CircleCheckIcon size={22} strokeWidth={1.7} />
             <div>
               <b className="path">{done.path.split(/[\\/]/).pop()}</b>
               <span className="small">
@@ -116,11 +116,11 @@ export function RenderPanel({ projectId, duration, clips, layout, bg, onClose })
           {done ? (
             <>
               <button className="btn" onClick={() => api.reveal(done.path)}>
-                <FolderOpen size={15} />
+                <FolderOpenIcon size={15} />
                 Show in folder
               </button>
               <button className="btn" onClick={() => api.open(done.path)}>
-                <Play size={15} />
+                <PlayIcon size={15} />
                 Play
               </button>
               <button className="btn primary" onClick={onClose}>
@@ -137,7 +137,7 @@ export function RenderPanel({ projectId, duration, clips, layout, bg, onClose })
                 Not yet
               </button>
               <button className="btn primary" onClick={start} disabled={!presets.length}>
-                <Film size={15} />
+                <FilmIcon size={15} />
                 {"Sign off & render"}
               </button>
             </>

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Gauge, Sparkles } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { CheckIcon, ChevronDownIcon, GaugeIcon, SparklesIcon } from "lucide-react";
 import { CLAUDE_EFFORTS, effortName } from "./claudeModels";
 import { engineOf, modelGroups, modelName } from "./models";
 import { Dropdown } from "../components/Dropdown";
@@ -91,7 +91,7 @@ export function ModelPicker({ model, effort, globalModel, globalEffort, effectiv
         <b>{name}</b>
         {blurb && <small>{blurb}</small>}
       </span>
-      {model === id && <Check size={14} />}
+      {model === id && <CheckIcon size={14} />}
     </button>
   );
   return (
@@ -111,16 +111,16 @@ export function ModelPicker({ model, effort, globalModel, globalEffort, effectiv
         title="Claude's model and effort for this project only. Global setting = what Settings > AI engines says."
         onClick={() => setOpen(!open)}
       >
-        <Sparkles size={13} />
+        <SparklesIcon size={13} />
         <span className="ellipsis">{modelName(effectiveModel, google)}</span>
         {!noEffort && (
           <>
             <span className="mp-sep" />
-            <Gauge size={13} />
+            <GaugeIcon size={13} />
             <span>{effortName(effectiveEffort)}</span>
           </>
         )}
-        <ChevronDown size={13} className="mp-chev" />
+        <ChevronDownIcon size={13} className="mp-chev" />
       </button>
       {open && (
         <div className="mp-menu" role="menu">

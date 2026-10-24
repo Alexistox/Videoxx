@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Download, FolderOpen, Star, X } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon, DownloadIcon, FolderOpenIcon, StarIcon, XIcon } from "lucide-react";
 
 export function Lightbox({ items, start, from, onClose, actions }) {
   const [i, setI] = useState(() =>
@@ -103,22 +103,22 @@ export function Lightbox({ items, start, from, onClose, actions }) {
         </span>
         {a?.useAsThumb && (
           <button className="btn small primary" onClick={a.useAsThumb}>
-            <Star size={14} />
+            <StarIcon size={14} />
             Use as thumbnail
           </button>
         )}
         {a?.saveAs && (
           <button className="icon-btn" title="Save a copy" aria-label="Save a copy" onClick={a.saveAs}>
-            <Download size={16} />
+            <DownloadIcon size={16} />
           </button>
         )}
         {a?.reveal && (
           <button className="icon-btn" title="Show in folder" aria-label="Show in folder" onClick={a.reveal}>
-            <FolderOpen size={16} />
+            <FolderOpenIcon size={16} />
           </button>
         )}
         <button className="icon-btn" title="Close (Esc)" aria-label="Close" onClick={close}>
-          <X size={17} />
+          <XIcon size={17} />
         </button>
       </div>
       {items.length > 1 && (
@@ -131,7 +131,7 @@ export function Lightbox({ items, start, from, onClose, actions }) {
               setI((x) => (x - 1 + items.length) % items.length);
             }}
           >
-            <ChevronLeft size={22} />
+            <ChevronLeftIcon size={22} />
           </button>
           <button
             className="lb-nav r"
@@ -141,7 +141,7 @@ export function Lightbox({ items, start, from, onClose, actions }) {
               setI((x) => (x + 1) % items.length);
             }}
           >
-            <ChevronRight size={22} />
+            <ChevronRightIcon size={22} />
           </button>
         </>
       )}

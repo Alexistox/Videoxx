@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
+import { AudioLinesIcon, CopyIcon, ExternalLinkIcon, PenLineIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../../lib/api";
 import { fmtLength } from "../../lib/format";
 import { useApp } from "../../state/AppProvider";
-import { AudioLines, Copy, ExternalLink, PenLine, TriangleAlert } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../../components/ui";
 import { aLang, cantDrawWhy, lang, otherScriptLanguage, styleDraws, wordUnit } from "../../settings/languages";
 import { speechPace } from "../../settings/project/visualPace";
@@ -118,7 +118,7 @@ export function ScriptView({ projectId, dir, language, reading, onClose, onRewri
         </div>
         {other && !reading && tab === "script" && (
           <div className="hint warn sv-otherlang" style={{ marginBottom: 12 }}>
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>
                 {"This script is in "}
@@ -153,7 +153,7 @@ export function ScriptView({ projectId, dir, language, reading, onClose, onRewri
         )}
         {reading && tab === "script" && (
           <div className="hint warn" style={{ marginBottom: 12 }}>
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>A voice is reading this script right now</b>
               <p>
@@ -192,7 +192,7 @@ export function ScriptView({ projectId, dir, language, reading, onClose, onRewri
             style={{ marginRight: "auto" }}
             onClick={() => api.open(dir + "/" + (tab === "script" ? "script.txt" : "research.md"))}
           >
-            <ExternalLink size={15} />
+            <ExternalLinkIcon size={15} />
             Open file
           </button>
           <button
@@ -207,7 +207,7 @@ export function ScriptView({ projectId, dir, language, reading, onClose, onRewri
                   : void 0
             }
           >
-            <PenLine size={15} />
+            <PenLineIcon size={15} />
             Rewrite with Claude
           </button>
           <button
@@ -216,7 +216,7 @@ export function ScriptView({ projectId, dir, language, reading, onClose, onRewri
             disabled={!words}
             title="Copies the spoken words only: headings, [notes], (directions), markdown marks and emoji are left out"
           >
-            <Copy size={15} />
+            <CopyIcon size={15} />
             Copy for TTS
           </button>
           {onVoiceover && (
@@ -230,7 +230,7 @@ export function ScriptView({ projectId, dir, language, reading, onClose, onRewri
                   : "ElevenLabs or the free local voice reads this script"
               }
             >
-              <AudioLines size={15} />
+              <AudioLinesIcon size={15} />
               Make the voiceover
             </button>
           )}

@@ -1,20 +1,20 @@
 import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CropIcon,
+  FilmIcon,
+  FolderOpenIcon,
+  ImagePlusIcon,
+  PlayIcon,
+  ScissorsIcon,
+  SmartphoneIcon,
+  SparklesIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
 import { api, on } from "../../lib/api";
 import { fmtTime, secs } from "../../lib/format";
 import { useApp } from "../../state/AppProvider";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Crop,
-  Film,
-  FolderOpen,
-  ImagePlus,
-  Play,
-  Scissors,
-  Smartphone,
-  Sparkles,
-  TriangleAlert,
-} from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Busy, Spinner, Toggle } from "../../components/ui";
 import { Picker, Segmented } from "../../components/Picker";
 import { CARD_SECONDS, VERTICAL_MAX_RATE, captionAt, trailerRange, verticalFile, verticalStem } from "./verticalCut";
@@ -372,7 +372,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
           <div className="ex-v-form">
             {head}
             <div className="hint bad">
-              <TriangleAlert size={18} />
+              <TriangleAlertIcon size={18} />
               <div>
                 <b>The vertical export could not load</b>
                 <p>{loadErr}</p>
@@ -524,7 +524,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
         "Open it to watch"
       ) : sib.state === "done" ? (
         <>
-          <Smartphone size={14} />
+          <SmartphoneIcon size={14} />
           Open the 9:16 project
         </>
       ) : (
@@ -564,8 +564,8 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                   if (v === "reframe") load();
                 }}
                 options={[
-                  { value: "cut", label: "Vertical cut", icon: <Crop size={15} strokeWidth={1.8} /> },
-                  { value: "reframe", label: "Reframed version", icon: <Sparkles size={15} strokeWidth={1.8} /> },
+                  { value: "cut", label: "Vertical cut", icon: <CropIcon size={15} strokeWidth={1.8} /> },
+                  { value: "reframe", label: "Reframed version", icon: <SparklesIcon size={15} strokeWidth={1.8} /> },
                 ]}
               />
               <span className="help">
@@ -673,7 +673,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
             <div className="ex-reframe">
               {!info.reframe.can ? (
                 <div className="hint warn">
-                  <TriangleAlert size={18} />
+                  <TriangleAlertIcon size={18} />
                   <div>
                     <b>
                       {info.reframe.styleName}
@@ -706,7 +706,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                     {" It needs no 9:16 version."}
                   </p>
                   <button className="btn small" onClick={makeReframe} disabled={making || lock}>
-                    {making ? <Spinner size={13} /> : <Sparkles size={14} />}Make the 9:16 version
+                    {making ? <Spinner size={13} /> : <SparklesIcon size={14} />}Make the 9:16 version
                   </button>
                 </div>
               ) : sibBusy ? (
@@ -726,7 +726,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                 </div>
               ) : sib.state === "reverted" ? (
                 <div className="hint warn">
-                  <TriangleAlert size={18} />
+                  <TriangleAlertIcon size={18} />
                   <div>
                     <b>The 9:16 layout was undone</b>
                     <p>
@@ -737,7 +737,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                     </p>
                     <div className="row" style={{ marginTop: 10 }}>
                       <button className="btn small" onClick={makeReframe} disabled={making || lock}>
-                        {making ? <Spinner size={13} /> : <Sparkles size={14} />}Lay it out again
+                        {making ? <Spinner size={13} /> : <SparklesIcon size={14} />}Lay it out again
                       </button>
                       {openSib}
                     </div>
@@ -745,7 +745,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                 </div>
               ) : (
                 <div className="hint warn">
-                  <TriangleAlert size={18} />
+                  <TriangleAlertIcon size={18} />
                   <div>
                     <b>{sib.state ? "The layout stopped before it finished" : "Claude hasn't laid it out yet"}</b>
                     <p>
@@ -754,7 +754,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                     </p>
                     <div className="row" style={{ marginTop: 10 }}>
                       <button className="btn small" onClick={makeReframe} disabled={making || lock}>
-                        {making ? <Spinner size={13} /> : <Sparkles size={14} />}
+                        {making ? <Spinner size={13} /> : <SparklesIcon size={14} />}
                         {sib.state ? "Continue with Claude" : "Lay it out with Claude"}
                       </button>
                       {openSib}
@@ -807,7 +807,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
             />
             {o.length === "range" && (
               <span className="help ex-sum">
-                <Scissors size={12} />
+                <ScissorsIcon size={12} />
                 {"The range selected on the timeline · "}
                 {fmtTime(range.from)}
                 {" → "}
@@ -852,7 +852,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                 </div>
                 {!!srcShots?.length && (
                   <span className="help ex-sum">
-                    <Scissors size={12} />
+                    <ScissorsIcon size={12} />
                     {range.last > range.first ? `Shots ${range.first + 1}–${range.last + 1}` : `Shot ${range.first + 1}`}
                     {" · "}
                     {fmtTime(range.from)}
@@ -1001,7 +1001,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                   )}
                   {info.picture.from !== "channel" && !confirmRemove && (
                     <button className="text-btn link" disabled={lock} onClick={chooseLogo}>
-                      <ImagePlus size={13} />
+                      <ImagePlusIcon size={13} />
                       {info.picture.logo ? "Change" : "Choose a logo"}
                     </button>
                   )}
@@ -1046,7 +1046,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
               className={view === "video" ? "active" : ""}
               onClick={() => setView("video")}
             >
-              <Film size={13} />
+              <FilmIcon size={13} />
               Shots
             </button>
             <button
@@ -1077,20 +1077,20 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
               )}
               {card.err && (
                 <div className="ex-ph-err">
-                  <TriangleAlert size={16} />
+                  <TriangleAlertIcon size={16} />
                   <span>{card.err}</span>
                 </div>
               )}
             </Phone>
           ) : source === "reframe" && !info.reframe.can ? (
-            <PhoneNote icon={<Smartphone size={18} />}>
+            <PhoneNote icon={<SmartphoneIcon size={18} />}>
               {info.reframe.styleName}
               {" can't be reframed. Use the vertical cut: it shows here."}
             </PhoneNote>
           ) : source === "reframe" && !sib ? (
-            <PhoneNote icon={<Smartphone size={18} />}>The 9:16 version appears here once Claude has made it.</PhoneNote>
+            <PhoneNote icon={<SmartphoneIcon size={18} />}>The 9:16 version appears here once Claude has made it.</PhoneNote>
           ) : noShots ? (
-            <PhoneNote icon={<TriangleAlert size={16} />}>
+            <PhoneNote icon={<TriangleAlertIcon size={16} />}>
               {useSib ? (
                 <>
                   {sib.name}
@@ -1101,9 +1101,9 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
               )}
             </PhoneNote>
           ) : frameFail ? (
-            <PhoneNote icon={<TriangleAlert size={16} />}>No preview: the frames could not be rendered.</PhoneNote>
+            <PhoneNote icon={<TriangleAlertIcon size={16} />}>No preview: the frames could not be rendered.</PhoneNote>
           ) : frameErr ? (
-            <PhoneNote icon={<TriangleAlert size={16} />}>
+            <PhoneNote icon={<TriangleAlertIcon size={16} />}>
               {useSib ? (
                 <>
                   {"This shot of "}
@@ -1131,7 +1131,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                 aria-label="Previous sample"
                 onClick={() => setSample((i) => (Math.min(i, imgs.length - 1) + imgs.length - 1) % imgs.length)}
               >
-                <ChevronLeft size={15} />
+                <ChevronLeftIcon size={15} />
               </button>
               <span className="small">
                 {idx + 1}
@@ -1145,7 +1145,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                 aria-label="Next sample"
                 onClick={() => setSample((i) => (Math.min(i, imgs.length - 1) + 1) % imgs.length)}
               >
-                <ChevronRight size={15} />
+                <ChevronRightIcon size={15} />
               </button>
             </div>
           )}
@@ -1187,11 +1187,11 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
             ))}
             <div className="row" style={{ marginTop: 10 }}>
               <button className="btn small" onClick={() => api.open(res.path)}>
-                <Play size={14} />
+                <PlayIcon size={14} />
                 Play
               </button>
               <button className="btn small" onClick={() => api.reveal(res.path)}>
-                <FolderOpen size={14} />
+                <FolderOpenIcon size={14} />
                 Show in folder
               </button>
             </div>
@@ -1199,7 +1199,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
         )}
         {error && (
           <div className="hint bad" style={{ marginTop: 18 }}>
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>Export failed</b>
               <p>{error}</p>
@@ -1244,7 +1244,7 @@ export function VerticalTab({ projectId, shots, sel, name, head, busy, setBusy, 
                   : void 0
           }
         >
-          {busy ? <Spinner size={14} /> : <Smartphone size={15} />}
+          {busy ? <Spinner size={14} /> : <SmartphoneIcon size={15} />}
           {o.length === "trailer" ? "Export trailer" : o.length === "range" ? "Export clip" : "Export vertical"}
         </button>
       </div>

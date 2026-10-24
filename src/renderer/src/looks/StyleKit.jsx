@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  BoxesIcon,
+  DownloadIcon,
+  EllipsisIcon,
+  FolderOpenIcon,
+  InfoIcon,
+  PackagePlusIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  TrashIcon,
+  Undo2Icon,
+  WandSparklesIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  Boxes,
-  Download,
-  Ellipsis,
-  FolderOpen,
-  Info,
-  PackagePlus,
-  ShieldCheck,
-  Sparkles,
-  Trash,
-  Undo2,
-  WandSparkles,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Spinner } from "../components/ui";
 import { MenuList, Popover } from "../components/Picker";
@@ -102,14 +102,14 @@ export function KitActions() {
     <div className="sk-actions" role="group" aria-label="Add a style">
       <section className="sk-action sk-import" aria-label="Import style">
         <span className="sk-action-ic">
-          <PackagePlus size={19} strokeWidth={1.7} />
+          <PackagePlusIcon size={19} strokeWidth={1.7} />
         </span>
         <div className="sk-action-body">
           <h3>Import style{pill}</h3>
           <p>Add a style package made with the Style Kit. The app checks it, then adds it to your styles.</p>
           <div className="row wrap sk-action-btns">
             <button className="btn small primary sk-import-zip" onClick={() => importFrom("zip")} disabled={picking}>
-              {picking ? <Spinner size={13} /> : <PackagePlus size={14} />}
+              {picking ? <Spinner size={13} /> : <PackagePlusIcon size={14} />}
               {isMac ? "Choose the package…" : "Choose a .zip…"}
             </button>
             {!isMac && (
@@ -123,7 +123,7 @@ export function KitActions() {
       </section>
       <section className="sk-action sk-kit" aria-label="Get the Style Kit">
         <span className="sk-action-ic">
-          <Boxes size={19} strokeWidth={1.7} />
+          <BoxesIcon size={19} strokeWidth={1.7} />
         </span>
         <div className="sk-action-body">
           <h3>Get the Style Kit{pill}</h3>
@@ -137,7 +137,7 @@ export function KitActions() {
                 </>
               ) : (
                 <>
-                  <Boxes size={14} />
+                  <BoxesIcon size={14} />
                   Get the Style Kit
                 </>
               )}
@@ -167,7 +167,7 @@ export function ImportRuns() {
       <div className="sec-title">Unfinished imports</div>
       {runs.map((r) => (
         <div key={r.id} className={`sk-run s-${r.status}`} data-run={r.id}>
-          <PackagePlus size={15} strokeWidth={1.7} className="dim" />
+          <PackagePlusIcon size={15} strokeWidth={1.7} className="dim" />
           <b className="ellipsis">{runName(r)}</b>
           <span className="small dim">
             {r.checkOnly ? "Re-check" : r.pkg?.isUpdate ? `Update: v${r.pkg.prevVersion} → v${r.pkg.version}` : "New style"}
@@ -287,7 +287,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
               label: `Go back to v${k.version}`,
               hint: `Engine v${k.engineVersion}${k.updated ? ` · ${new Date(k.updated).toLocaleDateString()}` : ""}`,
               group: "Versions",
-              icon: <Undo2 size={14} />,
+              icon: <Undo2Icon size={14} />,
             }))
           : [
               {
@@ -299,8 +299,8 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
               },
             ]
       : []),
-    ...(st.dir ? [{ value: "folder", label: `Show in ${FOLDER_APP}`, group: "Style", icon: <FolderOpen size={14} /> }] : []),
-    { value: "delete", label: "Delete style", group: "Style", icon: <Trash size={14} /> },
+    ...(st.dir ? [{ value: "folder", label: `Show in ${FOLDER_APP}`, group: "Style", icon: <FolderOpenIcon size={14} /> }] : []),
+    { value: "delete", label: "Delete style", group: "Style", icon: <TrashIcon size={14} /> },
   ];
   const pick = (o) => {
     setMenu(false);
@@ -326,7 +326,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
             <img src={st.poster} alt="" />
           ) : (
             <span className="sk-noposter">
-              <Sparkles size={22} strokeWidth={1.5} />
+              <SparklesIcon size={22} strokeWidth={1.5} />
             </span>
           )}
         </span>
@@ -386,7 +386,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
             onClick={onNewLook}
             title={`A look = ${st.name} with your own settings (colours, grade, camera, captions)`}
           >
-            <WandSparkles size={12} />
+            <WandSparklesIcon size={12} />
             New look{std && <span className="premium-pill">Premium</span>}
           </button>
         )}
@@ -397,7 +397,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
             disabled={!!busy}
             title="Run every import check on this style again (nothing is changed)"
           >
-            {busy === "recheck" ? <Spinner size={11} /> : <ShieldCheck size={12} />}Re-check
+            {busy === "recheck" ? <Spinner size={11} /> : <ShieldCheckIcon size={12} />}Re-check
           </button>
         )}
         {pkg && (
@@ -407,7 +407,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
             disabled={!!busy}
             title="Save this style as a package (.zip), e.g. to bring the app's fixes back into the Style Kit"
           >
-            {busy === "export" ? <Spinner size={11} /> : <Download size={12} />}Export package
+            {busy === "export" ? <Spinner size={11} /> : <DownloadIcon size={12} />}Export package
           </button>
         )}
         <span className="grow" />
@@ -420,7 +420,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
           onClick={openMenu}
           disabled={!!busy && busy !== "versions"}
         >
-          {busy === "delete" || busy === "versions" ? <Spinner size={13} /> : <Ellipsis size={16} />}
+          {busy === "delete" || busy === "versions" ? <Spinner size={13} /> : <EllipsisIcon size={16} />}
         </button>
         <Popover anchor={moreRef} open={menu} onClose={() => setMenu(false)} width={250} maxHeight={Infinity} swallowClick>
           <MenuList id={`sk-menu-${st.id}`} options={opts} active={active} onHover={setActive} onPick={pick} label={`${st.name}: more`} />
@@ -432,7 +432,7 @@ export function CustomStyleCard({ st, info, on: selected, looks, onSelect, onNew
 export function NoCustomStyles() {
   return (
     <section className="panel pad custom-empty sk-empty" aria-label="Your styles">
-      <Info size={18} strokeWidth={1.7} style={{ color: "var(--mint)" }} />
+      <InfoIcon size={18} strokeWidth={1.7} style={{ color: "var(--mint)" }} />
       <div>
         <h3>No custom styles yet</h3>
         <p className="muted">

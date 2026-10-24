@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Check, ChevronDown, Search } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { CheckIcon, ChevronDownIcon, SearchIcon } from "lucide-react";
 import { fold } from "../lib/fold";
 
 export function Popover({ anchor, open, onClose, children, width, className = "", side, swallowClick, maxHeight = 380 }) {
@@ -206,7 +206,7 @@ export function MenuList({ id, options, active, value, onHover, onPick, empty, l
                 </b>
                 {o.hint && <small>{o.hint}</small>}
               </span>
-              {o.value === value && <Check className="pk-check" size={14} strokeWidth={2.2} />}
+              {o.value === value && <CheckIcon className="pk-check" size={14} strokeWidth={2.2} />}
             </div>
           </Fragment>
         );
@@ -409,12 +409,12 @@ export function Picker({
         ) : (
           <span className="pk-val ph">{placeholder}</span>
         )}
-        <ChevronDown className="pk-chev" size={15} strokeWidth={1.8} />
+        <ChevronDownIcon className="pk-chev" size={15} strokeWidth={1.8} />
       </button>
       <Popover anchor={btn} open={open} onClose={() => hide(false)} width={menuWidth} side={<Peek o={shown[active]} />}>
         {searchable && (
           <label className="pk-search">
-            <Search size={14} strokeWidth={1.8} />
+            <SearchIcon size={14} strokeWidth={1.8} />
             <input
               ref={field}
               value={q}

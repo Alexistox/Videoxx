@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { MonitorCogIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { MonitorCog } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 
 const GRAPHICS_SWITCHED =
   "This computer's graphics can't draw the 3D preview, so the app switched to software graphics (slower, but works on unsupported graphics). Restart the app to use them.";
@@ -45,7 +45,7 @@ export function GraphicsButton() {
             : "Back to the graphics card. Settings > System > Graphics."
       }
     >
-      <MonitorCog size={15} strokeWidth={1.8} />
+      <MonitorCogIcon size={15} strokeWidth={1.8} />
       <span className="grow ellipsis">
         {"Restart for "}
         {g.mode === "software" ? "software graphics" : g.mode === "safe" ? "safe display" : "card graphics"}

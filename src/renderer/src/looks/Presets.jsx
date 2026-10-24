@@ -1,21 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { api, isOwnStyle, offeredLook, on } from "../src/renderer/src/lib/api";
-import { useApp } from "../src/renderer/src/state/AppProvider";
-import {
-  Copy,
-  Lock,
-  Palette,
-  Plus,
-  Save,
-  SlidersHorizontal,
-  Trash,
-  WandSparkles,
-} from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { Spinner } from "../src/renderer/src/components/ui";
-import { SettingsControls, setAt } from "../src/renderer/src/settings/project/SettingsControls";
-import { isStandard, premiumMsg, usePlan } from "../src/renderer/src/state/usePlan";
-import { LOOK_PREVIEW, STYLE_PREVIEW, STYLE_PREVIEW_TALL } from "../src/renderer/src/looks/stylePreviews";
-import { CustomStyleCard, ImportRuns, KitActions, NoCustomStyles } from "../src/renderer/src/looks/StyleKit";
+import { CopyIcon, LockIcon, Palette, PlusIcon, SaveIcon, SlidersHorizontalIcon, TrashIcon, WandSparklesIcon } from "lucide-react";
+import { api, isOwnStyle, offeredLook, on } from "../lib/api";
+import { useApp } from "../state/AppProvider";
+import { Spinner } from "../components/ui";
+import { SettingsControls, setAt } from "../settings/project/SettingsControls";
+import { isStandard, premiumMsg, usePlan } from "../state/usePlan";
+import { LOOK_PREVIEW, STYLE_PREVIEW, STYLE_PREVIEW_TALL } from "./stylePreviews";
+import { CustomStyleCard, ImportRuns, KitActions, NoCustomStyles } from "./StyleKit";
 import { Characters } from "./Characters";
 
 export function Presets() {
@@ -238,7 +229,7 @@ export function Presets() {
                     aria-label={`New look for ${st.name}`}
                     title={`A look = ${st.name} with your own settings (colours, grade, camera, captions). A style with new elements is made with the Style Kit (Custom tab).`}
                   >
-                    <WandSparkles size={12} />
+                    <WandSparklesIcon size={12} />
                     New look{std && <span className="premium-pill">Premium</span>}
                   </button>
                 )}
@@ -340,7 +331,7 @@ export function Presets() {
                           Yours
                         </span>
                       ) : (
-                        p.builtin && <Lock size={12} className="dim" />
+                        p.builtin && <LockIcon size={12} className="dim" />
                       )}
                     </span>
                     <small className="muted">{p.description}</small>
@@ -350,7 +341,7 @@ export function Presets() {
               {style && !style.legacy && !style.missing && (
                 <button className="preset-item custom-look" onClick={() => newLook(style.id)}>
                   <span className="row">
-                    <Plus size={14} strokeWidth={2} />
+                    <PlusIcon size={14} strokeWidth={2} />
                     New look{std && <span className="premium-pill">Premium</span>}
                   </span>
                   <small className="muted">
@@ -363,7 +354,7 @@ export function Presets() {
             {draft && s ? (
               <section className="panel pad" aria-label="Look settings">
                 <div className="row" style={{ marginBottom: 18 }}>
-                  <SlidersHorizontal size={18} strokeWidth={1.7} />
+                  <SlidersHorizontalIcon size={18} strokeWidth={1.7} />
                   <input
                     className="ed-title grow"
                     value={draft.name}
@@ -407,7 +398,7 @@ export function Presets() {
                 <div className="modal-actions">
                   {!ro && (
                     <button className="btn danger" onClick={del}>
-                      <Trash size={15} />
+                      <TrashIcon size={15} />
                       Delete
                     </button>
                   )}
@@ -422,18 +413,18 @@ export function Presets() {
                         )
                       }
                     >
-                      <Trash size={15} />
+                      <TrashIcon size={15} />
                       Delete
                     </button>
                   )}
                   <span className="grow" />
                   <button className="btn" onClick={dup}>
-                    <Copy size={15} />
+                    <CopyIcon size={15} />
                     Duplicate
                   </button>
                   {!ro && (
                     <button className="btn primary" onClick={save} disabled={busy}>
-                      {busy ? <Spinner size={14} /> : <Save size={15} />}Save look
+                      {busy ? <Spinner size={14} /> : <SaveIcon size={15} />}Save look
                     </button>
                   )}
                 </div>

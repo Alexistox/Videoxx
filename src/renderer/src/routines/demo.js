@@ -1,4 +1,4 @@
-import { NODE } from "../../../../routines/nodes";
+import { NODE } from "./nodes";
 
 const WAIT_CAP = 20;
 const SIM = {

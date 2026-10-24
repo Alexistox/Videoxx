@@ -1,26 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  AudioLinesIcon,
+  CheckIcon,
+  CpuIcon,
+  FileTextIcon,
+  FishIcon,
+  KeyRoundIcon,
+  MicIcon,
+  MinusIcon,
+  RefreshCwIcon,
+  SparklesIcon,
+  TriangleAlertIcon,
+  UploadIcon,
+  WandSparklesIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { fmtLength, fmtPlayed, unheardWords } from "../lib/format";
 import { voiceDialogs } from "../state/voiceDialogs";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowDown,
-  ArrowUp,
-  AudioLines,
-  Check,
-  Cpu,
-  FileText,
-  Fish,
-  KeyRound,
-  Mic,
-  Minus,
-  RefreshCw,
-  Sparkles,
-  TriangleAlert,
-  Upload,
-  WandSparkles,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Busy, Modal, Spinner } from "../components/ui";
 import { OwnRisk, useCustomApi } from "../engines/CustomApiPanel";
@@ -210,7 +210,7 @@ function Recordings({ files, setFiles, gap, setGap, incoming, clearIncoming }) {
             >
               <span className="vo-n">{i + 1}</span>
               <span className="np-file-ico">
-                <AudioLines size={16} strokeWidth={1.8} />
+                <AudioLinesIcon size={16} strokeWidth={1.8} />
               </span>
               <span className="vo-file-txt">
                 <b className="ellipsis" title={f.file}>
@@ -226,7 +226,7 @@ function Recordings({ files, setFiles, gap, setGap, incoming, clearIncoming }) {
                 disabled={i === 0}
                 onClick={() => move(i, -1)}
               >
-                <ArrowUp size={14} />
+                <ArrowUpIcon size={14} />
               </button>
               <button
                 className="icon-btn sm"
@@ -236,7 +236,7 @@ function Recordings({ files, setFiles, gap, setGap, incoming, clearIncoming }) {
                 disabled={i === files.length - 1}
                 onClick={() => move(i, 1)}
               >
-                <ArrowDown size={14} />
+                <ArrowDownIcon size={14} />
               </button>
               <button
                 className="icon-btn sm"
@@ -244,7 +244,7 @@ function Recordings({ files, setFiles, gap, setGap, incoming, clearIncoming }) {
                 title="Remove"
                 onClick={() => setFiles((cur) => cur.filter((x) => x !== f))}
               >
-                <X size={14} />
+                <XIcon size={14} />
               </button>
             </li>
           ))}
@@ -267,7 +267,7 @@ function Recordings({ files, setFiles, gap, setGap, incoming, clearIncoming }) {
         onDrop={drop}
       >
         <span className="np-drop-ico">
-          {busy ? <Spinner size={15} /> : over ? <Upload size={17} strokeWidth={1.8} /> : <Mic size={17} strokeWidth={1.8} />}
+          {busy ? <Spinner size={15} /> : over ? <UploadIcon size={17} strokeWidth={1.8} /> : <MicIcon size={17} strokeWidth={1.8} />}
         </span>
         <span className="np-drop-txt">
           <b>{over ? "Drop them" : files.length ? "Add another recording…" : "Choose your recording…"}</b>
@@ -338,11 +338,11 @@ function JobView({ job, base, language }) {
     s === "run" ? (
       <Spinner size={12} />
     ) : s === "done" || s === "cached" ? (
-      <Check size={12} strokeWidth={2.2} />
+      <CheckIcon size={12} strokeWidth={2.2} />
     ) : s === "bad" ? (
-      <X size={12} strokeWidth={2.2} />
+      <XIcon size={12} strokeWidth={2.2} />
     ) : s === "stopped" ? (
-      <Minus size={12} strokeWidth={2.2} />
+      <MinusIcon size={12} strokeWidth={2.2} />
     ) : null;
   const secMark = (i) =>
     job.status !== "running" && !job.installed && job.sections[i].state === "run"
@@ -384,29 +384,29 @@ function JobView({ job, base, language }) {
           />
         ) : job.status === "done" ? (
           <span className="vo-done">
-            <Check size={16} strokeWidth={2.2} />
+            <CheckIcon size={16} strokeWidth={2.2} />
             Voiceover ready{job.duration ? ` · ${fmtPlayed(job.duration)}` : ""}
           </span>
         ) : job.status === "cancelled" ? (
           <span className="vo-stopped">
-            <Minus size={16} strokeWidth={2.2} />
+            <MinusIcon size={16} strokeWidth={2.2} />
             Stopped
           </span>
         ) : job.installed ? (
           <span className="vo-warned">
-            <TriangleAlert size={16} />
+            <TriangleAlertIcon size={16} />
             {"The voiceover is in; "}
             {after.toLowerCase()}
             {" did not finish"}
           </span>
         ) : job.interrupted ? (
           <span className="vo-stopped">
-            <Minus size={16} strokeWidth={2.2} />
+            <MinusIcon size={16} strokeWidth={2.2} />
             Stopped when the app closed
           </span>
         ) : (
           <span className="vo-failed">
-            <TriangleAlert size={16} />
+            <TriangleAlertIcon size={16} />
             The voiceover stopped
           </span>
         )}
@@ -437,7 +437,7 @@ function JobView({ job, base, language }) {
           {job.status === "done" &&
             (unheard ? (
               <div className="hint warn vo-hint vo-unheard">
-                <TriangleAlert size={18} />
+                <TriangleAlertIcon size={18} />
                 <div>
                   <b>
                     {"Timed, but "}
@@ -468,7 +468,7 @@ function JobView({ job, base, language }) {
             ))}
           {job.scriptChanged && (
             <div className="hint warn vo-hint">
-              <TriangleAlert size={18} />
+              <TriangleAlertIcon size={18} />
               <div>
                 <b>The script changed while it was being read</b>
                 <p>
@@ -480,7 +480,7 @@ function JobView({ job, base, language }) {
           )}
           {job.status === "failed" && (
             <div className={`hint ${job.interrupted ? "warn" : "bad"} vo-hint`}>
-              <TriangleAlert size={18} />
+              <TriangleAlertIcon size={18} />
               <div>
                 <b>{job.installed ? `${after} did not finish` : job.interrupted ? "It did not finish" : "Nothing was changed"}</b>
                 <p>{job.error}</p>
@@ -885,7 +885,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
   const noScript = (
     <div className="vo-card">
       <span className="vo-card-ico">
-        <FileText size={18} strokeWidth={1.7} />
+        <FileTextIcon size={18} strokeWidth={1.7} />
       </span>
       <div className="vo-card-txt">
         <b>No script yet</b>
@@ -903,13 +903,13 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
       <div className="modal-body">
         {dropOver && (
           <div className="vo-drophint" aria-hidden="true">
-            <Upload size={15} strokeWidth={1.8} />
+            <UploadIcon size={15} strokeWidth={1.8} />
             {running ? "A voiceover is being made: add it when it has finished" : "Drop to use as your recording"}
           </div>
         )}
         {busy && !showJob && (
           <p className="vo-replace vo-busy">
-            <TriangleAlert size={13} />
+            <TriangleAlertIcon size={13} />
             Claude is working on this project. Make the voiceover when it has finished: a new voiceover changes the timing it builds to.
           </p>
         )}
@@ -933,19 +933,19 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                   value: "file",
                   label: "My recording",
                   hint: files.length && tab !== "file" ? `${files.length} added` : void 0,
-                  icon: <Mic size={14} strokeWidth={1.8} />,
+                  icon: <MicIcon size={14} strokeWidth={1.8} />,
                 },
-                { value: "elevenlabs", label: "ElevenLabs", icon: <Sparkles size={14} strokeWidth={1.8} /> },
-                { value: "fish", label: "Fish Audio", icon: <Fish size={14} strokeWidth={1.8} /> },
-                { value: "kokoro", label: "Local voice", hint: "free", icon: <Cpu size={14} strokeWidth={1.8} /> },
+                { value: "elevenlabs", label: "ElevenLabs", icon: <SparklesIcon size={14} strokeWidth={1.8} /> },
+                { value: "fish", label: "Fish Audio", icon: <FishIcon size={14} strokeWidth={1.8} /> },
+                { value: "kokoro", label: "Local voice", hint: "free", icon: <CpuIcon size={14} strokeWidth={1.8} /> },
                 ...(custom?.setup || tab === "custom"
-                  ? [{ value: "custom", label: "Custom API", icon: <WandSparkles size={14} strokeWidth={1.8} /> }]
+                  ? [{ value: "custom", label: "Custom API", icon: <WandSparklesIcon size={14} strokeWidth={1.8} /> }]
                   : []),
               ]}
             />
             {scriptLang && hasScript && (
               <div className="hint warn vo-hint vo-otherlang">
-                <TriangleAlert size={18} />
+                <TriangleAlertIcon size={18} />
                 <div>
                   <b>
                     {"The script is in "}
@@ -964,7 +964,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                   </p>
                   <div className="row wrap" style={{ marginTop: 10 }}>
                     <button className="btn small" onClick={settled(onWriteScript)}>
-                      <FileText size={14} />
+                      <FileTextIcon size={14} />
                       {"Rewrite it in "}
                       {L.name}
                     </button>
@@ -992,7 +992,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
             )}
             {replacing && (
               <p className="vo-replace">
-                <TriangleAlert size={13} />
+                <TriangleAlertIcon size={13} />
                 {"This replaces the voiceover you have now (the old one goes to the "}
                 {isMac ? "Trash" : "Recycle Bin"}).
                 {built ? " Your scenes are timed to it: cues follow the new words, but shot lengths change with the new pacing." : ""}
@@ -1013,7 +1013,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                 (!vs.elevenlabs.hasKey ? (
                   <div className="vo-card">
                     <span className="vo-card-ico">
-                      <Sparkles size={18} strokeWidth={1.7} />
+                      <SparklesIcon size={18} strokeWidth={1.7} />
                     </span>
                     <div className="vo-card-txt">
                       <b>Your ElevenLabs voices</b>
@@ -1023,7 +1023,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                       </p>
                       <div className="row" style={{ marginTop: 12 }}>
                         <button className="btn small primary" onClick={() => setKeyOpen(true)}>
-                          <KeyRound size={14} />
+                          <KeyRoundIcon size={14} />
                           Add ElevenLabs key
                         </button>
                         <button
@@ -1107,7 +1107,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                     )}
                     {short && (
                       <div className="hint warn vo-hint">
-                        <TriangleAlert size={18} />
+                        <TriangleAlertIcon size={18} />
                         <div>
                           <b>Not enough characters left</b>
                           <p>
@@ -1145,7 +1145,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                 (!vs.fish.hasKey ? (
                   <div className="vo-card">
                     <span className="vo-card-ico">
-                      <Fish size={18} strokeWidth={1.7} />
+                      <FishIcon size={18} strokeWidth={1.7} />
                     </span>
                     <div className="vo-card-txt">
                       <b>Fish Audio voices</b>
@@ -1155,7 +1155,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                       </p>
                       <div className="row" style={{ marginTop: 12 }}>
                         <button className="btn small primary" onClick={() => setFishKeyOpen(true)}>
-                          <KeyRound size={14} />
+                          <KeyRoundIcon size={14} />
                           Add Fish Audio key
                         </button>
                         <button className="btn small" onClick={() => api.external("https://fish.audio/app/api-keys/").catch(() => {})}>
@@ -1218,7 +1218,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                     )}
                     {est && fishCredit != null && (est.usd ?? 0) > fishCredit && (
                       <div className="hint warn vo-hint">
-                        <TriangleAlert size={18} />
+                        <TriangleAlertIcon size={18} />
                         <div>
                           <b>Not enough credit left</b>
                           <p>
@@ -1251,7 +1251,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                 (!kokoroLang ? (
                   <div className="vo-card">
                     <span className="vo-card-ico">
-                      <Cpu size={18} strokeWidth={1.7} />
+                      <CpuIcon size={18} strokeWidth={1.7} />
                     </span>
                     <div className="vo-card-txt">
                       <b>
@@ -1274,7 +1274,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                             setEst(null);
                           }}
                         >
-                          <Sparkles size={14} />
+                          <SparklesIcon size={14} />
                           ElevenLabs
                         </button>
                         <button
@@ -1284,7 +1284,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                             setEst(null);
                           }}
                         >
-                          <Sparkles size={14} />
+                          <SparklesIcon size={14} />
                           Fish Audio
                         </button>
                         <button
@@ -1294,7 +1294,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                             setEst(null);
                           }}
                         >
-                          <Mic size={14} />
+                          <MicIcon size={14} />
                           My recording
                         </button>
                       </div>
@@ -1328,7 +1328,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                 (!custom?.setup ? (
                   <div className="vo-card">
                     <span className="vo-card-ico">
-                      <WandSparkles size={18} strokeWidth={1.7} />
+                      <WandSparklesIcon size={18} strokeWidth={1.7} />
                     </span>
                     <div className="vo-card-txt">
                       <b>
@@ -1343,7 +1343,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                 ) : (
                   <div className="vo-card">
                     <span className="vo-card-ico">
-                      <WandSparkles size={18} strokeWidth={1.7} />
+                      <WandSparklesIcon size={18} strokeWidth={1.7} />
                     </span>
                     <div className="vo-card-txt">
                       <b>
@@ -1450,7 +1450,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                       disabled={starting || !!busy}
                       title={`Makes it again the same way: ${job.label}`}
                     >
-                      <RefreshCw size={14} />
+                      <RefreshCwIcon size={14} />
                       Try again
                     </button>
                   )}
@@ -1466,7 +1466,7 @@ export function VoiceoverPanel({ projectId, status, base, tab: want, busy, onClo
                 Close
               </button>
               <button className="btn primary" onClick={settled(go)} disabled={!canGo}>
-                {starting ? <Spinner size={14} /> : tab === "file" ? <Check size={15} /> : <AudioLines size={15} />}
+                {starting ? <Spinner size={14} /> : tab === "file" ? <CheckIcon size={15} /> : <AudioLinesIcon size={15} />}
                 {goLabel}
               </button>
             </>

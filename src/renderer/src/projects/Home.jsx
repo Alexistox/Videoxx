@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
+import {
+  CheckIcon,
+  ClapperboardIcon,
+  FolderInputIcon,
+  ImagePlusIcon,
+  LayoutTemplateIcon,
+  LogInIcon,
+  PlusIcon,
+  SlidersHorizontalIcon,
+  SparklesIcon,
+  VideoIcon,
+} from "lucide-react";
 import { api } from "../lib/api";
 import { ago } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Check,
-  Clapperboard,
-  FolderInput,
-  ImagePlus,
-  LayoutTemplate,
-  LogIn,
-  Plus,
-  SlidersHorizontal,
-  Sparkles,
-  Video,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { I, Spinner } from "../components/ui";
 import { useSpeech } from "../settings/SettingsRows";
 import { ComingUp } from "../channels/ComingUp";
@@ -48,17 +48,17 @@ export function Home() {
           <div className="actions">
             {brand === "personal" ? (
               <button className="btn primary" onClick={() => setNewProject(true)}>
-                <Plus {...I} />
+                <PlusIcon {...I} />
                 New video
               </button>
             ) : (
               <>
                 <button className="btn" onClick={importFolder}>
-                  <FolderInput {...I} />
+                  <FolderInputIcon {...I} />
                   Import
                 </button>
                 <button className="btn primary" onClick={() => setNewProject(true)}>
-                  <Plus {...I} />
+                  <PlusIcon {...I} />
                   New project
                 </button>
               </>
@@ -97,7 +97,7 @@ function FacelessHome() {
       s: "Uses your own Claude Code login: your account, model, skills and memory.",
       act: claude?.loggedIn ? null : (
         <button className="btn small" onClick={signIn} disabled={signingIn}>
-          {signingIn ? <Spinner size={14} /> : <LogIn size={14} />}Sign in
+          {signingIn ? <Spinner size={14} /> : <LogInIcon size={14} />}Sign in
         </button>
       ),
     },
@@ -142,7 +142,7 @@ function FacelessHome() {
       s: "Start from a voiceover or a topic, or bring in a project folder you made before.",
       act: projects.length ? null : (
         <button className="btn small" onClick={() => setNewProject(true)}>
-          <Plus size={14} />
+          <PlusIcon size={14} />
           New
         </button>
       ),
@@ -180,7 +180,7 @@ function FacelessHome() {
           </div>
           {checks.map((c, i) => (
             <div key={i} className={`check-row ${c.done ? "done" : ""}`}>
-              <span className="circle">{c.done && <Check size={14} strokeWidth={2} />}</span>
+              <span className="circle">{c.done && <CheckIcon size={14} strokeWidth={2} />}</span>
               <span className="t">
                 {c.t}
                 <small className="muted">{c.s}</small>
@@ -193,14 +193,14 @@ function FacelessHome() {
       <div className="quick">
         {[
           {
-            icon: Clapperboard,
+            icon: ClapperboardIcon,
             t: last ? "Continue editing" : "Open the editor",
             d: last ? last.name : "Pick a project first",
             run: () => (last ? go("editor", last.id) : go("projects")),
           },
-          { icon: Plus, t: "New project", d: "Voiceover in, video out", run: () => setNewProject(true) },
-          { icon: SlidersHorizontal, t: "Styles", d: "Pixel art, Vox and your own styles", run: () => go("presets") },
-          { icon: Sparkles, t: "Memory", d: "Style rules Claude always follows", run: () => go("memory") },
+          { icon: PlusIcon, t: "New project", d: "Voiceover in, video out", run: () => setNewProject(true) },
+          { icon: SlidersHorizontalIcon, t: "Styles", d: "Pixel art, Vox and your own styles", run: () => go("presets") },
+          { icon: SparklesIcon, t: "Memory", d: "Style rules Claude always follows", run: () => go("memory") },
         ].map((q, i) => (
           <button key={i} className="card clickable" onClick={q.run} style={{ padding: 18, border: void 0 }}>
             <div className="tile">
@@ -232,7 +232,7 @@ function PersonalHome() {
             </small>
           </span>
           <button className="btn small" onClick={signIn} disabled={signingIn}>
-            {signingIn ? <Spinner size={14} /> : <LogIn size={14} />}Sign in
+            {signingIn ? <Spinner size={14} /> : <LogInIcon size={14} />}Sign in
           </button>
         </section>
       )}
@@ -240,14 +240,14 @@ function PersonalHome() {
       <div className="quick">
         {[
           {
-            icon: Clapperboard,
+            icon: ClapperboardIcon,
             t: last ? "Continue editing" : "Open the editor",
             d: last ? last.name : "Plan a video first",
             run: () => (last ? go("editor", last.id) : setNewProject(true)),
           },
-          { icon: Video, t: "New video", d: "Title, thumbnail, footage", run: () => setNewProject(true) },
-          { icon: ImagePlus, t: "Thumbnails", d: "Canvas and prompts, by Higgsfield", run: () => go("thumbnails") },
-          { icon: LayoutTemplate, t: "Layouts", d: "Facecam, screen and background", run: () => go("layouts") },
+          { icon: VideoIcon, t: "New video", d: "Title, thumbnail, footage", run: () => setNewProject(true) },
+          { icon: ImagePlusIcon, t: "Thumbnails", d: "Canvas and prompts, by Higgsfield", run: () => go("thumbnails") },
+          { icon: LayoutTemplateIcon, t: "Layouts", d: "Facecam, screen and background", run: () => go("layouts") },
         ].map((q, i) => (
           <button key={i} className="card clickable" onClick={q.run} style={{ padding: 18, border: void 0 }}>
             <div className="tile">
@@ -276,12 +276,12 @@ function PersonalHome() {
         ) : (
           <div className="empty" style={{ minHeight: 220, padding: 40 }}>
             <div className="ic">
-              <Video size={28} strokeWidth={1.6} />
+              <VideoIcon size={28} strokeWidth={1.6} />
             </div>
             <h3>No videos yet</h3>
             <p>Start with the title and the thumbnail idea. Your footage goes in next.</p>
             <button className="btn primary" onClick={() => setNewProject(true)}>
-              <Plus {...I} />
+              <PlusIcon {...I} />
               New video
             </button>
           </div>
@@ -295,7 +295,9 @@ function PersonalHome() {
 export function VideoCard({ p, onOpen }) {
   return (
     <button className="video-card" onClick={onOpen} title={p.name}>
-      <span className="vc-thumb">{p.thumb ? <img src={p.thumb} alt="" draggable={false} /> : <Video size={26} strokeWidth={1.4} />}</span>
+      <span className="vc-thumb">
+        {p.thumb ? <img src={p.thumb} alt="" draggable={false} /> : <VideoIcon size={26} strokeWidth={1.4} />}
+      </span>
       <span className="vc-meta">
         <b className="ellipsis">{p.name}</b>
         <time>{ago(p.opened_at || p.updated_at)}</time>

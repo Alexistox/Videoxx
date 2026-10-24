@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { ImagePlusIcon, XIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { ImagePlus, X } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../components/ui";
 import { ChannelField, startChannel } from "../channels/ChannelEditor";
 import { ChannelLessons } from "../youtube/ChannelLessons";
@@ -118,7 +118,7 @@ export function NewVideo({ onClose }) {
               {preview ? <img src={preview} alt="Thumbnail" /> : <span className="nv-ph" />}
               <span className="grow ellipsis path">{thumb}</span>
               <button className="icon-btn sm" aria-label="Remove thumbnail" onClick={() => setThumb(null)}>
-                <X size={14} />
+                <XIcon size={14} />
               </button>
             </div>
           ) : (
@@ -132,7 +132,7 @@ export function NewVideo({ onClose }) {
               onDrop={onDrop}
             >
               <button className="btn" onClick={pick}>
-                <ImagePlus size={16} strokeWidth={1.7} />
+                <ImagePlusIcon size={16} strokeWidth={1.7} />
                 Choose image…
               </button>
               <span className="small">or drop it here</span>

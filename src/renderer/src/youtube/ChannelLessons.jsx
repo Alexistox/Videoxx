@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { LightbulbIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Lightbulb } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 
 export function ChannelLessons({ channelId, personal }) {
   const { channels } = useApp();
@@ -24,7 +24,7 @@ export function ChannelLessons({ channelId, personal }) {
   return (
     <div className="yt-np-lessons" aria-label={`What works on ${ch.name}`}>
       <b>
-        <Lightbulb size={13} strokeWidth={1.9} />
+        <LightbulbIcon size={13} strokeWidth={1.9} />
         {"What works on "}
         {ch.name}
       </b>

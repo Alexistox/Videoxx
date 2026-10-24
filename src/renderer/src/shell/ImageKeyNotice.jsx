@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { ImagePlusIcon } from "lucide-react";
 import { useApp } from "../state/AppProvider";
-import { ImagePlus } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal } from "../components/ui";
 import { KeyDialog } from "../thumbnails/KeyDialog";
 
@@ -33,7 +33,7 @@ export function ImageKeyNotice() {
     <Modal title="Set up image generation first" onClose={close}>
       <div className="modal-body col image-key-notice" style={{ gap: 12 }}>
         <div className="row" style={{ gap: 10, alignItems: "flex-start" }}>
-          <ImagePlus size={20} strokeWidth={1.7} style={{ flex: "none", marginTop: 2, color: "var(--mint)" }} />
+          <ImagePlusIcon size={20} strokeWidth={1.7} style={{ flex: "none", marginTop: 2, color: "var(--mint)" }} />
           <p style={{ margin: 0, lineHeight: 1.6 }}>
             {keyNotice}
             {" Vox and custom-style videos get every picture from your own "}

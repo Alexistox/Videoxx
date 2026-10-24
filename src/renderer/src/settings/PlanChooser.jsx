@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { CheckIcon } from "lucide-react";
 import { api } from "../lib/api";
-import { Check } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 
 export const PLANS = [
   { id: "pro", label: "Pro", price: 20 },
@@ -58,7 +58,7 @@ export function PlanChooser({ plan, onSaved, hint = [], showHide = true }) {
             aria-pressed={on}
             onClick={() => pick(p.id)}
           >
-            {on && <Check size={12} />}
+            {on && <CheckIcon size={12} />}
             {p.label}
             <small>${p.price}</small>
           </button>
@@ -98,7 +98,7 @@ export function PlanChooser({ plan, onSaved, hint = [], showHide = true }) {
           aria-pressed={!!plan?.hide}
           onClick={() => pick("hide")}
         >
-          {plan?.hide && <Check size={12} />}Not sure · hide savings
+          {plan?.hide && <CheckIcon size={12} />}Not sure · hide savings
         </button>
       )}
     </div>

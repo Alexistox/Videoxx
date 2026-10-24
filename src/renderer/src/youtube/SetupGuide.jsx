@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { CheckIcon, ExternalLinkIcon, FileBracesIcon, LogInIcon, TriangleAlertIcon, UploadIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Check, ExternalLink, FileBraces, LogIn, TriangleAlert, Upload } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../components/ui";
 import { isEnter } from "../channels/stages";
 import { useYtStatus } from "./useYtStatus";
@@ -19,7 +19,7 @@ const Ext = ({ url, children }) => {
   const { toast } = useApp();
   return (
     <button type="button" className="btn small yt-ext" onClick={() => api.external(url).catch((e) => toast(e.message, "bad"))} title={url}>
-      <ExternalLink size={13} strokeWidth={1.9} />
+      <ExternalLinkIcon size={13} strokeWidth={1.9} />
       {children}
     </button>
   );
@@ -28,7 +28,7 @@ function Step({ n, title, done, children, refEl }) {
   return (
     <div className={`yt-step ${done ? "done" : ""}`} ref={refEl}>
       <span className="yt-step-n" aria-hidden="true">
-        {done ? <Check size={14} strokeWidth={2.4} /> : n}
+        {done ? <CheckIcon size={14} strokeWidth={2.4} /> : n}
       </span>
       <div className="yt-step-b">
         <h4>
@@ -172,7 +172,7 @@ export function SetupGuide({ onClose, focus, onSignIn }) {
           </p>
           {hasKey && (
             <p className="yt-saved">
-              <Check size={13} strokeWidth={2.2} />
+              <CheckIcon size={13} strokeWidth={2.2} />
               Saved, ends in …{status.key.hint}. Paste another one to replace it.
             </p>
           )}
@@ -199,7 +199,7 @@ export function SetupGuide({ onClose, focus, onSignIn }) {
           </div>
           {err.key && (
             <p className="yt-err" role="alert">
-              <TriangleAlert size={13} />
+              <TriangleAlertIcon size={13} />
               {err.key}
             </p>
           )}
@@ -252,7 +252,7 @@ export function SetupGuide({ onClose, focus, onSignIn }) {
           </p>
           {hasClient && (
             <p className="yt-saved">
-              <Check size={13} strokeWidth={2.2} />
+              <CheckIcon size={13} strokeWidth={2.2} />
               {status.client.own ? `Your client is saved (${status.client.id}).` : "Using the built-in sign-in."}
               {" Add another one to replace it."}
             </p>
@@ -274,7 +274,7 @@ export function SetupGuide({ onClose, focus, onSignIn }) {
             onDrop={drop}
             disabled={!!busy}
           >
-            {over ? <Upload size={17} strokeWidth={1.8} /> : <FileBraces size={17} strokeWidth={1.8} />}
+            {over ? <UploadIcon size={17} strokeWidth={1.8} /> : <FileBracesIcon size={17} strokeWidth={1.8} />}
             <span>
               <b>{over ? "Drop it" : "Choose the client file…"}</b>
               <small>or drop the downloaded client_secret….json here</small>
@@ -316,7 +316,7 @@ export function SetupGuide({ onClose, focus, onSignIn }) {
           </div>
           {err.client && (
             <p className="yt-err" role="alert">
-              <TriangleAlert size={13} />
+              <TriangleAlertIcon size={13} />
               {err.client}
             </p>
           )}
@@ -334,7 +334,7 @@ export function SetupGuide({ onClose, focus, onSignIn }) {
               onClick={signInNow}
               title={hasClient || cid.trim() ? void 0 : "Do steps 4 and 5 first"}
             >
-              <LogIn size={14} />
+              <LogInIcon size={14} />
               Sign in with Google
             </button>
           </div>

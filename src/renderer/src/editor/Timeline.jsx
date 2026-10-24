@@ -1,27 +1,27 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { fmtTime } from "../src/renderer/src/lib/format";
 import {
-  Anchor,
-  AudioLines,
-  Clapperboard,
-  Maximize2,
-  MessageSquareText,
-  Music2,
-  Sparkle,
-  WavesHorizontal,
-  ZoomIn,
-  ZoomOut,
-} from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { isMac } from "../src/renderer/src/help/keys";
+  AnchorIcon,
+  AudioLinesIcon,
+  ClapperboardIcon,
+  Maximize2Icon,
+  MessageSquareTextIcon,
+  Music2Icon,
+  SparkleIcon,
+  WavesHorizontalIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "lucide-react";
+import { fmtTime } from "../lib/format";
+import { isMac } from "../help/keys";
 
 const TRACKS = [
   { id: "ruler", h: 20 },
-  { id: "shots", h: 34, label: "Shots", icon: Clapperboard },
-  { id: "words", h: 30, label: "Narration", icon: MessageSquareText },
-  { id: "cues", h: 24, label: "Cues", icon: Anchor },
-  { id: "audio", h: 46, label: "Audio", icon: AudioLines },
-  { id: "fx", h: 20, label: "Cards", icon: Sparkle },
-  { id: "beds", h: 22, label: "Auto beds", icon: WavesHorizontal },
+  { id: "shots", h: 34, label: "Shots", icon: ClapperboardIcon },
+  { id: "words", h: 30, label: "Narration", icon: MessageSquareTextIcon },
+  { id: "cues", h: 24, label: "Cues", icon: AnchorIcon },
+  { id: "audio", h: 46, label: "Audio", icon: AudioLinesIcon },
+  { id: "fx", h: 20, label: "Cards", icon: SparkleIcon },
+  { id: "beds", h: 22, label: "Auto beds", icon: WavesHorizontalIcon },
 ];
 const LANE_COL = { music: "#b496db", effects: "#d7b461", ambience: "#84a9d8", free: "#89bea4" };
 const clipStart = (c, words) => (c.anchor && words[c.anchor.word] ? Math.max(0, words[c.anchor.word].s + c.anchor.offset) : c.start);
@@ -81,7 +81,7 @@ export function Timeline({
         id: `lane:${l.id}`,
         h: 20,
         label: l.name + (l.mute ? " (muted)" : l.solo ? " (solo)" : ""),
-        icon: Music2,
+        icon: Music2Icon,
       })),
       ...TRACKS.slice(i),
     ];
@@ -633,13 +633,13 @@ export function Timeline({
         </span>
         <span className="grow" />
         <button className="icon-btn sm" aria-label="Zoom out" onClick={() => zoom(1 / 1.5)}>
-          <ZoomOut size={15} strokeWidth={1.7} />
+          <ZoomOutIcon size={15} strokeWidth={1.7} />
         </button>
         <button className="icon-btn sm" aria-label="Zoom in" onClick={() => zoom(1.5)}>
-          <ZoomIn size={15} strokeWidth={1.7} />
+          <ZoomInIcon size={15} strokeWidth={1.7} />
         </button>
         <button className="icon-btn sm" aria-label="Fit" onClick={fit}>
-          <Maximize2 size={14} strokeWidth={1.7} />
+          <Maximize2Icon size={14} strokeWidth={1.7} />
         </button>
       </div>
       <div className="tl-body">

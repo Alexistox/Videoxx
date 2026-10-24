@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { CircleAlertIcon, CircleCheckIcon, InfoIcon, LifeBuoyIcon, XIcon } from "lucide-react";
 import { useApp } from "../state/AppProvider";
-import { CircleAlert, CircleCheck, Info, LifeBuoy, X } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 
 export const I = { size: 18, strokeWidth: 1.7 };
 const PIXELS = {
@@ -154,7 +154,7 @@ export function Modal({ title, onClose, children, wide, className = "", dirty, s
           <h2>{title}</h2>
           {head && <div className="modal-head">{head}</div>}
           <button className="icon-btn" onClick={() => tryClose()} aria-label="Close" disabled={!!closeOff} title={closeOff || "Close"}>
-            <X {...I} />
+            <XIcon {...I} />
           </button>
         </header>
         <div className="modal-scroll">{children}</div>
@@ -217,7 +217,7 @@ export function Toasts() {
             onMouseEnter={() => holdToast(t.id, true)}
             onMouseLeave={() => holdToast(t.id, false)}
           >
-            {t.kind === "bad" ? <CircleAlert {...I} /> : t.kind === "info" ? <Info {...I} /> : <CircleCheck {...I} />}
+            {t.kind === "bad" ? <CircleAlertIcon {...I} /> : t.kind === "info" ? <InfoIcon {...I} /> : <CircleCheckIcon {...I} />}
             <span>{t.text}</span>
             {t.action && (
               <button
@@ -239,12 +239,12 @@ export function Toasts() {
                   dismiss(t.id);
                 }}
               >
-                <LifeBuoy size={13} />
+                <LifeBuoyIcon size={13} />
                 Report
               </button>
             )}
             <button className="icon-btn sm" aria-label="Dismiss" onClick={() => dismiss(t.id)}>
-              <X size={14} />
+              <XIcon size={14} />
             </button>
           </div>
         ))}

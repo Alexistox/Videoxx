@@ -38,6 +38,7 @@ for (const [i, n] of ast.program.body.entries()) {
   const line = n.loc.start.line;
   let k = "app";
   if (line < cfg.firstLine) k = REN ? "vendor" : "drop";
+  if (cfg.lucideRange && line >= cfg.lucideRange[0] && line <= cfg.lucideRange[1]) k = "lucide";
   if (t.isVariableDeclaration(n) && n.declarations.length === 1) {
     const d = n.declarations[0];
     if (t.isIdentifier(d.id) && t.isCallExpression(d.init) && t.isIdentifier(d.init.callee, { name: "require" }) && t.isStringLiteral(d.init.arguments[0])) {
@@ -62,7 +63,7 @@ for (const [i, n] of ast.program.body.entries()) {
 const mods = cfg.modules.slice().sort((a, b) => a.start_line - b.start_line).map((m, j) => ({ ...m, j, stmts: [], imports: new Map(), exports: new Set(), ext: new Set(), assetUse: new Set(), vendorUse: new Set() }));
 const modOfStmt = [];
 const modAtLine = (line) => { let m = null; for (const mm of mods) if (mm.start_line <= line) m = mm; return m; };
-for (const mm of mods) { mm.nsUse = new Set(); mm.reexports = new Map(); mm.aliasExports = []; }
+for (const mm of mods) { mm.lucideUse = new Set(); mm.nsUse = new Set(); mm.reexports = new Map(); mm.aliasExports = []; }
 for (const [i, n] of ast.program.body.entries()) {
   if (kindOf[i] !== "app") continue;
   let m = null;
@@ -87,6 +88,7 @@ for (const [name, b] of Object.entries(prog.scope.bindings)) {
     else if (k === "asset") um.assetUse.add(name);
     else if (k === "vendor") um.vendorUse.add(name);
     else if (k === "ns") um.nsUse.add(name);
+    else if (k === "lucide") um.lucideUse.add(name);
     else if (k === "app") {
       const dm = declMod.get(name);
       if (dm !== um) {
@@ -315,6 +317,17 @@ for (const m of mods) {
   for (const n of nsLeft) {
     file.program.body.unshift(t.importDeclaration([t.importNamespaceSpecifier(t.identifier(n))], t.stringLiteral(rel(m.path, nsInfo.get(n).target.path))));
     const pq = progOf(file); pq.scope.crawl(); safeRename(pq, n, strip(n));
+  }
+  if (m.lucideUse.size) {
+    const pq = progOf(file); pq.scope.crawl();
+    const specs = [];
+    for (const n of [...m.lucideUse].sort()) {
+      const base = strip(n);
+      const local = safeRename(pq, n, base) ? base : safeRename(pq, n, base + "Icon") ? base + "Icon" : null;
+      if (!local) { report.warnings.push(`${m.path}: could not name icon ${n}`); continue; }
+      specs.push(t.importSpecifier(t.identifier(local), t.identifier(local)));
+    }
+    file.program.body.unshift(t.importDeclaration(specs, t.stringLiteral("lucide-react")));
   }
   const flags = { fragment: false };
   if (REN) convertJsx(file, flags);

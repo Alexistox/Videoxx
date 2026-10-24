@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { PenLineIcon } from "lucide-react";
 import { api } from "../../lib/api";
 import { fmtLength, parseLength } from "../../lib/format";
 import { useApp } from "../../state/AppProvider";
-import { PenLine } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal } from "../../components/ui";
 import { lang } from "../../settings/languages";
 import { LanguagePicker } from "../../settings/LanguagePicker";
@@ -160,7 +160,7 @@ export function ScriptPanel({ projectId, status, onStart, onClose }) {
             Cancel
           </button>
           <button className="btn primary" onClick={go}>
-            <PenLine size={15} />
+            <PenLineIcon size={15} />
             {rewrite ? "Rewrite script" : "Write script"}
           </button>
         </div>

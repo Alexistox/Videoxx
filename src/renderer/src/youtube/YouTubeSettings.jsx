@@ -1,18 +1,18 @@
 import { useState } from "react";
+import {
+  BookOpenIcon,
+  CopyIcon,
+  EllipsisIcon,
+  ExternalLinkIcon,
+  LogInIcon,
+  PlusIcon,
+  RefreshCwIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+  UnplugIcon,
+} from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  BookOpen,
-  Copy,
-  Ellipsis,
-  ExternalLink,
-  LogIn,
-  Plus,
-  RefreshCw,
-  Trash,
-  TriangleAlert,
-  Unplug,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 import { ActionMenu } from "../channels/ActionMenu";
 import { channelUrl, dateShort, since } from "./format";
@@ -30,23 +30,23 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
     busy = !!step || c.syncing;
   const refresh = () => api.ytSync(c.id).catch((e) => toast(e.message, "bad"));
   const items = [
-    { value: "refresh", label: "Read it again now", icon: <RefreshCw size={14} strokeWidth={1.8} />, disabled: busy, run: refresh },
+    { value: "refresh", label: "Read it again now", icon: <RefreshCwIcon size={14} strokeWidth={1.8} />, disabled: busy, run: refresh },
     {
       value: "signin",
       label: c.signedIn ? "Sign in with Google again" : out ? "Sign in again" : "Sign in for full analytics",
-      icon: <LogIn size={14} strokeWidth={1.8} />,
+      icon: <LogInIcon size={14} strokeWidth={1.8} />,
       run: onSignIn,
     },
     {
       value: "open",
       label: "Open on YouTube",
-      icon: <ExternalLink size={14} strokeWidth={1.8} />,
+      icon: <ExternalLinkIcon size={14} strokeWidth={1.8} />,
       run: () => api.external(channelUrl(c)).catch(() => {}),
     },
     {
       value: "copy",
       label: "Copy channel ID",
-      icon: <Copy size={14} strokeWidth={1.8} />,
+      icon: <CopyIcon size={14} strokeWidth={1.8} />,
       run: () => api.copy(c.id).then(() => toast("Channel ID copied.")),
     },
     // also for a sign-in Google ended: public stats only, without the "sign in again" warning
@@ -58,7 +58,7 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
             label: "Stop using the Google sign-⁠in…",
             keywords: "sign-in disconnect",
             hint: "Keeps public stats",
-            icon: <Unplug size={14} strokeWidth={1.8} />,
+            icon: <UnplugIcon size={14} strokeWidth={1.8} />,
             group: " ",
             run: onDisconnect,
           },
@@ -67,7 +67,7 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
     {
       value: "remove",
       label: "Stop following…",
-      icon: <Trash size={14} strokeWidth={1.8} className="ch-danger" />,
+      icon: <TrashIcon size={14} strokeWidth={1.8} className="ch-danger" />,
       group: " ",
       run: onRemove,
     },
@@ -84,7 +84,7 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
         </small>
         {out && (
           <small className="yt-set-warn">
-            <TriangleAlert size={11} />
+            <TriangleAlertIcon size={11} />
             {"Google ended the sign-in. "}
             <button className="text-btn link" onClick={onSignIn}>
               Sign in again
@@ -93,7 +93,7 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
         )}
         {!out && c.error && (
           <small className="yt-set-warn" title={c.error}>
-            <TriangleAlert size={11} />
+            <TriangleAlertIcon size={11} />
             <span className="ellipsis">{c.error}</span>
           </small>
         )}
@@ -110,7 +110,7 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
       </div>
       <LinkPicker yt={c} id={`yt-set-link-${c.id}`} />
       <button className="icon-btn sm" onClick={refresh} disabled={busy} aria-label={`Read ${c.title} again`} title="Read it again now">
-        {busy ? <Spinner size={13} /> : <RefreshCw size={15} strokeWidth={1.8} />}
+        {busy ? <Spinner size={13} /> : <RefreshCwIcon size={15} strokeWidth={1.8} />}
       </button>
       <button
         className="icon-btn sm"
@@ -120,7 +120,7 @@ function ChannelRow({ c, step, onSignIn, onRemove, onDisconnect }) {
           setMenu((m) => (m === el ? null : el));
         }}
       >
-        <Ellipsis size={16} strokeWidth={1.8} />
+        <EllipsisIcon size={16} strokeWidth={1.8} />
       </button>
       {menu && <ActionMenu at={menu} label={`${c.title}: menu`} onClose={() => setMenu(null)} items={items} width={300} />}
     </div>
@@ -174,7 +174,7 @@ export function YouTubeSettings() {
               Setup guide<small>About ten minutes, once: your own free Google Cloud project.</small>
             </span>
             <button className="btn small" onClick={() => dlg.guide()}>
-              <BookOpen size={14} />
+              <BookOpenIcon size={14} />
               Open the guide
             </button>
           </div>
@@ -241,11 +241,11 @@ export function YouTubeSettings() {
           </div>
           <div className="row wrap">
             <button className="btn small" onClick={dlg.add}>
-              <Plus size={14} />
+              <PlusIcon size={14} />
               Follow a channel
             </button>
             <button className="btn small primary" onClick={startSignIn}>
-              <LogIn size={14} />
+              <LogInIcon size={14} />
               Sign in with Google
             </button>
           </div>

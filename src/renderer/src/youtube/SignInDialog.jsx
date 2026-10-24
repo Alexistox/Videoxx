@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { ExternalLinkIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { ExternalLink, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../components/ui";
 import { useYtStatus } from "./useYtStatus";
 import { LinkStep } from "./LinkStep";
@@ -74,7 +74,7 @@ export function SignInDialog({ onClose, onGuide, onAdded }) {
         )}
         {phase === "failed" && (
           <div className="hint bad" role="alert">
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>Not connected</b>
               <p>{err}</p>
@@ -85,7 +85,7 @@ export function SignInDialog({ onClose, onGuide, onAdded }) {
           <>
             {!got?.analytics && (
               <div className="hint warn">
-                <TriangleAlert size={18} />
+                <TriangleAlertIcon size={18} />
                 <div>
                   <b>Analytics not allowed</b>
                   <p>Only public numbers show for now. Sign in again and tick both boxes to see watch time and how long people watch.</p>
@@ -105,7 +105,7 @@ export function SignInDialog({ onClose, onGuide, onAdded }) {
           {phase === "waiting" && (
             <>
               <button className="btn" onClick={() => api.ytReopenSignIn().catch(() => {})}>
-                <ExternalLink size={14} />
+                <ExternalLinkIcon size={14} />
                 Open the page again
               </button>
               <span className="grow" />

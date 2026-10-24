@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ImagePlusIcon, PlusIcon, TriangleAlertIcon } from "lucide-react";
 import { api, offeredLook } from "../lib/api";
 import { fmtLength } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import { ImagePlus, Plus, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { MOD, isMac } from "../help/keys";
 import { Modal, Spinner } from "../components/ui";
 import { Picker } from "../components/Picker";
@@ -33,7 +33,7 @@ const chOpts = (channels, current, extra = true) => [
           label: "New channel…",
           icon: (
             <span className="ch-plus">
-              <Plus size={14} strokeWidth={2} />
+              <PlusIcon size={14} strokeWidth={2} />
             </span>
           ),
         },
@@ -386,7 +386,7 @@ export function ChannelEditor({ channel, onClose, onSaved, onDeleted }) {
             >
               {shown ? <img src={shown} alt="" /> : <span style={{ color: inkOn(color) }}>{initials(name || "New channel")}</span>}
               <em>
-                <ImagePlus size={15} strokeWidth={1.8} />
+                <ImagePlusIcon size={15} strokeWidth={1.8} />
               </em>
             </button>
             {shown && (
@@ -454,7 +454,7 @@ export function ChannelEditor({ channel, onClose, onSaved, onDeleted }) {
               style={CHANNEL_COLORS.includes(color) ? void 0 : { background: color }}
             >
               <input type="color" value={color} onChange={(e) => setColor(e.target.value)} aria-label="Any colour" />
-              <Plus size={13} strokeWidth={2} />
+              <PlusIcon size={13} strokeWidth={2} />
             </label>
           </div>
         </div>
@@ -482,7 +482,7 @@ export function ChannelEditor({ channel, onClose, onSaved, onDeleted }) {
           {confirmDel ? (
             <>
               <span className="ch-confirm">
-                <TriangleAlert size={15} strokeWidth={1.8} />
+                <TriangleAlertIcon size={15} strokeWidth={1.8} />
                 Delete "{channel.name}
                 {'"? '}
                 {channel.projects + channel.ideas

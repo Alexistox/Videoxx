@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { RefreshCwIcon } from "lucide-react";
 import { api } from "../lib/api";
-import { RefreshCw } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Picker } from "../components/Picker";
 import { lang } from "../settings/languages";
 
@@ -55,7 +55,7 @@ export function CustomVoiceField({ value, onChange }) {
           disabled={!voices}
           title="Load the voices again (after you add one on the service)"
         >
-          <RefreshCw size={14} />
+          <RefreshCwIcon size={14} />
         </button>
       </div>
       <span className="help">The voices your service offers, your own first.</span>

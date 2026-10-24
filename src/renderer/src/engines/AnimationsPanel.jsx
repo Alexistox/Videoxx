@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { FolderOpenIcon, TrashIcon, UploadIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { FolderOpen, Trash, Upload } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Spinner } from "../components/ui";
 
@@ -74,7 +74,7 @@ export function AnimationsPanel() {
             }
           </p>
           <button className="btn small ghost" onClick={() => api.animsFolder().catch((e) => toast(e.message, "bad"))}>
-            <FolderOpen size={14} />
+            <FolderOpenIcon size={14} />
             {isMac ? "Show in Finder" : "Show in File Explorer"}
           </button>
         </div>
@@ -85,7 +85,7 @@ export function AnimationsPanel() {
               <small>{lib ? `${lib.user.length} of your own${lib.user.length ? "" : " yet"} · inbox: ${lib.inbox}` : "Checking…"}</small>
             </span>
             <button className="btn small" disabled={busy} onClick={doImport}>
-              {busy ? <Spinner size={12} /> : <Upload size={14} />}Import FBX…
+              {busy ? <Spinner size={12} /> : <UploadIcon size={14} />}Import FBX…
             </button>
           </div>
           {prog && (
@@ -125,7 +125,7 @@ export function AnimationsPanel() {
                     </small>
                   </span>
                   <button className="btn small ghost" title={`Remove ${e.name}`} onClick={() => remove(e.id)}>
-                    <Trash size={13} />
+                    <TrashIcon size={13} />
                     {sure === e.id ? "Remove?" : "Remove"}
                   </button>
                 </div>

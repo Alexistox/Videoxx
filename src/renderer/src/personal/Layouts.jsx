@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { CopyIcon, ImagePlusIcon, PencilIcon, PlusIcon, StarIcon, TrashIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Copy, ImagePlus, Pencil, Plus, Star, Trash } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal } from "../components/ui";
 import { drawFrame } from "./canvasDraw";
 import { LayoutPanel, loadBackground } from "./LayoutPanel";
@@ -96,7 +96,7 @@ export function Layouts() {
           </div>
         </div>
         <button className="btn primary" onClick={fresh}>
-          <Plus size={15} />
+          <PlusIcon size={15} />
           New layout
         </button>
       </div>
@@ -122,12 +122,12 @@ export function Layouts() {
               <span className="grow" />
               {p.is_default ? (
                 <span className="ly-default">
-                  <Star size={12} fill="currentColor" />
+                  <StarIcon size={12} fill="currentColor" />
                   Default
                 </span>
               ) : (
                 <button className="btn tiny" onClick={() => makeDefault(p)}>
-                  <Star size={12} />
+                  <StarIcon size={12} />
                   Make default
                 </button>
               )}
@@ -138,7 +138,7 @@ export function Layouts() {
                   className="btn tiny ghost"
                   onClick={() => setEdit({ id: null, name: `${p.name} (mine)`, settings: structuredClone(p.settings) })}
                 >
-                  <Copy size={12} />
+                  <CopyIcon size={12} />
                   Copy and change
                 </button>
               ) : (
@@ -147,11 +147,11 @@ export function Layouts() {
                     className="btn tiny ghost"
                     onClick={() => setEdit({ id: p.id, name: p.name, settings: structuredClone(p.settings) })}
                   >
-                    <Pencil size={12} />
+                    <PencilIcon size={12} />
                     Edit
                   </button>
                   <button className="btn tiny ghost" onClick={() => remove(p)}>
-                    <Trash size={12} />
+                    <TrashIcon size={12} />
                     Delete
                   </button>
                 </>
@@ -168,7 +168,7 @@ export function Layouts() {
           <BgTile key={b.id} id={b.id} name={b.name} builtin={b.builtin} />
         ))}
         <button className="ly-bg add" onClick={addBg}>
-          <ImagePlus size={18} strokeWidth={1.6} />
+          <ImagePlusIcon size={18} strokeWidth={1.6} />
           <span>Add your own</span>
         </button>
       </div>

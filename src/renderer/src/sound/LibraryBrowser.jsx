@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  CheckIcon,
+  FilePlusIcon,
+  FolderPlusIcon,
+  PencilIcon,
+  PlayIcon,
+  PlusIcon,
+  RefreshCwIcon,
+  SquareIcon,
+  TrashIcon,
+  XIcon,
+} from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  Check,
-  FilePlus,
-  FolderPlus,
-  Pencil,
-  Play,
-  Plus,
-  RefreshCw,
-  Square,
-  Trash,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { playSound, stopSound, usePlaying } from "./soundPlayer";
 
 export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
@@ -95,11 +95,11 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
     >
       <div className="sfxl-bar">
         <button className="btn sm" disabled={!!busy} onClick={() => act("folder", () => api.sfxImportFolder())}>
-          <FolderPlus size={14} />
+          <FolderPlusIcon size={14} />
           {busy === "folder" ? "Adding…" : "Add a folder…"}
         </button>
         <button className="btn sm ghost" disabled={!!busy} onClick={() => act("files", () => api.sfxImportFiles())}>
-          <FilePlus size={14} />
+          <FilePlusIcon size={14} />
           Add files…
         </button>
         <button
@@ -108,7 +108,7 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
           title="Look for sounds you put into the library folder yourself"
           onClick={() => act("rescan", () => api.sfxRescan())}
         >
-          <RefreshCw size={14} />
+          <RefreshCwIcon size={14} />
           Rescan
         </button>
         <span className="grow" />
@@ -161,7 +161,7 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
               aria-label={playing === e.id ? "Stop" : `Listen to ${e.name || e.id}`}
               onClick={() => (playing === e.id ? stopSound() : playSound(e.id).catch((er) => toast(er.message, "bad")))}
             >
-              {playing === e.id ? <Square size={13} /> : <Play size={13} />}
+              {playing === e.id ? <SquareIcon size={13} /> : <PlayIcon size={13} />}
             </button>
             {edit?.id === e.id ? (
               <div className="sfxl-edit">
@@ -201,10 +201,10 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
                     );
                   }}
                 >
-                  <Check size={14} />
+                  <CheckIcon size={14} />
                 </button>
                 <button className="icon-btn sm" aria-label="Cancel" onClick={() => setEdit(null)}>
-                  <X size={14} />
+                  <XIcon size={14} />
                 </button>
               </div>
             ) : (
@@ -224,7 +224,7 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
                 aria-label="Edit name, category and tags"
                 onClick={() => setEdit({ id: e.id, cat: e.category, tags: e.tags.join(", "), name: e.name ?? "" })}
               >
-                <Pencil size={13} />
+                <PencilIcon size={13} />
               </button>
             )}
             {e.user &&
@@ -241,7 +241,7 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
                 </button>
               ) : (
                 <button className="icon-btn sm" aria-label="Remove from your library" onClick={() => setSure(e.id)}>
-                  <Trash size={13} />
+                  <TrashIcon size={13} />
                 </button>
               ))}
             {onAdd && (
@@ -254,7 +254,7 @@ export function LibraryBrowser({ onAdd, addLabel = "Add to project" }) {
                   })
                 }
               >
-                <Plus size={13} />
+                <PlusIcon size={13} />
                 {addLabel}
               </button>
             )}

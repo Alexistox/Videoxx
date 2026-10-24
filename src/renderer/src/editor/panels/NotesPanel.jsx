@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { ExternalLinkIcon } from "lucide-react";
 import { api } from "../../lib/api";
-import { ExternalLink } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../../components/ui";
 
 const NOTE_FILES = [
@@ -32,7 +32,7 @@ export function NotesPanel({ projectId, dir, onClose }) {
           </div>
           <span className="grow" />
           <button className="btn small" onClick={() => api.open(dir + "/" + cur)}>
-            <ExternalLink size={14} />
+            <ExternalLinkIcon size={14} />
             Open in editor
           </button>
         </div>

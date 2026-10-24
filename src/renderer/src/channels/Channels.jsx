@@ -1,40 +1,40 @@
 import { Fragment, memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowDownIcon,
+  ArrowRightLeftIcon,
+  ArrowUpIcon,
+  CalendarClockIcon,
+  ChartLineIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+  ClapperboardIcon,
+  EllipsisIcon,
+  EyeIcon,
+  FilmIcon,
+  FolderOpenIcon,
+  GripVerticalIcon,
+  KanbanIcon,
+  LayoutGridIcon,
+  LightbulbIcon,
+  PencilIcon,
+  PinIcon,
+  PlusIcon,
+  RefreshCwIcon,
+  Rows3Icon,
+  SearchIcon,
+  SquarePlayIcon,
+  StickyNoteIcon,
+  TextCursorInputIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+  TvMinimalPlayIcon,
+  Undo2Icon,
+  VideoIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { ago, fmtLength } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowDown,
-  ArrowRightLeft,
-  ArrowUp,
-  CalendarClock,
-  ChartLine,
-  ChevronsLeft,
-  ChevronsRight,
-  Clapperboard,
-  Ellipsis,
-  Eye,
-  Film,
-  FolderOpen,
-  GripVertical,
-  Kanban,
-  LayoutGrid,
-  Lightbulb,
-  Pencil,
-  Pin,
-  Plus,
-  RefreshCw,
-  Rows3,
-  Search,
-  SquarePlay,
-  StickyNote,
-  TextCursorInput,
-  Trash,
-  TriangleAlert,
-  TvMinimalPlay,
-  Undo2,
-  Video,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { ALT, MOD, isMac } from "../help/keys";
 import { I, Modal, Spinner } from "../components/ui";
 import { fold } from "../lib/fold";
@@ -469,12 +469,12 @@ export function Channels() {
   const railItems = (c, inHead = false) => [
     ...(inHead
       ? []
-      : [{ value: "open", label: "Show its board", icon: <Kanban size={14} strokeWidth={1.8} />, run: () => setChannel(c.id) }]),
-    { value: "edit", label: "Edit channel…", icon: <Pencil size={14} strokeWidth={1.8} />, run: () => setEditing(c) },
+      : [{ value: "open", label: "Show its board", icon: <KanbanIcon size={14} strokeWidth={1.8} />, run: () => setChannel(c.id) }]),
+    { value: "edit", label: "Edit channel…", icon: <PencilIcon size={14} strokeWidth={1.8} />, run: () => setEditing(c) },
     {
       value: "new",
       label: `New ${brand === "personal" ? "video" : "project"} in this channel`,
-      icon: <Plus size={14} strokeWidth={1.8} />,
+      icon: <PlusIcon size={14} strokeWidth={1.8} />,
       run: () => startNew({ channelId: c.id }),
     },
     ...(c.yt_channel_id
@@ -482,7 +482,7 @@ export function Channels() {
           {
             value: "yt",
             label: "Its YouTube numbers",
-            icon: <ChartLine size={14} strokeWidth={1.8} />,
+            icon: <ChartLineIcon size={14} strokeWidth={1.8} />,
             run: () => {
               showYouTube(c.yt_channel_id);
               go("youtube");
@@ -493,7 +493,7 @@ export function Channels() {
     {
       value: "up",
       label: "Move up",
-      icon: <ArrowUp size={14} strokeWidth={1.8} />,
+      icon: <ArrowUpIcon size={14} strokeWidth={1.8} />,
       hint: inHead ? "In the list of channels" : void 0,
       disabled: channels[0]?.id === c.id,
       run: () => shift(c, -1),
@@ -501,7 +501,7 @@ export function Channels() {
     {
       value: "down",
       label: "Move down",
-      icon: <ArrowDown size={14} strokeWidth={1.8} />,
+      icon: <ArrowDownIcon size={14} strokeWidth={1.8} />,
       hint: inHead ? "In the list of channels" : void 0,
       disabled: channels[channels.length - 1]?.id === c.id,
       run: () => shift(c, 1),
@@ -569,12 +569,12 @@ export function Channels() {
         }}
       >
         <div className="ch-rail-title">
-          <TvMinimalPlay size={15} strokeWidth={1.8} />
+          <TvMinimalPlayIcon size={15} strokeWidth={1.8} />
           Channels
         </div>
         <button className={`ch-rail-row all ${sel === "all" ? "on" : ""}`} onClick={() => setChannel("all")} aria-current={sel === "all"}>
           <span className="ch-av all">
-            <LayoutGrid size={14} strokeWidth={1.8} />
+            <LayoutGridIcon size={14} strokeWidth={1.8} />
           </span>
           <span className="grow ellipsis">All channels</span>
           <small>{counts.all || ""}</small>
@@ -614,7 +614,7 @@ export function Channels() {
 Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move it to this channel.`}
             >
               <span className="ch-grip" aria-hidden="true">
-                <GripVertical size={13} strokeWidth={1.8} />
+                <GripVerticalIcon size={13} strokeWidth={1.8} />
               </span>
               <ChannelAvatar c={c} size={24} />
               <span className="grow ellipsis" dir="auto">
@@ -630,7 +630,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
                   setRailMenu((m) => (m?.c.id === c.id && m.at === el ? (e.detail > 1 ? m : null) : { at: el, c }));
                 }}
               >
-                <Ellipsis size={15} strokeWidth={1.8} />
+                <EllipsisIcon size={15} strokeWidth={1.8} />
               </button>
             </div>
           ))}
@@ -653,7 +653,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
           </div>
         )}
         <button className="btn small ch-rail-new" onClick={() => setEditing("new")}>
-          <Plus size={14} strokeWidth={1.9} />
+          <PlusIcon size={14} strokeWidth={1.9} />
           New channel
         </button>
       </aside>
@@ -663,7 +663,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
             <ChannelAvatar c={cur} size={46} />
           ) : (
             <span className={`ch-av big ${sel === "none" ? "none" : "all"}`}>
-              {sel === "none" ? <ChannelAvatar c={null} size={46} /> : <LayoutGrid size={22} strokeWidth={1.7} />}
+              {sel === "none" ? <ChannelAvatar c={null} size={46} /> : <LayoutGridIcon size={22} strokeWidth={1.7} />}
             </span>
           )}
           <div className="grow ch-head-txt">
@@ -690,12 +690,12 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
           </div>
           <div className="actions">
             <button className="btn ch-newch" title="New channel" onClick={() => setEditing("new")}>
-              <Plus size={15} strokeWidth={1.8} />
+              <PlusIcon size={15} strokeWidth={1.8} />
               <span>New channel</span>
             </button>
             {cur && (
               <button className="btn ch-editch" title="Edit channel" onClick={() => setEditing(cur)}>
-                <Pencil size={15} strokeWidth={1.8} />
+                <PencilIcon size={15} strokeWidth={1.8} />
                 <span>Edit channel</span>
               </button>
             )}
@@ -710,11 +710,11 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
                   setRailMenu((m) => (m?.inHead && m.at === el ? (n > 1 ? m : null) : { at: el, c: cur, inHead: true }));
                 }}
               >
-                <Ellipsis size={17} strokeWidth={1.8} />
+                <EllipsisIcon size={17} strokeWidth={1.8} />
               </button>
             )}
             <button className="btn primary" onClick={() => newHere()}>
-              <Plus {...I} />
+              <PlusIcon {...I} />
               {"New "}
               {thing}
             </button>
@@ -757,7 +757,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
             })()}
             {!channels.length && (
               <button role="listitem" className="ch-tile add" onClick={() => setEditing("new")}>
-                <Plus size={18} strokeWidth={1.8} />
+                <PlusIcon size={18} strokeWidth={1.8} />
                 <b>Make your first channel</b>
                 <small>Each channel gets its own board; this overview compares them.</small>
               </button>
@@ -766,7 +766,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
         )}
         <div className="ch-tools">
           <label className="search">
-            <Search {...I} />
+            <SearchIcon {...I} />
             <input
               placeholder={cur ? "Search this channel" : "Search the board"}
               value={qy}
@@ -781,7 +781,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
             />
             {qy && (
               <button className="icon-btn sm" aria-label="Clear the search" onClick={() => setQ("")}>
-                <X size={14} />
+                <XIcon size={14} />
               </button>
             )}
           </label>
@@ -803,7 +803,7 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
             onClick={() => setPrefs({ week: !prefs.week })}
             title="Only what is due in the next 7 days (or late)"
           >
-            <CalendarClock size={14} strokeWidth={1.8} />
+            <CalendarClockIcon size={14} strokeWidth={1.8} />
             <span>Due this week</span>
           </button>
           <StagePick value={prefs.stage} onChange={(v) => setPrefs({ stage: v })} />
@@ -813,12 +813,12 @@ Drag to reorder (${ALT} ↑ / ↓ with the keyboard). Drop a card here to move i
             aria-label={prefs.compact ? "Show pictures on the cards" : "Compact cards"}
             title={prefs.compact ? "Show pictures on the cards" : "Compact cards (no pictures)"}
           >
-            {prefs.compact ? <LayoutGrid size={17} strokeWidth={1.7} /> : <Rows3 size={17} strokeWidth={1.7} />}
+            {prefs.compact ? <LayoutGridIcon size={17} strokeWidth={1.7} /> : <Rows3Icon size={17} strokeWidth={1.7} />}
           </button>
         </div>
         {err && (
           <div className="hint bad" role="alert">
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>The board could not be read</b>
               <p>{err}</p>
@@ -1390,7 +1390,7 @@ function Board({
       {
         value: "stage",
         label: "Move to stage",
-        icon: <Kanban size={14} strokeWidth={1.8} />,
+        icon: <KanbanIcon size={14} strokeWidth={1.8} />,
         sub: stageItems(it, group),
         subTitle: many ? `Move ${group.length} cards to stage` : "Move to stage",
         hint: many ? void 0 : STAGE_LABEL[it.stage],
@@ -1398,7 +1398,7 @@ function Board({
       {
         value: "channel",
         label: "Move to channel",
-        icon: <ArrowRightLeft size={14} strokeWidth={1.8} />,
+        icon: <ArrowRightLeftIcon size={14} strokeWidth={1.8} />,
         sub: chans,
         subTitle: many ? `Move ${group.length} cards to channel` : "Move to channel",
         hint: many ? void 0 : it.channelId ? byId.get(it.channelId)?.name : "No channel",
@@ -1406,7 +1406,7 @@ function Board({
       {
         value: "due",
         label: "Due date…",
-        icon: <CalendarClock size={14} strokeWidth={1.8} />,
+        icon: <CalendarClockIcon size={14} strokeWidth={1.8} />,
         hint: !many && it.due ? dueLabel(it.due, it.stage) : void 0,
         run: () => setDueFor(group),
       },
@@ -1414,19 +1414,19 @@ function Board({
     const own =
       it.type === "idea"
         ? [
-            { value: "edit", label: "Edit idea…", icon: <Pencil size={14} strokeWidth={1.8} />, run: () => setIdeaFor(it) },
-            { value: "rename", label: "Rename", icon: <TextCursorInput size={14} strokeWidth={1.8} />, run: () => setRenaming(it.key) },
+            { value: "edit", label: "Edit idea…", icon: <PencilIcon size={14} strokeWidth={1.8} />, run: () => setIdeaFor(it) },
+            { value: "rename", label: "Rename", icon: <TextCursorInputIcon size={14} strokeWidth={1.8} />, run: () => setRenaming(it.key) },
             {
               value: "startF",
               label: "Start a Faceless project",
-              icon: <Clapperboard size={14} strokeWidth={1.8} />,
+              icon: <ClapperboardIcon size={14} strokeWidth={1.8} />,
               group: "Make it",
               run: () => startFrom(it, "faceless"),
             },
             {
               value: "startP",
               label: "Start a Personal video",
-              icon: <Video size={14} strokeWidth={1.8} />,
+              icon: <VideoIcon size={14} strokeWidth={1.8} />,
               group: "Make it",
               run: () => startFrom(it, "personal"),
             },
@@ -1435,10 +1435,10 @@ function Board({
             {
               value: "open",
               label: "Open",
-              icon: it.kind === "personal" ? <Video size={14} strokeWidth={1.8} /> : <Clapperboard size={14} strokeWidth={1.8} />,
+              icon: it.kind === "personal" ? <VideoIcon size={14} strokeWidth={1.8} /> : <ClapperboardIcon size={14} strokeWidth={1.8} />,
               run: () => open(it),
             },
-            { value: "rename", label: "Rename", icon: <TextCursorInput size={14} strokeWidth={1.8} />, run: () => setRenaming(it.key) },
+            { value: "rename", label: "Rename", icon: <TextCursorInputIcon size={14} strokeWidth={1.8} />, run: () => setRenaming(it.key) },
           ];
     const ownPlan =
       it.type === "idea"
@@ -1447,13 +1447,13 @@ function Board({
             {
               value: "note",
               label: it.note ? "Edit plan note…" : "Plan note…",
-              icon: <StickyNote size={14} strokeWidth={1.8} />,
+              icon: <StickyNoteIcon size={14} strokeWidth={1.8} />,
               run: () => setNoteFor(it),
             },
             {
               value: "yt",
               label: "YouTube video…",
-              icon: <SquarePlay size={14} strokeWidth={1.8} />,
+              icon: <SquarePlayIcon size={14} strokeWidth={1.8} />,
               hint:
                 it.info?.views != null
                   ? `${it.info.views.toLocaleString()} views`
@@ -1467,7 +1467,7 @@ function Board({
                   {
                     value: "auto",
                     label: "Back to automatic",
-                    icon: <Undo2 size={14} strokeWidth={1.8} />,
+                    icon: <Undo2Icon size={14} strokeWidth={1.8} />,
                     hint: `Its files put it in ${STAGE_LABEL[it.info.auto]}`,
                     run: () => setPlan(it, { stage: "auto" }),
                   },
@@ -1481,7 +1481,7 @@ function Board({
             {
               value: "del",
               label: delN > 1 ? `Delete ${delN} picked ideas` : "Delete idea",
-              icon: <Trash size={14} strokeWidth={1.8} className="ch-danger" />,
+              icon: <TrashIcon size={14} strokeWidth={1.8} className="ch-danger" />,
               hint: DEL_KEY,
               group: " ",
               run: () => (delN > 1 ? delKey(it) : delIdea(it)),
@@ -1492,7 +1492,7 @@ function Board({
               {
                 value: "folder",
                 label: isMac ? "Show in Finder" : "Show in Explorer",
-                icon: <FolderOpen size={14} strokeWidth={1.8} />,
+                icon: <FolderOpenIcon size={14} strokeWidth={1.8} />,
                 group: " ",
                 run: () => {
                   if (it.info?.missing) toast(`The project folder is missing: ${it.project.path}`, "bad");
@@ -1851,7 +1851,7 @@ function Board({
       )}
       {!(filtered && !inView) && hidden && (
         <p className="muted ch-nomatch ch-hidden">
-          <Eye size={13} strokeWidth={1.8} />
+          <EyeIcon size={13} strokeWidth={1.8} />
           {hidden.n} {hidden.n === 1 ? "card is" : "cards are"}
           {" hidden by the filters ("}
           {hidden.why}).{" "}
@@ -1884,9 +1884,9 @@ function Board({
                   onClick={() => bringIn(k)}
                   title={`${o.n} ${o.n === 1 ? "card" : "cards"} out of sight ${k === "r" ? "to the right" : "to the left"}, in ${o.stages.map((s) => STAGE_LABEL[s]).join(", ")}. Click to scroll to them.`}
                 >
-                  {k === "l" && <ChevronsLeft size={13} strokeWidth={1.9} />}
+                  {k === "l" && <ChevronsLeftIcon size={13} strokeWidth={1.9} />}
                   <span>{offLabel(o)}</span>
-                  {k === "r" && <ChevronsRight size={13} strokeWidth={1.9} />}
+                  {k === "r" && <ChevronsRightIcon size={13} strokeWidth={1.9} />}
                 </button>
               )
             );
@@ -1927,7 +1927,7 @@ function Board({
                     aria-label={closed ? `Show ${STAGE_LABEL[s]}` : `Fold ${STAGE_LABEL[s]}`}
                     title={closed ? "Show this column" : "Fold this column"}
                   >
-                    {closed ? <ChevronsRight size={14} strokeWidth={1.8} /> : <ChevronsLeft size={14} strokeWidth={1.8} />}
+                    {closed ? <ChevronsRightIcon size={14} strokeWidth={1.8} /> : <ChevronsLeftIcon size={14} strokeWidth={1.8} />}
                   </button>
                 )}
               </header>
@@ -1973,7 +1973,7 @@ function Board({
                             <b>Nothing here yet</b>
                             <span>{HINT[s]}</span>
                             <button className="btn small" onClick={onNewChannel}>
-                              <Plus size={14} />
+                              <PlusIcon size={14} />
                               New channel
                             </button>
                           </>
@@ -2070,19 +2070,19 @@ function Board({
             </small>
           )}
           <button className="btn small" title="Move to stage" onClick={(e) => setBulkMenu({ at: e.currentTarget, kind: "stage" })}>
-            <Kanban size={14} strokeWidth={1.8} />
+            <KanbanIcon size={14} strokeWidth={1.8} />
             <span>Move to stage</span>
           </button>
           <button className="btn small" title="Move to channel" onClick={(e) => setBulkMenu({ at: e.currentTarget, kind: "channel" })}>
-            <ArrowRightLeft size={14} strokeWidth={1.8} />
+            <ArrowRightLeftIcon size={14} strokeWidth={1.8} />
             <span>Move to channel</span>
           </button>
           <button className="btn small" title="Due date" onClick={() => setDueFor(pickedItems)}>
-            <CalendarClock size={14} strokeWidth={1.8} />
+            <CalendarClockIcon size={14} strokeWidth={1.8} />
             <span>Due date</span>
           </button>
           <button className="icon-btn sm" aria-label="Unpick all" title="Unpick all (Esc)" onClick={() => setPicked(new Set())}>
-            <X size={15} />
+            <XIcon size={15} />
           </button>
         </div>
       )}
@@ -2168,9 +2168,9 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
           {thumb ? (
             <img src={thumb} alt="" loading="lazy" draggable={false} onError={(e) => (e.target.style.display = "none")} />
           ) : it.kind === "personal" ? (
-            <Video size={22} strokeWidth={1.5} />
+            <VideoIcon size={22} strokeWidth={1.5} />
           ) : (
-            <Film size={22} strokeWidth={1.5} />
+            <FilmIcon size={22} strokeWidth={1.5} />
           )}
           {len && (
             <span className="ch-len" title={info && !info.length && info.target ? "Planned length" : "Length"}>
@@ -2201,12 +2201,18 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
         <div className="ch-title-row">
           {it.type === "idea" && (
             <span className="ch-idea-ic">
-              <Lightbulb size={13} strokeWidth={1.9} />
+              <LightbulbIcon size={13} strokeWidth={1.9} />
             </span>
           )}
           {it.type === "project" && compact && (
             <span className="ch-mini">
-              {thumb ? <img src={thumb} alt="" draggable={false} /> : it.kind === "personal" ? <Video size={12} /> : <Film size={12} />}
+              {thumb ? (
+                <img src={thumb} alt="" draggable={false} />
+              ) : it.kind === "personal" ? (
+                <VideoIcon size={12} />
+              ) : (
+                <FilmIcon size={12} />
+              )}
             </span>
           )}
           {renaming ? (
@@ -2227,13 +2233,13 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
             {compact && len && <span className="ch-meta-len">{len}</span>}
             {it.due && (
               <span className={`ch-due ${due ?? "done"}`} title={it.due}>
-                <CalendarClock size={11} strokeWidth={2} />
+                <CalendarClockIcon size={11} strokeWidth={2} />
                 {dueChip(it.due, it.stage)}
               </span>
             )}
             {info?.views != null && (
               <span className="ch-views" title="Views on YouTube">
-                <Eye size={11} strokeWidth={2} />
+                <EyeIcon size={11} strokeWidth={2} />
                 {info.views.toLocaleString()}
               </span>
             )}
@@ -2245,7 +2251,7 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
                   timeStyle: "short",
                 })}`}
               >
-                <SquarePlay size={11} strokeWidth={2} />
+                <SquarePlayIcon size={11} strokeWidth={2} />
                 {new Date(info.publishedAt).toLocaleDateString(void 0, { month: "short", day: "numeric" })}
               </span>
             )}
@@ -2254,7 +2260,7 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
         {it.note && <p className="ch-note">{it.note}</p>}
         {info?.missing && (
           <p className="ch-warn">
-            <TriangleAlert size={12} />
+            <TriangleAlertIcon size={12} />
             Folder missing
           </p>
         )}
@@ -2263,7 +2269,7 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
             className="ch-warn"
             title="Something in its folder is not what the app expects (a file where a folder should be, or no permission to read it)."
           >
-            <TriangleAlert size={12} />
+            <TriangleAlertIcon size={12} />
             Its files could not be read
           </p>
         )}
@@ -2277,12 +2283,12 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
             <span className={`ch-mode ${info.manual ? "manual" : ""}`} title={mode}>
               {info.manual ? (
                 <>
-                  <Pin size={11} strokeWidth={2} />
+                  <PinIcon size={11} strokeWidth={2} />
                   By hand
                 </>
               ) : (
                 <>
-                  <RefreshCw size={11} strokeWidth={2} />
+                  <RefreshCwIcon size={11} strokeWidth={2} />
                   Auto
                 </>
               )}
@@ -2306,7 +2312,7 @@ Click to open, drag to move, right-click for more (${ALT} ← / → moves it a s
               acts.menu(e.currentTarget, e.detail, it);
             }}
           >
-            <Ellipsis size={15} strokeWidth={1.8} />
+            <EllipsisIcon size={15} strokeWidth={1.8} />
           </button>
         </div>
       </div>
@@ -2407,7 +2413,7 @@ function QuickIdea({ channelId, onAdded }) {
   };
   return (
     <div className="ch-quick-idea">
-      <Plus size={14} strokeWidth={1.9} />
+      <PlusIcon size={14} strokeWidth={1.9} />
       <input
         value={v}
         onChange={(e) => setV(e.target.value)}
@@ -2603,7 +2609,7 @@ function IdeaDialog({ it, channelId, onClose, onSaved, onStart, onDelete }) {
                 onDelete(it);
               }}
             >
-              <Trash size={14} />
+              <TrashIcon size={14} />
               Delete
             </button>
           )}
@@ -2616,7 +2622,7 @@ function IdeaDialog({ it, channelId, onClose, onSaved, onStart, onDelete }) {
             onClick={() => save((s) => onStart(s, brand === "personal" ? "personal" : "faceless"))}
             title="Saves the idea and opens the new project dialog with it filled in"
           >
-            {brand === "personal" ? <Video size={15} strokeWidth={1.8} /> : <Clapperboard size={15} strokeWidth={1.8} />}
+            {brand === "personal" ? <VideoIcon size={15} strokeWidth={1.8} /> : <ClapperboardIcon size={15} strokeWidth={1.8} />}
             {"Start "}
             {brand === "personal" ? "video" : "project"}
           </button>

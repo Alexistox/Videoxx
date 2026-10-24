@@ -1,23 +1,23 @@
 import { useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import { api } from "../src/renderer/src/lib/api";
-import { useApp } from "../src/renderer/src/state/AppProvider";
 import {
-  CornerDownLeft,
-  Eye,
-  FileQuestionMark,
-  FolderOpen,
-  Link2,
-  Paperclip,
-  Plus,
-  Trash,
-  TriangleAlert,
-} from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { isMac } from "../src/renderer/src/help/keys";
-import { Modal, Spinner } from "../src/renderer/src/components/ui";
-import { KIND_WORD, fmtT, mentionOf, parseMentions, refMeta, shortPath } from "../src/renderer/src/refs/mentions";
-import { putRef, reloadRefs, useRefThumb, useRefs } from "../src/renderer/src/refs/useRefs";
-import { KindIcon, openRef } from "../src/renderer/src/refs/MentionField";
+  CornerDownLeftIcon,
+  EyeIcon,
+  FileQuestionMarkIcon,
+  FolderOpenIcon,
+  Link2Icon,
+  PaperclipIcon,
+  PlusIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
+import { api } from "../lib/api";
+import { useApp } from "../state/AppProvider";
+import { isMac } from "../help/keys";
+import { Modal, Spinner } from "../components/ui";
+import { KIND_WORD, fmtT, mentionOf, parseMentions, refMeta, shortPath } from "../refs/mentions";
+import { putRef, reloadRefs, useRefThumb, useRefs } from "../refs/useRefs";
+import { KindIcon, openRef } from "../refs/MentionField";
 
 const FOLDER_APP = isMac ? "Finder" : "Explorer";
 export function RefButton({ projectId, onClick, className = "", compact }) {
@@ -36,7 +36,7 @@ export function RefButton({ projectId, onClick, className = "", compact }) {
           : "References: point Claude at your own images, videos, audio or PDFs (type @ to mention one)"
       }
     >
-      <Paperclip size={12} />
+      <PaperclipIcon size={12} />
       {!compact && "Reference"}
       {n > 0 && <span className={`rf-count ${missing ? "warn" : ""}`}>{n}</span>}
     </button>
@@ -151,7 +151,7 @@ export function RefsPanel({ projectId, onClose, onInsert }) {
             </p>
           </div>
           <button className="btn small primary" onClick={pick} disabled={busy}>
-            {busy ? <Spinner size={13} /> : <Plus size={14} />}Add reference
+            {busy ? <Spinner size={13} /> : <PlusIcon size={14} />}Add reference
           </button>
         </div>
         <form
@@ -176,7 +176,7 @@ export function RefsPanel({ projectId, onClose, onInsert }) {
         </form>
         {error && (
           <div className="hint warn" style={{ marginTop: 14 }}>
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>The references could not be read</b>
               <p>{error}</p>
@@ -209,7 +209,7 @@ export function RefsPanel({ projectId, onClose, onInsert }) {
               }
             }}
           >
-            <Paperclip size={22} />
+            <PaperclipIcon size={22} />
             <b>No references yet</b>
             <p>
               {"Drop images, videos, audio or PDFs here, paste a path above, or pick files. Then type "}
@@ -238,7 +238,7 @@ export function RefsPanel({ projectId, onClose, onInsert }) {
           </div>
         )}
         <div className="rf-drop-veil" aria-hidden="true">
-          <Plus size={22} />
+          <PlusIcon size={22} />
           Drop to add as references<small>Files stay where they are</small>
         </div>
       </div>
@@ -285,7 +285,7 @@ function RefCard({ projectId, r, fresh, onInsert }) {
       <button className="rf-thumb" onClick={r.exists ? view : relink} aria-label={r.exists ? `Open @${r.tag}` : `Relink @${r.tag}`}>
         {!r.exists ? (
           <span className="rf-thumb-ph bad">
-            <FileQuestionMark size={22} />
+            <FileQuestionMarkIcon size={22} />
             File not found
           </span>
         ) : u ? (
@@ -327,7 +327,7 @@ function RefCard({ projectId, r, fresh, onInsert }) {
         <div className="rf-actions">
           {!r.exists ? (
             <button className="btn tiny rf-relink" onClick={relink} disabled={busy}>
-              <Link2 size={12} />
+              <Link2Icon size={12} />
               Relink…
             </button>
           ) : (
@@ -338,12 +338,12 @@ function RefCard({ projectId, r, fresh, onInsert }) {
                   onClick={() => onInsert(mentionOf(r.tag))}
                   title={`Insert @${r.tag} at the cursor`}
                 >
-                  <CornerDownLeft size={12} />
+                  <CornerDownLeftIcon size={12} />
                   Insert
                 </button>
               )}
               <button className="btn tiny rf-open" onClick={view}>
-                <Eye size={12} />
+                <EyeIcon size={12} />
                 {r.kind === "video" || r.kind === "audio" ? "Pick parts" : "View"}
               </button>
             </>
@@ -356,7 +356,7 @@ function RefCard({ projectId, r, fresh, onInsert }) {
               title={`Show in ${FOLDER_APP}`}
               aria-label={`Show in ${FOLDER_APP}`}
             >
-              <FolderOpen size={13} />
+              <FolderOpenIcon size={13} />
             </button>
           )}
           <button
@@ -366,7 +366,7 @@ function RefCard({ projectId, r, fresh, onInsert }) {
             title={confirm2 ? "Click again to remove (your file is not touched)" : "Remove from this project (your file is not touched)"}
             aria-label={confirm2 ? `Confirm removing @${r.tag}` : `Remove @${r.tag}`}
           >
-            {confirm2 ? <span className="rf-sure">Remove?</span> : <Trash size={13} />}
+            {confirm2 ? <span className="rf-sure">Remove?</span> : <TrashIcon size={13} />}
           </button>
         </div>
       </div>
@@ -400,7 +400,7 @@ export function RefsUsed({ projectId, text, title = "Used in this build", onAdd 
               onClick={onAdd}
               title="No reference has this tag: Claude would not know what it means"
             >
-              <TriangleAlert size={11} />@{m.tag}
+              <TriangleAlertIcon size={11} />@{m.tag}
               <span>not in this project</span>
             </button>
           );

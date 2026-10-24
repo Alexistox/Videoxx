@@ -1,22 +1,22 @@
 import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
-  Bold,
-  Download,
-  Expand,
-  FolderOpen,
-  ImagePlus,
-  Maximize2,
-  Minus,
-  Plus,
-  RotateCcw,
-  Sparkles,
-  Star,
-  Trash,
-  Type,
-  X,
-  ZoomIn,
-  ZoomOut,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+  BoldIcon,
+  DownloadIcon,
+  ExpandIcon,
+  FolderOpenIcon,
+  ImagePlusIcon,
+  Maximize2Icon,
+  MinusIcon,
+  PlusIcon,
+  RotateCcwIcon,
+  SparklesIcon,
+  StarIcon,
+  TrashIcon,
+  TypeIcon,
+  XIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "lucide-react";
 import { ALT, MOD } from "../help/keys";
 import { Busy, Spinner } from "../components/ui";
 import { Lightbox } from "../components/Lightbox";
@@ -660,7 +660,7 @@ export const BoardCanvas = forwardRef(function BoardCanvas2(p, ref) {
       </div>
       {!nodes.length && (
         <div className="tc-empty">
-          <ImagePlus size={28} strokeWidth={1.3} />
+          <ImagePlusIcon size={28} strokeWidth={1.3} />
           <b>Drop images here, or start with a prompt</b>
           <span>
             Connect images into a prompt as references (@img1, @img2 …), press Generate, and the result appears next to it. Double-click
@@ -668,11 +668,11 @@ export const BoardCanvas = forwardRef(function BoardCanvas2(p, ref) {
           </span>
           <div className="row">
             <button className="btn small primary" onClick={() => addAt("prompt")}>
-              <Sparkles size={14} />
+              <SparklesIcon size={14} />
               New prompt
             </button>
             <button className="btn small" onClick={() => P.current.pickImages(viewCenter())}>
-              <ImagePlus size={14} />
+              <ImagePlusIcon size={14} />
               Add images
             </button>
           </div>
@@ -680,15 +680,15 @@ export const BoardCanvas = forwardRef(function BoardCanvas2(p, ref) {
       )}
       <div className="tc-bar" onPointerDown={(e) => e.stopPropagation()}>
         <button className="tc-btn" title="New prompt (P)" onClick={() => addAt("prompt")}>
-          <Sparkles size={16} strokeWidth={1.7} />
+          <SparklesIcon size={16} strokeWidth={1.7} />
           <span>Prompt</span>
         </button>
         <button className="tc-btn" title="Add images (or drop / paste them)" onClick={() => P.current.pickImages(viewCenter())}>
-          <ImagePlus size={16} strokeWidth={1.7} />
+          <ImagePlusIcon size={16} strokeWidth={1.7} />
           <span>Image</span>
         </button>
         <button className="tc-btn" title="Text (T, or double-click the canvas)" onClick={() => addAt("text")}>
-          <Type size={16} strokeWidth={1.7} />
+          <TypeIcon size={16} strokeWidth={1.7} />
           <span>Text</span>
         </button>
         <i className="tc-sep" />
@@ -701,7 +701,7 @@ export const BoardCanvas = forwardRef(function BoardCanvas2(p, ref) {
             zoomAt(r.left + r.width / 2, r.top + r.height / 2, view.current.z / 1.25, true);
           }}
         >
-          <ZoomOut size={16} strokeWidth={1.7} />
+          <ZoomOutIcon size={16} strokeWidth={1.7} />
         </button>
         <button
           className="tc-zoom"
@@ -722,10 +722,10 @@ export const BoardCanvas = forwardRef(function BoardCanvas2(p, ref) {
             zoomAt(r.left + r.width / 2, r.top + r.height / 2, view.current.z * 1.25, true);
           }}
         >
-          <ZoomIn size={16} strokeWidth={1.7} />
+          <ZoomInIcon size={16} strokeWidth={1.7} />
         </button>
         <button className="tc-btn icon" title="Fit everything (Shift + 1)" aria-label="Fit everything" onClick={() => fit()}>
-          <Maximize2 size={15} strokeWidth={1.7} />
+          <Maximize2Icon size={15} strokeWidth={1.7} />
         </button>
       </div>
       {light && (
@@ -826,7 +826,7 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
               aria-label="Smaller text"
               onClick={() => act.current.patch(n.id, { size: Math.max(8, Math.round(fs / 1.2)), w: fixed ? Math.round(n.w / 1.2) : 0 })}
             >
-              <Minus size={13} />
+              <MinusIcon size={13} />
             </button>
             <span className="tn-size">{fs}</span>
             <button
@@ -834,7 +834,7 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
               aria-label="Bigger text"
               onClick={() => act.current.patch(n.id, { size: Math.min(600, Math.round(fs * 1.2)), w: fixed ? Math.round(n.w * 1.2) : 0 })}
             >
-              <Plus size={13} />
+              <PlusIcon size={13} />
             </button>
             <button
               title="Bold"
@@ -842,7 +842,7 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
               className={(n.weight ?? 700) >= 700 ? "on" : ""}
               onClick={() => act.current.patch(n.id, { weight: (n.weight ?? 700) >= 700 ? 400 : 800 })}
             >
-              <Bold size={13} />
+              <BoldIcon size={13} />
             </button>
             {fixed && (
               <button title="Back to one line (no wrapping)" onClick={() => act.current.patch(n.id, { w: 0 })}>
@@ -886,17 +886,17 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
         {selected && (
           <div className="tn-tools tn-noDrag" onPointerDown={(e) => e.stopPropagation()}>
             <button title="Open big (double-click)" aria-label="Open big" onClick={() => act.current.open(n.id)}>
-              <Expand size={13} />
+              <ExpandIcon size={13} />
             </button>
             <button title="Use as the thumbnail of a video or project" onClick={() => act.current.useAsThumb(n.file)}>
-              <Star size={13} />
+              <StarIcon size={13} />
               Use as thumbnail
             </button>
             <button title="Show in folder" aria-label="Show in folder" onClick={() => act.current.reveal(n.file)}>
-              <FolderOpen size={13} />
+              <FolderOpenIcon size={13} />
             </button>
             <button title="Delete" aria-label="Delete" onClick={() => act.current.remove(n.id)}>
-              <Trash size={13} />
+              <TrashIcon size={13} />
             </button>
           </div>
         )}
@@ -918,7 +918,7 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
         }}
       >
         <div className="tn-label">
-          <Sparkles size={11} />
+          <SparklesIcon size={11} />
           <span className="ellipsis">{models.find((m) => m.id === gen?.model)?.label ?? "Output"}</span>
           {live && <span className="tn-st">{STATUS[st]}</span>}
         </div>
@@ -943,38 +943,38 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
             {done && (
               <>
                 <button title="Open big (double-click)" aria-label="Open big" onClick={() => act.current.open(n.id)}>
-                  <Expand size={13} />
+                  <ExpandIcon size={13} />
                 </button>
                 <button
                   className="accent"
                   title="Make this the thumbnail of a video or project"
                   onClick={() => act.current.useAsThumb(gen.file)}
                 >
-                  <Star size={13} />
+                  <StarIcon size={13} />
                   Use as thumbnail
                 </button>
                 <button title="Save a copy" aria-label="Save a copy" onClick={() => act.current.saveAs(gen.file)}>
-                  <Download size={13} />
+                  <DownloadIcon size={13} />
                 </button>
                 <button title="Show in folder" aria-label="Show in folder" onClick={() => act.current.reveal(gen.file)}>
-                  <FolderOpen size={13} />
+                  <FolderOpenIcon size={13} />
                 </button>
               </>
             )}
             {live && (
               <button onClick={() => act.current.cancel(gen.id)}>
-                <X size={13} />
+                <XIcon size={13} />
                 Cancel
               </button>
             )}
             {st === "failed" && (
               <button onClick={() => act.current.generate(n.id)}>
-                <RotateCcw size={13} />
+                <RotateCcwIcon size={13} />
                 Try again
               </button>
             )}
             <button title="Delete" aria-label="Delete" onClick={() => act.current.remove(n.id)}>
-              <Trash size={13} />
+              <TrashIcon size={13} />
             </button>
           </div>
         )}
@@ -986,7 +986,7 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
   return (
     <div ref={el} data-node={n.id} className={`${cls} ${busy ? "busy" : ""}`} style={style}>
       <div className="tn-head">
-        <Sparkles size={13} />
+        <SparklesIcon size={13} />
         <b>Prompt</b>
         <span className="grow" />
         {refs && refs.length > 0 && (
@@ -1069,7 +1069,7 @@ const NodeView = memo(function NodeView2({ n, selected, editing, fresh, target, 
           title={!hasKey ? "Add your Higgsfield key first" : `Generate (${MOD}+Enter)`}
           onClick={() => act.current.generate(n.id)}
         >
-          {busy ? <Spinner size={12} /> : <Sparkles size={12} />}Generate
+          {busy ? <Spinner size={12} /> : <SparklesIcon size={12} />}Generate
         </button>
       </div>
       <i className="tn-resize" data-resize />

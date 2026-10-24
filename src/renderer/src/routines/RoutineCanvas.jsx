@@ -1,20 +1,20 @@
 import { forwardRef, memo, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
-  Check,
-  CircleDashed,
-  Hourglass,
-  LoaderCircle,
-  Maximize2,
-  Plus,
-  Search,
-  SkipForward,
-  TriangleAlert,
-  X,
-  ZoomIn,
-  ZoomOut,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+  CheckIcon,
+  CircleDashedIcon,
+  HourglassIcon,
+  LoaderCircleIcon,
+  Maximize2Icon,
+  PlusIcon,
+  SearchIcon,
+  SkipForwardIcon,
+  TriangleAlertIcon,
+  XIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "lucide-react";
 import { ALT, MOD } from "../help/keys";
-import { CATEGORY_LABEL, NODE, NODES, PORT_COLOR, PORT_LABEL, connectProblem, withDefaults } from "../../../../routines/nodes";
+import { CATEGORY_LABEL, NODE, NODES, PORT_COLOR, PORT_LABEL, connectProblem, withDefaults } from "./nodes";
 import { ICONS, summary } from "./summary";
 
 const W = 252,
@@ -492,7 +492,7 @@ export const RoutineCanvas = forwardRef(function RoutineCanvas2(p, ref) {
       </div>
       {!p.graph.nodes.length && (
         <div className="tc-empty">
-          <Plus size={28} strokeWidth={1.3} />
+          <PlusIcon size={28} strokeWidth={1.3} />
           <b>An empty routine</b>
           <span>
             Add nodes with the + button, a right-click or a double-click, then connect them from the dot on their right edge. Or start from
@@ -514,7 +514,7 @@ export const RoutineCanvas = forwardRef(function RoutineCanvas2(p, ref) {
       )}
       {flash && (
         <div className="rc-flash" style={{ left: flash.x + 12, top: flash.y + 12 }} role="alert">
-          <TriangleAlert size={13} />
+          <TriangleAlertIcon size={13} />
           {flash.text}
         </div>
       )}
@@ -529,23 +529,23 @@ export const RoutineCanvas = forwardRef(function RoutineCanvas2(p, ref) {
                 openMenu(r.left + r.width / 2 - 140, r.top + r.height / 2 - 170, null);
               }}
             >
-              <Plus size={16} strokeWidth={1.7} />
+              <PlusIcon size={16} strokeWidth={1.7} />
               <span>Add node</span>
             </button>
             <i className="tc-sep" />
           </>
         )}
         <button className="tc-btn icon" title="Zoom out (-)" aria-label="Zoom out" onClick={() => zoomCenter(1 / 1.25)}>
-          <ZoomOut size={16} strokeWidth={1.7} />
+          <ZoomOutIcon size={16} strokeWidth={1.7} />
         </button>
         <button ref={pct} className="tc-zoom" title="Zoom to 100 % (Shift + 0)" onClick={() => zoomCenter(0)}>
           100%
         </button>
         <button className="tc-btn icon" title="Zoom in (+)" aria-label="Zoom in" onClick={() => zoomCenter(1.25)}>
-          <ZoomIn size={16} strokeWidth={1.7} />
+          <ZoomInIcon size={16} strokeWidth={1.7} />
         </button>
         <button className="tc-btn icon" title="Fit everything (Shift + 1)" aria-label="Fit everything" onClick={() => fit()}>
-          <Maximize2 size={15} strokeWidth={1.7} />
+          <Maximize2Icon size={15} strokeWidth={1.7} />
         </button>
       </div>
       <div
@@ -560,13 +560,13 @@ export const RoutineCanvas = forwardRef(function RoutineCanvas2(p, ref) {
 });
 const nodeOver = (w, n) => w.x >= n.x && w.x <= n.x + W && w.y >= n.y && w.y <= n.y + 160;
 const STATE_ICON = {
-  running: LoaderCircle,
-  done: Check,
-  failed: X,
-  approval: Hourglass,
-  waiting: CircleDashed,
-  skipped: SkipForward,
-  warn: TriangleAlert,
+  running: LoaderCircleIcon,
+  done: CheckIcon,
+  failed: XIcon,
+  approval: HourglassIcon,
+  waiting: CircleDashedIcon,
+  skipped: SkipForwardIcon,
+  warn: TriangleAlertIcon,
 };
 const STATE_LABEL = {
   running: "Working",
@@ -593,7 +593,7 @@ const NodeCard = memo(function NodeCard2({ n, selected, target, badTarget, state
     return () => clearInterval(t);
   }, [state?.status]);
   if (!def) return null;
-  const Ic = ICONS[def.icon] ?? CircleDashed,
+  const Ic = ICONS[def.icon] ?? CircleDashedIcon,
     lines = summary(n, sctx);
   if (n.type === "note")
     return (
@@ -606,7 +606,7 @@ const NodeCard = memo(function NodeCard2({ n, selected, target, badTarget, state
         <div className="rn-note-text">{String(n.settings.text || "") || "Note: select it and write in the panel on the right."}</div>
       </div>
     );
-  const SI = state ? (STATE_ICON[state.status] ?? CircleDashed) : null;
+  const SI = state ? (STATE_ICON[state.status] ?? CircleDashedIcon) : null;
   const secs = state?.startedAt
     ? Math.round(((state.finishedAt ? Date.parse(state.finishedAt) : Date.now()) - Date.parse(state.startedAt)) / 1e3)
     : null;
@@ -635,7 +635,7 @@ const NodeCard = memo(function NodeCard2({ n, selected, target, badTarget, state
         )}
         {problems?.length ? (
           <span className="rn-warn" title={problems.join("\n")}>
-            <TriangleAlert size={13} />
+            <TriangleAlertIcon size={13} />
           </span>
         ) : null}
       </div>
@@ -671,15 +671,15 @@ const NodeCard = memo(function NodeCard2({ n, selected, target, badTarget, state
       {state && ["done", "warn", "failed", "running", "approval"].includes(state.status) && (
         <span className={`rn-badge ${state.status}`} aria-label={STATE_LABEL[state.status]} title={STATE_LABEL[state.status]}>
           {state.status === "done" ? (
-            <Check size={12} strokeWidth={3} />
+            <CheckIcon size={12} strokeWidth={3} />
           ) : state.status === "warn" ? (
-            <TriangleAlert size={11} strokeWidth={2.4} />
+            <TriangleAlertIcon size={11} strokeWidth={2.4} />
           ) : state.status === "failed" ? (
-            <X size={12} strokeWidth={3} />
+            <XIcon size={12} strokeWidth={3} />
           ) : state.status === "running" ? (
-            <LoaderCircle size={12} strokeWidth={2.6} className="spin" />
+            <LoaderCircleIcon size={12} strokeWidth={2.6} className="spin" />
           ) : (
-            <Hourglass size={11} strokeWidth={2.4} />
+            <HourglassIcon size={11} strokeWidth={2.4} />
           )}
         </span>
       )}
@@ -723,7 +723,7 @@ function NodeMenu({ at, from, edges, onPick, onClose }) {
       onContextMenu={(e) => e.stopPropagation()}
     >
       <div className="rc-menu-search">
-        <Search size={14} />
+        <SearchIcon size={14} />
         <input
           autoFocus
           placeholder={from ? `What comes after ${NODE[from.type]?.label}?` : "Add a node…"}
@@ -748,7 +748,7 @@ function NodeMenu({ at, from, edges, onPick, onClose }) {
           <div key={g.c}>
             <div className="rc-menu-cat">{CATEGORY_LABEL[g.c]}</div>
             {g.items.map((d) => {
-              const Ic = ICONS[d.icon] ?? CircleDashed,
+              const Ic = ICONS[d.icon] ?? CircleDashedIcon,
                 k = flat.indexOf(d);
               return (
                 <button

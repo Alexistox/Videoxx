@@ -1,63 +1,63 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { api, on } from "../src/renderer/src/lib/api";
-import { ago } from "../src/renderer/src/lib/format";
-import { useApp } from "../src/renderer/src/state/AppProvider";
 import {
-  Activity,
-  Aperture,
-  Archive,
-  ArchiveRestore,
-  AudioLines,
-  Box,
-  Check,
-  Clapperboard,
-  Copy,
-  ExternalLink,
-  FileCode,
-  Flag,
-  FolderOpen,
-  Grid3x3,
+  ActivityIcon,
+  ApertureIcon,
+  ArchiveIcon,
+  ArchiveRestoreIcon,
+  AudioLinesIcon,
+  BoxIcon,
+  CheckIcon,
+  ClapperboardIcon,
+  CopyIcon,
+  ExternalLinkIcon,
+  FileCodeIcon,
+  FlagIcon,
+  FolderOpenIcon,
+  Grid3x3Icon,
   Image,
-  Inbox,
-  Library as Library$1,
-  Lightbulb,
-  ListChecks,
+  InboxIcon,
+  LibraryIcon,
+  LightbulbIcon,
+  ListChecksIcon,
   Palette,
-  Pencil,
-  PersonStanding,
-  Play,
-  Search,
-  ShieldCheck,
-  Ship,
-  Sprout,
-  Square,
-  Trash,
-  TriangleAlert,
-  Type,
-  X,
-} from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { isMac } from "../src/renderer/src/help/keys";
-import { Spinner } from "../src/renderer/src/components/ui";
+  PencilIcon,
+  PersonStandingIcon,
+  PlayIcon,
+  SearchIcon,
+  ShieldCheckIcon,
+  ShipIcon,
+  SproutIcon,
+  SquareIcon,
+  TrashIcon,
+  TriangleAlertIcon,
+  TypeIcon,
+  XIcon,
+} from "lucide-react";
+import { api, on } from "../lib/api";
+import { ago } from "../lib/format";
+import { useApp } from "../state/AppProvider";
+import { isMac } from "../help/keys";
+import { Spinner } from "../components/ui";
 import { takeLibraryInbox } from "../state/libraryInbox";
 
 const FOLDER_APP = isMac ? "Finder" : "Explorer";
 const TRASH = isMac ? "Trash" : "Recycle Bin";
 const KIND = {
-  model: ["3D model", Box],
-  module: ["Code module", FileCode],
+  model: ["3D model", BoxIcon],
+  module: ["Code module", FileCodeIcon],
   material: ["Material", Palette],
-  texture: ["Texture", Grid3x3],
+  texture: ["Texture", Grid3x3Icon],
   image: ["Picture", Image],
-  sprite: ["Sprite", PersonStanding],
-  font: ["Font", Type],
-  sound: ["Sound", AudioLines],
-  anim: ["Animation", Activity],
-  pose: ["Pose", PersonStanding],
-  recipe: ["Scene recipe", Clapperboard],
-  look: ["Look", Aperture],
-  solution: ["Solution", Lightbulb],
-  pitfall: ["Pitfall", TriangleAlert],
-  check: ["Check", ListChecks],
+  sprite: ["Sprite", PersonStandingIcon],
+  font: ["Font", TypeIcon],
+  sound: ["Sound", AudioLinesIcon],
+  anim: ["Animation", ActivityIcon],
+  pose: ["Pose", PersonStandingIcon],
+  recipe: ["Scene recipe", ClapperboardIcon],
+  look: ["Look", ApertureIcon],
+  solution: ["Solution", LightbulbIcon],
+  pitfall: ["Pitfall", TriangleAlertIcon],
+  check: ["Check", ListChecksIcon],
 };
 const SOURCE = {
   ws: "Mine",
@@ -115,7 +115,7 @@ const StatusBadge = ({ s }) => {
   );
 };
 function KindBadge({ k }) {
-  const [t, Ic] = KIND[k] ?? [k, Box];
+  const [t, Ic] = KIND[k] ?? [k, BoxIcon];
   return (
     <span className="badge gray lby-kind">
       <Ic size={11} strokeWidth={1.8} />
@@ -340,7 +340,7 @@ export function Library() {
                 ))}
               </select>
               <button className="btn small" disabled={!hvPick || !!hvBusy[hvPick]} onClick={() => harvestNow(hvPick)}>
-                {hvBusy[hvPick] ? <Spinner size={13} /> : <Sprout size={14} />}
+                {hvBusy[hvPick] ? <Spinner size={13} /> : <SproutIcon size={14} />}
                 {hvBusy[hvPick] === "running" ? "Harvesting…" : hvBusy[hvPick] === "queued" ? "Waiting…" : "Harvest now"}
               </button>
             </div>
@@ -351,7 +351,7 @@ export function Library() {
               onClick={emptyTrash}
               title={`Entries you deleted wait in the library's own deleted items. This moves them to the ${TRASH}.`}
             >
-              <Trash size={14} />
+              <TrashIcon size={14} />
               {"Move "}
               {trash}
               {" deleted to the "}
@@ -363,7 +363,7 @@ export function Library() {
       {lastH && (lastH.proposed ?? []).some((x) => x.status === "proposed") && (
         <section className="lby-hv panel" aria-label="From the last harvest">
           <div className="lby-hv-head">
-            <Sprout size={16} strokeWidth={1.7} />
+            <SproutIcon size={16} strokeWidth={1.7} />
             <span className="grow">
               <b>From the last harvest</b>
               {" of "}
@@ -385,11 +385,11 @@ export function Library() {
                     {x.title}
                   </button>
                   <button className="btn tiny primary" onClick={() => decide(x.id, true)}>
-                    <Check size={12} />
+                    <CheckIcon size={12} />
                     Accept
                   </button>
                   <button className="btn tiny" onClick={() => decide(x.id, false)}>
-                    <X size={12} />
+                    <XIcon size={12} />
                     Reject
                   </button>
                 </li>
@@ -399,7 +399,7 @@ export function Library() {
       )}
       {!!data?.proposed && f.status !== "proposed" && (
         <div className="lby-inbox" role="status">
-          <Inbox size={17} strokeWidth={1.7} />
+          <InboxIcon size={17} strokeWidth={1.7} />
           <span className="grow">
             <b>
               {data.proposed}
@@ -418,7 +418,7 @@ export function Library() {
       )}
       {f.status === "proposed" && (
         <div className="lby-inbox on" role="status">
-          <Inbox size={17} strokeWidth={1.7} />
+          <InboxIcon size={17} strokeWidth={1.7} />
           <span className="grow">Showing the proposed entries. Open one to accept or delete it.</span>
           <button className="btn small ghost" onClick={() => setF((x) => ({ ...x, status: null }))}>
             Show everything
@@ -427,7 +427,7 @@ export function Library() {
       )}
       <div className="toolbar lby-bar">
         <div className="search">
-          <Search size={16} strokeWidth={1.7} />
+          <SearchIcon size={16} strokeWidth={1.7} />
           <input
             id="lby-search"
             value={query}
@@ -481,7 +481,7 @@ export function Library() {
           ) : !rows.length ? (
             <div className="empty lby-empty">
               <div className="ic">
-                <Library$1 size={28} strokeWidth={1.7} />
+                <LibraryIcon size={28} strokeWidth={1.7} />
               </div>
               <h3>{q ? `Nothing for “${q}”` : "Nothing here yet"}</h3>
               <p>
@@ -538,7 +538,7 @@ export function Library() {
 }
 function Card({ r, on: on2, open, baseName }) {
   const [bad, setBad] = useState(false);
-  const [, Ic] = KIND[r.kind] ?? ["", Box],
+  const [, Ic] = KIND[r.kind] ?? ["", BoxIcon],
     pic = !!r.thumb && !bad;
   return (
     <button
@@ -757,12 +757,12 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                 onClick={() => api.copy(id).then(() => toast("Id copied."))}
               >
                 {id}
-                <Copy size={11} />
+                <CopyIcon size={11} />
               </button>
             </div>
           </div>
           <button className="icon-btn" aria-label="Close" onClick={onClose}>
-            <X size={18} strokeWidth={1.7} />
+            <XIcon size={18} strokeWidth={1.7} />
           </button>
         </div>
         {err ? (
@@ -781,7 +781,7 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                   disabled={busy}
                   onClick={() => setStatus("accepted", "Accepted: Claude reuses it from now on.")}
                 >
-                  <Check size={14} />
+                  <CheckIcon size={14} />
                   Accept
                 </button>
               )}
@@ -792,7 +792,7 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                   onClick={() => setStatus("verified", "Marked as verified.")}
                   title="It worked in a real video"
                 >
-                  <ShieldCheck size={14} />
+                  <ShieldCheckIcon size={14} />
                   Verify
                 </button>
               )}
@@ -803,7 +803,7 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                   onClick={() => setStatus("flagged", "Flagged: Claude skips it unless you search for flagged entries.")}
                   title="Something is wrong with it: Claude stops reusing it"
                 >
-                  <Flag size={14} />
+                  <FlagIcon size={14} />
                   Flag
                 </button>
               )}
@@ -815,7 +815,7 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                     setEdit({ title: row.title, summary: row.summary ?? "", tags: (e?.tags ?? []).join(", "), scope: row.scope })
                   }
                 >
-                  <Pencil size={14} />
+                  <PencilIcon size={14} />
                   Edit
                 </button>
               )}
@@ -826,32 +826,32 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                   onClick={() => setStatus("retired", "Retired: kept, but Claude no longer uses it.")}
                   title="Keep it, but Claude no longer uses it"
                 >
-                  <Archive size={14} />
+                  <ArchiveIcon size={14} />
                   Retire
                 </button>
               )}
               {d.editable && row?.status === "retired" && (
                 <button className="btn small" disabled={busy} onClick={() => setStatus("accepted", "Back in use.")}>
-                  <ArchiveRestore size={14} />
+                  <ArchiveRestoreIcon size={14} />
                   Bring back
                 </button>
               )}
               {d.editable && (
                 <button className="btn small danger" disabled={busy} onClick={del}>
-                  <Trash size={14} />
+                  <TrashIcon size={14} />
                   Delete
                 </button>
               )}
               {d.canReveal && (
                 <button className="btn small ghost" onClick={() => api.libraryReveal(id).catch((x) => toast(x.message, "bad"))}>
-                  <FolderOpen size={14} />
+                  <FolderOpenIcon size={14} />
                   {"Show in "}
                   {FOLDER_APP}
                 </button>
               )}
               {row?.source === "sfx" && (
                 <button className="btn small ghost" onClick={play}>
-                  {playing ? <Square size={13} /> : <Play size={14} />}
+                  {playing ? <SquareIcon size={13} /> : <PlayIcon size={14} />}
                   {playing ? "Stop" : "Play"}
                 </button>
               )}
@@ -862,7 +862,7 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                   onClick={ship}
                   title="Developer build only: copies this entry into templates/library, so it comes with the app"
                 >
-                  <Ship size={14} />
+                  <ShipIcon size={14} />
                   Ship with the app
                 </button>
               )}
@@ -1148,7 +1148,7 @@ function Drawer({ id, dev, onClose, onOpen, onChanged, baseName, scopeName }) {
                 {(e?.licence?.source_url || d.fed?.source_url) && (
                   <button className="text-btn link small" onClick={() => api.external(String(e?.licence?.source_url || d.fed?.source_url))}>
                     {"Source "}
-                    <ExternalLink size={11} />
+                    <ExternalLinkIcon size={11} />
                   </button>
                 )}
               </section>

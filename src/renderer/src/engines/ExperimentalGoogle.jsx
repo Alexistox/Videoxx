@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
+import { ArrowLeftRightIcon, LogInIcon, PowerIcon, RotateCcwIcon, TrashIcon, TriangleAlertIcon, XIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowLeftRight,
-  LogIn,
-  Power,
-  RotateCcw,
-  Trash,
-  TriangleAlert,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 import { modelGroups, proxyModelName } from "./models";
 
@@ -18,7 +10,7 @@ export const RiskBadge = () => (
     className="own-risk own-risk-red"
     title="Not supported: Google can block the account for using its sign-in through third-party tools."
   >
-    <TriangleAlert size={11} strokeWidth={2.2} />
+    <TriangleAlertIcon size={11} strokeWidth={2.2} />
     Use at your own risk
   </span>
 );
@@ -78,7 +70,7 @@ export function ExperimentalGoogle() {
   const signedIn = s.accounts.length > 0;
   const remove = !confirmRemove ? (
     <button className="btn small" disabled={!!busy} onClick={() => setConfirmRemove(true)}>
-      <Trash size={14} />
+      <TrashIcon size={14} />
       Remove
     </button>
   ) : (
@@ -103,7 +95,7 @@ export function ExperimentalGoogle() {
       {!s.enabled && (
         <div className="xp-risk" role="note" aria-label="Risks of Google models via CLIProxyAPI">
           <p className="xp-risk-head">
-            <TriangleAlert size={16} strokeWidth={2.2} />
+            <TriangleAlertIcon size={16} strokeWidth={2.2} />
             <b>This can get your Google account blocked.</b>
           </p>
           <p>
@@ -145,7 +137,7 @@ export function ExperimentalGoogle() {
               disabled={!ack || !!busy || !s.supported}
               onClick={() => act("on", () => api.experimentalEnable(true))}
             >
-              {busy === "on" ? <Spinner size={14} /> : <Power size={14} />}Turn on
+              {busy === "on" ? <Spinner size={14} /> : <PowerIcon size={14} />}Turn on
             </button>
             {!s.supported && <span className="small dim">Offered on Windows (64-bit) and macOS only.</span>}
           </div>
@@ -167,7 +159,7 @@ export function ExperimentalGoogle() {
             </span>
           </div>
           <p className="small xp-reminder">
-            <TriangleAlert size={12} strokeWidth={2.2} />
+            <TriangleAlertIcon size={12} strokeWidth={2.2} />
             At your own risk: Google can block the account. Use a separate Google account, not the one with your YouTube channel or Gmail.
           </p>
           {s.error && (
@@ -178,7 +170,7 @@ export function ExperimentalGoogle() {
           {(s.status === "failed" || s.status === "stopped") && (
             <div className="row">
               <button className="btn small primary" disabled={!!busy} onClick={() => act("retry", () => api.experimentalRetry())}>
-                {busy === "retry" ? <Spinner size={14} /> : <RotateCcw size={14} />}Try again
+                {busy === "retry" ? <Spinner size={14} /> : <RotateCcwIcon size={14} />}Try again
               </button>
             </div>
           )}
@@ -197,7 +189,7 @@ export function ExperimentalGoogle() {
                 <Spinner size={14} />
                 <span className="small">Waiting for Google in your browser…</span>
                 <button className="btn small" onClick={() => act("cancel", () => api.experimentalCancelLogin())}>
-                  <X size={14} />
+                  <XIcon size={14} />
                   Cancel
                 </button>
               </>
@@ -211,7 +203,7 @@ export function ExperimentalGoogle() {
                   act("switch", () => api.experimentalSwitch());
                 }}
               >
-                {busy === "switch" ? <Spinner size={14} /> : <ArrowLeftRight size={14} />}Switch account
+                {busy === "switch" ? <Spinner size={14} /> : <ArrowLeftRightIcon size={14} />}Switch account
               </button>
             ) : (
               <button
@@ -223,7 +215,7 @@ export function ExperimentalGoogle() {
                   act("login", () => api.experimentalLogin());
                 }}
               >
-                <LogIn size={14} />
+                <LogInIcon size={14} />
                 Sign in with Google
               </button>
             )}
@@ -260,7 +252,7 @@ export function ExperimentalGoogle() {
               onClick={() => act("off", () => api.experimentalDisable())}
               title="Stops the program; the program and your sign-in stay for next time"
             >
-              {busy === "off" ? <Spinner size={14} /> : <Power size={14} />}Turn off
+              {busy === "off" ? <Spinner size={14} /> : <PowerIcon size={14} />}Turn off
             </button>
             {remove}
           </div>

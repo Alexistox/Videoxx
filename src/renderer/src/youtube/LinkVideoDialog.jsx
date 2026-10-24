@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ChartLineIcon, SearchIcon, UnlinkIcon, VideoIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { ChartLine, Search, Unlink, Video } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Empty, Modal, Spinner } from "../components/ui";
 import { isEnter, swallowClicks } from "../channels/stages";
 import { boardSays, clock, compact, dateShort, undoSays } from "./format";
@@ -95,7 +95,7 @@ export function LinkVideoDialog({ projectId, name, onClose }) {
       aria-selected={cur ? void 0 : i === hi}
     >
       <span className="yt-thumb">
-        {v.thumbUrl ? <img src={v.thumbUrl} alt="" loading="lazy" draggable={false} /> : <Video size={14} />}
+        {v.thumbUrl ? <img src={v.thumbUrl} alt="" loading="lazy" draggable={false} /> : <VideoIcon size={14} />}
         {v.duration != null && <i>{clock(v.duration)}</i>}
       </span>
       <span className="yt-pick-txt">
@@ -138,7 +138,7 @@ export function LinkVideoDialog({ projectId, name, onClose }) {
           </div>
         ) : !d.videos.length ? (
           <Empty
-            icon={<ChartLine size={26} strokeWidth={1.7} />}
+            icon={<ChartLineIcon size={26} strokeWidth={1.7} />}
             title="No YouTube videos yet"
             text="Follow your YouTube channel first (the YouTube page, or Settings > YouTube). Its videos then show here to pick from."
           >
@@ -160,14 +160,14 @@ export function LinkVideoDialog({ projectId, name, onClose }) {
                 <div className="yt-pick-cur">
                   {row(d.current, true)}
                   <button className="btn small" onClick={() => pick(null)} disabled={busy}>
-                    <Unlink size={14} />
+                    <UnlinkIcon size={14} />
                     Unlink
                   </button>
                 </div>
               </>
             )}
             <label className="search yt-search">
-              <Search size={15} strokeWidth={1.8} />
+              <SearchIcon size={15} strokeWidth={1.8} />
               <input
                 autoFocus
                 placeholder="Search videos and channels"

@@ -17,10 +17,11 @@ npm run pack     # build + unpacked app in dist/win-unpacked
 npm run dist     # build + NSIS installer in dist/
 ```
 
-Running against a throw-away profile (keeps your real settings, database and Documents/Videoxx untouched):
+Running against a throw-away profile (keeps your real settings, database and Documents/Videoxx untouched;
+`CZ_NO_AUTO_SETUP=1` stops the first start from having Claude install a speech model):
 
 ```bash
-CZ_USERDATA=/tmp/vx-ud CZ_WORKSPACE=/tmp/vx-ws npx electron .
+CZ_USERDATA=/tmp/vx-ud CZ_WORKSPACE=/tmp/vx-ws CZ_NO_AUTO_SETUP=1 npx electron .
 ```
 
 ## Layout
@@ -44,4 +45,6 @@ CZ_USERDATA=/tmp/vx-ud CZ_WORKSPACE=/tmp/vx-ws npx electron .
 - Comparing the rebuilt bundles with the shipped ones (`tools/rebuild/compare.mjs`) shows the same declarations and the same
   top-level side effects. Apart from code that never runs and renamed identifiers, the only difference is the order of two
   independent callback registrations in main (`setSharedCheck` and `setPublishInfo`).
+- Icons come from `lucide-react`, pinned to 1.57.0: its icon data matches the copy that was bundled in the build
+  (1.58 and later redraw `music`, `music-2` and `brain`).
 - The original was TypeScript (CSS comments still mention `components/ui.tsx`); types could not be recovered.

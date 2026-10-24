@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { FilmIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Film } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { requestExportDialog } from "../state/exportRequest";
 
 export function ExportsButton() {
@@ -45,7 +45,7 @@ export function ExportsButton() {
       }}
       title="Exports keep going while you work. Click to see its progress."
     >
-      <Film size={15} strokeWidth={1.8} />
+      <FilmIcon size={15} strokeWidth={1.8} />
       <span className="grow ellipsis">
         {"Exporting "}
         {Math.round(Math.min(1, jobs[ids[0]]) * 100)}%<small className="dim">{ids.length > 1 ? `${ids.length} videos` : name}</small>

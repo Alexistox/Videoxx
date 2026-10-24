@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { AnchorIcon, PlusIcon, Redo2Icon, RepeatIcon, TrashIcon, Undo2Icon } from "lucide-react";
 import { api } from "../lib/api";
 import { fmtTime } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import { Anchor, Plus, Redo2, Repeat, Trash, Undo2 } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { MusicSection } from "../settings/project/ProjectSettingsPanel";
 import { LAYERS_EVENT, REDO, UNDO, announce, canStep, clone, commitLayers, dB, laneColor, stepLayers } from "../state/layerHistory";
 
@@ -232,7 +232,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
           disabled={busy || !canStep(projectId, false)}
           onClick={() => step(false)}
         >
-          <Undo2 size={15} />
+          <Undo2Icon size={15} />
         </button>
         <button
           className="icon-btn sm"
@@ -241,7 +241,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
           disabled={busy || !canStep(projectId, true)}
           onClick={() => step(true)}
         >
-          <Redo2 size={15} />
+          <Redo2Icon size={15} />
         </button>
         <span className="snd-at">
           {"Playhead "}
@@ -262,7 +262,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
             })
           }
         >
-          <Plus size={13} />
+          <PlusIcon size={13} />
           New lane
         </button>
       </div>
@@ -321,7 +321,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
                 />
                 <em className="snd-db">{dB(l.gain)}</em>
                 <button className="btn sm ghost" disabled={busy} onClick={() => addFile(l.id)}>
-                  <Plus size={13} />
+                  <PlusIcon size={13} />
                   Add audio layer…
                 </button>
                 {l.kind === "free" && !clips.length && (
@@ -334,7 +334,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
                       })
                     }
                   >
-                    <Trash size={13} />
+                    <TrashIcon size={13} />
                   </button>
                 )}
               </div>
@@ -371,8 +371,8 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
                     >
                       <ClipWave projectId={projectId} clip={c} color={col} />
                       <span>
-                        {c.anchor && <Anchor size={10} />}
-                        {c.loop && <Repeat size={10} />}
+                        {c.anchor && <AnchorIcon size={10} />}
+                        {c.loop && <RepeatIcon size={10} />}
                         {c.name}
                       </span>
                     </div>
@@ -410,7 +410,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
                 });
               }}
             >
-              <Trash size={13} />
+              <TrashIcon size={13} />
               Remove
             </button>
           </div>
@@ -475,7 +475,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
                 anchored = !!clip.anchor;
               return anchored ? (
                 <button className="btn sm on" onClick={() => setClip({ start: +startOf(clip).toFixed(3), anchor: null })}>
-                  <Anchor size={13} />
+                  <AnchorIcon size={13} />
                   On “{clip.anchor.text}” · unpin
                 </button>
               ) : wi >= 0 ? (
@@ -483,7 +483,7 @@ export function LayersTab({ projectId, at, snaps, onMixed, onLibrary }) {
                   className="btn sm ghost"
                   onClick={() => setClip({ anchor: { word: wi, text: words[wi].w, offset: +(startOf(clip) - words[wi].s).toFixed(3) } })}
                 >
-                  <Anchor size={13} />
+                  <AnchorIcon size={13} />
                   Anchor to the word “{words[wi].w}”
                 </button>
               ) : (

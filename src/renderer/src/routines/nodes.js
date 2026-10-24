@@ -1,4 +1,4 @@
-import { CLAUDE_EFFORTS } from "../src/renderer/src/engines/claudeModels";
+import { CLAUDE_EFFORTS } from "../engines/claudeModels";
 
 export const SCRIPT_PRESETS = [
   { value: "balanced", label: "Balanced", detail: `` },

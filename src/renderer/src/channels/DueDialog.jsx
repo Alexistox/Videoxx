@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { X } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { XIcon } from "lucide-react";
 import { Modal } from "../components/ui";
 import { DATE_LIMITS, dateProblem, inDays, isEnter, today } from "./stages";
 
@@ -82,7 +82,7 @@ export function DueDialog({ title, value, canClear, onClose, onSave }) {
         <div className="modal-actions">
           {(value || canClear) && (
             <button className="btn ghost ch-del" onClick={() => save(null)}>
-              <X size={14} />
+              <XIcon size={14} />
               No due date
             </button>
           )}

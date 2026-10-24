@@ -1,19 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { api } from "../../src/renderer/src/lib/api";
-import { useApp } from "../../src/renderer/src/state/AppProvider";
 import {
-  Activity,
-  ChevronDown,
-  Gauge,
-  RefreshCw,
-  RotateCcw,
-  Save,
-  Search,
-  Trash,
-  X,
-} from "../../node_modules/lucide-react/dist/esm/lucide-react";
-import { Spinner, Toggle } from "../../src/renderer/src/components/ui";
-import { fold } from "../../src/renderer/src/lib/fold";
+  ActivityIcon,
+  ChevronDownIcon,
+  GaugeIcon,
+  RefreshCwIcon,
+  RotateCcwIcon,
+  SaveIcon,
+  SearchIcon,
+  TrashIcon,
+  XIcon,
+} from "lucide-react";
+import { api } from "../../lib/api";
+import { useApp } from "../../state/AppProvider";
+import { Spinner, Toggle } from "../../components/ui";
+import { fold } from "../../lib/fold";
 
 const GFX_SECTIONS = [
   {
@@ -861,7 +861,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
             disabled={!set}
             onClick={() => setKey(c.key, null)}
           >
-            <RotateCcw size={12} />
+            <RotateCcwIcon size={12} />
           </button>
         </div>
       </div>
@@ -877,13 +877,13 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
           {saving === "saving" ? "Saving…" : saving === "saved" ? "Saved to this video" : saving === "error" ? "Not saved" : ""}
         </span>
         <button className="icon-btn sm" aria-label="Close Graphics" title="Close (Esc)" onClick={onClose}>
-          <X size={15} />
+          <XIcon size={15} />
         </button>
       </div>
       <div className="gfx-body">
         <div className="gfx-tools">
           <label className="search gfx-search">
-            <Search size={13} />
+            <SearchIcon size={13} />
             <input
               type="search"
               placeholder="Search: shadows, bloom, fps…"
@@ -895,7 +895,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
           <span className="row gfx-stat-row">
             <span className="row small" style={{ gap: 6 }}>
               <Toggle on={stats} onChange={onStats} label="Show the frame rate on the preview" />
-              <Activity size={13} />
+              <ActivityIcon size={13} />
               FPS readout
             </span>
             <span className="grow" />
@@ -905,7 +905,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
               disabled={measuring}
               title="Draws the frame on screen 8 times and shows how long one frame takes at these settings"
             >
-              {measuring ? <Spinner size={11} /> : <Gauge size={12} />}Measure
+              {measuring ? <Spinner size={11} /> : <GaugeIcon size={12} />}Measure
             </button>
             {bench && (
               <span className="small gfx-bench" title={bench.drawn ? `3D image ${bench.drawn[0]}×${bench.drawn[1]} px` : void 0}>
@@ -923,7 +923,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
               <>
                 {"This video's engine is older than the Graphics switches. "}
                 <button className="btn tiny" onClick={onUpdateEngine}>
-                  <RefreshCw size={12} />
+                  <RefreshCwIcon size={12} />
                   Update engine
                 </button>
                 {" adds them; your scenes stay."}
@@ -967,7 +967,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
                 disabled={!Object.keys(vals).length}
                 onClick={() => commit({})}
               >
-                <RotateCcw size={11} />
+                <RotateCcwIcon size={11} />
                 Reset to look
               </button>
             </div>
@@ -984,7 +984,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
                       title="Delete this preset"
                       onClick={() => delPreset(p)}
                     >
-                      <Trash size={11} />
+                      <TrashIcon size={11} />
                     </button>
                   </span>
                 ))}
@@ -992,7 +992,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
             )}
             {naming === null ? (
               <button className="text-btn small" onClick={() => setNaming("")}>
-                <Save size={12} />
+                <SaveIcon size={12} />
                 {" Save these as a preset…"}
               </button>
             ) : (
@@ -1041,7 +1041,7 @@ export function GraphicsPanel({ projectId, preview, saved, styleName, stats, onS
                     })
                   }
                 >
-                  <ChevronDown size={13} className={open ? "" : "gfx-rot"} />
+                  <ChevronDownIcon size={13} className={open ? "" : "gfx-rot"} />
                   {s.label}
                   {any && <span className="gfx-dot" title="Changed from the look" />}
                 </button>

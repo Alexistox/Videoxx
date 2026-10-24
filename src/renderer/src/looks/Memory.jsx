@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { api } from "../src/renderer/src/lib/api";
-import { ago } from "../src/renderer/src/lib/format";
-import { useApp } from "../src/renderer/src/state/AppProvider";
-import { Brain, Check, Film, Globe, Plus, Sparkles, Trash } from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { Empty, Spinner, Toggle } from "../src/renderer/src/components/ui";
+import { BrainIcon, CheckIcon, FilmIcon, GlobeIcon, PlusIcon, SparklesIcon, TrashIcon } from "lucide-react";
+import { api } from "../lib/api";
+import { ago } from "../lib/format";
+import { useApp } from "../state/AppProvider";
+import { Empty, Spinner, Toggle } from "../components/ui";
 
 export function Memory() {
   const { toast, projects, setSuggestions } = useApp();
@@ -74,7 +74,7 @@ export function Memory() {
             disabled={learning}
             title="Claude reads your recent edit requests and proposes rules for what you keep asking for"
           >
-            {learning ? <Spinner size={15} /> : <Sparkles size={16} strokeWidth={1.7} />}Learn from my edits
+            {learning ? <Spinner size={15} /> : <SparklesIcon size={16} strokeWidth={1.7} />}Learn from my edits
           </button>
         </div>
       </div>
@@ -93,11 +93,11 @@ export function Memory() {
         <div className="row wrap">
           <div className="tabs sm" role="radiogroup" aria-label="Scope">
             <button className={scope === "global" ? "active" : ""} onClick={() => setScope("global")}>
-              <Globe size={13} />
+              <GlobeIcon size={13} />
               All videos
             </button>
             <button className={scope === "project" ? "active" : ""} onClick={() => setScope("project")} disabled={!projects.length}>
-              <Film size={13} />
+              <FilmIcon size={13} />
               One project
             </button>
           </div>
@@ -118,7 +118,7 @@ export function Memory() {
           )}
           <span className="grow" />
           <button className="btn primary small" onClick={add} disabled={!text.trim()}>
-            <Plus size={14} />
+            <PlusIcon size={14} />
             Add rule
           </button>
         </div>
@@ -134,7 +134,7 @@ export function Memory() {
       </div>
       {!list.length ? (
         <Empty
-          icon={<Brain size={28} strokeWidth={1.7} />}
+          icon={<BrainIcon size={28} strokeWidth={1.7} />}
           title={tab === "suggested" ? "No suggestions waiting" : "No rules yet"}
           text="Rules are short, reusable preferences like camera framing, text placement or colour choices. They're written to STYLE.md and given to every Claude session."
         />
@@ -147,12 +147,12 @@ export function Memory() {
                 <div className="meta">
                   {r.scope === "global" ? (
                     <>
-                      <Globe size={12} />
+                      <GlobeIcon size={12} />
                       All videos
                     </>
                   ) : (
                     <>
-                      <Film size={12} />
+                      <FilmIcon size={12} />
                       {r.project_name ?? "deleted project"}
                     </>
                   )}
@@ -181,7 +181,7 @@ export function Memory() {
                       toast("Rule kept.");
                     }}
                   >
-                    <Check size={14} />
+                    <CheckIcon size={14} />
                     Keep
                   </button>
                   <button
@@ -212,7 +212,7 @@ export function Memory() {
                       load();
                     }}
                   >
-                    <Trash size={16} strokeWidth={1.7} />
+                    <TrashIcon size={16} strokeWidth={1.7} />
                   </button>
                 </>
               )}

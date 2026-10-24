@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CircleDashed } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { CircleDashedIcon } from "lucide-react";
 
 const lum = (hex) => {
   const n = parseInt(hex.slice(1), 16),
@@ -42,7 +42,7 @@ export function ChannelAvatar({ c, size = 28 }) {
   if (!c)
     return (
       <span className="ch-av none" style={{ width: size, height: size }} aria-hidden="true">
-        <CircleDashed size={Math.round(size * 0.6)} strokeWidth={1.6} />
+        <CircleDashedIcon size={Math.round(size * 0.6)} strokeWidth={1.6} />
       </span>
     );
   return (

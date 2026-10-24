@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { api } from "../src/renderer/src/lib/api";
-import { ago } from "../src/renderer/src/lib/format";
-import { useApp } from "../src/renderer/src/state/AppProvider";
-import { Film, FolderOpen, Play } from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { Empty, StatusBadge } from "../src/renderer/src/components/ui";
+import { FilmIcon, FolderOpenIcon, PlayIcon } from "lucide-react";
+import { api } from "../lib/api";
+import { ago } from "../lib/format";
+import { useApp } from "../state/AppProvider";
+import { Empty, StatusBadge } from "../components/ui";
 
 export function Renders() {
   const { go, brand, allProjects } = useApp();
@@ -30,7 +30,7 @@ export function Renders() {
       </div>
       {!shown.length ? (
         <Empty
-          icon={<Film size={28} strokeWidth={1.7} />}
+          icon={<FilmIcon size={28} strokeWidth={1.7} />}
           title={personal ? "No renders yet" : "No exports yet"}
           text={
             personal
@@ -81,11 +81,11 @@ export function Renders() {
               {r.exists && (
                 <>
                   <button className="btn small" onClick={() => api.open(r.path)}>
-                    <Play size={14} />
+                    <PlayIcon size={14} />
                     Play
                   </button>
                   <button className="icon-btn" aria-label="Show in folder" onClick={() => api.reveal(r.path)}>
-                    <FolderOpen size={16} strokeWidth={1.7} />
+                    <FolderOpenIcon size={16} strokeWidth={1.7} />
                   </button>
                 </>
               )}

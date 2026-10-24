@@ -1,26 +1,26 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ArrowLeftIcon,
+  CameraIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  CircleAlertIcon,
+  CopyIcon,
+  ExternalLinkIcon,
+  FlagIcon,
+  ImagePlusIcon,
+  ListChecksIcon,
+  LoaderCircleIcon,
+  MessageCircleQuestionMarkIcon,
+  SendIcon,
+  SparklesIcon,
+  ThumbsDownIcon,
+  ThumbsUpIcon,
+  XIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { recentErrors } from "../lib/errors";
 import { useApp } from "../state/AppProvider";
-import {
-  ArrowLeft,
-  Camera,
-  Check,
-  ChevronDown,
-  CircleAlert,
-  Copy,
-  ExternalLink,
-  Flag,
-  ImagePlus,
-  ListChecks,
-  LoaderCircle,
-  MessageCircleQuestionMark,
-  Send,
-  Sparkles,
-  ThumbsDown,
-  ThumbsUp,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { keys } from "./keys";
 
 const HELLO =
@@ -83,7 +83,7 @@ function Shots({ shots, onRemove, onOpen }) {
           </button>
           {onRemove && (
             <button className="help-shot-x" onClick={() => onRemove(i)} aria-label={`Remove screenshot ${i + 1}`}>
-              <X size={11} />
+              <XIcon size={11} />
             </button>
           )}
         </div>
@@ -326,8 +326,8 @@ ${bodyText()}`),
   };
   const errs = useMemo(() => recentErrors(1), [help.n, mode]);
   const tabs = [
-    ["chat", "Ask", <MessageCircleQuestionMark size={14} />],
-    ["report", "Report a problem", <Flag size={14} />],
+    ["chat", "Ask", <MessageCircleQuestionMarkIcon size={14} />],
+    ["report", "Report a problem", <FlagIcon size={14} />],
   ];
   return (
     <div
@@ -362,7 +362,7 @@ ${bodyText()}`),
           ))}
         </div>
         <button className="icon-btn sm" aria-label="Close help" title="Close (Esc)" onClick={closeHelp}>
-          <X size={15} />
+          <XIcon size={15} />
         </button>
       </div>
       {mode === "chat" && (
@@ -388,7 +388,7 @@ ${bodyText()}`),
                       ask(`I got this message: "${errs[0].replace(/^\[[^\]]*\]\s*/, "")}". What does it mean and how do I fix it?`)
                     }
                   >
-                    <CircleAlert size={13} />
+                    <CircleAlertIcon size={13} />
                     <span>
                       {"Ask about: "}
                       {errs[0].replace(/^\[[^\]]*\]\s*/, "").slice(0, 70)}
@@ -412,7 +412,7 @@ ${bodyText()}`),
                 )}
                 {m.role === "assistant" && !m.error && m.answered === false && (
                   <button className="btn tiny help-cta" onClick={startReport}>
-                    <Flag size={12} />
+                    <FlagIcon size={12} />
                     Report this problem
                   </button>
                 )}
@@ -420,16 +420,16 @@ ${bodyText()}`),
                   <div className="help-rate">
                     <span>Did this help?</span>
                     <button onClick={() => rate(i, true)} aria-label="Yes, it helped" title="Yes">
-                      <ThumbsUp size={13} />
+                      <ThumbsUpIcon size={13} />
                     </button>
                     <button onClick={() => rate(i, false)} aria-label="No, it did not help: report the problem" title="No: report it">
-                      <ThumbsDown size={13} />
+                      <ThumbsDownIcon size={13} />
                     </button>
                   </div>
                 )}
                 {m.rated && m.id && (
                   <div className="help-rate done">
-                    <Check size={12} />
+                    <CheckIcon size={12} />
                     Thanks
                   </div>
                 )}
@@ -479,7 +479,7 @@ ${bodyText()}`),
                     if (s) setPending((p) => [...p, s].slice(0, MAX_SHOTS));
                   }}
                 >
-                  <Camera size={15} />
+                  <CameraIcon size={15} />
                 </button>
                 <button
                   className="help-send"
@@ -488,7 +488,7 @@ ${bodyText()}`),
                   aria-label="Send"
                   title="Send (Enter)"
                 >
-                  <Send size={14} />
+                  <SendIcon size={14} />
                 </button>
               </div>
             </div>
@@ -504,21 +504,21 @@ ${bodyText()}`),
           <div className="help-body help-sending">
             {sending.status === "opening" && (
               <>
-                <LoaderCircle className="spin" size={22} />
+                <LoaderCircleIcon className="spin" size={22} />
                 <b>Preparing the report…</b>
                 <p>Your report is being prepared on this computer.</p>
               </>
             )}
             {sending.status === "filled" && (
               <>
-                <LoaderCircle className="spin" size={22} />
+                <LoaderCircleIcon className="spin" size={22} />
                 <b>Report ready</b>
                 <p>Read the report, then copy it and send it wherever you get support.</p>
               </>
             )}
             {sending.status === "signin" && (
               <>
-                <CircleAlert size={22} />
+                <CircleAlertIcon size={22} />
                 <b>Could not prepare the report</b>
                 <p>Copy the report from this window and send it wherever you get support.</p>
               </>
@@ -526,14 +526,14 @@ ${bodyText()}`),
             {sending.status === "posted" && (
               <>
                 <span className="help-ok">
-                  <Check size={20} />
+                  <CheckIcon size={20} />
                 </span>
                 <b>Posted. Thank you!</b>
                 <p>Your report was saved on this computer.</p>
                 <div className="help-row">
                   {sending.url && (
                     <button className="btn small" onClick={() => api.external(sending.url)}>
-                      <ExternalLink size={13} />
+                      <ExternalLinkIcon size={13} />
                       Open my post
                     </button>
                   )}
@@ -551,12 +551,12 @@ ${bodyText()}`),
             )}
             {sending.status === "abandoned" && (
               <>
-                <CircleAlert size={22} />
+                <CircleAlertIcon size={22} />
                 <b>Not posted</b>
                 <p>The report was not sent. It is saved under My reports, and you can copy it from there.</p>
                 <div className="help-row">
                   <button className="btn small" onClick={() => setSending(null)}>
-                    <ArrowLeft size={13} />
+                    <ArrowLeftIcon size={13} />
                     Edit the report
                   </button>
                   <button className="btn small primary" onClick={() => setSending(null)}>
@@ -567,12 +567,12 @@ ${bodyText()}`),
             )}
             {sending.status === "failed" && (
               <>
-                <CircleAlert size={22} />
+                <CircleAlertIcon size={22} />
                 <b>The report could not be prepared</b>
                 <p>{sending.detail || "Copy the report and send it wherever you get support."}</p>
                 <div className="help-row">
                   <button className="btn small" onClick={() => setSending(null)}>
-                    <ArrowLeft size={13} />
+                    <ArrowLeftIcon size={13} />
                     Back
                   </button>
                 </div>
@@ -589,12 +589,12 @@ ${bodyText()}`),
                 <button className="btn tiny help-fill" onClick={fillFromChat} disabled={writing}>
                   {writing ? (
                     <>
-                      <LoaderCircle className="spin" size={12} />
+                      <LoaderCircleIcon className="spin" size={12} />
                       Writing it from your chat…
                     </>
                   ) : (
                     <>
-                      <Sparkles size={12} />
+                      <SparklesIcon size={12} />
                       Fill in from my chat
                     </>
                   )}
@@ -683,11 +683,11 @@ ${bodyText()}`),
                         if (s) setShots((x) => [...x, s].slice(0, MAX_SHOTS));
                       }}
                     >
-                      <Camera size={12} />
+                      <CameraIcon size={12} />
                       Capture the app
                     </button>
                     <label className="btn tiny">
-                      <ImagePlus size={12} />
+                      <ImagePlusIcon size={12} />
                       Add a picture
                       <input
                         type="file"
@@ -729,7 +729,7 @@ ${bodyText()}`),
                 </span>
               </label>
               <button className="text-btn help-preview-toggle" onClick={showPreview} aria-expanded={preview !== null}>
-                <ChevronDown size={13} className={preview !== null ? "up" : ""} />
+                <ChevronDownIcon size={13} className={preview !== null ? "up" : ""} />
                 What will be copied
               </button>
               {preview !== null && (
@@ -751,7 +751,7 @@ Report CZ-…  ·  ${includeInfo && ctx ? `${ctx.app} · ${ctx.system}` : (ctx?.
                 disabled={!ok}
                 title="Copy the report (personal paths removed) to send it yourself"
               >
-                <Copy size={13} />
+                <CopyIcon size={13} />
                 Copy report
               </button>
             </div>
@@ -763,11 +763,11 @@ Report CZ-…  ·  ${includeInfo && ctx ? `${ctx.app} · ${ctx.system}` : (ctx?.
             <p className="help-hint">Loading…</p>
           ) : !reports.length ? (
             <div className="help-empty">
-              <ListChecks size={22} />
+              <ListChecksIcon size={22} />
               <b>No reports yet</b>
               <p>Problems you report from here are kept in this list.</p>
               <button className="btn small" onClick={startReport}>
-                <Flag size={13} />
+                <FlagIcon size={13} />
                 Report a problem
               </button>
             </div>
@@ -787,7 +787,7 @@ Report CZ-…  ·  ${includeInfo && ctx ? `${ctx.app} · ${ctx.system}` : (ctx?.
                 {r.url ? (
                   <div className="help-row">
                     <button className="btn tiny" onClick={() => api.external(r.url)}>
-                      <ExternalLink size={12} />
+                      <ExternalLinkIcon size={12} />
                       Open post
                     </button>
                   </div>
@@ -799,7 +799,7 @@ Report CZ-…  ·  ${includeInfo && ctx ? `${ctx.app} · ${ctx.system}` : (ctx?.
       )}
       {drag && (
         <div className="help-drop">
-          <ImagePlus size={22} />
+          <ImagePlusIcon size={22} />
           Drop the picture to add it
         </div>
       )}
@@ -820,7 +820,7 @@ Report CZ-…  ·  ${includeInfo && ctx ? `${ctx.app} · ${ctx.system}` : (ctx?.
         >
           <img src={big} alt="Screenshot" />
           <button className="icon-btn" aria-label="Close" onClick={() => setBig(null)}>
-            <X size={18} />
+            <XIcon size={18} />
           </button>
         </div>
       )}

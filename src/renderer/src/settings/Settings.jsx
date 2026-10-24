@@ -1,24 +1,24 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  CopyIcon,
+  CornerDownLeftIcon,
+  DownloadIcon,
+  FlaskConicalIcon,
+  FolderOpenIcon,
+  Image,
+  LogInIcon,
+  LogOutIcon,
+  RefreshCwIcon,
+  SearchIcon,
+  SearchXIcon,
+  SlidersHorizontalIcon,
+  SparklesIcon,
+  TvMinimalPlayIcon,
+  WrenchIcon,
+} from "lucide-react";
 import { api, on } from "../lib/api";
 import { fmtLength, parseLength } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import {
-  Copy,
-  CornerDownLeft,
-  Download,
-  FlaskConical,
-  FolderOpen,
-  Image,
-  LogIn,
-  LogOut,
-  RefreshCw,
-  Search,
-  SearchX,
-  SlidersHorizontal,
-  Sparkles,
-  TvMinimalPlay,
-  Wrench,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { MOD, isMac } from "../help/keys";
 import { Spinner, Toggle } from "../components/ui";
 import { CustomApiPanel, OwnRisk } from "../engines/CustomApiPanel";
@@ -56,12 +56,12 @@ const countWords = (k, n) => {
   return `${n} ${w ? w[n === 1 ? 0 : 1] : k.replace(/_/g, " ")}`;
 };
 const TAB_ICON = {
-  general: <SlidersHorizontal size={14} />,
-  claude: <Sparkles size={14} />,
+  general: <SlidersHorizontalIcon size={14} />,
+  claude: <SparklesIcon size={14} />,
   media: <Image size={14} />,
-  youtube: <TvMinimalPlay size={14} />,
-  system: <Wrench size={14} />,
-  experimental: <FlaskConical size={14} />,
+  youtube: <TvMinimalPlayIcon size={14} />,
+  system: <WrenchIcon size={14} />,
+  experimental: <FlaskConicalIcon size={14} />,
 };
 const TAB_KEY = "cz.settingsTab";
 const savedTab = () => {
@@ -131,7 +131,7 @@ function SettingsSearch({ onPick }) {
         if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false);
       }}
     >
-      <Search size={15} className="set-search-ic" />
+      <SearchIcon size={15} className="set-search-ic" />
       <input
         ref={input}
         className="input"
@@ -160,7 +160,7 @@ function SettingsSearch({ onPick }) {
         <div className="set-results" id="set-results" role="listbox" aria-label="Matching settings" ref={list}>
           {!flat.length ? (
             <div className="set-empty" role="status">
-              <SearchX size={20} strokeWidth={1.6} />
+              <SearchXIcon size={20} strokeWidth={1.6} />
               <b>No setting matches “{q.trim()}”</b>
               <span>Try another word for it, like voice, key, music, folder or update.</span>
             </div>
@@ -189,7 +189,7 @@ function SettingsSearch({ onPick }) {
                         {e.title}
                         <small>{e.description}</small>
                       </span>
-                      {k === i && <CornerDownLeft size={13} className="set-res-enter" />}
+                      {k === i && <CornerDownLeftIcon size={13} className="set-res-enter" />}
                     </div>
                   );
                 })}
@@ -419,7 +419,7 @@ export function Settings() {
         </div>
         <div className="actions">
           <button className="btn" onClick={check} disabled={checking}>
-            {checking ? <Spinner size={15} /> : <RefreshCw size={15} />}Run checks
+            {checking ? <Spinner size={15} /> : <RefreshCwIcon size={15} />}Run checks
           </button>
         </div>
       </div>
@@ -477,12 +477,12 @@ export function Settings() {
                         refreshClaude();
                       }}
                     >
-                      <LogOut size={14} />
+                      <LogOutIcon size={14} />
                       Sign out
                     </button>
                   ) : (
                     <button className="btn small primary" onClick={signIn} disabled={signingIn}>
-                      {signingIn ? <Spinner size={14} /> : <LogIn size={14} />}Sign in with Claude
+                      {signingIn ? <Spinner size={14} /> : <LogInIcon size={14} />}Sign in with Claude
                     </button>
                   )}
                 </div>
@@ -735,7 +735,7 @@ export function Settings() {
                     {info?.bridge?.command}
                   </code>
                   <button className="btn small" onClick={() => copy(info?.bridge?.command)}>
-                    <Copy size={14} />
+                    <CopyIcon size={14} />
                     Copy
                   </button>
                 </div>
@@ -966,7 +966,7 @@ export function Settings() {
                       .catch((e) => toast(e.message, "bad"))
                   }
                 >
-                  <FolderOpen size={14} />
+                  <FolderOpenIcon size={14} />
                   {isMac ? "Show in Finder" : "Show in File Explorer"}
                 </button>
               </div>
@@ -1290,7 +1290,7 @@ export function Settings() {
                               }
                             }}
                           >
-                            <Download size={14} />
+                            <DownloadIcon size={14} />
                             {upd.download ? (upd.viaLauncher ? "Install now" : "Download") : "Restart now"}
                           </button>
                         ) : (
@@ -1300,7 +1300,7 @@ export function Settings() {
                               disabled={updChecking || upd?.state === "checking" || upd?.state === "downloading"}
                               onClick={checkUpdates}
                             >
-                              {updChecking ? <Spinner size={14} /> : <RefreshCw size={14} />}
+                              {updChecking ? <Spinner size={14} /> : <RefreshCwIcon size={14} />}
                               {updChecking ? "Checking…" : "Check now"}
                             </button>
                           )
@@ -1406,7 +1406,7 @@ export function Settings() {
                 <div className="row">
                   <span className="path grow">{info?.workspace}</span>
                   <button className="btn small" onClick={() => api.open(info.workspace)}>
-                    <FolderOpen size={14} />
+                    <FolderOpenIcon size={14} />
                     Open
                   </button>
                 </div>

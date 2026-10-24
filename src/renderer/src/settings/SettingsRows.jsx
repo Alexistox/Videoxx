@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { RefreshCwIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { RefreshCw } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { isMac } from "../help/keys";
 import { Spinner, Toggle } from "../components/ui";
 import { Segmented } from "../components/Picker";
@@ -159,7 +159,7 @@ export function GraphicsRow() {
               {target}.
             </span>
             <button className="btn small primary" onClick={() => api.graphicsRestart()}>
-              <RefreshCw size={14} />
+              <RefreshCwIcon size={14} />
               Restart now
             </button>
           </div>

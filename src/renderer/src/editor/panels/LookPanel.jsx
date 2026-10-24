@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { FilmIcon } from "lucide-react";
 import { api, isOwnStyle, offeredLook } from "../../lib/api";
 import { useApp } from "../../state/AppProvider";
-import { Film } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../../components/ui";
 import { SettingsControls, setAt } from "../../settings/project/SettingsControls";
 import { sameButFormat, withFormat } from "../../looks/lookFormat";
@@ -166,7 +166,7 @@ export function LookPanel({ projectId, status, t, onClose, onApplied }) {
             Close
           </button>
           <button className="btn" disabled={previewing} onClick={() => preview(s)}>
-            {previewing ? <Spinner size={14} /> : <Film size={15} />}Preview
+            {previewing ? <Spinner size={14} /> : <FilmIcon size={15} />}Preview
           </button>
           <button
             className="btn primary"

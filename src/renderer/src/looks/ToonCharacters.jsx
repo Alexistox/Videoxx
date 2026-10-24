@@ -1,14 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { DicesIcon, FaceSlightlySmilingIcon, RefreshCwIcon, UserRoundIcon, UsersIcon, WandSparklesIcon, XIcon } from "lucide-react";
 import { api } from "../lib/api";
-import {
-  Dices,
-  FaceSlightlySmiling,
-  RefreshCw,
-  UserRound,
-  Users,
-  WandSparkles,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 import { Picker } from "../components/Picker";
 
@@ -353,14 +345,14 @@ export function ToonCharacters({ value, onChange, builtin, claudeOk, saved, setS
         label: "The look's main character",
         hint: "Milo, unless the look says otherwise",
         group: "Default",
-        icon: <FaceSlightlySmiling size={15} strokeWidth={1.8} />,
+        icon: <FaceSlightlySmilingIcon size={15} strokeWidth={1.8} />,
       },
       ...value.own.map((c) => ({
         value: c.id,
         label: c.look.name,
         hint: lookSummary(c.look),
         group: "New for this video",
-        icon: <Dices size={15} strokeWidth={1.8} />,
+        icon: <DicesIcon size={15} strokeWidth={1.8} />,
       })),
       ...saved
         .filter((c) => !value.own.some((o) => o.id === c.id))
@@ -369,14 +361,14 @@ export function ToonCharacters({ value, onChange, builtin, claudeOk, saved, setS
           label: c.name,
           hint: c.about,
           group: "Your characters",
-          icon: <UserRound size={15} strokeWidth={1.8} />,
+          icon: <UserRoundIcon size={15} strokeWidth={1.8} />,
         })),
       ...builtin.map((b) => ({
         value: b.value,
         label: b.label.replace(/ \(.*$/, ""),
         hint: (/\((.*)\)/.exec(b.label) || [])[1],
         group: "Built-in cast",
-        icon: <UserRound size={15} strokeWidth={1.8} />,
+        icon: <UserRoundIcon size={15} strokeWidth={1.8} />,
       })),
     ],
     [value, saved, builtin],
@@ -430,15 +422,15 @@ export function ToonCharacters({ value, onChange, builtin, claudeOk, saved, setS
       />
       <div className="row wrap" style={{ gap: 8, marginTop: 8 }}>
         <button type="button" id="np-toon-random" className="btn small" onClick={one}>
-          <Dices size={14} strokeWidth={1.8} />
+          <DicesIcon size={14} strokeWidth={1.8} />
           Random character
         </button>
         <button type="button" id="np-toon-cast" className="btn small" onClick={cast}>
-          <Users size={14} strokeWidth={1.8} />
+          <UsersIcon size={14} strokeWidth={1.8} />
           Random cast
         </button>
         <button type="button" id="np-toon-describe" className="btn small" onClick={() => setDescOpen((o) => !o)}>
-          <WandSparkles size={14} strokeWidth={1.8} />
+          <WandSparklesIcon size={14} strokeWidth={1.8} />
           Describe one…
         </button>
       </div>
@@ -455,7 +447,7 @@ export function ToonCharacters({ value, onChange, builtin, claudeOk, saved, setS
             placeholder="Who stars in your videos? e.g. a cheerful retro gamer with a red cap, round glasses and a striped tee"
           />
           <button type="button" id="np-toon-design" className="btn small primary" onClick={design} disabled={busy || !claudeOk}>
-            {busy ? <Spinner size={13} /> : <WandSparkles size={14} strokeWidth={1.8} />}Design it
+            {busy ? <Spinner size={13} /> : <WandSparklesIcon size={14} strokeWidth={1.8} />}Design it
           </button>
         </div>
       )}
@@ -482,10 +474,10 @@ export function ToonCharacters({ value, onChange, builtin, claudeOk, saved, setS
                 title="Another random look"
                 onClick={() => reroll(c.id)}
               >
-                <RefreshCw size={14} strokeWidth={1.8} />
+                <RefreshCwIcon size={14} strokeWidth={1.8} />
               </button>
               <button type="button" className="icon-btn sm" aria-label={`Remove ${c.look.name}`} title="Remove" onClick={() => drop(c.id)}>
-                <X size={14} strokeWidth={1.8} />
+                <XIcon size={14} strokeWidth={1.8} />
               </button>
             </div>
           ))}

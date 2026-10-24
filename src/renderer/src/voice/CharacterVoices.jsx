@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { AudioLinesIcon } from "lucide-react";
 import { api } from "../lib/api";
-import { AudioLines } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Picker } from "../components/Picker";
 import { lang } from "../settings/languages";
 import { SampleButton, useSample } from "./useSample";
@@ -73,7 +73,7 @@ export function CharacterVoices({ provider, speakers, value, onChange, narrator,
           value: "",
           label: "Narrator's voice",
           hint: `${narrator.name ? `${narrator.name}: ` : ""}read as part of the narration`,
-          icon: <AudioLines size={13} strokeWidth={1.8} />,
+          icon: <AudioLinesIcon size={13} strokeWidth={1.8} />,
         },
         ...(voices ?? []).map((v) => ({
           value: v.id,

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { api } from "../src/renderer/src/lib/api";
-import { useApp } from "../src/renderer/src/state/AppProvider";
-import { Spinner } from "../src/renderer/src/components/ui";
+import { api } from "../lib/api";
+import { useApp } from "../state/AppProvider";
+import { Spinner } from "../components/ui";
 
 const TRIM_DEFAULTS = { thr: -40, minMs: 350, amount: 70 };
 const TRIM_TAIL = 0.02,

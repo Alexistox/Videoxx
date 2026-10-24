@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { CheckIcon, ImagePlusIcon, SaveIcon, StarIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Check, ImagePlus, Save, Star } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Toggle } from "../components/ui";
 
 const bgCache = new Map();
@@ -33,7 +33,7 @@ function Thumb({ id, on, onClick, name }) {
   return (
     <button className={`bg-thumb ${on ? "on" : ""}`} onClick={onClick} title={name} aria-label={`Background ${name}`} aria-pressed={on}>
       {src ? <img src={src} alt="" draggable={false} /> : <span />}
-      {on && <Check size={13} />}
+      {on && <CheckIcon size={13} />}
     </button>
   );
 }
@@ -124,14 +124,14 @@ export function LayoutPanel({ layout, onChange, presetName, hidePresets }) {
           <div className="lp-presets">
             {presets.map((p) => (
               <button key={p.id} className="lp-preset" onClick={() => applyPreset(p)} title={`Apply "${p.name}"`}>
-                {p.is_default ? <Star size={11} fill="currentColor" /> : null}
+                {p.is_default ? <StarIcon size={11} fill="currentColor" /> : null}
                 <span className="ellipsis">{p.name}</span>
               </button>
             ))}
           </div>
           <div className="row" style={{ gap: 6, margin: "8px 6px 4px" }}>
             <button className="btn tiny" onClick={() => setSaveAs("")}>
-              <Save size={12} />
+              <SaveIcon size={12} />
               Save as preset
             </button>
           </div>
@@ -151,7 +151,7 @@ export function LayoutPanel({ layout, onChange, presetName, hidePresets }) {
           />
         ))}
         <button className="bg-thumb add" onClick={addBg} title="Use your own image" aria-label="Add a background image">
-          <ImagePlus size={16} strokeWidth={1.6} />
+          <ImagePlusIcon size={16} strokeWidth={1.6} />
         </button>
       </div>
       {S(

@@ -1,51 +1,51 @@
 import { useEffect, useRef } from "react";
 import {
-  Brain,
-  ChartLine,
-  Clapperboard,
-  Film,
-  House,
-  ImagePlus,
-  LayoutTemplate,
+  BrainIcon,
+  ChartLineIcon,
+  ClapperboardIcon,
+  FilmIcon,
+  HouseIcon,
+  ImagePlusIcon,
+  LayoutTemplateIcon,
   Library,
-  PanelsTopLeft,
-  SlidersHorizontal,
-  TvMinimalPlay,
-  Video,
-  Workflow,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+  PanelsTopLeftIcon,
+  SlidersHorizontalIcon,
+  TvMinimalPlayIcon,
+  VideoIcon,
+  WorkflowIcon,
+} from "lucide-react";
 
-export const ANALYTICS = [{ id: "youtube", label: "YouTube", icon: ChartLine }];
+export const ANALYTICS = [{ id: "youtube", label: "YouTube", icon: ChartLineIcon }];
 export const NAVS = {
   faceless: {
     main: [
-      { id: "home", label: "Home", icon: House },
-      { id: "projects", label: "Projects", icon: PanelsTopLeft },
-      { id: "channels", label: "Channels", icon: TvMinimalPlay },
-      { id: "editor", label: "Editor", icon: Clapperboard },
+      { id: "home", label: "Home", icon: HouseIcon },
+      { id: "projects", label: "Projects", icon: PanelsTopLeftIcon },
+      { id: "channels", label: "Channels", icon: TvMinimalPlayIcon },
+      { id: "editor", label: "Editor", icon: ClapperboardIcon },
     ],
     section: "Workspace",
     more: [
-      { id: "presets", label: "Styles", icon: SlidersHorizontal },
+      { id: "presets", label: "Styles", icon: SlidersHorizontalIcon },
       { id: "library", label: "Library", icon: Library },
-      { id: "memory", label: "Memory", icon: Brain },
-      { id: "thumbnails", label: "Thumbnails", icon: ImagePlus },
-      { id: "routines", label: "Routines", icon: Workflow },
-      { id: "renders", label: "Renders", icon: Film },
+      { id: "memory", label: "Memory", icon: BrainIcon },
+      { id: "thumbnails", label: "Thumbnails", icon: ImagePlusIcon },
+      { id: "routines", label: "Routines", icon: WorkflowIcon },
+      { id: "renders", label: "Renders", icon: FilmIcon },
     ],
   },
   personal: {
     main: [
-      { id: "home", label: "Home", icon: House },
-      { id: "projects", label: "Videos", icon: Video },
-      { id: "channels", label: "Channels", icon: TvMinimalPlay },
-      { id: "editor", label: "Editor", icon: Clapperboard },
+      { id: "home", label: "Home", icon: HouseIcon },
+      { id: "projects", label: "Videos", icon: VideoIcon },
+      { id: "channels", label: "Channels", icon: TvMinimalPlayIcon },
+      { id: "editor", label: "Editor", icon: ClapperboardIcon },
     ],
     section: "Studio",
     more: [
-      { id: "thumbnails", label: "Thumbnails", icon: ImagePlus },
-      { id: "layouts", label: "Layouts", icon: LayoutTemplate },
-      { id: "renders", label: "Renders", icon: Film },
+      { id: "thumbnails", label: "Thumbnails", icon: ImagePlusIcon },
+      { id: "layouts", label: "Layouts", icon: LayoutTemplateIcon },
+      { id: "renders", label: "Renders", icon: FilmIcon },
     ],
   },
 };

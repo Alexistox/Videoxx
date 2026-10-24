@@ -1,22 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { HammerIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../../lib/api";
 import { useApp } from "../../state/AppProvider";
-import { Hammer, TriangleAlert } from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal } from "../../components/ui";
 import { mentionOf } from "../../refs/mentions";
 import { MentionField } from "../../refs/MentionField";
 import { getAt, setAt } from "../../settings/project/SettingsControls";
 import { isStandard, premiumMsg, usePlan } from "../../state/usePlan";
-import {
-  SETTING_EXTRAS,
-  TIME_LIMITS,
-  TIME_LIMIT_BASES,
-  extrasFor,
-  levelExtras,
-  qualityLevels,
-  timeLimitText,
-} from "../../../../../routines/nodes";
-import { RefButton, RefsPanel, RefsUsed, addDropped } from "../../../../../editor/RefsPanel";
+import { SETTING_EXTRAS, TIME_LIMITS, TIME_LIMIT_BASES, extrasFor, levelExtras, qualityLevels, timeLimitText } from "../../routines/nodes";
+import { RefButton, RefsPanel, RefsUsed, addDropped } from "../RefsPanel";
 import { QualitySlider } from "./EffortSlider";
 
 export function BuildPanel({ projectId, base, styleName, rebuild, notReady, settings, onSettings, onStart, onClose }) {
@@ -133,7 +125,7 @@ export function BuildPanel({ projectId, base, styleName, rebuild, notReady, sett
         </p>
         {notReady && (
           <div className="hint">
-            <Hammer size={18} />
+            <HammerIcon size={18} />
             <div>
               <b>Set it up now, build later</b>
               <p>
@@ -145,7 +137,7 @@ export function BuildPanel({ projectId, base, styleName, rebuild, notReady, sett
         )}
         {rebuild && !notReady && (
           <div className="hint warn">
-            <TriangleAlert size={18} />
+            <TriangleAlertIcon size={18} />
             <div>
               <b>Scenes already exist</b>
               <p>Claude will rework them to your notes. Every change is one revertable edit.</p>
@@ -255,7 +247,7 @@ export function BuildPanel({ projectId, base, styleName, rebuild, notReady, sett
                 Cancel
               </button>
               <button className="btn primary" onClick={start}>
-                <Hammer size={15} />
+                <HammerIcon size={15} />
                 {rebuild ? "Rebuild" : "Start build"}
               </button>
             </>

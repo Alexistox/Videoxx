@@ -30,11 +30,6 @@
   "summary": "App-wide context C/useApp and AppProvider: page routing, projects, brand/channels, toasts, Claude sign-in, voice-job watching, palette/new-project/settings/studio/help requests"
  },
  {
-  "start_line": 15253,
-  "path": "node_modules/lucide-react/dist/esm/lucide-react.js",
-  "summary": "Inlined lucide-react runtime and icon definitions (L15253-18193); not recreated, replaced by imports from the lucide-react package"
- },
- {
   "start_line": 18194,
   "path": "src/renderer/src/help/keys.js",
   "summary": "Keyboard platform constants: isMac, MOD, ALT and keys() shortcut label helper"
@@ -526,77 +521,77 @@
  },
  {
   "start_line": 36728,
-  "path": "looks/Characters.jsx",
+  "path": "src/renderer/src/looks/Characters.jsx",
   "summary": "Characters page: list built-in/random/Claude-designed cast characters (SOURCE labels), design or change a character with Claude, select and delete"
  },
  {
   "start_line": 36938,
-  "path": "looks/Presets.jsx",
+  "path": "src/renderer/src/looks/Presets.jsx",
   "summary": "Styles page (Presets): built-in vs custom style groups, look grid with hover previews, style kit, Style Studio entry, embeds Characters"
  },
  {
   "start_line": 37244,
-  "path": "looks/Memory.jsx",
+  "path": "src/renderer/src/looks/Memory.jsx",
   "summary": "Memory page: Claude's learned editing rules (global/project scope), learn-from-edits suggestions, accept/remove rules"
  },
  {
   "start_line": 37381,
-  "path": "state/libraryInbox.js",
+  "path": "src/renderer/src/state/libraryInbox.js",
   "summary": "Tiny module-level bus: requestLibraryInbox/takeLibraryInbox flag telling the Library to open its proposed-items inbox"
  },
  {
   "start_line": 37390,
-  "path": "library/Library.jsx",
+  "path": "src/renderer/src/library/Library.jsx",
   "summary": "Asset library page: KIND/SOURCE/STATUS tables, StatusBadge/KindBadge, faceted search and paging, Card grid, Drawer detail editor, licenceText and CodeView file viewer"
  },
  {
   "start_line": 38114,
-  "path": "library/Renders.jsx",
+  "path": "src/renderer/src/library/Renders.jsx",
   "summary": "Renders page: polls api.renders and lists exports/final renders with status, progress, play and reveal-in-folder actions"
  },
  {
   "start_line": 38168,
-  "path": "editor/TrimSilences.jsx",
+  "path": "src/renderer/src/editor/TrimSilences.jsx",
   "summary": "Trim silences tool: TRIM_DEFAULTS, trimCuts silence detection over dB levels, and the TrimSilences dialog with threshold/min length/amount and Apply"
  },
  {
   "start_line": 38296,
-  "path": "editor/Timeline.jsx",
+  "path": "src/renderer/src/editor/Timeline.jsx",
   "summary": "Canvas timeline of the faceless editor: TRACKS lanes (shots, narration, cues, audio, cards, beds, sound layers), fitText, scrubbing/selection/layer drag, and roundRect canvas helper"
  },
  {
   "start_line": 38867,
-  "path": "routines/nodes.js",
+  "path": "src/renderer/src/routines/nodes.js",
   "summary": "Routine node catalog: SCRIPT_PRESETS, BUILD_EXTRAS and effort levels, time limits, skill/format options, NODES/NODE, port colors/labels, serviceFor, connectProblem, withDefaults, nextRun and TEMPLATES"
  },
  {
   "start_line": 39579,
-  "path": "editor/ContextMeter.jsx",
+  "path": "src/renderer/src/editor/ContextMeter.jsx",
   "summary": "Claude context/usage meter: token formatter, rate-limit names, popover with context fill and limits, start-fresh-conversation action"
  },
  {
   "start_line": 39758,
-  "path": "editor/RefsPanel.jsx",
+  "path": "src/renderer/src/editor/RefsPanel.jsx",
   "summary": "Project references UI: RefButton, addDropped file import, RefsPanel list with RefCard, RefsUsed and UsedChip showing references used by Claude"
  },
  {
   "start_line": 40060,
-  "path": "editor/Md.jsx",
+  "path": "src/renderer/src/editor/Md.jsx",
   "summary": "Minimal markdown renderer (headings, lists, bold, code) as memoized Md component with inline helper"
  },
  {
   "start_line": 40075,
-  "path": "editor/ToolGroup.jsx",
+  "path": "src/renderer/src/editor/ToolGroup.jsx",
   "summary": "Chat helpers: srcOf selection-to-source mapping, ToolGroup collapsible list of Claude tool steps, Compare before/after image slider"
  },
  {
   "start_line": 40127,
-  "path": "editor/ClaudePanel.jsx",
+  "path": "src/renderer/src/editor/ClaudePanel.jsx",
   "summary": "Claude chat panel of the faceless editor: per-project request queues, requestLabel, messages/tools/diffs, build/ultra/fix/script requests, model picker and context meter"
  },
  {
   "start_line": 40880,
-  "path": "editor/panels/GraphicsPanel.jsx",
+  "path": "src/renderer/src/editor/panels/GraphicsPanel.jsx",
   "summary": "Graphics settings: GFX_SECTIONS and GFX_CONTROLS definitions (performance, image, lighting, post, grade, export quality) followed by looks/presets, validation and the GraphicsPanel UI"
  },
  {

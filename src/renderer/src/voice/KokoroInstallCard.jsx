@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
+import { CpuIcon, DownloadIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Cpu, Download, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 import { KOKORO_LANGS } from "./useVoiceStatus";
 
@@ -41,7 +41,7 @@ export function KokoroInstallCard({ k, compact }) {
     <div className={`vo-card ${compact ? "compact" : ""}`}>
       {!compact && (
         <span className="vo-card-ico">
-          <Cpu size={18} strokeWidth={1.7} />
+          <CpuIcon size={18} strokeWidth={1.7} />
         </span>
       )}
       <div className="vo-card-txt">
@@ -70,7 +70,7 @@ export function KokoroInstallCard({ k, compact }) {
           </>
         ) : i.status === "failed" ? (
           <p className="vo-err">
-            <TriangleAlert size={14} />
+            <TriangleAlertIcon size={14} />
             {i.error}
           </p>
         ) : k.files ? (
@@ -87,7 +87,7 @@ export function KokoroInstallCard({ k, compact }) {
         {!running && (
           <div className="row" style={{ marginTop: compact ? 0 : 12 }}>
             <button className="btn small primary" onClick={start}>
-              <Download size={14} />
+              <DownloadIcon size={14} />
               {i.status === "failed"
                 ? "Try again"
                 : k.files

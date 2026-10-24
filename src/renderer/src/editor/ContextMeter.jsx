@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, on } from "../src/renderer/src/lib/api";
-import { Plus } from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { modelName } from "../src/renderer/src/engines/models";
+import { PlusIcon } from "lucide-react";
+import { api, on } from "../lib/api";
+import { modelName } from "../engines/models";
 
 const tok = (n) =>
   n >= 1e6
@@ -218,7 +218,7 @@ export function ContextMeter({ projectId, onFresh, freshPending = false, busy = 
                 setOpen(false);
               }}
             >
-              <Plus size={12} />
+              <PlusIcon size={12} />
               Start a fresh conversation
             </button>
           )}

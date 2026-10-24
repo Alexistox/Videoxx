@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  CopyIcon,
+  DownloadIcon,
+  FolderOpenIcon,
+  ListOrderedIcon,
+  MonitorPlayIcon,
+  PlayIcon,
+  SmartphoneIcon,
+  TriangleAlertIcon,
+} from "lucide-react";
 import { api, on } from "../../lib/api";
 import { fmtTime, secs } from "../../lib/format";
 import { useApp } from "../../state/AppProvider";
-import {
-  Copy,
-  Download,
-  FolderOpen,
-  ListOrdered,
-  MonitorPlay,
-  Play,
-  Smartphone,
-  TriangleAlert,
-} from "../../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Modal, Spinner } from "../../components/ui";
 import { slugOf } from "../../lib/fold";
 import { exportsLeft, isStandard, premiumMsg, usePlan } from "../../state/usePlan";
-import { ExportQualityPick, getExportQuality } from "../../../../../editor/panels/GraphicsPanel";
+import { ExportQualityPick, getExportQuality } from "./GraphicsPanel";
 import { VerticalTab } from "./VerticalTab";
 import { youtubeChapters } from "./youtubeChapters";
 
@@ -147,7 +147,7 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
         disabled={busy || vbusy}
         onClick={() => setTab("video")}
       >
-        <MonitorPlay size={14} />
+        <MonitorPlayIcon size={14} />
         Video
       </button>
       <button
@@ -157,7 +157,7 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
         disabled={busy || vbusy}
         onClick={() => setTab("vertical")}
       >
-        <Smartphone size={14} />
+        <SmartphoneIcon size={14} />
         Vertical 9:16
       </button>
     </div>
@@ -286,11 +286,11 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
               {res.gif && " · GIF saved"}
               <div className="row" style={{ marginTop: 10 }}>
                 <button className="btn small" onClick={() => api.open(res.path)}>
-                  <Play size={14} />
+                  <PlayIcon size={14} />
                   Play
                 </button>
                 <button className="btn small" onClick={() => api.reveal(res.path)}>
-                  <FolderOpen size={14} />
+                  <FolderOpenIcon size={14} />
                   Show in folder
                 </button>
               </div>
@@ -298,7 +298,7 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
           )}
           {error && (
             <div className="hint bad">
-              <TriangleAlert size={18} />
+              <TriangleAlertIcon size={18} />
               <div>
                 <b>Export failed</b>
                 <p>{error}</p>
@@ -330,7 +330,7 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
                     toast("Chapters copied.");
                   }}
                 >
-                  <Copy size={14} />
+                  <CopyIcon size={14} />
                   Copy
                 </button>
               </div>
@@ -343,7 +343,7 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
                 style={{ marginRight: "auto" }}
                 onClick={() => setChapters((c) => (c === null ? youtubeChapters(shots).join("\n") : null))}
               >
-                <ListOrdered size={15} />
+                <ListOrderedIcon size={15} />
                 YouTube chapters
               </button>
             )}
@@ -361,7 +361,7 @@ export function ExportPanel({ projectId, status, range, shots, initialTab, onClo
               disabled={busy || !name.trim() || (std && left === 0 && !(onlyRange && range))}
               title={!name.trim() ? "Type a file name first" : void 0}
             >
-              {busy ? <Spinner size={14} /> : <Download size={15} />}Export
+              {busy ? <Spinner size={14} /> : <DownloadIcon size={15} />}Export
             </button>
           </div>
         </div>

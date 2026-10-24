@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { FolderOpenIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { FolderOpen } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Toggle } from "../components/ui";
 
 export function ScriptSkillRow() {
@@ -95,7 +95,7 @@ export function ScriptSkillRow() {
                 disabled={busy}
                 onClick={() => run(() => api.scriptSkillPick("folder"), "Scripting skill replaced.")}
               >
-                <FolderOpen size={14} />
+                <FolderOpenIcon size={14} />
                 Replace with a folder
               </button>
               <button className="btn small" disabled={busy} onClick={() => setPaste(paste === null ? "" : null)}>
@@ -128,7 +128,7 @@ export function ScriptSkillRow() {
                 run(() => api.scriptSkillPick("folder"), "Scripting skill added. Claude follows it from the next script.").then(added)
               }
             >
-              <FolderOpen size={14} />
+              <FolderOpenIcon size={14} />
               Add a skill folder
             </button>
             <button className="btn small" disabled={busy} onClick={() => setPaste(paste === null ? "" : null)}>

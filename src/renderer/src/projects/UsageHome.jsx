@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { ChevronDownIcon, FilmIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { ago } from "../lib/format";
 import { useApp } from "../state/AppProvider";
-import { ChevronDown, Film } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { PLANS, PlanChooser, planText } from "../settings/PlanChooser";
 
 const PERIODS = [
@@ -227,7 +227,7 @@ export function UsageHome({ projects }) {
       >
         <span className="ellipsis">{hide ? "Savings hidden" : `Plan: ${planText(plan)}`}</span>
         <b>{hide ? "Show" : "Change"}</b>
-        <ChevronDown size={12} />
+        <ChevronDownIcon size={12} />
       </button>
       {planOpen && (
         <div className="uh-plan-pop" role="dialog" aria-label="Your Claude plan">
@@ -251,7 +251,7 @@ export function UsageHome({ projects }) {
             {continueRow.map((p) => (
               <button key={p.id} className="list-row" onClick={() => go("editor", p.id)}>
                 <span className="well">
-                  <Film size={15} strokeWidth={1.7} />
+                  <FilmIcon size={15} strokeWidth={1.7} />
                 </span>
                 <span className="grow ellipsis" title={p.name}>
                   {p.name}

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { PlayIcon, SquareIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Play, Square } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Spinner } from "../components/ui";
 
 let sampleEl = null,
@@ -76,9 +76,9 @@ export function SampleButton({ s, id, onPlay, title }) {
       {mine && s.st?.phase === "loading" ? (
         <Spinner size={14} />
       ) : mine ? (
-        <Square size={13} strokeWidth={2} />
+        <SquareIcon size={13} strokeWidth={2} />
       ) : (
-        <Play size={15} strokeWidth={1.8} />
+        <PlayIcon size={15} strokeWidth={1.8} />
       )}
     </button>
   );

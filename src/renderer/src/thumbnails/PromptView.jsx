@@ -1,14 +1,5 @@
 import { useMemo, useState } from "react";
-import {
-  Download,
-  FolderOpen,
-  ImagePlus,
-  LayoutGrid,
-  RotateCcw,
-  Sparkles,
-  Star,
-  X,
-} from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { DownloadIcon, FolderOpenIcon, ImagePlusIcon, LayoutGridIcon, RotateCcwIcon, SparklesIcon, StarIcon, XIcon } from "lucide-react";
 import { MOD } from "../help/keys";
 import { Busy } from "../components/ui";
 import { Lightbox } from "../components/Lightbox";
@@ -105,7 +96,7 @@ export function PromptView(p) {
                 {r.url && <img src={r.url} alt={r.label} />}
                 <b>@{r.name}</b>
                 <button aria-label={`Remove ${r.name}`} onClick={() => set({ refs: c.refs.filter((_, j) => j !== i) })}>
-                  <X size={11} />
+                  <XIcon size={11} />
                 </button>
                 {r.url && (
                   <span className="pv-ref-big">
@@ -138,7 +129,7 @@ export function PromptView(p) {
         )}
         <div className="pv-row">
           <button className="btn small" onClick={() => p.attach(null)} title="Add reference images (or drop / paste them)">
-            <ImagePlus size={14} />
+            <ImagePlusIcon size={14} />
             Reference
           </button>
           <ModelSelects models={p.models} value={c} onChange={(x) => set(x)} />
@@ -149,7 +140,7 @@ export function PromptView(p) {
             onClick={() => p.run(c)}
             title={p.hasKey ? `Generate (${MOD}+Enter)` : "Add your Higgsfield key first"}
           >
-            <Sparkles size={15} />
+            <SparklesIcon size={15} />
             Generate
           </button>
         </div>
@@ -186,20 +177,20 @@ export function PromptView(p) {
                   {g.status === "completed" && g.file && (
                     <>
                       <button className="btn tiny primary" onClick={() => p.useAsThumb(g.file)}>
-                        <Star size={12} />
+                        <StarIcon size={12} />
                         Use as thumbnail
                       </button>
                       <button className="icon-btn sm" title="Save a copy" aria-label="Save a copy" onClick={() => p.saveAs(g.file)}>
-                        <Download size={14} />
+                        <DownloadIcon size={14} />
                       </button>
                       <button className="icon-btn sm" title="Show in folder" aria-label="Show in folder" onClick={() => p.reveal(g.file)}>
-                        <FolderOpen size={14} />
+                        <FolderOpenIcon size={14} />
                       </button>
                     </>
                   )}
                   {live && (
                     <button className="btn tiny" onClick={() => p.cancel(g.id)}>
-                      <X size={12} />
+                      <XIcon size={12} />
                       Cancel
                     </button>
                   )}
@@ -210,7 +201,7 @@ export function PromptView(p) {
                     aria-label="Prompt again from this one"
                     onClick={() => reuse(g, n)}
                   >
-                    <RotateCcw size={14} />
+                    <RotateCcwIcon size={14} />
                   </button>
                   <button
                     className="icon-btn sm"
@@ -218,7 +209,7 @@ export function PromptView(p) {
                     aria-label="Show on the canvas"
                     onClick={() => p.showOnCanvas(n.id)}
                   >
-                    <LayoutGrid size={14} />
+                    <LayoutGridIcon size={14} />
                   </button>
                 </div>
               </div>
@@ -235,7 +226,7 @@ export function PromptView(p) {
               <>
                 <br />
                 <button className="btn small pv-to-canvas" onClick={p.toCanvas}>
-                  <LayoutGrid size={14} />
+                  <LayoutGridIcon size={14} />
                   {n}
                   {" item"}
                   {n === 1 ? "" : "s"}

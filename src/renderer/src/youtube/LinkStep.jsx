@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link2Icon, PlusIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Link2, Plus } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { Picker } from "../components/Picker";
 import { ChannelAvatar } from "../channels/ChannelAvatar";
 import { compact } from "./format";
@@ -18,7 +18,7 @@ export function LinkPicker({ yt, id }) {
         hint: "Its name, handle and picture",
         icon: (
           <span className="ch-plus">
-            <Plus size={14} strokeWidth={2} />
+            <PlusIcon size={14} strokeWidth={2} />
           </span>
         ),
       },
@@ -112,7 +112,7 @@ export function LinkStep({ yt }) {
               }
             }}
           >
-            <Link2 size={14} />
+            <Link2Icon size={14} />
             <span className="ellipsis" dir="auto">
               Use “{s.name}”
             </span>

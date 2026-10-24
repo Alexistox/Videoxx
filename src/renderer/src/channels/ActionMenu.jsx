@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ChevronLeft } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
 import { MenuList, Popover } from "../components/Picker";
 
 export function ActionMenu({ at, items: given, onClose, width = 250, label = "Menu" }) {
@@ -12,7 +12,9 @@ export function ActionMenu({ at, items: given, onClose, width = 250, label = "Me
   const top = stack[stack.length - 1];
   const rows = useMemo(
     () =>
-      top ? [{ value: "__back", label: top.title, icon: <ChevronLeft size={15} strokeWidth={1.8} />, group: void 0 }, ...top.items] : items,
+      top
+        ? [{ value: "__back", label: top.title, icon: <ChevronLeftIcon size={15} strokeWidth={1.8} />, group: void 0 }, ...top.items]
+        : items,
     [top, items],
   );
   const first = (l, from = 0) => {

@@ -1,37 +1,37 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { api, on } from "../src/renderer/src/lib/api";
-import { ago, money, secs } from "../src/renderer/src/lib/format";
-import { useApp } from "../src/renderer/src/state/AppProvider";
 import {
-  AudioLines,
-  Brain,
-  Check,
-  CodeXml,
-  FileDiff,
-  LogIn,
-  MessagesSquare,
-  Plus,
-  Redo2,
-  RotateCcw,
-  RotateCcwClock,
-  SendHorizontal,
-  Sparkles,
-  Sprout,
-  Square,
-  TriangleAlert,
-  Undo2,
-  Wrench,
-  X,
-} from "../node_modules/lucide-react/dist/esm/lucide-react";
-import { Busy, Modal, Spinner, StatusBadge } from "../src/renderer/src/components/ui";
-import { MentionField } from "../src/renderer/src/refs/MentionField";
-import { effortName } from "../src/renderer/src/engines/claudeModels";
-import { engineOf, modelName, withEngine, workingText } from "../src/renderer/src/engines/models";
-import { useGoogleState } from "../src/renderer/src/engines/ExperimentalGoogle";
-import { useCodexState } from "../src/renderer/src/engines/ChatGPTEngine";
-import { ModelPicker } from "../src/renderer/src/engines/ModelSelect";
-import { lang } from "../src/renderer/src/settings/languages";
-import { PROJECT_MODEL_EVENT } from "../src/renderer/src/settings/project/ProjectSettingsPanel";
+  AudioLinesIcon,
+  BrainIcon,
+  CheckIcon,
+  CodeXmlIcon,
+  FileDiffIcon,
+  LogInIcon,
+  MessagesSquareIcon,
+  PlusIcon,
+  Redo2Icon,
+  RotateCcwIcon,
+  RotateCcwClockIcon,
+  SendHorizontalIcon,
+  SparklesIcon,
+  SproutIcon,
+  SquareIcon,
+  TriangleAlertIcon,
+  Undo2Icon,
+  WrenchIcon,
+  XIcon,
+} from "lucide-react";
+import { api, on } from "../lib/api";
+import { ago, money, secs } from "../lib/format";
+import { useApp } from "../state/AppProvider";
+import { Busy, Modal, Spinner, StatusBadge } from "../components/ui";
+import { MentionField } from "../refs/MentionField";
+import { effortName } from "../engines/claudeModels";
+import { engineOf, modelName, withEngine, workingText } from "../engines/models";
+import { useGoogleState } from "../engines/ExperimentalGoogle";
+import { useCodexState } from "../engines/ChatGPTEngine";
+import { ModelPicker } from "../engines/ModelSelect";
+import { lang } from "../settings/languages";
+import { PROJECT_MODEL_EVENT } from "../settings/project/ProjectSettingsPanel";
 import { requestLibraryInbox } from "../state/libraryInbox";
 import { hideTimeLimit } from "../routines/nodes";
 import { ContextMeter } from "./ContextMeter";
@@ -583,7 +583,7 @@ function ClaudePanel$1({
   return (
     <aside className="ed-right" aria-label="Claude">
       <div className="agent-head">
-        <Sparkles size={17} strokeWidth={1.7} style={{ color: "var(--mint)" }} />
+        <SparklesIcon size={17} strokeWidth={1.7} style={{ color: "var(--mint)" }} />
         <h3>{!lockedModel && engineOf(pc?.effective.model) === "codex" ? "ChatGPT" : "Claude"}</h3>
         <span className="grow cl-model-head">
           {lockedModel ? (
@@ -614,7 +614,7 @@ function ClaudePanel$1({
         </span>
         <div className="tabs sm" role="tablist">
           <button role="tab" aria-selected={tab === "chat"} className={tab === "chat" ? "active" : ""} onClick={() => setTab("chat")}>
-            <MessagesSquare size={13} />
+            <MessagesSquareIcon size={13} />
             Chat
           </button>
           <button
@@ -626,12 +626,12 @@ function ClaudePanel$1({
               loadHistory();
             }}
           >
-            <RotateCcwClock size={13} />
+            <RotateCcwClockIcon size={13} />
             History
           </button>
         </div>
         <button className="icon-btn sm" onClick={newChat} disabled={!!task} aria-label="New conversation" title="New conversation">
-          <Plus size={16} strokeWidth={1.7} />
+          <PlusIcon size={16} strokeWidth={1.7} />
         </button>
       </div>
       <ContextMeter projectId={projectId} onFresh={newChat} freshPending={freshPending} busy={!!task} />
@@ -667,19 +667,19 @@ function ClaudePanel$1({
               <div className="row" style={{ justifyContent: "flex-end" }}>
                 {e.files.length > 0 && (
                   <button className="btn tiny" onClick={() => showDiff(e.id, e.instruction)}>
-                    <FileDiff size={12} />
+                    <FileDiffIcon size={12} />
                     Changes
                   </button>
                 )}
                 {e.files.length > 0 && !["reverted", "running"].includes(e.status) && (
                   <button className="btn tiny" onClick={() => revert(e.id)}>
-                    <Undo2 size={12} />
+                    <Undo2Icon size={12} />
                     Revert
                   </button>
                 )}
                 {e.files.length > 0 && e.status === "reverted" && (
                   <button className="btn tiny" onClick={() => reapply(e.id)}>
-                    <Redo2 size={12} />
+                    <Redo2Icon size={12} />
                     Re-apply
                   </button>
                 )}
@@ -689,7 +689,7 @@ function ClaudePanel$1({
                     title="Put the project back exactly as it was before this edit"
                     onClick={() => restore(e, edits.slice(0, idx).filter((x) => x.status === "done" && x.files.length).length)}
                   >
-                    <RotateCcw size={12} />
+                    <RotateCcwIcon size={12} />
                     Restore to here
                   </button>
                 )}
@@ -708,7 +708,7 @@ function ClaudePanel$1({
               </div>
               {threads.map((t) => (
                 <button key={t.id} className="list-row" onClick={() => openThread(t.id)}>
-                  <MessagesSquare size={14} />
+                  <MessagesSquareIcon size={14} />
                   <span className="grow ellipsis">{t.title}</span>
                   <time>{ago(t.updated_at)}</time>
                 </button>
@@ -730,7 +730,7 @@ function ClaudePanel$1({
               </div>
               {!claude?.loggedIn && (
                 <button className="btn primary" onClick={signIn} disabled={signingIn}>
-                  {signingIn ? <Spinner size={15} /> : <LogIn size={15} />}Sign in to Claude
+                  {signingIn ? <Spinner size={15} /> : <LogInIcon size={15} />}Sign in to Claude
                 </button>
               )}
             </div>
@@ -763,7 +763,7 @@ function ClaudePanel$1({
             if (it.k === "note")
               return (
                 <div key={i} className={`note claude-note${it.warn ? " warn" : ""}`} style={{ fontSize: 12, lineHeight: 1.5 }}>
-                  {it.warn && <TriangleAlert size={12} style={{ verticalAlign: -2, marginRight: 4 }} />}
+                  {it.warn && <TriangleAlertIcon size={12} style={{ verticalAlign: -2, marginRight: 4 }} />}
                   {it.text}
                 </div>
               );
@@ -772,12 +772,12 @@ function ClaudePanel$1({
               return (
                 <div key={i} className="msg err">
                   <div className="row">
-                    <TriangleAlert size={14} />
+                    <TriangleAlertIcon size={14} />
                     <span className="grow">{it.text}</span>
                   </div>
                   {it.auth && (
                     <button className="btn tiny" style={{ marginTop: 8 }} onClick={signIn}>
-                      <LogIn size={12} />
+                      <LogInIcon size={12} />
                       Sign in again
                     </button>
                   )}
@@ -794,11 +794,11 @@ function ClaudePanel$1({
                   {it.answer === void 0 ? (
                     <div className="row">
                       <button className="btn tiny" onClick={() => answer(it, true)}>
-                        <Check size={12} />
+                        <CheckIcon size={12} />
                         Allow
                       </button>
                       <button className="btn tiny" onClick={() => answer(it, false)}>
-                        <X size={12} />
+                        <XIcon size={12} />
                         Deny
                       </button>
                     </div>
@@ -811,7 +811,7 @@ function ClaudePanel$1({
               return (
                 <div key={i} className="perm" style={{ borderColor: "#405a4b", background: "#80bc990a" }}>
                   <div className="row">
-                    <Brain size={14} />
+                    <BrainIcon size={14} />
                     <b style={{ fontWeight: 500 }}>
                       {"Remember for "}
                       {it.scope === "global" ? "all videos" : "this video"}?
@@ -821,7 +821,7 @@ function ClaudePanel$1({
                   {!it.answer ? (
                     <div className="row">
                       <button className="btn tiny" onClick={() => answerRule(it, true)}>
-                        <Check size={12} />
+                        <CheckIcon size={12} />
                         Keep rule
                       </button>
                       <button className="btn tiny" onClick={() => answerRule(it, false)}>
@@ -837,7 +837,7 @@ function ClaudePanel$1({
               return (
                 <div key={i} className="match-card" data-match-card={it.m.shot} aria-label={`Ultraedit+ shot ${it.m.shot}`}>
                   <div className="row">
-                    <Sparkles size={13} />
+                    <SparklesIcon size={13} />
                     <b>
                       {"Ultraedit+ shot "}
                       {it.m.shot}
@@ -907,11 +907,11 @@ function ClaudePanel$1({
                   {it.files.length > 0 && it.status !== "reverted" && (
                     <div className="row">
                       <button className="btn tiny" onClick={() => showDiff(it.editId, "Changes")}>
-                        <FileDiff size={12} />
+                        <FileDiffIcon size={12} />
                         View changes
                       </button>
                       <button className="btn tiny" onClick={() => revert(it.editId)}>
-                        <Undo2 size={12} />
+                        <Undo2Icon size={12} />
                         Revert
                       </button>
                     </div>
@@ -919,7 +919,7 @@ function ClaudePanel$1({
                   {it.files.length > 0 && it.status === "reverted" && (
                     <div className="row">
                       <button className="btn tiny" onClick={() => reapply(it.editId)}>
-                        <Redo2 size={12} />
+                        <Redo2Icon size={12} />
                         Re-apply
                       </button>
                     </div>
@@ -931,7 +931,7 @@ function ClaudePanel$1({
                       if (!it.reused && !hv) return null;
                       return (
                         <div className="cl-harvest" data-harvest={hv?.type ?? "none"}>
-                          <Sprout size={13} />
+                          <SproutIcon size={13} />
                           <span className="grow">
                             {[
                               `Reused ${it.reused} from the Library`,
@@ -985,7 +985,7 @@ function ClaudePanel$1({
               )}
               <span className="grow" />
               <button className="btn tiny" onClick={() => api.stop(task)}>
-                <Square size={11} />
+                <SquareIcon size={11} />
                 Stop
               </button>
             </div>
@@ -1008,11 +1008,11 @@ function ClaudePanel$1({
                     title={`Open ${srcOf(s).file}:${srcOf(s).line}`}
                     onClick={() => api.openSource(projectId, srcOf(s).file, srcOf(s).line).catch((e) => toast(e.message, "bad"))}
                   >
-                    <CodeXml size={12} />
+                    <CodeXmlIcon size={12} />
                   </button>
                 )}
                 <button aria-label="Remove from selection" onClick={() => setSelection(selection.filter((_, j) => j !== i))}>
-                  <X size={12} />
+                  <XIcon size={12} />
                 </button>
               </span>
             ))}
@@ -1051,7 +1051,7 @@ function ClaudePanel$1({
                   </span>
                 )}
                 <button className="icon-btn sm" aria-label="Remove from queue" onClick={() => setQueue((q) => q.filter((_, k) => k !== i))}>
-                  <X size={12} />
+                  <XIcon size={12} />
                 </button>
               </div>
             ))}
@@ -1110,7 +1110,7 @@ function ClaudePanel$1({
               <span key={i} className="thumb-chip">
                 <img src={u} alt={`Reference ${i + 1}`} />
                 <button aria-label="Remove image" onClick={() => setImages((x) => x.filter((_, j) => j !== i))}>
-                  <X size={11} />
+                  <XIcon size={11} />
                 </button>
               </span>
             ))}
@@ -1118,7 +1118,7 @@ function ClaudePanel$1({
         )}
         {audioBusy && mode === "edit" && (
           <p className="vo-claude-wait" role="status">
-            <AudioLines size={13} />
+            <AudioLinesIcon size={13} />
             {audioBusy.split(/(?<=\.)\s/)[0]}
             {" Claude can change the video when it is finished; questions can be asked now."}
           </p>
@@ -1192,11 +1192,11 @@ function ClaudePanel$1({
             aria-label="Toggle ask mode"
             onClick={() => setMode(mode === "edit" ? "ask" : "edit")}
           >
-            {mode === "edit" ? "?" : <Wrench size={14} />}
+            {mode === "edit" ? "?" : <WrenchIcon size={14} />}
           </button>
           {task && (
             <button className="btn small" onClick={() => api.stop(task)}>
-              <Square size={13} />
+              <SquareIcon size={13} />
               Stop
             </button>
           )}
@@ -1207,7 +1207,7 @@ function ClaudePanel$1({
               disabled={!text.trim() || (!!audioBusy && mode === "edit")}
               title={audioBusy && mode === "edit" ? audioBusy : void 0}
             >
-              <SendHorizontal size={14} />
+              <SendHorizontalIcon size={14} />
               {task ? "Queue" : mode === "edit" ? "Apply" : "Ask"}
             </button>
           )}

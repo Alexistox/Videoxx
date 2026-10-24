@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { CalendarClockIcon, LightbulbIcon, TriangleAlertIcon } from "lucide-react";
 import { api } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { CalendarClock, Lightbulb, TriangleAlert } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 import { STAGE_LABEL, daysUntil, dueChip, dueState } from "./stages";
 import { markColor } from "./ChannelAvatar";
 import { showDueOnBoard } from "./Channels";
@@ -64,7 +64,7 @@ export function ComingUp() {
   return (
     <section className="panel pad ch-soon" aria-label="Coming up">
       <div className="row">
-        <CalendarClock size={17} strokeWidth={1.7} />
+        <CalendarClockIcon size={17} strokeWidth={1.7} />
         <h3 className="grow">
           {"Coming up "}
           <small className="dim ch-soon-n">
@@ -89,7 +89,7 @@ export function ComingUp() {
             >
               <span className="well" style={c ? { color: markColor(c.color) } : void 0}>
                 {r.idea ? (
-                  <Lightbulb size={14} strokeWidth={1.8} />
+                  <LightbulbIcon size={14} strokeWidth={1.8} />
                 ) : (
                   <i className="ch-soon-dot" style={{ background: c ? markColor(c.color) : "#777" }} />
                 )}
@@ -102,7 +102,7 @@ export function ComingUp() {
                   {[c?.name ?? "No channel", STAGE_LABEL[r.stage]].join(" · ")}
                   {r.missing && (
                     <span className="ch-soon-warn">
-                      <TriangleAlert size={11} strokeWidth={2} />
+                      <TriangleAlertIcon size={11} strokeWidth={2} />
                       Folder missing
                     </span>
                   )}

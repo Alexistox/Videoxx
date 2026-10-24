@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { DownloadIcon } from "lucide-react";
 import { api, on } from "../lib/api";
 import { useApp } from "../state/AppProvider";
-import { Download } from "../../../../node_modules/lucide-react/dist/esm/lucide-react";
 
 export function UpdateButton() {
   const { toast } = useApp();
@@ -39,7 +39,7 @@ ${u.notes}`
             : `Version ${u.version} is downloaded`
       }
     >
-      <Download size={15} strokeWidth={1.8} />
+      <DownloadIcon size={15} strokeWidth={1.8} />
       {manual ? (
         <span className="grow ellipsis">
           {"Update "}
