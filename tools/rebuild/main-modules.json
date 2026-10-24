@@ -1,0 +1,842 @@
+[
+ {
+  "start_line": 2,
+  "path": "src/main/core/config.js",
+  "summary": "Rollup interop prologue + external requires (dropped), then config.json DEFAULTS, deep merge, getConfig/setConfig with atomic write"
+ },
+ {
+  "start_line": 102,
+  "path": "src/main/core/workspace.js",
+  "summary": "resourcesDir/templatesDir and workspace paths (ws.root/db/projects/style), ensureWorkspace creates STYLE.md"
+ },
+ {
+  "start_line": 116,
+  "path": "src/main/core/log.js",
+  "summary": "main.log file logger: initLog with rotation and crash hooks, log(), logPath"
+ },
+ {
+  "start_line": 139,
+  "path": "src/main/core/secrets.js",
+  "summary": "safeStorage-encrypted secrets.json: getSecret/setSecret/secretHint/importSecrets"
+ },
+ {
+  "start_line": 188,
+  "path": "src/main/db/db.js",
+  "summary": "node:sqlite database: MIGRATIONS list, openDb, recoverInterrupted, dailyBackup, closeDb, q/tx/execSql helpers, dbHealth"
+ },
+ {
+  "start_line": 418,
+  "path": "src/main/core/shellPath.js",
+  "summary": "Login-shell PATH fix: parse/merge/sanitize PATH, path problem texts, spawnErrorText, safeExecFile, childPath, fixPath"
+ },
+ {
+  "start_line": 556,
+  "path": "src/main/engines/claudeCli.js",
+  "summary": "Claude Code CLI: install hints, locate/probe claude executables and versions, cleanEnv, authStatus, login/loginCode/logout"
+ },
+ {
+  "start_line": 732,
+  "path": "src/main/core/install.js",
+  "summary": "Install commands per platform (claude, git, ffmpeg, python, node, codex), macOS CLT stub detection, suite Python venv paths, stable-ts pip steps, adoptSuitePython"
+ },
+ {
+  "start_line": 799,
+  "path": "src/main/styles/manifest.js",
+  "summary": "zod schemas for style/look package manifests (ControlZ, StyleManifestZ, LookManifestZ), parseManifest/parseLook, controlsFor and validateByControls"
+ },
+ {
+  "start_line": 940,
+  "path": "src/main/styles/catalog.js",
+  "summary": "Built-in STYLES catalog with controls, casts, brand help, CUSTOM/PACKAGES registries, getStyle and per-style helpers (engineDirOf, aspectOf, qualityBarOf...), investigation topic notes"
+ },
+ {
+  "start_line": 1421,
+  "path": "src/main/styles/brand.js",
+  "summary": "Brand colour: normHex, brandError, luminance/contrast/textOn, per-style STYLE_USE and brandNote prompt text"
+ },
+ {
+  "start_line": 1463,
+  "path": "src/main/styles/figures.js",
+  "summary": "Investigation (recon) figure finishes/roles, legacy rig/outfit lists and figuresError validation"
+ },
+ {
+  "start_line": 1540,
+  "path": "src/main/styles/graphicsControls.js",
+  "summary": "GFX_CONTROLS graphics settings catalog, export qualities and exportSettings, validateGraphics/compactGraphics"
+ },
+ {
+  "start_line": 2071,
+  "path": "src/main/characters/looks.js",
+  "summary": "Toon character parts catalog, seeded randomLook generator, cleanLook/lookSummary, char ids and the DESCRIBE_SYSTEM prompt for designing a look"
+ },
+ {
+  "start_line": 2260,
+  "path": "src/main/styles/presets.js",
+  "summary": "Built-in looks (presets) per style with look builders, seedPresets, list/get/save/delete presets, validateSettings and per-base invariants, writeSettings"
+ },
+ {
+  "start_line": 2720,
+  "path": "src/main/pipeline/ffmpeg.js",
+  "summary": "ffmpeg/ffprobe wrapper: binaries, probe, hardware encoder detection, runFF jobs and cancel"
+ },
+ {
+  "start_line": 2826,
+  "path": "src/main/characters/boards.js",
+  "summary": "Thumbnail/mood boards: board rows in db, master board per brand, create/save/rename/delete, add images to board folder"
+ },
+ {
+  "start_line": 2952,
+  "path": "src/main/core/text.js",
+  "summary": "Text helpers: special-letter transliteration, unaccent, asciiName, slugOf"
+ },
+ {
+  "start_line": 2986,
+  "path": "src/main/characters/characterLab.js",
+  "summary": "Flat-style character library (Mo + user characters): viewer checks/thumbnails, random characters, rename/delete, Claude character lab design flow, characterForProject and characterPrompt"
+ },
+ {
+  "start_line": 3388,
+  "path": "src/main/characters/lowpoly.js",
+  "summary": "Low-poly asset library: merged seed/user index, used assets and credits, GLB inspect, addAsset/searchAssets"
+ },
+ {
+  "start_line": 3599,
+  "path": "src/main/characters/libraryFigures.js",
+  "summary": "Rigged GLB person detection and the library of figure models (user models + recon projects), useLibraryFigure copies one into a project with credits"
+ },
+ {
+  "start_line": 3684,
+  "path": "src/main/characters/anims.js",
+  "summary": "Animation library: user/builtin anim catalog, hidden-window FBX/GLB converter, importAnims, removeAnim, inbox folder watcher"
+ },
+ {
+  "start_line": 3981,
+  "path": "src/main/characters/chars3d.js",
+  "summary": "3D characters library: upload/convert models in a hidden worker, bone mapping prompt and setCharMapping, sheets, rename/remove"
+ },
+ {
+  "start_line": 4296,
+  "path": "src/main/styles/pace.js",
+  "summary": "Visual pacing: speechPace per base and visualPlan (images, chapters, image budget from length and pictures per minute)"
+ },
+ {
+  "start_line": 4314,
+  "path": "src/main/engines/models.js",
+  "summary": "Model catalog: Claude models/aliases/efforts, Codex models, google:/codex: prefixed ids, engineOf/bareModel, modelName"
+ },
+ {
+  "start_line": 4360,
+  "path": "src/main/engines/cliproxyRelease.js",
+  "summary": "Pinned CLIProxyAPI release version, download URL and per-platform asset hashes"
+ },
+ {
+  "start_line": 4382,
+  "path": "src/main/core/openExternal.js",
+  "summary": "openExternal for http(s) URLs with test-hook capture (takeOpened/openedSoFar)"
+ },
+ {
+  "start_line": 4399,
+  "path": "src/main/engines/cliproxy.js",
+  "summary": "CLIProxy (Google models) install/start/stop/login: paths, ports, process state and events"
+ },
+ {
+  "start_line": 5071,
+  "path": "src/main/engines/codexCli.js",
+  "summary": "Codex (ChatGPT) CLI: locate the executable and vendor binaries, versions, safety flags/env, state + events, refresh, Windows sandbox probe, login/logout, install, custom path"
+ },
+ {
+  "start_line": 5561,
+  "path": "src/main/engines/resolveEngine.js",
+  "summary": "Picks the engine (Claude/Codex/Google via proxy) for a task kind and model with Claude fallback, and builds the Google/engine environment variables"
+ },
+ {
+  "start_line": 5643,
+  "path": "src/main/engines/codexMapper.js",
+  "summary": "CodexMapper class that turns Codex JSON events into Claude-style stream messages, plus describeMapped test helper"
+ },
+ {
+  "start_line": 5764,
+  "path": "src/main/images/higgsfield.js",
+  "summary": "Higgsfield image API: model catalog (GPT Image 2.5, Ideogram, ...), key status, uploads, board generation queue with polling/cancel/resume and generateBuffer"
+ },
+ {
+  "start_line": 6094,
+  "path": "src/main/images/fal.js",
+  "summary": "Fal.ai FLUX.2 image provider: key handling, API calls, reference data URIs and queued generate"
+ },
+ {
+  "start_line": 6184,
+  "path": "src/main/images/png.js",
+  "summary": "Pixel helpers: background matte/cutout, alpha-weighted shrink, CRC32 PNG encoder and BGRA to RGBA conversion"
+ },
+ {
+  "start_line": 6325,
+  "path": "src/main/images/imageCache.js",
+  "summary": "Image library cache: prompt keys, per-project image ledgers, finding a cached image for a prompt and logging its reuse"
+ },
+ {
+  "start_line": 6425,
+  "path": "src/main/images/makeImage.js",
+  "summary": "makeImage for projects: prompt suffixes per kind, budget ledger, cache reuse, generation, cutout processing and warnings"
+ },
+ {
+  "start_line": 6616,
+  "path": "src/main/images/customProviders.js",
+  "summary": "Custom picture/voice API adapters set up by Claude: setup state, running adapter.mjs, voice lists, setup/cancel/remove/install/test (exported as the customApi namespace)"
+ },
+ {
+  "start_line": 6924,
+  "path": "src/main/images/overrides.js",
+  "summary": "Per-project provider and model overrides (image/voice/music/sfx choices, image models), validation, patching and sound settings"
+ },
+ {
+  "start_line": 7012,
+  "path": "src/main/images/flow.js",
+  "summary": "Google Flow image generation by driving Chrome over CDP: profile/state, launching Chrome, page script, aspect picking, generate, 2K upscale and download"
+ },
+ {
+  "start_line": 7583,
+  "path": "src/main/images/providers.js",
+  "summary": "Active image provider selection and status, default image model notes, and generatePicture dispatching to Higgsfield/fal/custom/Flow"
+ },
+ {
+  "start_line": 7662,
+  "path": "src/main/characters/sprites.js",
+  "summary": "Stickman sprite system: cast/pose/face/item vocab, needs() scan of scenes, sprite-sheet generation with green keying and cutting, seeding, webImage from Wikimedia (stickman namespace)"
+ },
+ {
+  "start_line": 8080,
+  "path": "src/main/styles/packages.js",
+  "summary": "Style packages: scan official/member style folders, load/delete packages and studio looks, carry/restore packages with projects, package versions install and rollback"
+ },
+ {
+  "start_line": 8627,
+  "path": "src/main/styles/lookFormat.js",
+  "summary": "Comparing looks ignoring format, applying a video format to settings and finding the matching built-in look for a format"
+ },
+ {
+  "start_line": 8649,
+  "path": "src/main/core/gitSnapshots.js",
+  "summary": "Git snapshots of project folders: .gitignore, git runner, repo init, snapshot commits, diff, revert/restore/reapply ranges and log"
+ },
+ {
+  "start_line": 8768,
+  "path": "src/main/styles/languages.js",
+  "summary": "Supported narration languages table with charsets, words-per-minute and lookup helpers"
+ },
+ {
+  "start_line": 9047,
+  "path": "src/main/voice/spokenScript.js",
+  "summary": "Turns a markdown script into spoken text: beat/pause markers, headings, stage-direction detection per language, emoji/markup stripping"
+ },
+ {
+  "start_line": 9154,
+  "path": "src/main/audio/music.js",
+  "summary": "Project user music: read/save music settings in project.json, add/replace music file, mix args, sfx gain"
+ },
+ {
+  "start_line": 9217,
+  "path": "src/main/audio/trim.js",
+  "summary": "Silence trimming settings, cut-time mapping (toCut/fromCut), WAV reader for trim view, kept pauses, remapping timeline/captions after cuts"
+ },
+ {
+  "start_line": 9359,
+  "path": "src/main/audio/sfx.js",
+  "summary": "Sound-effects library: builtin/user dirs, ffmpeg loudness analysis, import folder/files, rescan, tag/rename/remove entries, audio serving, folder watcher"
+ },
+ {
+  "start_line": 9603,
+  "path": "src/main/audio/layers.js",
+  "summary": "Audio layers (lanes/clips) model: sanitize, save, add clip with word anchoring, layers mix file for mix.py, remap after cuts"
+ },
+ {
+  "start_line": 9779,
+  "path": "src/main/pipeline/pipelineScripts.js",
+  "summary": "Locates the pipeline Python scripts, heals missing ones from the spare copy, reinstall hint and scripts health"
+ },
+ {
+  "start_line": 9823,
+  "path": "src/main/pipeline/steps.js",
+  "summary": "Audio pipeline step runner: mix args/remix, waveform peaks, tool env + tracked process run/cancel, Python package check/install, runStep (clean, timeline, sound/mix)"
+ },
+ {
+  "start_line": 10251,
+  "path": "src/main/core/fileStem.js",
+  "summary": "Safe ASCII file stem from a title (fileStem)"
+ },
+ {
+  "start_line": 10255,
+  "path": "src/main/app/graphicsMode.js",
+  "summary": "GPU/graphics-mode safety: saved graphics config, launch status file, command-line switches, GPU cache clearing, WebGL failure fallback, first-paint/on-screen blank-window checks, restart"
+ },
+ {
+  "start_line": 10797,
+  "path": "src/main/render/workers.js",
+  "summary": "Hidden render-window worker pool: create/load/seal workers, serial/pooled jobs, stills, host state, prop/hold viewers, layout checks, sweep errors, sound event collection"
+ },
+ {
+  "start_line": 11099,
+  "path": "src/main/render/exportVideo.js",
+  "summary": "Video export: ffmpeg wrapper, export job tracking/cancel, frame rendering with stall watchdog and software-encoder retry, soundtrack, exportVideo with 4K/GIF/SRT"
+ },
+ {
+  "start_line": 11296,
+  "path": "src/main/render/covers.js",
+  "summary": "Settings preview frame, save frame to out/, project thumbnail/cover generation and background cover queue"
+ },
+ {
+  "start_line": 11375,
+  "path": "src/main/render/verticalPlan.js",
+  "summary": "Vertical/trailer/clip export planning helpers: file naming, start shot, caption cards from word timings, trailer range selection"
+ },
+ {
+  "start_line": 11431,
+  "path": "src/main/projects/issues.js",
+  "summary": "Studio issues store (issues.json): merge/add/update issues, apply check runs, summary; pitfalls lessons log and PITFALLS.md writer"
+ },
+ {
+  "start_line": 11646,
+  "path": "src/main/studio/stages.js",
+  "summary": "Style Studio state: stages and gates, studio block in project.json, activity, versions, analysis/guide/view/kit gap checks, getStudio, markKit, setStage, setView"
+ },
+ {
+  "start_line": 12018,
+  "path": "src/main/library/schema.js",
+  "summary": "Knowledge library constants and zod schema for library entries (kinds, tabs, id regexes, statuses, weights, licences)"
+ },
+ {
+  "start_line": 12072,
+  "path": "src/main/library/index.js",
+  "summary": "Library sqlite/FTS index: open FTS, store rows, indexed sources, rebuildIndex/refresh/start, change listeners, outcome-based flagging"
+ },
+ {
+  "start_line": 12473,
+  "path": "src/main/library/search.js",
+  "summary": "Library queries: outcomes, engine version fit, searchLibrary ranking, listLibrary, libraryEntry detail, logUse, links, labels"
+ },
+ {
+  "start_line": 12617,
+  "path": "src/main/library/context.js",
+  "summary": "Library text for agent prompts: off switch, system/notes lines, search words, library hits and known pitfalls blocks, libraryContext"
+ },
+ {
+  "start_line": 12733,
+  "path": "src/main/studio/workspace.js",
+  "summary": "Style Studio workspace creation: studio docs sync, placeholder scenes, samples/narration copy, createWorkspace, font library and addFont to engine"
+ },
+ {
+  "start_line": 13017,
+  "path": "src/main/studio/staticCheck.js",
+  "summary": "Style package static check: host contract, banned APIs, allowed files/limits, licences, severities, blank/repeat heuristics, text helpers and JS stripping"
+ },
+ {
+  "start_line": 14032,
+  "path": "src/main/studio/runChecks.js",
+  "summary": "Style Studio render checks: check severities/meanings, recon collide probe, QUALITY.md overrides, banned-code scan, engine export contract diff, frame stats, and runChecks() over views x aspects via layoutCheckWith"
+ },
+ {
+  "start_line": 14606,
+  "path": "src/main/library/store.js",
+  "summary": "Library store on disk (seed vs workspace roots): id/path validation, reading/scanning entry.json, store signature, entry lookup, file listing and hashing, writing/patching/trashing workspace entries"
+ },
+ {
+  "start_line": 14788,
+  "path": "src/main/studio/textures.js",
+  "summary": "Seamless textures on Google Flow: flowTextures note for prompts, texture prompt, edge-blend seamless maker, make_texture with ledger cache, and saving textures as Library entries"
+ },
+ {
+  "start_line": 14963,
+  "path": "src/main/projects/scriptSkill.js",
+  "summary": "User's own custom-scripting skill: import/paste from folder or text, own skill store, enable/remove, sync into projects' .claude/skills, and the SCRIPT_SKILL_PROMPT text"
+ },
+ {
+  "start_line": 15218,
+  "path": "src/main/projects/projects.js",
+  "summary": "Project CRUD and engine install: list/get/register/create/import/export zip/duplicate/rename/delete, engine install/upgrade and versions, project skill installation, language/style carry, faceless pipeline steps and projectStatus"
+ },
+ {
+  "start_line": 16044,
+  "path": "src/main/agent/projectContext.js",
+  "summary": "Writes STYLE.md files from Memory rules and regenerates the suite-managed block of a project's CLAUDE.md (writeContext)"
+ },
+ {
+  "start_line": 16345,
+  "path": "src/main/studio/writeCheck.js",
+  "summary": "Style Studio write permissions: always-denied paths, per-stage allow globs for style and look modes, libraryUseCheck and studioWriteCheck"
+ },
+ {
+  "start_line": 16407,
+  "path": "src/main/pipeline/ff.js",
+  "summary": "Small ffmpeg runner (ff) with timeout and error tail, used for frame grabs, previews and posters"
+ },
+ {
+  "start_line": 16432,
+  "path": "src/main/studio/targets.js",
+  "summary": "Style Studio match targets: targets.json read/write, master/reference copies, add/update/remove targets from frames or pictures, generated target frames via makeImage"
+ },
+ {
+  "start_line": 16655,
+  "path": "src/main/agent/tools/libraryTools.js",
+  "summary": "Library tools exposed to agents (library_search/use/add/note_outcome...): result cards, copying entries into projects with lock file and credits, secret/path scrubbing, import rewriting, and addEntry with ADD_SCHEMA"
+ },
+ {
+  "start_line": 17324,
+  "path": "src/main/library/harvest.js",
+  "summary": "Feeding the Library from other sources: syncing Style Studio lessons/pitfalls as entries, saving Studio looks, lowpoly changes, and harvest candidates from failed/reverted edits"
+ },
+ {
+  "start_line": 17561,
+  "path": "src/main/studio/matchPass.js",
+  "summary": "Studio match pass: renders the frames at each target time and builds side-by-side, blend, edge and region-crop overlays with tile diffs against the targets"
+ },
+ {
+  "start_line": 17730,
+  "path": "src/main/agent/ultraPlusTargets.js",
+  "summary": "Ultraedit+ (3D reconstruction) target pipeline: isUltraPlus, makeTarget paints an ideal shot frame via the image service, matchShot renders and overlays a shot against its target with pass history, criticShot runs a read-only Opus art-director critic, scoresOf"
+ },
+ {
+  "start_line": 17967,
+  "path": "src/main/agent/tools/suiteTools.js",
+  "summary": "Suite MCP tool definitions for agents: live selection/shot caches and event hooks, describeSelection, text helper, zod schema checks, Claude image sizing/token estimates, per-run frame budget ledger (tally/spend/frameBudget/readImageCheck), and suiteToolDefs (get_selection, list_shots, reference_frames, render_frames, check_layout, make_image, make_texture, make_sprites, web_image, lowpoly_asset, remember_rule, view_hold, view_prop)"
+ },
+ {
+  "start_line": 18570,
+  "path": "src/main/agent/tools/ultraPlusTools.js",
+  "summary": "Per-shot time clock for Ultraedit+ and the make_target / match_shot / critic_shot tool definitions"
+ },
+ {
+  "start_line": 18668,
+  "path": "src/main/agent/tools/studioTools.js",
+  "summary": "Style Studio tool definitions exposed to agents (studio_state, stage/gate, views, versions, critic evidence, fonts) with settings merge helper"
+ },
+ {
+  "start_line": 18864,
+  "path": "src/main/agent/tools/bridge.js",
+  "summary": "Localhost MCP bridge server (videoxx) for an external Claude Code: active project resolution, active_project/list_projects plus all suite tools, start/stop and bridgeInfo"
+ },
+ {
+  "start_line": 18962,
+  "path": "src/main/agent/tools/scopedBridge.js",
+  "summary": "Per-run token-scoped localhost MCP server serving suite tools to a single agent run (startScoped, registerScoped)"
+ },
+ {
+  "start_line": 19026,
+  "path": "src/main/engines/runCodex.js",
+  "summary": "Codex (ChatGPT) runner: hidden-spawn patch with process-tree kill, Codex SDK client options, fake Codex test harness, codexText one-shot, image attachments, runCodex streaming with guarded sign-off files and outside-project stop"
+ },
+ {
+  "start_line": 19391,
+  "path": "src/main/agent/agentsMd.js",
+  "summary": "Generates and writes the Videoxx-managed block of AGENTS.md for Codex runs"
+ },
+ {
+  "start_line": 19435,
+  "path": "src/main/agent/crews/crew.js",
+  "summary": "Default (recon) multi-agent crew: dropCrewChecks, crew constants and crewOn gating, shared prompt fragments, crewAgents dispatcher, crewDirectorText and crewUltraText"
+ },
+ {
+  "start_line": 19735,
+  "path": "src/main/agent/crews/pixelCrew.js",
+  "summary": "Pixel-art crew: chaptering, crew pool/env selection, pixel agent definitions and director prompt"
+ },
+ {
+  "start_line": 20042,
+  "path": "src/main/agent/crews/toonCrew.js",
+  "summary": "3D cartoon (toon) crew: shot/part splitting, toon agent definitions and director prompt"
+ },
+ {
+  "start_line": 20323,
+  "path": "src/main/agent/crews/stickCrew.js",
+  "summary": "Stick-story crew: shot/part splitting, stick agent definitions and director prompt"
+ },
+ {
+  "start_line": 20607,
+  "path": "src/main/agent/usage.js",
+  "summary": "Claude model price table, cost calculation, subscription plan settings, usageSummary from claude_turns/edits and usage test seeding"
+ },
+ {
+  "start_line": 20792,
+  "path": "src/main/personal/timeline.js",
+  "summary": "Personal edit timeline model: emptyEdit, layoutTimeline segments, facecam picking/time mapping, clip ids and edit.json validation"
+ },
+ {
+  "start_line": 20839,
+  "path": "src/main/personal/personalProjects.js",
+  "summary": "Personal Brand projects: folder structure text, create project, plan (title/concept/thumbnail idea), thumbnail install and CLAUDE.md context block"
+ },
+ {
+  "start_line": 20964,
+  "path": "src/main/personal/media.js",
+  "summary": "Personal footage list (media.json): add/probe media, guess roles, set role, remove, derived media from deliveries, media event notifications"
+ },
+ {
+  "start_line": 21081,
+  "path": "src/main/personal/proxies.js",
+  "summary": "Preview proxy job queue for personal footage (queue/resume/cancel, makeProxy via ffmpeg) and audio waveform peaks cache"
+ },
+ {
+  "start_line": 21255,
+  "path": "src/main/personal/edit.js",
+  "summary": "Reading/saving a personal project's edit.json with defaults (lane footage, intro, facecam cams) and placing new footage"
+ },
+ {
+  "start_line": 21320,
+  "path": "src/main/personal/personalAgent.js",
+  "summary": "Personal agent support: system prompt, skill install and script integrity hashes, env (python/ASR), personalPrompt per task kind, applyDelivery and afterPersonalTask (cut/intro)"
+ },
+ {
+  "start_line": 21502,
+  "path": "src/main/app/plan.js",
+  "summary": "Plan/premium gating: plan state, PremiumError, feature and monthly export limits, IPC channel feature checks and post-call export counting"
+ },
+ {
+  "start_line": 21606,
+  "path": "src/main/core/testRun.js",
+  "summary": "Test-run detection via hashed CZ_TEST_KEY"
+ },
+ {
+  "start_line": 21608,
+  "path": "src/main/channels/stages.js",
+  "summary": "Pipeline stage list and effective (auto vs manual) stage resolution"
+ },
+ {
+  "start_line": 21617,
+  "path": "src/main/channels/channels.js",
+  "summary": "Local channels (CRUD, handle/colour/name checks, avatar with JPEG orientation fix) and the ideas board/pipeline (ideas CRUD, pipelineOf, board, assignChannel, setPlan, due dates, stages)"
+ },
+ {
+  "start_line": 22196,
+  "path": "src/main/channels/youtubeAuth.js",
+  "summary": "YouTube/Google OAuth and Data API access: API key and Desktop client setup, per-channel refresh tokens in secrets, token refresh/revoke, PKCE loopback sign-in flow, API error explanations and getJson"
+ },
+ {
+  "start_line": 22519,
+  "path": "src/main/channels/youtubeReader.js",
+  "summary": "Keyless YouTube page reader: hidden sandboxed BrowserWindows that scrape a channel's videos/shorts tabs and channel search via ytInitialData and continuation fetches, with caching and duration helpers"
+ },
+ {
+  "start_line": 22749,
+  "path": "src/main/channels/titleMatch.js",
+  "summary": "Title matching for video-to-project linking: stop words, normalising/stemming, TF-IDF style Matcher class and candidate pairs()"
+ },
+ {
+  "start_line": 22857,
+  "path": "src/main/channels/youtubeSync.js",
+  "summary": "YouTube channels store and sync: add/sign-in/disconnect/remove channels, avatars and thumbnails download, full doSync of stats/videos/analytics, comments, background refresh, overview and per-video detail"
+ },
+ {
+  "start_line": 23756,
+  "path": "src/main/channels/links.js",
+  "summary": "Linking YouTube videos to projects: likely-match suggestions, project/video choice lists, linkVideo/undoLink and the publishInfo provider for the board"
+ },
+ {
+  "start_line": 23924,
+  "path": "src/main/channels/insights.js",
+  "summary": "Channel insights: Claude reads a channel's stats, retention and comments and proposes lessons; list/approve/dismiss/add insights with test stubs"
+ },
+ {
+  "start_line": 24163,
+  "path": "src/main/routines/buildExtras.js",
+  "summary": "Script presets and build extras (real footage, props, polish, verification, Ultraedit, Ultraedit+) per style, quality levels, time-limit text and extrasFor/extrasText"
+ },
+ {
+  "start_line": 24302,
+  "path": "src/main/routines/nodes.js",
+  "summary": "Routine node catalog (NODES), graph helpers (upstreamStyles, topicFormatOf), image service choice, thumbnail options, routine graph validation, defaults and nextRun scheduling"
+ },
+ {
+  "start_line": 24955,
+  "path": "src/main/routines/templates.js",
+  "summary": "Ready-made routine templates (next video, explainer, batch, daily short, my script, autopilot) built from chained nodes"
+ },
+ {
+  "start_line": 24992,
+  "path": "src/main/studio/study.js",
+  "summary": "Studying reference videos/images: ffmpeg scene cuts, shot stats, k-means palettes, speech transcription stats, contact sheets, runStudy/studyView and the APP STUDY prompt block"
+ },
+ {
+  "start_line": 25576,
+  "path": "src/main/studio/studioPrompt.js",
+  "summary": "Style Studio stage prompts: per-stage inputs/outputs/gates, review run, match/critic block and studioPrompt builder"
+ },
+ {
+  "start_line": 25660,
+  "path": "src/main/studio/harvest.js",
+  "summary": "Library harvest: read-only Claude pass after builds/Ultraedit/publish that proposes reusable library entries, with queue/pump, bundle, tools, finish records and HARVEST_AFTER"
+ },
+ {
+  "start_line": 25984,
+  "path": "src/main/agent/sessions.js",
+  "summary": "Claude agent sessions: model/studio constants, running task registry, SDK loading, system prompts, reframe/Ultraedit/Ultraedit+ procedure texts and buildPrompt (continues into runTask beyond this chunk)"
+ },
+ {
+  "start_line": 28291,
+  "path": "src/main/voice/speechSetup.js",
+  "summary": "Speech-recognition setup: finds Parakeet/installed transcribers per language, machine facts, sample audio, Claude-driven install + verify of English/multi-language ASR, stable-ts install, auto setup and speech state events"
+ },
+ {
+  "start_line": 28949,
+  "path": "src/main/characters/modelImport.js",
+  "summary": "Imports user 3D model files (glb/gltf/fbx/obj/...) into assets/models, converting to uncompressed GLB in a hidden window, saving thumbnails and describing the model for prompts"
+ },
+ {
+  "start_line": 29078,
+  "path": "src/main/projects/references.js",
+  "summary": "Project references (images, videos, audio, PDFs, models): store in project.json, probe, add/remove/update/relink, thumbnails/strips, frame + audio extraction, transcription, @mention parsing and the REFERENCES/model prompt blocks, isReferencePath"
+ },
+ {
+  "start_line": 29718,
+  "path": "src/main/library/browse.js",
+  "summary": "Knowledge library browsing UI backend: filtered/ranked list with counts and thumbs, entry detail, file preview/text, reveal, delete/restore/trash, empty trash and shipping an entry into the built-in seed"
+ },
+ {
+  "start_line": 29981,
+  "path": "src/main/projects/fileServer.js",
+  "summary": "Local 127.0.0.1 HTTP server serving project files, media, library previews, anims and chars3d with MIME types, range streaming, hidden-project registration and project/media URL helpers"
+ },
+ {
+  "start_line": 30380,
+  "path": "src/main/projects/watcher.js",
+  "summary": "Recursive file watcher for the open project with debounce, ignore/reload patterns and quietWrite suppression"
+ },
+ {
+  "start_line": 30428,
+  "path": "src/main/styles/gfxPresets.js",
+  "summary": "Saving per-project graphics settings to project.json and the user's named graphics presets (list/save/delete)"
+ },
+ {
+  "start_line": 30470,
+  "path": "src/main/core/redact.js",
+  "summary": "Redacts secrets, paths, emails, IPs and user names from text; redactError for compact error reports"
+ },
+ {
+  "start_line": 30501,
+  "path": "src/main/app/help.js",
+  "summary": "In-app help assistant and problem reports: help KB loading/search, support context, one-shot Claude calls, askHelp/helpFeedback, report drafting, storage, composing and window capture"
+ },
+ {
+  "start_line": 30853,
+  "path": "src/main/characters/toonChars.js",
+  "summary": "Toon character library in the workspace: list/save/remove looks and describe a character from text via Claude"
+ },
+ {
+  "start_line": 30904,
+  "path": "src/main/app/learnFromEdits.js",
+  "summary": "Analyses past edit requests with Claude (or ChatGPT side call) and inserts suggested standing style rules"
+ },
+ {
+  "start_line": 30957,
+  "path": "src/main/app/zoom.js",
+  "summary": "Window zoom steps: apply/step zoom capped by window size, title bar overlay scaling and keyboard/zoom-changed handling"
+ },
+ {
+  "start_line": 31009,
+  "path": "src/main/app/launcher.js",
+  "summary": "Videoxx Launcher integration: detect/install launcher, version backup, watcher start, stale pause lifting and handing over updates"
+ },
+ {
+  "start_line": 31161,
+  "path": "src/main/app/updater.js",
+  "summary": "App updater: update status state, periodic checks, installed copy detection, release notes and semver comparison"
+ },
+ {
+  "start_line": 31318,
+  "path": "src/main/personal/layouts.js",
+  "summary": "Personal-video layouts: built-in CLASSIC/big-cam/screen-focus presets in the layouts table, list/save/delete/setDefault, normalize, per-project layout.json read/save"
+ },
+ {
+  "start_line": 31409,
+  "path": "src/main/personal/backgrounds.js",
+  "summary": "Layout background images: list built-in and user backgrounds, add a user background, resolve a background ref to a file and to a cached data URL"
+ },
+ {
+  "start_line": 31442,
+  "path": "src/main/personal/buildAudio.js",
+  "summary": "Builds the edit's audio track: streaming ffmpeg PCM Reader, WavWriter, and buildAudio that concatenates clip audio with equal-power crossfades at cuts"
+ },
+ {
+  "start_line": 31609,
+  "path": "src/main/personal/renderEdit.js",
+  "summary": "Personal edit renderer: cam crop math, export PRESETS, render job registry/cancel, chunk planning, per-chunk ffmpeg filter graph (screen/cam/full overlays, CPU or CUDA scaling) and renderEdit pipeline writing the renders table"
+ },
+ {
+  "start_line": 31944,
+  "path": "src/main/ipc/personalIpc.js",
+  "summary": "registerPersonalIpc: personal project create/open/plan/thumbnail, media, proxies, waveform, edit save, render and layouts/backgrounds handlers; plus mediaView and personalThumb helpers"
+ },
+ {
+  "start_line": 32048,
+  "path": "src/main/ipc/boardsIpc.js",
+  "summary": "registerBoardsIpc: moodboard CRUD/drag/save-as/use-as-thumbnail handlers and image provider (Higgsfield/Kie, fal, Google Flow) status, keys, models and generation handlers"
+ },
+ {
+  "start_line": 32123,
+  "path": "src/main/core/zip.js",
+  "summary": "Dependency-free zip reader/writer: CRC32, hardened readZip with size/entry limits and unsafe-name refusal, writeZip with deflate or store"
+ },
+ {
+  "start_line": 32260,
+  "path": "src/main/studio/import/styleImport.js",
+  "summary": "Style package import: run state on disk, unpack zip/folder, static checks, private check workspace, locked/app-owned file restore, render checks (boot, layout, frames, must-fail, export, repeat), install, fix list, export package, recheck, versions and Style Kit info"
+ },
+ {
+  "start_line": 33254,
+  "path": "src/main/studio/import/fixImport.js",
+  "summary": "Claude fix rounds for an imported style: write/read permission checks, fixer tool defs and prompt, workspace snapshots and line diffs, claudeRound, FIXES.md writing and the fixImport loop"
+ },
+ {
+  "start_line": 33655,
+  "path": "src/main/studio/import/kit.js",
+  "summary": "Style Kit maker: collect base style looks/controls and run the bundled make-kit.mjs to write the Videoxx Style Kit folder"
+ },
+ {
+  "start_line": 33727,
+  "path": "src/main/ipc/styleImportIpc.js",
+  "summary": "registerStyleImportIpc: pick zip/folder dialogs, import start/state/fix/stop/install/cancel, export package, recheck, versions, Style Kit make/info and test hooks"
+ },
+ {
+  "start_line": 33796,
+  "path": "src/main/ipc/channelsIpc.js",
+  "summary": "registerChannelsIpc: local channels CRUD/avatar, ideas board moves/plans/due dates, idea CRUD and fake-project test hooks"
+ },
+ {
+  "start_line": 33873,
+  "path": "src/main/ipc/youtubeIpc.js",
+  "summary": "registerYoutubeIpc: YouTube key/client setup, sign-in, channel add/sync/link, video detail/linking, insights and test hooks"
+ },
+ {
+  "start_line": 33940,
+  "path": "src/main/voice/speakers.js",
+  "summary": "Script speaker tags: parse [Name]: lines, filter note/direction words, speakerKey, and count speakers' lines/words in a script"
+ },
+ {
+  "start_line": 33974,
+  "path": "src/main/audio/loudness.js",
+  "summary": "PCM16 DSP helpers: clamp16, edge fades, windowed-sinc (Kaiser) resampler, K-weighted gated loudness (LUFS) blocks and gain in place"
+ },
+ {
+  "start_line": 34069,
+  "path": "src/main/voice/fish.js",
+  "summary": "Fish Audio TTS client: API key status/save, models and languages, error mapping, credit balance, voice list/names, WAV decode, fishSpeak/sample and settings validation"
+ },
+ {
+  "start_line": 34272,
+  "path": "src/main/voice/voiceover.js",
+  "summary": "Voiceover jobs: script sections/runs/beats, sentence packing and chunking with pacing, spoken-length estimate, character voice casting and levelling, persisted job state, startVoiceover/cancel/sweep/stop, source replacement to trash, word timing file and WAV header/duration/PCM helpers"
+ },
+ {
+  "start_line": 35046,
+  "path": "src/main/voice/recordings.js",
+  "summary": "Granted dropped paths plus own recordings: expand dropped folders, ffmpeg probe of files, join recordings into source audio with fades/gaps, durationOf"
+ },
+ {
+  "start_line": 35170,
+  "path": "src/main/voice/elevenlabs.js",
+  "summary": "ElevenLabs API client: key status/save, error mapping, account/credits, voices with categories, model catalog with language support and notes, elevenSettings and voice_settings payload; also TTS generation with ElevenLabs (rate cap fallback)"
+ },
+ {
+  "start_line": 35682,
+  "path": "src/main/voice/fishGenerate.js",
+  "summary": "Fish Audio voiceover generation: per-chunk cache keys under .suite/tts/fish, retrying fishSpeak calls, stitching PCM parts into source.wav with gaps, voice levelling, pause keeps and cache pruning"
+ },
+ {
+  "start_line": 35783,
+  "path": "src/main/voice/kokoro.js",
+  "summary": "Local Kokoro (kokoro-onnx) voice: model file discovery, npz voice list, own Python venv detection/install, resumable sha256-checked model download, removal, sentence piecing and kokoroGenerate via kokoro_tts.py; also custom TTS generation, voice previews and estimates (shares the samplesMaking busy counter)"
+ },
+ {
+  "start_line": 36426,
+  "path": "src/main/voice/index.js",
+  "summary": "Public API of the voice folder (the namespace object other modules import dynamically): re-exports voiceover, ElevenLabs, Kokoro, recordings, speakers and script helpers"
+ },
+ {
+  "start_line": 36474,
+  "path": "src/main/ipc/voiceIpc.js",
+  "summary": "registerVoiceIpc: voice:* ipcMain handlers for provider status/keys, voices, models, previews, Kokoro install/remove, estimates, speakers, start/cancel voiceover jobs and interrupted jobs"
+ },
+ {
+  "start_line": 36516,
+  "path": "src/main/render/painter.js",
+  "summary": "Hidden-window canvas painter for 1080x1920 output: injected PAINTER script (caption cards, end card layers, still-image decode), bundled script-font slices and withPainter/savePng helpers"
+ },
+ {
+  "start_line": 36642,
+  "path": "src/main/render/vertical.js",
+  "summary": "Vertical/Shorts export: 9:16 reframe sibling projects, end card logo/channel picture/memory, verticalInfo/shots/frames, caption painting and line wrapping, end card preview and exportVertical with ffmpeg plus leftover sweep"
+ },
+ {
+  "start_line": 37441,
+  "path": "src/main/styles/controlsReader.js",
+  "summary": "Controls for custom styles (generic/optional control whitelist with neutral help texts) and a safe JS object-literal reader (Reader) to extract exported constants like DEFAULTS from engine.js"
+ },
+ {
+  "start_line": 37743,
+  "path": "src/main/styles/customStyles.js",
+  "summary": "Custom styles on disk: load styles/<id>/style.json into CUSTOM, engine defaults, look presets upsert, restore missing custom styles from project copies, delete custom style; exposes customStyles namespace"
+ },
+ {
+  "start_line": 37900,
+  "path": "src/main/routines/thumbRefs.js",
+  "summary": "Thumbnail reference pictures store in userData/thumb-refs: hashed ids, addRefs validation, JPEG preview data URLs, listing and pruning unused refs"
+ },
+ {
+  "start_line": 37955,
+  "path": "src/main/channels/knownTopics.js",
+  "summary": "Known videos and topics per YouTube channel (known-videos.json): merge synced/found videos, format filters, past topics from routine items, test feed hooks and knownView for the UI"
+ },
+ {
+  "start_line": 38114,
+  "path": "src/main/routines/runners.js",
+  "summary": "Routine step runners: Claude task/text helpers, pipeline step/export wrappers, topic seeds and findTopics with channel title style, chapters, the R node runner table (create, script, voiceover, build, render, vertical, thumbnail, title, upload), thumbnail design/variations/judging, voice and YouTube upload; exports RUNNERS"
+ },
+ {
+  "start_line": 39414,
+  "path": "src/main/routines/routines.js",
+  "summary": "Routines engine: CRUD of routines with graph/settings sanitising, check context, live runs and items persistence, startRun, effort tests (incl. from recording), expand/drive queue, item ordering and runItem execution"
+ },
+ {
+  "start_line": 40190,
+  "path": "src/main/ipc/routinesIpc.js",
+  "summary": "registerRoutinesIpc: routines:* IPC handlers (CRUD, import, context, runs, approve/resume/cancel, known videos, reference thumbnails, thumb variations) plus CZ_TEST_HOOKS test handlers"
+ },
+ {
+  "start_line": 40275,
+  "path": "src/main/studio/versions.js",
+  "summary": "Style Studio versions: per-project serial job chain, versions.json writing, makeVersion (git snapshot, checks, match pass, preview mp4), checkNow/ensureCurrent/ensureMatch, scores, rollback, listVersions/compare with URLs"
+ },
+ {
+  "start_line": 40483,
+  "path": "src/main/studio/afterTurn.js",
+  "summary": "Tracks Studio Claude runs (noteRun/forgetRun, marking issues as fixing) and makes a new version after each Claude turn that changed files or the look (afterTurn)"
+ },
+ {
+  "start_line": 40524,
+  "path": "src/main/studio/publish.js",
+  "summary": "publishStyle: the Studio publish checklist (stages, manifest, engine export contract, checks, per-aspect 5 s export, issues, must-fail, looks, preview) and installing the style package into Your styles; publishState/notePublishHarvest"
+ },
+ {
+  "start_line": 40925,
+  "path": "src/main/studio/saveLook.js",
+  "summary": "saveLook: validates the look-mode workspace, builds the look JSON (settings, notes from LOOK.md sections, pitfalls, preview frame) and saves it into the studio looks root"
+ },
+ {
+  "start_line": 41026,
+  "path": "src/main/studio/critic.js",
+  "summary": "runCritic: gathers match overlays and frames of the latest version, asks Claude to score/criticise them, files and settles critic issues, and records the version score"
+ },
+ {
+  "start_line": 41241,
+  "path": "src/main/studio/criticLoop.js",
+  "summary": "Run until good loop: loop.json state, critic-once, start/stop/resume of the fix-then-critic loop with pass cap, threshold and plateau detection, task-end waiters and loop runner hook"
+ },
+ {
+  "start_line": 41468,
+  "path": "src/main/ipc/index.js",
+  "summary": "Main IPC registry: trusted-frame check (isAppUrl), VS Code lookup, the big registerIpc that wires every ipcMain handler and the per-domain registerXIpc calls, plus the facelessThumb helper used by project listing"
+ },
+ {
+  "start_line": 43189,
+  "path": "src/main/index.js",
+  "summary": "App entry: command-line switches, app id/userData, single-instance lock, second-instance handling, createWindow/rebuildWindow, addon requires, whenReady boot sequence, watchStalls, before-quit and window-all-closed"
+ }
+]

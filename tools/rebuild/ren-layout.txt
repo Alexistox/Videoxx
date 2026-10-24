@@ -1,0 +1,42 @@
+Root: src/renderer/src   (renderer bundle lines 14239-53329; everything above 14239 is React/ReactDOM and is not rewritten)
+
+Entry files
+  main.jsx      global error/unhandledrejection listeners -> noteError, then createRoot(#root).render(<AppProvider><Boundary><App/></Boundary></AppProvider>)  (L53323-end)
+  App.jsx       App page switcher plus CrashHelp, with Boundary in its own file under shell/ (L53141-53322)
+  index.css     the single global stylesheet (out/renderer/assets/index-*.css); Inter fonts come from the @fontsource/inter npm package, not copied
+
+Folders
+  lib/                  IPC bridge and pure helpers: inv/on + the big `api` object (api.js), look/style predicates, formatters (fmtTime, ago, money, fmtLength...), the error log (noteError/recentErrors), text folding/fuzzy search, color contrast (luminance/textOn), and the model price table (std + [...] list)
+  state/                app-wide state: AppProvider + useApp context (C), BRAND/CHANNEL storage keys, usePlan store (isStandard, PREMIUM_PAGES, exportsLeft), plus the small module-level event buses (openRef, layer undo history, library inbox, export-dialog request)
+  assets/               static imports: figures/ (male|female-glossy|glow|matte.png), cast/ (alex.png...), looks/ (style preview .mp4/.jpg), logo; names are the original file names without the Vite hash
+  components/           shared UI primitives used across features: Spinner, Busy, Modal (+useTopModalSince), Toasts, Empty, Toggle, StatusBadge, Popover, MenuList, Picker, Segmented, Dropdown, Lightbox, NumberBox/NumIn-style inputs
+  help/                 in-app help assistant: keyboard constants (isMac, MOD, ALT, keys), HelpAssistant with screenshots/attachments, todo/titleFrom helpers
+  refs/                 references and @mentions: cacheUrl, parseMentions/parseTime, useRefs/useRefThumb cache, MentionField, MentionCard, RefViewerHost/RefViewer, TimeViewer/Track/TimeInput/RangeRow/ExtractBox, ImageViewer, DocViewer
+  engines/              AI engine and model choice: custom API panel, AnimationsPanel, Claude/Codex/proxy model catalogs and names, ExperimentalGoogle, ChatGPTEngine, ModelSelect/EffortSelect/ModelPicker
+  settings/             app Settings page: SETTINGS_TABS + SETTINGS registry and searchSettings, LanguagePicker + LANGUAGES/charset data, PlanChooser, SettingsSearch, GraphicsRow/SpeechRow/LanguageSection/ScriptSkillRow/SignInHelp, Settings.jsx
+  settings/project/     per-project settings: cast and figure data (FIG_*, roleFigure), CharacterUpload, CharDetail, FiguresPicker, BrandColor, SettingsControls, ProjectChoicesForm, MusicSection, MainCharacterSection, ProjectSettingsPanel
+  sound/                sound and music layers: sound player (playSound/usePlaying), LibraryBrowser, ClipWave, LayersTab, AutoTab, SoundDialog
+  script/               script text model: beats/directions/speakers parsing, spokenScript, sentence pacing, chunksOf, scriptLength/lengthNote (pure .js modules)
+  voice/                voiceover: voice status hooks, sample player, ElevenFields, FishFields, Kokoro install/fields, CharacterVoices, Recordings, JobView, VoiceoverPanel, Estimate, VoiceSettingsSection
+  player/               playback core: Clock class + useClockTime/Value/Text/usePlaying, preview-quality prefs, WebGL Preview
+  thumbnails/           thumbnail image board: board data model (normalize, ports, cables), BoardCanvas, TextEdit, NodeView, PromptView, the board's own MentionField, Thumbnails, ThumbnailsPage, KeyDialog
+  channels/             channel planning board: stages and due-date helpers, ChannelAvatar/Chip, ActionMenu, useMoveToChannel, ChannelEditor, DueDialog, NoteDialog, Channels page, Board, CardView, RenameField, QuickIdea, IdeaDialog, ComingUp
+  youtube/              YouTube connection and analytics: number/date formatters, useYtStatus, SetupGuide/LinkStep, AddChannelDialog, SignInDialog, Remove/Disconnect/ForgetDialog, ChannelRow, YouTubeSettings, LinkVideoDialog, charts (DayChart, RetentionChart, Bars, Spark), YouTube page, VideoTable, Lessons, comments, VideoPanel
+  projects/             home and project lists: UsageHome (+Count), SavingsRing, Home, FacelessHome, PersonalHome, Projects, VideoCard, NewProject with LengthField and NpScriptSkill
+  looks/                visual styles and characters: style preview map, useStyleKit, KitActions, ImportRuns, CustomStyleCard, toon character generator (TOON_PARTS, randomLook/randomCast), ToonCharacters, Characters, Presets (the Styles page), Memory
+  library/              asset library and renders: Library, Card, Drawer, CodeView, Renders
+  editor/               faceless video editor: Editor (router), FacelessEditor, TrimSilences, Timeline, ContextMeter, RefsPanel/RefCard/RefsUsed, Md, ToolGroup/Compare, ClaudePanel
+  editor/panels/        side panels of the faceless editor: GraphicsPanel (+GFX_* controls), ExportQualityPick, Effort/Quality sliders, VerticalTab/Phone (shorts), LookPanel, Coach, NotesPanel, KeysPanel, BuildPanel, UltraPanel, FindPanel, GotoPanel, ExportPanel, ScriptView, ScriptPanel
+  personal/             personal-brand (talking-head) editor and pages: timeline edit model (layoutTimeline, ripple/trim), canvas drawing, PersonalEngine, PTimeline, FootageBin, LayoutPanel, RenderPanel, PClaudePanel, PersonalEditor, LayoutHandles, NewVideo, Preview, Layouts, Videos
+  studio/               style-matching studio: Studio, CapInput, BriefForm, Workspace, StudyPanel, IssueRow, BriefSummary, SavePanel, HeroFrames, KitGallery, PublishPanel, MatchView, MatchBar, GenerateTargets, CompareDialog, StyleImport
+  routines/             automation routines: node catalog (SCRIPT_PRESETS, BUILD_EXTRAS, NODES, TEMPLATES in nodes.js), summary, RoutineCanvas, NodeCard, NodeMenu, demo simulation, Routines page, RoutineInspector, NodeInspector and its field components (OwnSkillField, Thumb*, KnownVideosLine, YtFollow)
+  shell/                app chrome: BrandSwitch, ImageKeyNotice, NAVS + GlideNav sidebar, ConnButton, UpdateButton, GraphicsButton, ExportsButton, Palette (command palette), ZoomBadge, Boundary
+
+Naming rules
+  - Folders: camelCase, by feature; a nested subfolder only for settings/project and editor/panels.
+  - PascalCase.jsx for a file whose main export is a React component (e.g. editor/FacelessEditor.jsx, shell/Palette.jsx); small private subcomponents stay in the same file as their owner.
+  - camelCase.js for non-component modules: hooks as useXxx.js (state/usePlan.js), helpers/data as noun names (lib/api.js, lib/format.js, script/scriptText.js, routines/nodes.js).
+  - One original rollup module per file: keep each contiguous run together and never merge across a $N boundary. Drop rollup's $1/$2 suffixes (cache$1 -> cache, MentionField$1 -> refs/MentionField.jsx, while thumbnails/MentionField.jsx stays a separate file).
+  - Icons: do not recreate the inlined lucide code (L15253-18193). Import from the `lucide-react` package and alias names that clash with app components (Image as ImageIcon, Library as LibraryIcon, Palette as PaletteIcon, Settings as SettingsIcon).
+  - The `import.meta.url` asset constants become plain `import x from '../assets/...'`; `__vite_glob_0_*` becomes `import.meta.glob('../assets/figures/*.png', { eager: true, import: 'default' })`.
+  - Turn `jsxRuntimeExports.jsx/jsxs(...)` back into JSX and `reactExports.useX` into `import { useX } from 'react'`.

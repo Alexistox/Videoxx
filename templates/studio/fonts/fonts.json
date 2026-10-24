@@ -1,0 +1,138 @@
+{
+ "about": "The Style Studio font library (add_font): free fonts the app already ships, listed by reference (file is relative to templates/, never copied twice).",
+ "fonts": [
+  {
+   "id": "inter-600",
+   "family": "Inter",
+   "weight": "600",
+   "style": "normal",
+   "file": "starter/fonts/inter-600.woff2"
+  },
+  {
+   "id": "inter-800",
+   "family": "Inter",
+   "weight": "800",
+   "style": "normal",
+   "file": "starter/fonts/inter-800.woff2"
+  },
+  {
+   "id": "jetbrains-mono-400",
+   "family": "JetBrains Mono",
+   "weight": "400",
+   "style": "normal",
+   "file": "starter/fonts/JetBrainsMono-400.woff2"
+  },
+  {
+   "id": "jetbrains-mono-700",
+   "family": "JetBrains Mono",
+   "weight": "700",
+   "style": "normal",
+   "file": "starter/fonts/JetBrainsMono-700.woff2"
+  },
+  {
+   "id": "orbitron",
+   "family": "Orbitron",
+   "weight": "500 900",
+   "style": "normal",
+   "file": "engine/fonts/orbitron.woff2"
+  },
+  {
+   "id": "share-tech-mono",
+   "family": "Share Tech Mono",
+   "weight": "400",
+   "style": "normal",
+   "file": "engine/fonts/share-tech-mono.woff2"
+  },
+  {
+   "id": "anton",
+   "family": "Anton",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/anton-400.woff2"
+  },
+  {
+   "id": "abril-fatface",
+   "family": "Abril Fatface",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/abril-400.woff2"
+  },
+  {
+   "id": "archivo-black",
+   "family": "Archivo Black",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/archivoblack-400.woff2"
+  },
+  {
+   "id": "unifraktur",
+   "family": "UnifrakturMaguntia",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/blackletter-400.woff2"
+  },
+  {
+   "id": "courier-prime-700",
+   "family": "Courier Prime",
+   "weight": "700",
+   "style": "normal",
+   "file": "collage/fonts/courier-700.woff2"
+  },
+  {
+   "id": "league-gothic",
+   "family": "League Gothic",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/leaguegothic-400.woff2"
+  },
+  {
+   "id": "oswald-700",
+   "family": "Oswald",
+   "weight": "700",
+   "style": "normal",
+   "file": "collage/fonts/oswald-700.woff2"
+  },
+  {
+   "id": "playfair-400i",
+   "family": "Playfair Display",
+   "weight": "400",
+   "style": "italic",
+   "file": "collage/fonts/playfair-400i.woff2"
+  },
+  {
+   "id": "playfair-700",
+   "family": "Playfair Display",
+   "weight": "700",
+   "style": "normal",
+   "file": "collage/fonts/playfair-700.woff2"
+  },
+  {
+   "id": "playfair-900",
+   "family": "Playfair Display",
+   "weight": "900",
+   "style": "normal",
+   "file": "collage/fonts/playfair-900.woff2"
+  },
+  {
+   "id": "pinyon-script",
+   "family": "Pinyon Script",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/script-400.woff2"
+  },
+  {
+   "id": "space-mono-400",
+   "family": "Space Mono",
+   "weight": "400",
+   "style": "normal",
+   "file": "collage/fonts/spacemono-400.woff2"
+  },
+  {
+   "id": "space-mono-700",
+   "family": "Space Mono",
+   "weight": "700",
+   "style": "normal",
+   "file": "collage/fonts/spacemono-700.woff2"
+  }
+ ]
+}

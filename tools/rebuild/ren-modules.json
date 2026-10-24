@@ -1,0 +1,847 @@
+[
+ {
+  "start_line": 14239,
+  "path": "src/renderer/src/lib/api.js",
+  "summary": "IPC bridge (inv/on over window.suite), look/style ownership predicates (isMyLook, offeredLook, isOwnStyle) and the big `api` object mapping every main-process channel"
+ },
+ {
+  "start_line": 14704,
+  "path": "src/renderer/src/lib/format.js",
+  "summary": "Formatters and small parsers: fmtTime, ago, money, secs, fmtLength/fmtPlayed, unheardWords, parseLength, brief error sentence"
+ },
+ {
+  "start_line": 14738,
+  "path": "src/renderer/src/state/voiceDialogs.js",
+  "summary": "Module-level Set of project ids whose voiceover dialog is open (suppresses background voice-job toasts)"
+ },
+ {
+  "start_line": 14739,
+  "path": "src/renderer/src/state/brand.js",
+  "summary": "BRAND_PAGES per brand plus localStorage/config keys for brand and channel selection (BRAND_KEY, CHANNEL_KEY, LIST_CHANNEL_KEY, LIST_CHANNEL_CFG)"
+ },
+ {
+  "start_line": 14747,
+  "path": "src/renderer/src/lib/errors.js",
+  "summary": "In-memory recent error log: noteError (dedup, capped at 8) and recentErrors for help context"
+ },
+ {
+  "start_line": 14757,
+  "path": "src/renderer/src/state/AppProvider.jsx",
+  "summary": "App-wide context C/useApp and AppProvider: page routing, projects, brand/channels, toasts, Claude sign-in, voice-job watching, palette/new-project/settings/studio/help requests"
+ },
+ {
+  "start_line": 15253,
+  "path": "node_modules/lucide-react/dist/esm/lucide-react.js",
+  "summary": "Inlined lucide-react runtime and icon definitions (L15253-18193); not recreated, replaced by imports from the lucide-react package"
+ },
+ {
+  "start_line": 18194,
+  "path": "src/renderer/src/help/keys.js",
+  "summary": "Keyboard platform constants: isMac, MOD, ALT and keys() shortcut label helper"
+ },
+ {
+  "start_line": 18198,
+  "path": "src/renderer/src/help/HelpAssistant.jsx",
+  "summary": "In-app help assistant panel: chat and bug-report modes, screenshot capture/paste/drop (fileToDataUrl, Shots), Rich text, reports list and lightbox; continues past the chunk with todo/titleFrom helpers"
+ },
+ {
+  "start_line": 18782,
+  "path": "src/renderer/src/components/ui.jsx",
+  "summary": "Shared UI primitives: the icon props const I, pixel Spinner, Busy with elapsed time, the open-modal stack with useTopModalSince, Modal (focus trap and discard prompt), Toasts with a Report button, Empty, Toggle, and the STATUS map with StatusBadge."
+ },
+ {
+  "start_line": 18993,
+  "path": "src/renderer/src/refs/mentions.js",
+  "summary": "Rollup's react-dom interop line (becomes import { createPortal } from 'react-dom' in the refs components), then pure reference helpers: cacheUrl, MENTION_RE/parseMentions, parseTime, fmtT, fmtSpan, mentionOf, fmtBytes, KIND_WORD/refMeta, shortPath."
+ },
+ {
+  "start_line": 19054,
+  "path": "src/renderer/src/refs/useRefs.js",
+  "summary": "Per-project reference list store (lists/subs/loading, setRefs, putRef, reloadRefs, the useRefs hook that listens for references:changed) plus the thumbnail cache refThumb and the useRefThumb hook."
+ },
+ {
+  "start_line": 19117,
+  "path": "src/renderer/src/refs/MentionField.jsx",
+  "summary": "Shared ref bits (OPEN_REF_EVENT/openRef bus, lastField, newRangeId, KindIcon) and the MentionField textarea: mirror overlay with highlighted @mentions, @ autocomplete portal, hover cards, plus AcRow and MentionCard."
+ },
+ {
+  "start_line": 19442,
+  "path": "src/renderer/src/refs/RefViewer.jsx",
+  "summary": "RefViewerHost (listens for the open-ref event) and the RefViewer modal: Missing/relink, Details (label and note), TimeViewer for video and audio with ranges (fitOf, clampR, Track, Tile, TimeInput, RangeRow, ExtractBox), ImageViewer, DocViewer."
+ },
+ {
+  "start_line": 20311,
+  "path": "src/renderer/src/assets/logo.png",
+  "summary": "Vite asset constant for logo.png, imported by App.jsx (L53203). Not a source module: becomes import logo from './assets/logo.png'."
+ },
+ {
+  "start_line": 20312,
+  "path": "src/renderer/src/engines/CustomApiPanel.jsx",
+  "summary": "OwnRisk badge, the useCustomApi(kind) state hook, the PLACEHOLDER, PICK_MODEL and QUICK_STARTS (Kie.ai) data, and CustomApiPanel, where Claude sets up a custom picture or voice API connector."
+ },
+ {
+  "start_line": 20429,
+  "path": "src/renderer/src/engines/AnimationsPanel.jsx",
+  "summary": "AnimationsPanel settings section that lists, imports (Mixamo FBX), searches and removes the user's character animation clips."
+ },
+ {
+  "start_line": 20522,
+  "path": "src/renderer/src/engines/claudeModels.js",
+  "summary": "Claude model and effort catalog: CLAUDE_MODELS, ALIASES, CLAUDE_EFFORTS, modelName (bundled as modelName$1) and effortName."
+ },
+ {
+  "start_line": 20537,
+  "path": "src/renderer/src/engines/models.js",
+  "summary": "Multi-engine model ids: PREFIXED, engineOf, bareModel, prettyProxyModel, proxyModelName, CODEX_MODELS, codexModelName, modelGroups, the engine-aware modelName, withEngine and workingText."
+ },
+ {
+  "start_line": 20575,
+  "path": "src/renderer/src/engines/ExperimentalGoogle.jsx",
+  "summary": "Experimental Google models through CLIProxyAPI: RiskBadge, the useGoogleState hook, GoogleOptgroup, the STATUS labels, and the ExperimentalGoogle settings panel (install, sign-in, run, remove)."
+ },
+ {
+  "start_line": 20760,
+  "path": "src/renderer/src/engines/ChatGPTEngine.jsx",
+  "summary": "ChatGPT (Codex) engine: the useCodexState hook, CodexOptgroup, the Dot status indicator, and the ChatGPTEngine settings panel (install, sign-in, probe)."
+ },
+ {
+  "start_line": 20912,
+  "path": "src/renderer/src/components/Dropdown.jsx",
+  "summary": "Generic grouped Dropdown that opens a portal menu (dd-menu), placed above or below the button, with keyboard navigation and scroll follow."
+ },
+ {
+  "start_line": 21027,
+  "path": "src/renderer/src/engines/ModelSelect.jsx",
+  "summary": "Model and effort choosers: BLURB, SHORT and EFFORT_HINT text, ModelSelect and EffortSelect built on Dropdown, and the ModelPicker popover menu used per project."
+ },
+ {
+  "start_line": 21126,
+  "path": "src/renderer/src/lib/fold.js",
+  "summary": "Text folding helpers: SPECIAL letter map, plain, unaccent, fold, findFolded (an accent-insensitive search that returns the original indices), asciiName and slugOf."
+ },
+ {
+  "start_line": 21178,
+  "path": "src/renderer/src/settings/settingsRegistry.js",
+  "summary": "SETTINGS_TABS, tabLabel, and the SETTINGS registry (id, tab, title, description, keywords), with settingById and fuzzy search: Damerau distance dist, words, wordScore, searchSettings."
+ },
+ {
+  "start_line": 21443,
+  "path": "src/renderer/src/components/Picker.jsx",
+  "summary": "pk-* menu primitives: Popover (a portal placed above or below its anchor, with an optional side pane), MenuList with a gliding highlight, Peek preview, step/rank helpers, the searchable type-ahead Picker, and the Segmented radio control."
+ },
+ {
+  "start_line": 21853,
+  "path": "src/renderer/src/settings/languages.js",
+  "summary": "LANGUAGES data with lang() lookup, per-style charsets (STYLE_CHARSETS, styleDraws, cantDrawWhy, whoCanDraw, styleCoverage, charsetNote), languageGroup, aLang, common-word language detection (scriptLanguage, otherScriptLanguage), and countWords/wordUnit."
+ },
+ {
+  "start_line": 22068,
+  "path": "src/renderer/src/settings/LanguagePicker.jsx",
+  "summary": "LangMark badge, languageOptions(base) that disables languages a style cannot draw, and LanguagePicker, a wrapper around Picker."
+ },
+ {
+  "start_line": 22105,
+  "path": "src/renderer/src/lib/modelPrices.js",
+  "summary": "Model price table: the std(input, output) cache-price helper and the list of Claude model prices (match regex, label, family, verified, $/MTok)."
+ },
+ {
+  "start_line": 22134,
+  "path": "src/renderer/src/settings/PlanChooser.jsx",
+  "summary": "Claude subscription plans (PLANS, planPrice, planOf, planText) and the PlanChooser button group with a custom price and a hide-savings option."
+ },
+ {
+  "start_line": 22212,
+  "path": "src/renderer/src/assets/cast/alex.png",
+  "summary": "Vite asset constants for the low-poly cast thumbnails (alex, maya, marcus, jen, tom, rosa, frank, lena .png), imported by settings/project/SettingsControls.jsx. Not a source module: copy the image files."
+ },
+ {
+  "start_line": 22220,
+  "path": "src/renderer/src/settings/project/visualPace.js",
+  "summary": "Picture pacing math: PACE_DEFAULT/MIN/MAX, speechPace(base), visualPlan(seconds, perMinute) (images, chapters, budget), mmssOf and paceLine."
+ },
+ {
+  "start_line": 22243,
+  "path": "src/renderer/src/lib/color.js",
+  "summary": "Color helpers: normHex, sRGB lin, luminance, contrast ratio, and textOn (picks white or near-black text for a background)."
+ },
+ {
+  "start_line": 22262,
+  "path": "src/renderer/src/assets/figures/female-glossy.png",
+  "summary": "Vite glob asset constants for the 3D reconstruction figure previews (female and male, each glossy, glow and matte .png), used by FiguresPicker through import.meta.glob. Not a source module: copy the image files."
+ },
+ {
+  "start_line": 22268,
+  "path": "src/renderer/src/settings/project/figures.js",
+  "summary": "3D figure cast data: FIG_BODIES, FIG_FINISHES, FIG_ROLES, FIG_ACTS, custom-body checks (CUSTOM_BODY, isCustomBody), legacy migration helpers, and roleFigure(f, role)."
+ },
+ {
+  "start_line": 22319,
+  "path": "src/renderer/src/settings/project/CharacterUpload.jsx",
+  "summary": "Upload of the user's own rigged 3D characters: the OURS bone list, REQUIRED bones, STAGE labels, CharacterUpload (list, upload, remove) and CharDetail (bone-mapping editor and test)."
+ },
+ {
+  "start_line": 22543,
+  "path": "src/renderer/src/settings/project/FiguresPicker.jsx",
+  "summary": "FiguresPicker: per-role body, finish and colour editor with a live iframe preview, pose and spin controls, and the user's own characters; uses the figure preview images through import.meta.glob (PICS/pic)."
+ },
+ {
+  "start_line": 22726,
+  "path": "src/renderer/src/settings/project/SettingsControls.jsx",
+  "summary": "Dotted-path helpers getAt and setAt, the show value formatter, the BrandColor swatch and hex input, the CAST_THUMBS map, and SettingsControls, which renders a style's controls (toggle, range, color, select, cast grid, figures)."
+ },
+ {
+  "start_line": 22833,
+  "path": "src/renderer/src/settings/project/ProjectChoicesForm.jsx",
+  "summary": "Per-project service choices: IMAGE_CHOICE_NAMES and VOICE_CHOICE_NAMES, effectiveImage, mergeChoices, choicesSummary, the Rows section helper, and ProjectChoicesForm (Claude model and effort, pictures and voice, real media, sound)."
+ },
+ {
+  "start_line": 23091,
+  "path": "src/renderer/src/settings/project/ProjectSettingsPanel.jsx",
+  "summary": "PROJECT_MODEL_EVENT and the project settings panel module: MusicSection (sound-effects and music gain and ducking mix), then MainCharacterSection and ProjectSettingsPanel, which continue past this chunk."
+ },
+ {
+  "start_line": 23213,
+  "path": "src/renderer/src/settings/project/MainCharacterSection.jsx",
+  "summary": "Main character on/off toggle for flat-style projects (api.setMainCharacter)"
+ },
+ {
+  "start_line": 23239,
+  "path": "src/renderer/src/settings/project/ProjectSettingsPanel2.jsx",
+  "summary": "Project settings modal: per-project overrides, Claude model/effort (PROJECT_MODEL_EVENT), main character and music sections"
+ },
+ {
+  "start_line": 23300,
+  "path": "src/renderer/src/state/layerHistory.js",
+  "summary": "Sound-layer undo/redo history bus (commitLayers, stepLayers, canStep, LAYERS_EVENT, UNDO/REDO labels) plus lane colours and dB formatting"
+ },
+ {
+  "start_line": 23334,
+  "path": "src/renderer/src/sound/soundPlayer.js",
+  "summary": "Module-level sound-effect preview player: playSound, stopSound, usePlaying hook"
+ },
+ {
+  "start_line": 23364,
+  "path": "src/renderer/src/sound/LibraryBrowser.jsx",
+  "summary": "Sound effects library browser: import folder/files, search, filter, tag editing, preview and add"
+ },
+ {
+  "start_line": 23480,
+  "path": "src/renderer/src/sound/LayersTab.jsx",
+  "summary": "Audio layers editor: lanes with mute/solo/gain, draggable word-anchored clips with ClipWave waveforms, clip property editor"
+ },
+ {
+  "start_line": 23807,
+  "path": "src/renderer/src/sound/SoundDialog.jsx",
+  "summary": "Music & effects modal with Layers, Library and Auto sound design (AutoTab) tabs"
+ },
+ {
+  "start_line": 23883,
+  "path": "src/renderer/src/components/Lightbox.jsx",
+  "summary": "Full-screen image lightbox with FLIP open/close animation, keyboard navigation and item actions"
+ },
+ {
+  "start_line": 23994,
+  "path": "src/renderer/src/thumbnails/board.js",
+  "summary": "Thumbnail board data model: defaults, normalize, node heights, ports, cables, refsOf, generation status labels, fitSettings"
+ },
+ {
+  "start_line": 24054,
+  "path": "src/renderer/src/thumbnails/MentionField.jsx",
+  "summary": "Prompt textarea with highlighted @image-reference tokens and autocomplete popup (usedRefs helper)"
+ },
+ {
+  "start_line": 24156,
+  "path": "src/renderer/src/thumbnails/BoardCanvas.jsx",
+  "summary": "Infinite pan/zoom thumbnail canvas with nodes, wires, marquee selection, toolbar, plus TextEdit and memoized NodeView"
+ },
+ {
+  "start_line": 24865,
+  "path": "src/renderer/src/thumbnails/ModelSelects.jsx",
+  "summary": "Image model / aspect / resolution / quality select group"
+ },
+ {
+  "start_line": 24886,
+  "path": "src/renderer/src/thumbnails/PromptView.jsx",
+  "summary": "Simple prompt mode of the thumbnail board: compose prompt with references and see results"
+ },
+ {
+  "start_line": 25024,
+  "path": "src/renderer/src/thumbnails/Thumbnails.jsx",
+  "summary": "Thumbnails page: board list, board load/save, generation runs, picker for project thumbnails (Thumbnails + ThumbnailsPage)"
+ },
+ {
+  "start_line": 25506,
+  "path": "src/renderer/src/thumbnails/KeyDialog.jsx",
+  "summary": "API key dialog for Higgsfield, Fal.ai, ElevenLabs and Fish Audio"
+ },
+ {
+  "start_line": 25555,
+  "path": "src/renderer/src/channels/stages.js",
+  "summary": "Channel board stages, channel colours, due-date helpers (dueState, dueLabel, dateProblem), isEnter and swallowClicks"
+ },
+ {
+  "start_line": 25628,
+  "path": "src/renderer/src/channels/ChannelAvatar.jsx",
+  "summary": "Channel colour contrast helpers (lum, inkOn, markColor, initials), ChannelAvatar and ChannelChip"
+ },
+ {
+  "start_line": 25659,
+  "path": "src/renderer/src/channels/ActionMenu.jsx",
+  "summary": "Keyboard-navigable popover action menu with submenus"
+ },
+ {
+  "start_line": 25767,
+  "path": "src/renderer/src/channels/ChannelEditor.jsx",
+  "summary": "Channel pickers and editor: channelItems, useMoveToChannel, EditorChannel, ChannelFilter, ChannelField, useChannelDefaults, startChannel, ChannelEditor modal"
+ },
+ {
+  "start_line": 26088,
+  "path": "src/renderer/src/channels/DueDialog.jsx",
+  "summary": "Due date dialog with quick picks and validated date input"
+ },
+ {
+  "start_line": 26157,
+  "path": "src/renderer/src/channels/NoteDialog.jsx",
+  "summary": "Plan note dialog for a board card"
+ },
+ {
+  "start_line": 26199,
+  "path": "src/renderer/src/youtube/format.js",
+  "summary": "YouTube number/date formatters, traffic source labels, YouTube/Studio URLs, board/undo messages"
+ },
+ {
+  "start_line": 26255,
+  "path": "src/renderer/src/youtube/useYtStatus.jsx",
+  "summary": "useYtStatus hook (status + sync steps), YtAvatar and levelText"
+ },
+ {
+  "start_line": 26284,
+  "path": "src/renderer/src/youtube/SetupGuide.jsx",
+  "summary": "Step-by-step Google Cloud setup guide for YouTube API key and OAuth client"
+ },
+ {
+  "start_line": 26587,
+  "path": "src/renderer/src/youtube/LinkStep.jsx",
+  "summary": "LinkPicker and LinkStep: link a YouTube channel to a Videoxx channel"
+ },
+ {
+  "start_line": 26653,
+  "path": "src/renderer/src/youtube/AddChannelDialog.jsx",
+  "summary": "Dialog to follow a public YouTube channel"
+ },
+ {
+  "start_line": 26733,
+  "path": "src/renderer/src/youtube/SignInDialog.jsx",
+  "summary": "Google sign-in flow dialog for full YouTube analytics"
+ },
+ {
+  "start_line": 26827,
+  "path": "src/renderer/src/youtube/ChannelDialogs.jsx",
+  "summary": "RemoveDialog, DisconnectDialog (publicReader) and ForgetDialog for YouTube channels"
+ },
+ {
+  "start_line": 26967,
+  "path": "src/renderer/src/youtube/YouTubeSettings.jsx",
+  "summary": "YouTube settings section: ChannelRow, useYtDialogs dialog host, YouTubeSettings"
+ },
+ {
+  "start_line": 27095,
+  "path": "src/renderer/src/script/scriptText.js",
+  "summary": "Script text parsing: beats, headings, multilingual stage directions, spokenLine/spokenScript, speakers, scriptSections/runsOf"
+ },
+ {
+  "start_line": 27283,
+  "path": "src/renderer/src/script/chunks.js",
+  "summary": "Sentence pacing presets, sentence splitting, pack and chunksOf for TTS chunks"
+ },
+ {
+  "start_line": 27384,
+  "path": "src/renderer/src/script/scriptLength.js",
+  "summary": "Spoken length estimate: spokenLength, scriptLength, lengthNote"
+ },
+ {
+  "start_line": 27404,
+  "path": "src/renderer/src/voice/useVoiceStatus.js",
+  "summary": "Voice helpers: Kokoro languages, audio extensions, ElevenLabs tier/account line, useVoiceStatus and useElevenAccount hooks"
+ },
+ {
+  "start_line": 27442,
+  "path": "src/renderer/src/voice/useSample.jsx",
+  "summary": "Module-level voice sample player (useSample, stopSample) and SampleButton"
+ },
+ {
+  "start_line": 27511,
+  "path": "src/renderer/src/voice/ElevenFields.jsx",
+  "summary": "ElevenLabs voice/model fields with voice settings controls (elControls) and samples"
+ },
+ {
+  "start_line": 27676,
+  "path": "src/renderer/src/voice/FishFields.jsx",
+  "summary": "Fish Audio voice fields: usd cost formatter, FISH_S1 language check, fishIdOf link parser, useFishNames hook, FishFields voice/model/speed picker and fishOf config normalizer"
+ },
+ {
+  "start_line": 27835,
+  "path": "src/renderer/src/voice/KokoroInstallCard.jsx",
+  "summary": "LogTail log viewer and KokoroInstallCard that installs the free local Kokoro voice with progress, stop and retry"
+ },
+ {
+  "start_line": 27887,
+  "path": "src/renderer/src/voice/CustomVoiceField.jsx",
+  "summary": "CustomVoiceField: voice picker for a custom voice API connector"
+ },
+ {
+  "start_line": 27908,
+  "path": "src/renderer/src/voice/KokoroFields.jsx",
+  "summary": "kokoroSpeaks language filter and KokoroFields voice/speed picker for the local Kokoro voice"
+ },
+ {
+  "start_line": 27955,
+  "path": "src/renderer/src/voice/CharacterVoices.jsx",
+  "summary": "CharacterVoices: per-speaker voice picks for bracketed character lines across ElevenLabs/Fish/Kokoro/custom providers"
+ },
+ {
+  "start_line": 28067,
+  "path": "src/renderer/src/voice/VoiceoverPanel.jsx",
+  "summary": "Voiceover dialog: recording memory, Recordings drag-and-drop list, JobView progress, firstTab choice, VoiceoverPanel with provider tabs/estimates/keys, and Estimate summary"
+ },
+ {
+  "start_line": 28989,
+  "path": "src/renderer/src/voice/VoiceSettingsSection.jsx",
+  "summary": "Voiceover section of Settings: OPENS_ON options, mergePatch helper and VoiceSettingsSection for default provider, ElevenLabs/Fish/Kokoro picks per language"
+ },
+ {
+  "start_line": 29214,
+  "path": "src/renderer/src/player/webglHelp.js",
+  "summary": "WEBGL_FAIL regex and webglAdvice text for when the 3D preview cannot create WebGL"
+ },
+ {
+  "start_line": 29219,
+  "path": "src/renderer/src/player/clock.js",
+  "summary": "Clock playback time class plus useClockTime, useClockValue, useClockText and usePlaying hooks"
+ },
+ {
+  "start_line": 29314,
+  "path": "src/renderer/src/player/previewQuality.js",
+  "summary": "Preview quality prefs: SCALE, PQ_OPTIONS, getPreviewQuality/setPreviewQuality with localStorage and config"
+ },
+ {
+  "start_line": 29337,
+  "path": "src/renderer/src/player/Preview.jsx",
+  "summary": "WebGL Preview forwardRef component hosting the scene iframe with auto quality scaling, logs, boot errors and WebGL advice"
+ },
+ {
+  "start_line": 29653,
+  "path": "src/renderer/src/settings/SignInHelp.jsx",
+  "summary": "SignInHelp: Claude browser sign-in status with link and paste-the-code field"
+ },
+ {
+  "start_line": 29689,
+  "path": "src/renderer/src/settings/ScriptSkillRow.jsx",
+  "summary": "ScriptSkillRow: settings row to install, paste or reset the script-writing skill"
+ },
+ {
+  "start_line": 29765,
+  "path": "src/renderer/src/settings/SettingsRows.jsx",
+  "summary": "Shared settings rows: Dot, ago, updateLine, Hint, useSpeech/busy, GraphicsRow (graphics mode), SpeechRow (transcription setup) and LanguageSection"
+ },
+ {
+  "start_line": 30047,
+  "path": "src/renderer/src/settings/Settings.jsx",
+  "summary": "Settings page: COUNT_WORDS/countWords, TAB_ICON, saved tab, SettingsSearch box and the tabbed Settings component with system check"
+ },
+ {
+  "start_line": 31039,
+  "path": "src/renderer/src/youtube/LinkVideoDialog.jsx",
+  "summary": "LinkVideoDialog: searchable list to link a YouTube video to a project"
+ },
+ {
+  "start_line": 31186,
+  "path": "src/renderer/src/youtube/ChannelLessons.jsx",
+  "summary": "ChannelLessons: shows the approved 'what works' lessons of a channel in new-project forms"
+ },
+ {
+  "start_line": 31220,
+  "path": "src/renderer/src/youtube/Charts.jsx",
+  "summary": "YouTube analytics charts: useWidth, niceScale, tick, DayChart, RetentionChart, Bars and Spark"
+ },
+ {
+  "start_line": 31449,
+  "path": "src/renderer/src/youtube/YouTube.jsx",
+  "summary": "YouTube analytics page: localStorage store, showYouTube, YouTube page, Notices, Body, Kpi, VideoTable with sorting/filters, and Lessons insights (continues into comments cards)"
+ },
+ {
+  "start_line": 32520,
+  "path": "src/renderer/src/channels/Channels.jsx",
+  "summary": "Channel planning board page: per-brand board prefs, stage hints, showDueOnBoard, sort/drag helpers, Channels page with TileStats/StagePick, the kanban Board, memoized Card/CardView, RenameField, QuickIdea paste-to-list input and IdeaDialog"
+ },
+ {
+  "start_line": 34346,
+  "path": "src/renderer/src/channels/ComingUp.jsx",
+  "summary": "ComingUp home widget listing due/late projects and ideas from the channel board, with a link to show them on the board"
+ },
+ {
+  "start_line": 34420,
+  "path": "src/renderer/src/projects/UsageHome.jsx",
+  "summary": "Claude usage dashboard on the home page: periods, compact/USD formatters, day helpers, cached stats, animated Count, UsageHome charts and SavingsRing plan savings ring"
+ },
+ {
+  "start_line": 34858,
+  "path": "src/renderer/src/projects/Home.jsx",
+  "summary": "Home page switching between FacelessHome and PersonalHome (with ComingUp and UsageHome), plus the shared VideoCard"
+ },
+ {
+  "start_line": 35021,
+  "path": "src/renderer/src/projects/Projects.jsx",
+  "summary": "Projects list page with open/rename/delete (move to Trash/Recycle Bin) actions"
+ },
+ {
+  "start_line": 35276,
+  "path": "src/renderer/src/state/usePlan.js",
+  "summary": "Module-level plan store fed by api.plan and plan:changed events, usePlan hook, isStandard, PREMIUM_PAGES, premiumMsg and exportsLeft"
+ },
+ {
+  "start_line": 35306,
+  "path": "src/renderer/src/looks/stylePreviews.js",
+  "summary": "Style and look preview video/poster asset imports mapped into STYLE_PREVIEW, STYLE_PREVIEW_TALL and LOOK_PREVIEW"
+ },
+ {
+  "start_line": 35343,
+  "path": "src/renderer/src/looks/lookFormat.js",
+  "summary": "Look settings comparison ignoring format: canon, sameButFormat, withFormat and isFormatTwin"
+ },
+ {
+  "start_line": 35365,
+  "path": "src/renderer/src/looks/StyleKit.jsx",
+  "summary": "Custom style kit: useStyleKit hook (get kit/import), KitActions, ImportRuns status list, CustomStyleCard and NoCustomStyles, with base-name and error-text helpers"
+ },
+ {
+  "start_line": 35623,
+  "path": "src/renderer/src/looks/ToonCharacters.jsx",
+  "summary": "Toon character generator (TOON_PARTS, seeded rng, randomLook/randomCast, lookSummary, design prompt) and the ToonCharacters picker with toonSettings"
+ },
+ {
+  "start_line": 35903,
+  "path": "src/renderer/src/projects/NewProject.jsx",
+  "summary": "New project dialog: length presets and LengthField, remembered format per style, StyleGlyph, NpScriptSkill and the NewProject form"
+ },
+ {
+  "start_line": 36728,
+  "path": "looks/Characters.jsx",
+  "summary": "Characters page: list built-in/random/Claude-designed cast characters (SOURCE labels), design or change a character with Claude, select and delete"
+ },
+ {
+  "start_line": 36938,
+  "path": "looks/Presets.jsx",
+  "summary": "Styles page (Presets): built-in vs custom style groups, look grid with hover previews, style kit, Style Studio entry, embeds Characters"
+ },
+ {
+  "start_line": 37244,
+  "path": "looks/Memory.jsx",
+  "summary": "Memory page: Claude's learned editing rules (global/project scope), learn-from-edits suggestions, accept/remove rules"
+ },
+ {
+  "start_line": 37381,
+  "path": "state/libraryInbox.js",
+  "summary": "Tiny module-level bus: requestLibraryInbox/takeLibraryInbox flag telling the Library to open its proposed-items inbox"
+ },
+ {
+  "start_line": 37390,
+  "path": "library/Library.jsx",
+  "summary": "Asset library page: KIND/SOURCE/STATUS tables, StatusBadge/KindBadge, faceted search and paging, Card grid, Drawer detail editor, licenceText and CodeView file viewer"
+ },
+ {
+  "start_line": 38114,
+  "path": "library/Renders.jsx",
+  "summary": "Renders page: polls api.renders and lists exports/final renders with status, progress, play and reveal-in-folder actions"
+ },
+ {
+  "start_line": 38168,
+  "path": "editor/TrimSilences.jsx",
+  "summary": "Trim silences tool: TRIM_DEFAULTS, trimCuts silence detection over dB levels, and the TrimSilences dialog with threshold/min length/amount and Apply"
+ },
+ {
+  "start_line": 38296,
+  "path": "editor/Timeline.jsx",
+  "summary": "Canvas timeline of the faceless editor: TRACKS lanes (shots, narration, cues, audio, cards, beds, sound layers), fitText, scrubbing/selection/layer drag, and roundRect canvas helper"
+ },
+ {
+  "start_line": 38867,
+  "path": "routines/nodes.js",
+  "summary": "Routine node catalog: SCRIPT_PRESETS, BUILD_EXTRAS and effort levels, time limits, skill/format options, NODES/NODE, port colors/labels, serviceFor, connectProblem, withDefaults, nextRun and TEMPLATES"
+ },
+ {
+  "start_line": 39579,
+  "path": "editor/ContextMeter.jsx",
+  "summary": "Claude context/usage meter: token formatter, rate-limit names, popover with context fill and limits, start-fresh-conversation action"
+ },
+ {
+  "start_line": 39758,
+  "path": "editor/RefsPanel.jsx",
+  "summary": "Project references UI: RefButton, addDropped file import, RefsPanel list with RefCard, RefsUsed and UsedChip showing references used by Claude"
+ },
+ {
+  "start_line": 40060,
+  "path": "editor/Md.jsx",
+  "summary": "Minimal markdown renderer (headings, lists, bold, code) as memoized Md component with inline helper"
+ },
+ {
+  "start_line": 40075,
+  "path": "editor/ToolGroup.jsx",
+  "summary": "Chat helpers: srcOf selection-to-source mapping, ToolGroup collapsible list of Claude tool steps, Compare before/after image slider"
+ },
+ {
+  "start_line": 40127,
+  "path": "editor/ClaudePanel.jsx",
+  "summary": "Claude chat panel of the faceless editor: per-project request queues, requestLabel, messages/tools/diffs, build/ultra/fix/script requests, model picker and context meter"
+ },
+ {
+  "start_line": 40880,
+  "path": "editor/panels/GraphicsPanel.jsx",
+  "summary": "Graphics settings: GFX_SECTIONS and GFX_CONTROLS definitions (performance, image, lighting, post, grade, export quality) followed by looks/presets, validation and the GraphicsPanel UI"
+ },
+ {
+  "start_line": 41798,
+  "path": "src/renderer/src/editor/panels/EffortSlider.jsx",
+  "summary": "Canvas-drawn EffortSlider with labelled levels and the QualitySlider wrapper over qualityLevels used by the build panels"
+ },
+ {
+  "start_line": 41921,
+  "path": "src/renderer/src/editor/panels/lookControls.js",
+  "summary": "GENERIC/OPTIONAL control lists, NEUTRAL relabels and customControls() that filters a style's controls for style-lab projects"
+ },
+ {
+  "start_line": 41932,
+  "path": "src/renderer/src/editor/panels/verticalCut.js",
+  "summary": "Pure helpers for vertical/short exports: fileStem, verticalStem/verticalFile naming, caption card building (captionCards/captionAt) and trailerRange picking"
+ },
+ {
+  "start_line": 41992,
+  "path": "src/renderer/src/editor/panels/VerticalTab.jsx",
+  "summary": "Vertical (9:16 shorts/trailer) export tab: Phone preview with draggable crop and captions, PhoneNote, render:done follow bus, and the VerticalTab component"
+ },
+ {
+  "start_line": 42801,
+  "path": "src/renderer/src/editor/panels/LookPanel.jsx",
+  "summary": "LookPanel modal for picking a preset or tweaking style controls with live preview and applying to the project"
+ },
+ {
+  "start_line": 42912,
+  "path": "src/renderer/src/editor/panels/Coach.jsx",
+  "summary": "First-run coach marks (COACH steps) highlighting stage, composer and agent head in the editor"
+ },
+ {
+  "start_line": 42944,
+  "path": "src/renderer/src/editor/panels/NotesPanel.jsx",
+  "summary": "Project notes modal showing storyboard/CLAUDE.md/STYLE.md/script/research files with open-in-editor"
+ },
+ {
+  "start_line": 42964,
+  "path": "src/renderer/src/editor/panels/KeysPanel.jsx",
+  "summary": "Keyboard shortcut sheet for the faceless editor (KEYS list with platform key names)"
+ },
+ {
+  "start_line": 42994,
+  "path": "src/renderer/src/editor/panels/BuildPanel.jsx",
+  "summary": "Build/rebuild modal: build extras, notes, quality slider and start build"
+ },
+ {
+  "start_line": 43185,
+  "path": "src/renderer/src/editor/panels/UltraPanel.jsx",
+  "summary": "Ultra / Ultra+ polish panel with model, effort and minutes options persisted in localStorage"
+ },
+ {
+  "start_line": 43372,
+  "path": "src/renderer/src/editor/panels/FindPanel.jsx",
+  "summary": "Find-a-word-in-the-narration panel with folded search over phrases"
+ },
+ {
+  "start_line": 43419,
+  "path": "src/renderer/src/editor/panels/GotoPanel.jsx",
+  "summary": "Go-to-time modal parsing seconds or m:ss.s"
+ },
+ {
+  "start_line": 43442,
+  "path": "src/renderer/src/editor/panels/youtubeChapters.js",
+  "summary": "youtubeChapters(): builds YouTube chapter timestamp lines from shots"
+ },
+ {
+  "start_line": 43464,
+  "path": "src/renderer/src/state/exportRequest.js",
+  "summary": "Module-level export-dialog request bus: requestExportDialog/takeExportRequest with cz-open-export event"
+ },
+ {
+  "start_line": 43474,
+  "path": "src/renderer/src/editor/panels/ExportPanel.jsx",
+  "summary": "Export modal for the faceless editor: video/GIF/part exports, captions, UHD, export quality and YouTube chapters"
+ },
+ {
+  "start_line": 43717,
+  "path": "src/renderer/src/editor/panels/ScriptView.jsx",
+  "summary": "Script viewer/editor modal with spoken-text view, save, rewrite and voiceover actions"
+ },
+ {
+  "start_line": 43858,
+  "path": "src/renderer/src/editor/panels/ScriptPanel.jsx",
+  "summary": "Write/rewrite script modal: topic, target length and notes, starts the script job"
+ },
+ {
+  "start_line": 43954,
+  "path": "src/renderer/src/personal/timelineEdit.js",
+  "summary": "Personal-brand timeline edit model: emptyEdit, layoutTimeline, cam picking, segIndexAt, split, ripple before/after, removeClip, trimClip"
+ },
+ {
+  "start_line": 44054,
+  "path": "src/renderer/src/personal/canvasDraw.js",
+  "summary": "Canvas drawing of the screen+cam layout: camCrop, background/shadow/box drawing, placeholders, drawFrame and renderAssets for final render"
+ },
+ {
+  "start_line": 44195,
+  "path": "src/renderer/src/personal/PersonalEngine.js",
+  "summary": "PersonalEngine class driving video element pools against the Clock and drawing frames, plus setPlayErrorHandler hook"
+ },
+ {
+  "start_line": 44599,
+  "path": "src/renderer/src/personal/PTimeline.jsx",
+  "summary": "Canvas timeline (PTimeline forwardRef) for the personal editor with clips, cam lane, waveform, zoom and drag"
+ },
+ {
+  "start_line": 44897,
+  "path": "src/renderer/src/personal/FootageBin.jsx",
+  "summary": "Footage bin: add/import footage files, assign roles (screen, facecam, intro, other), FOOTAGE_EXT filter"
+ },
+ {
+  "start_line": 44992,
+  "path": "src/renderer/src/personal/LayoutPanel.jsx",
+  "summary": "Layout panel with background cache/loadBackground, background Thumb, slider rows and layout presets"
+ },
+ {
+  "start_line": 45132,
+  "path": "src/renderer/src/personal/RenderPanel.jsx",
+  "summary": "Render panel: encoder presets, progress and sign-off render of the personal video"
+ },
+ {
+  "start_line": 45236,
+  "path": "src/renderer/src/personal/PClaudePanel.jsx",
+  "summary": "Claude chat panel for the personal editor (cut footage / edit intro tasks, threads, workflows)"
+ },
+ {
+  "start_line": 45604,
+  "path": "src/renderer/src/personal/PersonalEditor.jsx",
+  "summary": "PersonalEditor page: clock, media, edit undo/redo, keyboard shortcuts (KEYS), layout, footage drop and panels"
+ },
+ {
+  "start_line": 46185,
+  "path": "src/renderer/src/editor/selectionLabel.js",
+  "summary": "Small shared helpers used by both the faceless editor and the Studio workspace: the STYLES_MOVED message and selLabel(), a readable label for a preview selection (object, HUD, shot, phrase, cue or range)."
+ },
+ {
+  "start_line": 46196,
+  "path": "src/renderer/src/editor/Editor.jsx",
+  "summary": "Editor page: the Editor router (opens Studio projects, otherwise PersonalEditor or FacelessEditor) and the 1300-line FacelessEditor in the same module, with its settle, STEP_ICON and NOT_TIMED helpers. Editor uses FacelessEditor before it is defined, so they cannot be separate modules."
+ },
+ {
+  "start_line": 47518,
+  "path": "src/renderer/src/studio/Studio.jsx",
+  "summary": "Style Studio, one module: stage names and hints, ACT/LOOP_PHASE/MATCH_KINDS, RegionTable, Studio, CapInput, useFlowImages, BriefForm, Workspace and every panel Workspace renders (StudyPanel, IssueRow, BriefSummary, SavePanel, HeroFrames, KitGallery, PublishPanel, MatchView, NumIn, MatchBar, GenerateTargets, CompareDialog). These panels all appear after Workspace and Studio, which use them."
+ },
+ {
+  "start_line": 49483,
+  "path": "src/renderer/src/studio/StyleImport.jsx",
+  "summary": "StyleImport page: follows a style-package import run (checks with status icons, issues by severity, sample exports) and links back to Styles."
+ },
+ {
+  "start_line": 49710,
+  "path": "src/renderer/src/personal/NewVideo.jsx",
+  "summary": "NewVideo modal for personal-brand videos: title, channel, thumbnail idea, core concept and an optional thumbnail image; it creates the project and opens the editor."
+ },
+ {
+  "start_line": 49808,
+  "path": "src/renderer/src/personal/Layouts.jsx",
+  "summary": "Layouts page: a canvas Preview of a layout preset, the preset grid (make default, copy, edit, delete), the editor modal using LayoutHandles and LayoutPanel, and BgTile background thumbnails."
+ },
+ {
+  "start_line": 49957,
+  "path": "src/renderer/src/personal/Videos.jsx",
+  "summary": "Videos page (personal-brand project list): search, channel filter, video cards, move to channel, and remove or move to Trash/Recycle Bin."
+ },
+ {
+  "start_line": 50042,
+  "path": "src/renderer/src/routines/summary.js",
+  "summary": "Routine node display helpers: the ICONS map of lucide icons and summary(node, ctx), which returns one-line descriptions per node type, with DAYS, count, FAIL and fmtLen."
+ },
+ {
+  "start_line": 50153,
+  "path": "src/renderer/src/routines/RoutineCanvas.jsx",
+  "summary": "RoutineCanvas, a forwardRef node-graph canvas: pan and zoom view, node ports and cable path geometry (W, PORT_Y, cable, portIn/portOut), wiring, marquee selection, context menu and keyboard handling."
+ },
+ {
+  "start_line": 50691,
+  "path": "src/renderer/src/routines/demo.js",
+  "summary": "Routine demo simulation: per-node SIM durations/log lines and SIM_NOTE, orderFrom topological order, makeDemo (replay a past run or simulate the graph), n0 label helper and demoFrame which turns elapsed time into a fake run object"
+ },
+ {
+  "start_line": 50866,
+  "path": "src/renderer/src/routines/Routines.jsx",
+  "summary": "Routines page (list rail, canvas, undo history, autosave, runs drawer, run/confirm flow, demo playback) plus its run widgets (StatusDot, useTick, dur, progressOf, RunNow, ItemRow) and inspectors: RoutineInspector, NodeInspector with BUILTIN_VOICES, Num/NumIn, OwnSkillField, ThumbRefsField, ThumbAnalysisField, ThumbImageGen, ThumbVariations, KnownVideosLine, YtFollow"
+ },
+ {
+  "start_line": 52569,
+  "path": "src/renderer/src/shell/BrandSwitch.jsx",
+  "summary": "Personal/Faceless brand toggle with a liquid-glass SVG displacement filter (MODES, LABELS, lensMap canvas generator) and spring-animated thumb"
+ },
+ {
+  "start_line": 52784,
+  "path": "src/renderer/src/shell/ImageKeyNotice.jsx",
+  "summary": "Modal asking the user to add a Higgsfield or Fal.ai image-generation API key, opening KeyDialog or Settings"
+ },
+ {
+  "start_line": 52830,
+  "path": "src/renderer/src/shell/GlideNav.jsx",
+  "summary": "Sidebar navigation data (ANALYTICS, NAVS per brand, BRAND_NAME, thing) and the GlideNav container with a gliding hover highlight"
+ },
+ {
+  "start_line": 52878,
+  "path": "src/renderer/src/shell/ConnButton.jsx",
+  "summary": "Sidebar button showing the Claude connection/sign-in status, opening Claude account settings"
+ },
+ {
+  "start_line": 52889,
+  "path": "src/renderer/src/shell/UpdateButton.jsx",
+  "summary": "Sidebar button that appears when an app update is ready/available and installs it"
+ },
+ {
+  "start_line": 52927,
+  "path": "src/renderer/src/shell/GraphicsButton.jsx",
+  "summary": "Sidebar notice/button when the app switched to software graphics (GRAPHICS_SWITCHED message), with restart action"
+ },
+ {
+  "start_line": 52963,
+  "path": "src/renderer/src/shell/ExportsButton.jsx",
+  "summary": "Sidebar indicator of running video exports, tracking render progress events per project"
+ },
+ {
+  "start_line": 53002,
+  "path": "src/renderer/src/shell/Palette.jsx",
+  "summary": "Command palette: searchable actions, pages, projects and channels with keyboard navigation"
+ },
+ {
+  "start_line": 53121,
+  "path": "src/renderer/src/shell/ZoomBadge.jsx",
+  "summary": "Transient badge showing the UI zoom percentage after ui:zoom events"
+ },
+ {
+  "start_line": 53141,
+  "path": "src/renderer/src/App.jsx",
+  "summary": "App shell: sidebar with brand switch and nav (premium locks), page switcher, global dialogs/toasts/palette, plus CrashHelp button opening the help assistant"
+ },
+ {
+  "start_line": 53303,
+  "path": "src/renderer/src/shell/Boundary.jsx",
+  "summary": "React error boundary class that logs crashes via noteError and shows a retry view with CrashHelp"
+ },
+ {
+  "start_line": 53323,
+  "path": "src/renderer/src/main.jsx",
+  "summary": "Renderer entry: global error/unhandledrejection listeners feeding noteError, then createRoot render of AppProvider > Boundary > App"
+ }
+]

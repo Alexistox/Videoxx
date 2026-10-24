@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Videoxx</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: http://127.0.0.1:*; media-src 'self' blob: http://127.0.0.1:*; frame-src http://127.0.0.1:*; connect-src 'self' http://127.0.0.1:* ws://localhost:*; font-src 'self' data:" />
+  <script type="module" src="./src/main.jsx"></script>
+  <script defer src="./videoxx-auth-ui.js"></script>
+  <script defer src="./videoxx-connectors-ui.js"></script>
+  <script defer src="./videoxx-assets-ui.js"></script>
+  <script defer src="./videoxx-chatgpt-ui.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>

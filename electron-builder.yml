@@ -1,0 +1,33 @@
+# Packaging, matching the shipped layout:
+#   resources/app.asar        out/ + pipeline-scripts + node_modules (runtime deps)
+#   resources/templates       engines, skills, library (read via templatesDir())
+#   resources/resources       icon.ico, icon.png, logo.png (read via resourcesDir())
+appId: com.videoxx.suite
+productName: Videoxx
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - out/**
+  - pipeline-scripts/**
+  - package.json
+  # the app drives the user's own Claude Code / Codex installs: leave out the SDKs' bundled native CLIs (~700 MB)
+  - "!node_modules/@anthropic-ai/claude-agent-sdk-*/**"
+  - "!node_modules/@openai/codex-{win32,darwin,linux}-*/**"
+extraResources:
+  - from: templates
+    to: templates
+  - from: resources
+    to: resources
+electronLanguages:
+  - en-US
+asar: true
+win:
+  icon: resources/icon.ico
+  target: nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+mac:
+  icon: resources/icon.png
+  category: public.app-category.video
